@@ -1,5 +1,4 @@
 name = "nozallc-us"
-type = "javascript"
 compatibility_date = "2025-01-01"
 compatibility_flags = ["nodejs_compat"]
 
@@ -7,15 +6,10 @@ compatibility_flags = ["nodejs_compat"]
 [build]
 command = "npm run build"
 cwd = "./"
-watch_paths = ["src/**/*.{astro,ts,tsx,jsx,js}"]
 
 # Environment-specific configuration
 [env.production]
 name = "nozallc-us-production"
-
-# Analytics Engine binding
-[[analytics_engine_datasets]]
-binding = "ANALYTICS"
 
 # Optional: KV Bindings for caching (uncomment when you set up KV)
 # [[kv_namespaces]]
