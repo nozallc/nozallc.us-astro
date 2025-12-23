@@ -1,0 +1,271 @@
+---
+---
+
+<section class="hero">
+	<div class="cosmic-background">
+		<div class="stars"></div>
+		<div class="nebula nebula-1"></div>
+		<div class="nebula nebula-2"></div>
+		<div class="nebula nebula-3"></div>
+	</div>
+
+	<div class="particles"></div>
+
+	<div class="hero-content">
+		<div class="glowing-orb-container">
+			<div class="glowing-orb"></div>
+			<div class="orbit-ring orbit-ring-1"></div>
+			<div class="orbit-ring orbit-ring-2"></div>
+			<div class="orbit-ring orbit-ring-3"></div>
+		</div>
+
+		<div class="hero-text">
+			<h1 class="hero-headline">Launch Your Business Into the Future</h1>
+			<p class="hero-subheadline">Digital marketing, branding, websites & business consulting for Lexington KY small businesses—powered by a cutting-edge Builder → GitHub → Astro → Cloudflare workflow.</p>
+			
+			<div class="hero-ctas">
+				<button class="cta-primary">Book a Discovery Call</button>
+				<button class="cta-secondary">See Our Work</button>
+			</div>
+
+			<p class="hero-location">📍 Based in Lexington, Kentucky • Serving Central KY & beyond</p>
+		</div>
+	</div>
+</section>
+
+<style is:global>
+	.hero {
+		position: relative;
+		min-height: 100vh;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		overflow: hidden;
+		padding: 2rem;
+	}
+
+	.cosmic-background {
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+		z-index: 0;
+		overflow: hidden;
+	}
+
+	.stars {
+		position: absolute;
+		width: 2px;
+		height: 2px;
+		background: white;
+		border-radius: 50%;
+		box-shadow: 100px 100px white, 200px 150px white, 300px 50px white, 450px 200px white,
+					550px 100px white, 150px 300px white, 400px 400px white, 600px 300px white,
+					700px 150px white, 800px 400px white, 900px 250px white, 200px 500px white,
+					700px 500px white, 500px 600px white, 100px 700px white, 800px 700px white,
+					300px 800px white;
+		animation: twinkle 3s infinite;
+	}
+
+	@keyframes twinkle {
+		0%, 100% { opacity: 0.3; }
+		50% { opacity: 1; }
+	}
+
+	.nebula {
+		position: absolute;
+		border-radius: 50%;
+		filter: blur(80px);
+		opacity: 0.6;
+	}
+
+	.nebula-1 {
+		width: 400px;
+		height: 400px;
+		background: radial-gradient(circle, rgba(0, 212, 255, 0.3) 0%, transparent 70%);
+		top: 10%;
+		left: 10%;
+		animation: drift 8s ease-in-out infinite;
+	}
+
+	.nebula-2 {
+		width: 500px;
+		height: 500px;
+		background: radial-gradient(circle, rgba(163, 0, 255, 0.2) 0%, transparent 70%);
+		top: 50%;
+		right: 5%;
+		animation: drift 10s ease-in-out infinite reverse;
+	}
+
+	.nebula-3 {
+		width: 350px;
+		height: 350px;
+		background: radial-gradient(circle, rgba(255, 0, 110, 0.2) 0%, transparent 70%);
+		bottom: 10%;
+		left: 50%;
+		animation: drift 12s ease-in-out infinite;
+	}
+
+	@keyframes drift {
+		0%, 100% { transform: translate(0, 0); }
+		50% { transform: translate(50px, 50px); }
+	}
+
+	.particles {
+		position: absolute;
+		width: 100%;
+		height: 100%;
+		overflow: hidden;
+	}
+
+	.particles::before {
+		content: '';
+		position: absolute;
+		width: 2px;
+		height: 2px;
+		background: var(--primary-neon);
+		border-radius: 50%;
+		box-shadow: 100px 200px var(--primary-neon), 250px 100px var(--primary-neon),
+					150px 400px var(--secondary-neon), 450px 150px var(--tertiary-neon),
+					600px 250px var(--primary-neon), 350px 300px var(--secondary-neon),
+					800px 100px var(--tertiary-neon), 200px 600px var(--primary-neon);
+		animation: float 6s ease-in-out infinite;
+	}
+
+	@keyframes float {
+		0%, 100% { transform: translateY(0) translateX(0); opacity: 0.5; }
+		50% { transform: translateY(-50px) translateX(30px); opacity: 1; }
+	}
+
+	.hero-content {
+		position: relative;
+		z-index: 1;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		text-align: center;
+		max-width: 900px;
+		gap: 3rem;
+	}
+
+	.glowing-orb-container {
+		position: relative;
+		width: 200px;
+		height: 200px;
+		margin-bottom: 2rem;
+	}
+
+	.glowing-orb {
+		position: absolute;
+		width: 150px;
+		height: 150px;
+		top: 50%;
+		left: 50%;
+		transform: translate(-50%, -50%);
+		background: radial-gradient(circle at 35% 35%, rgba(0, 212, 255, 0.8), rgba(163, 0, 255, 0.6), rgba(255, 0, 110, 0.4));
+		border-radius: 50%;
+		filter: blur(30px);
+		animation: pulse-glow 3s ease-in-out infinite;
+		box-shadow: 0 0 80px var(--primary-neon), 0 0 120px var(--tertiary-neon);
+	}
+
+	@keyframes pulse-glow {
+		0%, 100% { 
+			transform: translate(-50%, -50%) scale(1);
+			box-shadow: 0 0 80px var(--primary-neon), 0 0 120px var(--tertiary-neon);
+		}
+		50% { 
+			transform: translate(-50%, -50%) scale(1.2);
+			box-shadow: 0 0 120px var(--primary-neon), 0 0 160px var(--tertiary-neon);
+		}
+	}
+
+	.orbit-ring {
+		position: absolute;
+		border: 2px solid;
+		border-radius: 50%;
+		top: 50%;
+		left: 50%;
+	}
+
+	.orbit-ring-1 {
+		width: 200px;
+		height: 200px;
+		border-color: rgba(0, 212, 255, 0.3);
+		transform: translate(-50%, -50%) rotateX(75deg);
+		animation: spin-orbit 8s linear infinite;
+	}
+
+	.orbit-ring-2 {
+		width: 250px;
+		height: 250px;
+		border-color: rgba(163, 0, 255, 0.2);
+		transform: translate(-50%, -50%) rotateX(60deg);
+		animation: spin-orbit 10s linear infinite reverse;
+	}
+
+	.orbit-ring-3 {
+		width: 300px;
+		height: 300px;
+		border-color: rgba(255, 0, 110, 0.15);
+		transform: translate(-50%, -50%) rotateX(45deg);
+		animation: spin-orbit 12s linear infinite;
+	}
+
+	@keyframes spin-orbit {
+		0% { transform: translate(-50%, -50%) rotateX(75deg) rotateZ(0deg); }
+		100% { transform: translate(-50%, -50%) rotateX(75deg) rotateZ(360deg); }
+	}
+
+	.hero-text {
+		display: flex;
+		flex-direction: column;
+		gap: 1.5rem;
+	}
+
+	.hero-headline {
+		font-size: clamp(2.5rem, 8vw, 4rem);
+		font-weight: 800;
+		background: linear-gradient(135deg, var(--primary-neon), var(--secondary-neon), var(--tertiary-neon));
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+		background-clip: text;
+		line-height: 1.2;
+		animation: fade-in-up 1s ease-out;
+	}
+
+	.hero-subheadline {
+		font-size: clamp(1rem, 2.5vw, 1.25rem);
+		color: var(--text-secondary);
+		max-width: 700px;
+		margin: 0 auto;
+		line-height: 1.8;
+		animation: fade-in-up 1s ease-out 0.2s both;
+	}
+
+	@keyframes fade-in-up {
+		from {
+			opacity: 0;
+			transform: translateY(30px);
+		}
+		to {
+			opacity: 1;
+			transform: translateY(0);
+		}
+	}
+
+	.hero-ctas {
+		display: flex;
+		gap: 1.5rem;
+		justify-content: center;
+		flex-wrap: wrap;
+		animation: fade-in-up 1s ease-out 0.4s both;
+	}
+
+	.hero-location {
+		font-size: 0.95rem;
+		color: var(--text-secondary);
+		animation: fade-in-up 1s ease-out 0.6s both;
+	}
+</style>
