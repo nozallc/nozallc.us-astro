@@ -1,0 +1,126 @@
+---
+---
+
+<section class="faq">
+	<div class="section-header">
+		<h2>Frequently Asked Questions</h2>
+		<p class="section-subtitle">Everything you need to know</p>
+	</div>
+
+	<div class="faq-container">
+		<details class="faq-item">
+			<summary class="faq-question">What digital marketing services do you offer in Lexington KY?</summary>
+			<div class="faq-answer">
+				<p>We offer a full spectrum of digital marketing services tailored to Lexington small businesses, including SEO optimization, social media management, paid advertising campaigns, content strategy, email marketing, and analytics-driven optimization. All strategies are customized to your local market and business goals.</p>
+			</div>
+		</details>
+
+		<details class="faq-item">
+			<summary class="faq-question">How much does a small business website cost?</summary>
+			<div class="faq-answer">
+				<p>Website costs vary based on complexity, features, and customization. Typically, small business websites range from foundational Astro-built sites to fully custom experiences. We offer flexible pricing models including project-based fees and performance-based pricing. Contact us for a personalized quote based on your specific needs.</p>
+			</div>
+		</details>
+
+		<details class="faq-item">
+			<summary class="faq-question">Do you work with contractors and service trades?</summary>
+			<div class="faq-answer">
+				<p>Absolutely! We specialize in serving service-based businesses and trades in Central Kentucky. We understand the unique challenges contractors, cleaners, landscapers, and real estate professionals face, and we've built solutions that generate leads and build credibility in those industries.</p>
+			</div>
+		</details>
+
+		<details class="faq-item">
+			<summary class="faq-question">Why use Astro + Cloudflare?</summary>
+			<div class="faq-answer">
+				<p>Astro provides superior performance through modern framework architecture, while Cloudflare Pages delivers lightning-fast global hosting with built-in security. Together, they create websites that rank better in search, load in milliseconds, and provide an exceptional user experience—all while keeping costs low and customization unlimited.</p>
+			</div>
+		</details>
+
+		<details class="faq-item">
+			<summary class="faq-question">Do you provide social media content creation?</summary>
+			<div class="faq-answer">
+				<p>Yes! We provide complete social media services including content strategy, copywriting, graphic design, video production, community management, and campaign execution across Instagram, Facebook, LinkedIn, TikTok, and other relevant platforms for your business.</p>
+			</div>
+		</details>
+
+		<details class="faq-item">
+			<summary class="faq-question">Do you help new businesses get started?</summary>
+			<div class="faq-answer">
+				<p>Yes! If you're launching a new business or venture, we provide comprehensive startup guidance including business name and brand positioning, visual identity design, website launch, initial marketing strategy, and foundational systems to help you get customers from day one.</p>
+			</div>
+		</details>
+	</div>
+</section>
+
+<style is:global>
+	.faq {
+		position: relative;
+		padding: 6rem 2rem;
+		background: linear-gradient(180deg, rgba(15, 24, 53, 0.8) 0%, var(--dark-bg) 100%);
+		z-index: 2;
+	}
+
+	.faq-container {
+		max-width: 800px;
+		margin: 3rem auto;
+	}
+
+	.faq-item {
+		margin-bottom: 1.5rem;
+		border-radius: 8px;
+		overflow: hidden;
+		background: rgba(0, 212, 255, 0.05);
+		border: 1px solid var(--border-glow);
+		transition: all 0.3s ease;
+	}
+
+	.faq-item[open] {
+		background: rgba(0, 212, 255, 0.1);
+		border-color: var(--primary-neon);
+	}
+
+	.faq-question {
+		padding: 1.5rem;
+		cursor: pointer;
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		font-weight: 600;
+		color: var(--text-primary);
+		transition: all 0.3s ease;
+		user-select: none;
+	}
+
+	.faq-item:hover .faq-question {
+		color: var(--primary-neon);
+	}
+
+	.faq-question::after {
+		content: '▼';
+		color: var(--primary-neon);
+		font-size: 0.8rem;
+		transition: transform 0.3s ease;
+	}
+
+	.faq-item[open] .faq-question::after {
+		transform: rotate(180deg);
+	}
+
+	.faq-answer {
+		padding: 0 1.5rem 1.5rem;
+		animation: expand 0.3s ease-out;
+		color: var(--text-secondary);
+		line-height: 1.8;
+	}
+
+	@keyframes expand {
+		from {
+			opacity: 0;
+			max-height: 0;
+		}
+		to {
+			opacity: 1;
+			max-height: 500px;
+		}
+	}
+</style>
