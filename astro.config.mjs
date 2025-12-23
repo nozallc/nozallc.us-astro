@@ -41,11 +41,5 @@ export default defineConfig({
 	// Enable prefetching for better performance
 	prefetch: {
 		prefetchAll: true
-	},
-	// Optimize for Core Web Vitals
-	experimental: {
-		env: {
-			getEnv: true
-		}
 	}
 });
