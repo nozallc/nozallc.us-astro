@@ -1,5 +1,5 @@
 ---
-import '../styles/global.css';
+import RootLayout from '../layouts/RootLayout.astro';
 import Hero from '../components/Hero.astro';
 import Services from '../components/Services.astro';
 import Stack from '../components/Stack.astro';
@@ -9,111 +9,36 @@ import VendorNetwork from '../components/VendorNetwork.astro';
 import FAQ from '../components/FAQ.astro';
 import FinalCTA from '../components/FinalCTA.astro';
 import Footer from '../components/Footer.astro';
+
+const pageTitle = 'NOZA LLC - Digital Marketing, Branding & Web Design in Lexington, KY';
+const pageDescription = 'Digital marketing, branding, websites & business consulting for Lexington KY small businesses. Creative workflows powered by Builder.io, GitHub, Astro & Cloudflare.';
 ---
 
-<!DOCTYPE html>
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/noza.favicon.svg" />
-		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<meta name="generator" content={Astro.generator} />
-		<title>NOZA LLC - Digital Marketing, Branding & Web Design in Lexington, KY</title>
-		<meta name="description" content="Digital marketing, branding, websites & business consulting for Lexington KY small businesses. Creative workflows powered by Builder.io, GitHub, Astro & Cloudflare." />
-		
-		<!-- Open Graph Meta Tags -->
-		<meta property="og:title" content="NOZA LLC - Digital Marketing & Web Design in Lexington, KY" />
-		<meta property="og:description" content="Launch your business into the future with cutting-edge digital marketing, branding, and web design services in Lexington, Kentucky." />
-		<meta property="og:type" content="website" />
-		<meta property="og:url" content="https://nozallc.us" />
-		<meta property="og:image" content="https://nozallc.us/nozallc.svg" />
-		<meta property="og:image:alt" content="NOZA LLC - Digital Marketing Agency" />
-		
-		<!-- Twitter Card Tags -->
-		<meta name="twitter:card" content="summary_large_image" />
-		<meta name="twitter:title" content="NOZA LLC - Digital Marketing & Web Design" />
-		<meta name="twitter:description" content="Digital marketing, branding, websites & business consulting for Lexington KY small businesses." />
-		<meta name="twitter:image" content="https://nozallc.us/nozallc.svg" />
-		
-		<!-- Additional SEO Tags -->
-		<meta name="theme-color" content="#0a0e27" />
-		<meta name="apple-mobile-web-app-capable" content="yes" />
-		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
-		
-		<!-- Canonical URL -->
-		<link rel="canonical" href="https://nozallc.us" />
-		
-		<!-- Preconnect to external resources -->
-		<link rel="preconnect" href="https://fonts.googleapis.com" />
-		<link rel="dns-prefetch" href="https://cdn.cloudflare.com" />
-		
-		<!-- Schema.org Structured Data -->
-		<script type="application/ld+json">
-		{
-			"@context": "https://schema.org",
-			"@type": "LocalBusiness",
-			"name": "NOZA LLC",
-			"image": "https://nozallc.us/nozallc.svg",
-			"description": "Digital marketing, branding, websites & business consulting for Lexington KY small businesses",
-			"address": {
-				"@type": "PostalAddress",
-				"addressLocality": "Lexington",
-				"addressRegion": "Kentucky",
-				"addressCountry": "US"
-			},
-			"sameAs": [
-				"https://instagram.com/nozallc",
-				"https://facebook.com/nozallc",
-				"https://linkedin.com/company/nozallc"
-			],
-			"priceRange": "$$",
-			"knowsAbout": ["Digital Marketing", "Web Design", "Branding", "Business Consulting"],
-			"areaServed": "Lexington, Kentucky"
-		}
-		</script>
-		
-		<!-- Organization Schema -->
-		<script type="application/ld+json">
-		{
-			"@context": "https://schema.org",
-			"@type": "Organization",
-			"name": "NOZA LLC",
-			"url": "https://nozallc.us",
-			"logo": "https://nozallc.us/nozallc.svg",
-			"contact": {
-				"@type": "ContactPoint",
-				"telephone": "+1-XXXXXXXXXX",
-				"contactType": "Business Inquiries"
-			}
-		}
-		</script>
-	</head>
-	<body>
-		<!-- Hero Section -->
-		<Hero />
+<RootLayout title={pageTitle} description={pageDescription}>
+	<!-- Hero Section -->
+	<Hero />
 
-		<!-- Services Overview Section -->
-		<Services />
+	<!-- Services Overview Section -->
+	<Services />
 
-		<!-- The Stack Section -->
-		<Stack />
+	<!-- The Stack Section -->
+	<Stack />
 
-		<!-- Portfolio Section -->
-		<Portfolio />
+	<!-- Portfolio Section -->
+	<Portfolio />
 
-		<!-- Consulting Section -->
-		<Consulting />
+	<!-- Consulting Section -->
+	<Consulting />
 
-		<!-- Vendor Network Section -->
-		<VendorNetwork />
+	<!-- Vendor Network Section -->
+	<VendorNetwork />
 
-		<!-- FAQ Section -->
-		<FAQ />
+	<!-- FAQ Section -->
+	<FAQ />
 
-		<!-- Final CTA Section -->
-		<FinalCTA />
+	<!-- Final CTA Section -->
+	<FinalCTA />
 
-		<!-- Footer -->
-		<Footer />
-	</body>
-</html>
+	<!-- Footer -->
+	<Footer />
+</RootLayout>
