@@ -1,0 +1,204 @@
+---
+---
+
+<section class="vendor-network">
+	<div class="section-header">
+		<h2>The NOZA Orbit</h2>
+		<p class="section-subtitle">Building a network of trusted partners</p>
+	</div>
+
+	<div class="orbit-container">
+		<div class="orbit-center">
+			<img src="/nozallc.svg" alt="NOZA LLC Logo" class="orbit-logo" />
+			<p class="orbit-center-text">NOZA</p>
+		</div>
+
+		<div class="orbit-nodes">
+			<div class="orbit-node node-1">
+				<div class="node-dot"></div>
+				<p class="node-name">Cleaning Services</p>
+			</div>
+			<div class="orbit-node node-2">
+				<div class="node-dot"></div>
+				<p class="node-name">Contracting</p>
+			</div>
+			<div class="orbit-node node-3">
+				<div class="node-dot"></div>
+				<p class="node-name">Landscaping</p>
+			</div>
+			<div class="orbit-node node-4">
+				<div class="node-dot"></div>
+				<p class="node-name">Real Estate</p>
+			</div>
+			<div class="orbit-node node-5">
+				<div class="node-dot"></div>
+				<p class="node-name">Consulting</p>
+			</div>
+			<div class="orbit-node node-6">
+				<div class="node-dot"></div>
+				<p class="node-name">Digital Services</p>
+			</div>
+		</div>
+	</div>
+
+	<div class="vendor-info">
+		<p><strong>NOZA connects businesses with trusted vendors in our ecosystem.</strong> We operate on a referral-based revenue model where our partners grow together. When we find the perfect match between a client need and a vendor capability, everyone wins.</p>
+		<button class="cta-primary vendor-cta">Apply to Join the NOZA Network</button>
+	</div>
+</section>
+
+<style is:global>
+	.vendor-network {
+		position: relative;
+		padding: 6rem 2rem;
+		background: linear-gradient(180deg, var(--dark-bg) 0%, rgba(15, 24, 53, 0.8) 100%);
+		z-index: 2;
+	}
+
+	.orbit-container {
+		max-width: 600px;
+		margin: 3rem auto;
+		position: relative;
+		width: 100%;
+		aspect-ratio: 1;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+	}
+
+	.orbit-center {
+		position: absolute;
+		width: 120px;
+		height: 120px;
+		background: radial-gradient(circle, rgba(0, 212, 255, 0.3), transparent);
+		border-radius: 50%;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		justify-content: center;
+		border: 2px solid var(--primary-neon);
+		z-index: 10;
+		box-shadow: 0 0 30px rgba(0, 212, 255, 0.5);
+	}
+
+	.orbit-logo {
+		width: 80px;
+		height: 80px;
+		object-fit: contain;
+		filter: brightness(1.2);
+	}
+
+	.orbit-center-text {
+		font-weight: 700;
+		font-size: 0.9rem;
+		color: var(--primary-neon);
+		text-align: center;
+		position: absolute;
+		bottom: 10px;
+	}
+
+	.orbit-nodes {
+		position: absolute;
+		width: 100%;
+		height: 100%;
+	}
+
+	.orbit-node {
+		position: absolute;
+		width: 100px;
+		height: 100px;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		justify-content: center;
+		cursor: pointer;
+	}
+
+	.node-1 { top: 0%; left: 50%; transform: translateX(-50%); animation: orbit-motion-1 20s linear infinite; }
+	.node-2 { animation: orbit-motion-2 20s linear infinite; }
+	.node-3 { animation: orbit-motion-3 20s linear infinite; }
+	.node-4 { animation: orbit-motion-4 20s linear infinite; }
+	.node-5 { animation: orbit-motion-5 20s linear infinite; }
+	.node-6 { animation: orbit-motion-6 20s linear infinite; }
+
+	@keyframes orbit-motion-1 {
+		0% { top: 0%; left: 50%; transform: translateX(-50%); }
+		100% { top: 0%; left: 50%; transform: translateX(-50%) rotateZ(360deg); }
+	}
+
+	@keyframes orbit-motion-2 {
+		0% { top: 13.4%; left: 84.3%; }
+		100% { top: 13.4%; left: 84.3%; transform: rotateZ(360deg); }
+	}
+
+	@keyframes orbit-motion-3 {
+		0% { top: 50%; left: 93.3%; transform: translateY(-50%); }
+		100% { top: 50%; left: 93.3%; transform: translateY(-50%) rotateZ(360deg); }
+	}
+
+	@keyframes orbit-motion-4 {
+		0% { bottom: 13.4%; right: 15.7%; }
+		100% { bottom: 13.4%; right: 15.7%; transform: rotateZ(360deg); }
+	}
+
+	@keyframes orbit-motion-5 {
+		0% { bottom: 0%; left: 50%; transform: translateX(-50%); }
+		100% { bottom: 0%; left: 50%; transform: translateX(-50%) rotateZ(360deg); }
+	}
+
+	@keyframes orbit-motion-6 {
+		0% { top: 50%; left: 6.7%; transform: translateY(-50%); }
+		100% { top: 50%; left: 6.7%; transform: translateY(-50%) rotateZ(360deg); }
+	}
+
+	.node-dot {
+		width: 12px;
+		height: 12px;
+		border-radius: 50%;
+		background: var(--primary-neon);
+		box-shadow: 0 0 20px var(--primary-neon);
+		margin-bottom: 0.5rem;
+	}
+
+	.node-name {
+		font-size: 0.85rem;
+		text-align: center;
+		color: var(--text-secondary);
+		transition: all 0.3s ease;
+	}
+
+	.orbit-node:hover .node-name {
+		color: var(--primary-neon);
+		font-weight: 600;
+	}
+
+	.orbit-node:hover .node-dot {
+		transform: scale(1.5);
+		background: var(--secondary-neon);
+		box-shadow: 0 0 30px var(--secondary-neon);
+	}
+
+	.vendor-info {
+		max-width: 700px;
+		margin: 3rem auto;
+		text-align: center;
+		padding: 2rem;
+		background: rgba(0, 212, 255, 0.05);
+		border: 1px solid var(--border-glow);
+		border-radius: 12px;
+	}
+
+	.vendor-info p {
+		margin-bottom: 1.5rem;
+		color: var(--text-secondary);
+		line-height: 1.8;
+	}
+
+	.vendor-info strong {
+		color: var(--primary-neon);
+	}
+
+	.vendor-cta {
+		margin-top: 1rem;
+	}
+</style>
