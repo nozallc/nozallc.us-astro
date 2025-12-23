@@ -1,32 +1,23 @@
 name = "nozallc-us"
 type = "javascript"
-account_id = ""
-workers_dev = true
-route = ""
-zone_id = ""
+compatibility_date = "2025-01-01"
+compatibility_flags = ["nodejs_compat"]
 
-# Cloudflare Pages configuration
-[env.production]
-name = "nozallc-us-production"
-
-# Build settings
-build = { command = "npm run build", cwd = "./" }
-
-# Caching strategy for optimal performance
+# Build settings for Cloudflare Pages
 [build]
 command = "npm run build"
 cwd = "./"
 watch_paths = ["src/**/*.{astro,ts,tsx,jsx,js}"]
 
-# Environment variables (use Cloudflare Pages UI for secrets)
-[env]
-production = { }
-preview = { }
+# Environment-specific configuration
+[env.production]
+name = "nozallc-us-production"
 
-# Analytics Engine
-analytics_engine_datasets = ["web_analytics"]
+# Analytics Engine binding
+[[analytics_engine_datasets]]
+binding = "ANALYTICS"
 
-# KV Bindings (for future use if needed)
+# Optional: KV Bindings for caching (uncomment when you set up KV)
 # [[kv_namespaces]]
 # binding = "CACHE"
 # id = ""
