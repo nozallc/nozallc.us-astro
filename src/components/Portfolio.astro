@@ -1,0 +1,139 @@
+---
+---
+
+<section class="portfolio">
+	<div class="section-header">
+		<h2>Real Projects. Real Growth.</h2>
+		<p class="section-subtitle">Case studies that showcase our creative power</p>
+	</div>
+
+	<div class="portfolio-grid">
+		<div class="portfolio-item">
+			<div class="portfolio-image branding-case"></div>
+			<div class="portfolio-overlay">
+				<h3>Brand Identity Redesign</h3>
+				<p>Complete visual brand system</p>
+			</div>
+		</div>
+
+		<div class="portfolio-item">
+			<div class="portfolio-image website-case"></div>
+			<div class="portfolio-overlay">
+				<h3>E-Commerce Site</h3>
+				<p>Ultra-fast Astro powered site</p>
+			</div>
+		</div>
+
+		<div class="portfolio-item">
+			<div class="portfolio-image campaign-case"></div>
+			<div class="portfolio-overlay">
+				<h3>Digital Marketing Campaign</h3>
+				<p>Multi-channel strategy & execution</p>
+			</div>
+		</div>
+
+		<div class="portfolio-item">
+			<div class="portfolio-image video-case"></div>
+			<div class="portfolio-overlay">
+				<h3>Drone & Video Production</h3>
+				<p>Professional cinematic content</p>
+			</div>
+		</div>
+
+		<div class="portfolio-item">
+			<div class="portfolio-image rebranding-case"></div>
+			<div class="portfolio-overlay">
+				<h3>Full Brand Relaunch</h3>
+				<p>Website, identity & marketing</p>
+			</div>
+		</div>
+
+		<div class="portfolio-item">
+			<div class="portfolio-image consulting-case"></div>
+			<div class="portfolio-overlay">
+				<h3>Business Growth Strategy</h3>
+				<p>Systems & lead generation</p>
+			</div>
+		</div>
+	</div>
+</section>
+
+<style>
+	.portfolio {
+		position: relative;
+		padding: 6rem 2rem;
+		background: linear-gradient(180deg, var(--dark-bg) 0%, rgba(15, 24, 53, 0.8) 100%);
+		z-index: 2;
+	}
+
+	.portfolio-grid {
+		display: grid;
+		grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+		gap: 2rem;
+		max-width: 1200px;
+		margin: 3rem auto;
+	}
+
+	.portfolio-item {
+		position: relative;
+		overflow: hidden;
+		border-radius: 12px;
+		aspect-ratio: 1;
+		cursor: pointer;
+	}
+
+	.portfolio-image {
+		width: 100%;
+		height: 100%;
+		background: linear-gradient(135deg, rgba(0, 212, 255, 0.2), rgba(163, 0, 255, 0.2));
+		position: relative;
+		border: 1px solid var(--border-glow);
+		border-radius: 12px;
+		transition: all 0.4s ease;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		font-size: 3rem;
+		color: var(--primary-neon);
+	}
+
+	.branding-case::before { content: '🎨'; }
+	.website-case::before { content: '🌐'; }
+	.campaign-case::before { content: '📊'; }
+	.video-case::before { content: '🎬'; }
+	.rebranding-case::before { content: '✨'; }
+	.consulting-case::before { content: '💼'; }
+
+	.portfolio-item:hover .portfolio-image {
+		background: linear-gradient(135deg, rgba(0, 212, 255, 0.4), rgba(163, 0, 255, 0.4));
+		border-color: var(--primary-neon);
+		transform: scale(1.1);
+		box-shadow: 0 0 30px rgba(0, 212, 255, 0.5);
+	}
+
+	.portfolio-overlay {
+		position: absolute;
+		bottom: 0;
+		left: 0;
+		right: 0;
+		padding: 2rem;
+		background: linear-gradient(to top, rgba(10, 14, 39, 0.95), transparent);
+		transform: translateY(100%);
+		transition: all 0.4s ease;
+	}
+
+	.portfolio-item:hover .portfolio-overlay {
+		transform: translateY(0);
+	}
+
+	.portfolio-overlay h3 {
+		font-size: 1.3rem;
+		margin-bottom: 0.5rem;
+		color: var(--primary-neon);
+	}
+
+	.portfolio-overlay p {
+		color: var(--text-secondary);
+		font-size: 0.95rem;
+	}
+</style>
