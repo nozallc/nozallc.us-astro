@@ -1,0 +1,33 @@
+name = "nozallc-us"
+type = "javascript"
+account_id = ""
+workers_dev = true
+route = ""
+zone_id = ""
+
+# Cloudflare Pages configuration
+[env.production]
+name = "nozallc-us-production"
+
+# Build settings
+build = { command = "npm run build", cwd = "./" }
+
+# Caching strategy for optimal performance
+[build]
+command = "npm run build"
+cwd = "./"
+watch_paths = ["src/**/*.{astro,ts,tsx,jsx,js}"]
+
+# Environment variables (use Cloudflare Pages UI for secrets)
+[env]
+production = { }
+preview = { }
+
+# Analytics Engine
+analytics_engine_datasets = ["web_analytics"]
+
+# KV Bindings (for future use if needed)
+# [[kv_namespaces]]
+# binding = "CACHE"
+# id = ""
+# preview_id = ""
