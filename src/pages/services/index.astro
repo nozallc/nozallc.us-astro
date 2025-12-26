@@ -1,0 +1,377 @@
+import { useState } from "react";
+import Layout from "@/components/Layout";
+import { ChevronDown } from "lucide-react";
+
+export default function Services() {
+  const [expandedFAQ, setExpandedFAQ] = useState<number | null>(null);
+
+  const services = [
+    {
+      title: "Websites & Web Development",
+      description:
+        "Custom websites built with cutting-edge technology. Fast, SEO-optimized, and designed to convert.",
+      icon: "🌐",
+    },
+    {
+      title: "Branding & Logo Design",
+      description:
+        "Create a memorable brand identity that stands out. From logos to brand guidelines, we've got you covered.",
+      icon: "🎨",
+    },
+    {
+      title: "Digital Marketing & SEO",
+      description:
+        "Drive organic traffic and dominate search rankings in Lexington and Central Kentucky.",
+      icon: "📈",
+    },
+    {
+      title: "Photo, Video & Drone Content",
+      description:
+        "Professional media content that showcases your business. High-quality visuals that engage.",
+      icon: "📹",
+    },
+    {
+      title: "Business Consulting",
+      description:
+        "Strategic guidance for growth. We help small businesses navigate challenges and scale.",
+      icon: "💼",
+    },
+    {
+      title: "Vendor Network & Local Connections",
+      description:
+        "Access to trusted local partners. We connect you with the right people in Central Kentucky.",
+      icon: "🤝",
+    },
+  ];
+
+  const industries = [
+    { name: "Contractors", icon: "🔨" },
+    { name: "Service-Based Businesses", icon: "⚙️" },
+    { name: "Startups", icon: "🚀" },
+    { name: "Local Brands", icon: "⭐" },
+  ];
+
+  const faqs = [
+    {
+      question:
+        "What digital marketing services does NOZA LLC offer in Lexington KY?",
+      answer:
+        "We offer comprehensive digital marketing services including SEO optimization, social media marketing, content creation, paid advertising, and brand strategy tailored to help businesses dominate search rankings in Lexington and Central Kentucky.",
+    },
+    {
+      question: "Do you build websites for small businesses and contractors?",
+      answer:
+        "Yes! We specialize in building custom websites for small businesses and contractors. Our sites are fast, SEO-optimized, and designed to convert visitors into customers. We focus on making your online presence work hard for your business.",
+    },
+    {
+      question: "How much do your services typically cost?",
+      answer:
+        "Pricing varies based on project scope and requirements. We offer flexible packages for startups, growing businesses, and established brands. Contact us for a free consultation and custom quote tailored to your needs.",
+    },
+    {
+      question: "Do you offer ongoing monthly marketing support?",
+      answer:
+        "Absolutely! We offer monthly retainer packages for ongoing digital marketing support, content creation, and strategy optimization. This ensures your business stays ahead of the competition with consistent growth.",
+    },
+    {
+      question: "Can you help new businesses get started?",
+      answer:
+        "Yes! We work with startups and new businesses from day one. Whether you need branding, a website, or a complete go-to-market strategy, we help new ventures establish a strong foundation and accelerate growth.",
+    },
+    {
+      question: "Do you work only in Central Kentucky?",
+      answer:
+        "We're based in Lexington, KY and specialize in serving Central Kentucky businesses. However, we work with select clients beyond Kentucky. Contact us to discuss your project and location.",
+    },
+  ];
+
+  return (
+    <Layout>
+      {/* Hero Section */}
+      <section className="relative min-h-screen flex items-center justify-center overflow-hidden pt-20 pb-20">
+        {/* Animated gradient background */}
+        <div className="absolute inset-0">
+          <div className="absolute inset-0 bg-gradient-to-br from-neon-cyan/5 via-transparent to-neon-purple/5 animate-gradient-shift"></div>
+          <div className="absolute top-0 left-1/4 w-96 h-96 bg-neon-cyan/10 rounded-full mix-blend-screen filter blur-3xl opacity-20 animate-float-up"></div>
+          <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-neon-purple/10 rounded-full mix-blend-screen filter blur-3xl opacity-20 animation-delay-2000"></div>
+        </div>
+
+        <div className="container relative z-10">
+          <div className="max-w-4xl mx-auto text-center">
+            {/* Location badge */}
+            <div className="inline-flex items-center gap-2 px-4 py-2 mb-8 border border-neon-cyan/30 rounded-full bg-neon-cyan/5 backdrop-blur-sm animate-fade-in-down">
+              <span className="w-2 h-2 rounded-full bg-neon-cyan animate-pulse"></span>
+              <span className="text-sm text-foreground/70">
+                Lexington, KY • Serving Central Kentucky
+              </span>
+            </div>
+
+            {/* Main heading */}
+            <h1 className="text-5xl md:text-7xl font-bold mb-6 bg-gradient-to-r from-neon-cyan via-neon-purple to-neon-pink bg-clip-text text-transparent animate-float-up leading-tight">
+              Digital Marketing & Creative Services in Lexington, KY
+            </h1>
+
+            {/* Subheading */}
+            <p className="text-lg md:text-xl text-foreground/70 mb-12 max-w-2xl mx-auto leading-relaxed animate-float-up animation-delay-200">
+              NOZA LLC helps small businesses grow with websites, branding,
+              marketing, media, and consulting. We're your partner in digital
+              success.
+            </p>
+
+            {/* CTA Buttons */}
+            <div className="flex flex-col sm:flex-row gap-4 justify-center animate-float-up animation-delay-400">
+              <button className="px-8 py-4 rounded-lg bg-gradient-to-r from-neon-cyan to-neon-blue text-background font-semibold hover:shadow-2xl hover:shadow-neon-cyan/50 transition-all duration-300 transform hover:scale-105 group">
+                Book a Discovery Call
+                <span className="inline-block ml-2 group-hover:translate-x-1 transition-transform duration-300">
+                  →
+                </span>
+              </button>
+              <button className="px-8 py-4 rounded-lg border-2 border-neon-purple/50 text-neon-purple font-semibold hover:bg-neon-purple/10 hover:border-neon-purple transition-all duration-300">
+                Explore Services
+              </button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Services Grid */}
+      <section className="py-24 relative overflow-hidden">
+        <div className="container">
+          <div className="mb-16 text-center">
+            <h2 className="text-4xl md:text-5xl font-bold mb-4 bg-gradient-to-r from-neon-cyan to-neon-purple bg-clip-text text-transparent">
+              Our Services
+            </h2>
+            <p className="text-lg text-foreground/60">
+              Everything you need to grow your business online
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {services.map((service, index) => (
+              <div
+                key={index}
+                className="group relative p-6 rounded-xl border border-neon-cyan/20 bg-card/50 backdrop-blur-sm hover:border-neon-purple/50 transition-all duration-300 hover:-translate-y-2 hover:shadow-xl hover:shadow-neon-cyan/20"
+              >
+                {/* Animated border glow on hover */}
+                <div className="absolute inset-0 rounded-xl bg-gradient-to-r from-neon-cyan/0 via-neon-purple/0 to-neon-cyan/0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 -z-10"></div>
+
+                <div className="text-4xl mb-4">{service.icon}</div>
+                <h3 className="text-xl font-semibold text-foreground mb-3">
+                  {service.title}
+                </h3>
+                <p className="text-foreground/60 text-sm leading-relaxed">
+                  {service.description}
+                </p>
+
+                <div className="mt-4 flex items-center text-neon-cyan text-sm font-medium opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                  Learn more <span className="ml-2">→</span>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* How We Help Small Businesses */}
+      <section className="py-24 relative overflow-hidden">
+        <div className="container">
+          <div className="mb-16">
+            <h2 className="text-4xl md:text-5xl font-bold mb-4 bg-gradient-to-r from-neon-purple to-neon-pink bg-clip-text text-transparent">
+              How We Help Small Businesses
+            </h2>
+            <p className="text-lg text-foreground/60 max-w-2xl">
+              We work with businesses of all types, from contractors to startups
+              to established local brands.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            {industries.map((industry, index) => (
+              <div
+                key={index}
+                className="group p-8 rounded-lg border border-neon-purple/20 bg-card/40 backdrop-blur-sm hover:border-neon-pink/50 hover:bg-card/60 transition-all duration-300 text-center"
+              >
+                <div className="text-5xl mb-4">{industry.icon}</div>
+                <h3 className="text-lg font-semibold text-foreground group-hover:text-neon-pink transition-colors duration-300">
+                  {industry.name}
+                </h3>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Modern Workflow */}
+      <section className="py-24 relative overflow-hidden">
+        <div className="container">
+          <div className="mb-16 text-center">
+            <h2 className="text-4xl md:text-5xl font-bold mb-4 bg-gradient-to-r from-neon-blue to-neon-cyan bg-clip-text text-transparent">
+              Our Modern Workflow
+            </h2>
+            <p className="text-lg text-foreground/60">
+              Built on cutting-edge technology for speed, SEO, and scalability
+            </p>
+          </div>
+
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mb-12">
+            {["Builder.io", "GitHub", "Astro", "Cloudflare Pages"].map(
+              (tech, index) => (
+                <div key={index} className="group">
+                  <div className="p-8 rounded-lg border border-neon-blue/30 bg-card/50 backdrop-blur-sm hover:border-neon-cyan/50 hover:bg-card/70 transition-all duration-300 text-center">
+                    <div className="text-2xl font-semibold text-foreground mb-2">
+                      {tech}
+                    </div>
+                    <div className="h-1 w-0 mx-auto bg-gradient-to-r from-neon-blue to-neon-cyan group-hover:w-full transition-all duration-300"></div>
+                  </div>
+                  {index < 3 && (
+                    <div className="hidden md:flex justify-center mt-6">
+                      <div className="text-neon-blue/50">→</div>
+                    </div>
+                  )}
+                </div>
+              ),
+            )}
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-4 gap-4 text-center">
+            <div className="p-6 rounded-lg bg-neon-blue/10 border border-neon-blue/20">
+              <div className="font-semibold text-foreground mb-2">Speed</div>
+              <p className="text-sm text-foreground/60">
+                Lightning-fast load times
+              </p>
+            </div>
+            <div className="p-6 rounded-lg bg-neon-cyan/10 border border-neon-cyan/20">
+              <div className="font-semibold text-foreground mb-2">SEO</div>
+              <p className="text-sm text-foreground/60">
+                Optimized for search engines
+              </p>
+            </div>
+            <div className="p-6 rounded-lg bg-neon-purple/10 border border-neon-purple/20">
+              <div className="font-semibold text-foreground mb-2">
+                Flexibility
+              </div>
+              <p className="text-sm text-foreground/60">
+                Easy to customize and scale
+              </p>
+            </div>
+            <div className="p-6 rounded-lg bg-neon-pink/10 border border-neon-pink/20">
+              <div className="font-semibold text-foreground mb-2">
+                Scalability
+              </div>
+              <p className="text-sm text-foreground/60">
+                Grows with your business
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Local Focus */}
+      <section className="py-24 relative overflow-hidden">
+        <div className="container">
+          <div className="max-w-3xl mx-auto rounded-2xl border border-neon-pink/30 bg-gradient-to-r from-neon-pink/5 to-neon-purple/5 p-12 backdrop-blur-sm text-center">
+            <h2 className="text-4xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-neon-pink to-neon-purple bg-clip-text text-transparent">
+              Proudly Serving Lexington &amp; Central Kentucky
+            </h2>
+            <p className="text-lg text-foreground/70 mb-8 leading-relaxed">
+              We understand the local market and the unique challenges facing
+              Central Kentucky businesses. Our local-first approach and
+              real-world experience help us deliver solutions that work for your
+              community.
+            </p>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <div className="text-center">
+                <div className="text-3xl font-bold text-neon-pink mb-2">
+                  100+
+                </div>
+                <p className="text-sm text-foreground/60">Businesses Served</p>
+              </div>
+              <div className="text-center">
+                <div className="text-3xl font-bold text-neon-purple mb-2">
+                  5+
+                </div>
+                <p className="text-sm text-foreground/60">Years Experience</p>
+              </div>
+              <div className="text-center">
+                <div className="text-3xl font-bold text-neon-cyan mb-2">
+                  Central KY
+                </div>
+                <p className="text-sm text-foreground/60">Our Focus</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* FAQ Section */}
+      <section className="py-24 relative overflow-hidden">
+        <div className="container">
+          <div className="mb-16 text-center">
+            <h2 className="text-4xl md:text-5xl font-bold mb-4 bg-gradient-to-r from-neon-cyan to-neon-green bg-clip-text text-transparent">
+              Frequently Asked Questions
+            </h2>
+            <p className="text-lg text-foreground/60">
+              Get answers to common questions about our services
+            </p>
+          </div>
+
+          <div className="max-w-3xl mx-auto space-y-4">
+            {faqs.map((faq, index) => (
+              <div
+                key={index}
+                className="rounded-lg border border-neon-cyan/20 bg-card/50 backdrop-blur-sm overflow-hidden hover:border-neon-cyan/50 transition-all duration-300"
+              >
+                <button
+                  onClick={() =>
+                    setExpandedFAQ(expandedFAQ === index ? null : index)
+                  }
+                  className="w-full px-6 py-4 flex items-center justify-between hover:bg-neon-cyan/5 transition-colors duration-300"
+                >
+                  <h3 className="text-lg font-semibold text-left text-foreground">
+                    {faq.question}
+                  </h3>
+                  <ChevronDown
+                    className={`w-5 h-5 text-neon-cyan flex-shrink-0 transition-transform duration-300 ${
+                      expandedFAQ === index ? "rotate-180" : ""
+                    }`}
+                  />
+                </button>
+
+                {expandedFAQ === index && (
+                  <div className="px-6 py-4 border-t border-neon-cyan/10 bg-neon-cyan/5 animate-float-up">
+                    <p className="text-foreground/70 leading-relaxed">
+                      {faq.answer}
+                    </p>
+                  </div>
+                )}
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Final CTA Section */}
+      <section className="py-24 relative overflow-hidden">
+        <div className="container">
+          <div className="max-w-4xl mx-auto rounded-2xl border border-gradient-to-r from-neon-cyan to-neon-purple p-12 md:p-20 text-center relative overflow-hidden bg-gradient-to-r from-neon-cyan/10 via-neon-purple/10 to-neon-pink/10 backdrop-blur-sm">
+            <h2 className="text-4xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-neon-cyan via-neon-purple to-neon-pink bg-clip-text text-transparent">
+              Ready to Transform Your Business?
+            </h2>
+            <p className="text-lg text-foreground/70 mb-12 max-w-2xl mx-auto">
+              Let's talk about your goals and how we can help you achieve them.
+              Book a call with our team today.
+            </p>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <button className="px-12 py-4 rounded-lg bg-gradient-to-r from-neon-cyan to-neon-blue text-background font-semibold text-lg hover:shadow-2xl hover:shadow-neon-cyan/50 transition-all duration-300 transform hover:scale-105">
+                Book a Call
+              </button>
+              <button className="px-12 py-4 rounded-lg border-2 border-neon-purple/50 text-neon-purple font-semibold text-lg hover:bg-neon-purple/10 hover:border-neon-purple transition-all duration-300">
+                Contact NOZA
+              </button>
+            </div>
+          </div>
+        </div>
+      </section>
+    </Layout>
+  );
+}
