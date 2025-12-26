@@ -1,0 +1,101 @@
+---
+---
+
+<section class="final-cta">
+	<div class="cosmic-background-cta">
+		<div class="stars-cta"></div>
+		<div class="nebula-cta"></div>
+	</div>
+
+	<div class="cta-content">
+		<h2 class="cta-headline">Ready to Build Something Extraordinary?</h2>
+		<p class="cta-subheadline">Let's launch your business into the future.</p>
+
+		<div class="cta-buttons">
+			<button class="cta-primary cta-large">Start Your Project</button>
+			<button class="cta-secondary cta-large">Book a Call</button>
+		</div>
+	</div>
+</section>
+
+<style>
+	.final-cta {
+		position: relative;
+		padding: 6rem 2rem;
+		min-height: 600px;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		overflow: hidden;
+		z-index: 2;
+	}
+
+	.cosmic-background-cta {
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+		z-index: 0;
+	}
+
+	.stars-cta {
+		position: absolute;
+		width: 2px;
+		height: 2px;
+		background: white;
+		border-radius: 50%;
+		box-shadow: 100px 100px white, 200px 150px white, 300px 50px white, 450px 200px white,
+					550px 100px white, 150px 300px white, 400px 400px white, 600px 300px white,
+					700px 150px white, 800px 400px white, 900px 250px white, 200px 500px white,
+					700px 500px white, 500px 600px white, 100px 700px white, 800px 700px white,
+					300px 800px white;
+		animation: twinkle 3s infinite;
+	}
+
+	.nebula-cta {
+		position: absolute;
+		width: 600px;
+		height: 600px;
+		background: radial-gradient(circle, rgba(0, 212, 255, 0.2), transparent);
+		border-radius: 50%;
+		top: 50%;
+		left: 50%;
+		transform: translate(-50%, -50%);
+		filter: blur(80px);
+		animation: drift 8s ease-in-out infinite;
+	}
+
+	.cta-content {
+		position: relative;
+		z-index: 1;
+		text-align: center;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		gap: 2rem;
+		max-width: 600px;
+	}
+
+	.cta-headline {
+		font-size: clamp(2rem, 5vw, 2.8rem);
+		font-weight: 800;
+		background: linear-gradient(135deg, var(--primary-neon), var(--secondary-neon), var(--tertiary-neon));
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+		background-clip: text;
+		line-height: 1.2;
+	}
+
+	.cta-subheadline {
+		font-size: 1.2rem;
+		color: var(--text-secondary);
+	}
+
+	.cta-buttons {
+		display: flex;
+		gap: 1.5rem;
+		justify-content: center;
+		flex-wrap: wrap;
+	}
+</style>

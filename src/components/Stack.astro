@@ -1,0 +1,241 @@
+---
+---
+
+<section class="stack">
+	<div class="section-header">
+		<h2>A Modern, Limitless Workflow Built for Speed and Creativity</h2>
+		<p class="section-subtitle">The technology that powers exceptional results</p>
+	</div>
+
+	<div class="pipeline-container">
+		<div class="pipeline-node">
+			<div class="node-glow"></div>
+			<div class="node-icon builder-icon">B</div>
+			<p class="node-label">Builder.io</p>
+			<p class="node-desc">Visual design & collaboration</p>
+		</div>
+
+		<div class="pipeline-connector">
+			<div class="connector-line"></div>
+			<span class="connector-arrow">→</span>
+		</div>
+
+		<div class="pipeline-node">
+			<div class="node-glow"></div>
+			<div class="node-icon github-icon">G</div>
+			<p class="node-label">GitHub</p>
+			<p class="node-desc">Version control & sync</p>
+		</div>
+
+		<div class="pipeline-connector">
+			<div class="connector-line"></div>
+			<span class="connector-arrow">→</span>
+		</div>
+
+		<div class="pipeline-node">
+			<div class="node-glow"></div>
+			<div class="node-icon astro-icon">A</div>
+			<p class="node-label">Astro</p>
+			<p class="node-desc">Fast framework</p>
+		</div>
+
+		<div class="pipeline-connector">
+			<div class="connector-line"></div>
+			<span class="connector-arrow">→</span>
+		</div>
+
+		<div class="pipeline-node">
+			<div class="node-glow"></div>
+			<div class="node-icon cloudflare-icon">C</div>
+			<p class="node-label">Cloudflare Pages</p>
+			<p class="node-desc">Lightning-fast hosting</p>
+		</div>
+	</div>
+
+	<div class="stack-benefits">
+		<div class="benefit-item">
+			<span class="benefit-icon">✨</span>
+			<p><strong>Limitless Customization</strong> — Full creative control with no restrictions</p>
+		</div>
+		<div class="benefit-item">
+			<span class="benefit-icon">⚡</span>
+			<p><strong>Extremely Fast Load Speeds</strong> — Sub-second performance globally</p>
+		</div>
+		<div class="benefit-item">
+			<span class="benefit-icon">🔍</span>
+			<p><strong>Strong SEO</strong> — Built for search visibility and rankings</p>
+		</div>
+		<div class="benefit-item">
+			<span class="benefit-icon">📝</span>
+			<p><strong>Easier Updates</strong> — Simple content management and deployment</p>
+		</div>
+	</div>
+</section>
+
+<style>
+	.stack {
+		position: relative;
+		padding: 6rem 2rem;
+		background: linear-gradient(180deg, rgba(15, 24, 53, 0.8) 0%, var(--dark-bg) 100%);
+		z-index: 2;
+	}
+
+	.pipeline-container {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		gap: 1rem;
+		flex-wrap: wrap;
+		max-width: 1200px;
+		margin: 3rem auto;
+		padding: 3rem 0;
+	}
+
+	.pipeline-node {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		gap: 1rem;
+		position: relative;
+		min-width: 150px;
+	}
+
+	.node-glow {
+		position: absolute;
+		width: 120px;
+		height: 120px;
+		border-radius: 50%;
+		background: radial-gradient(circle, rgba(0, 212, 255, 0.2), transparent);
+		animation: pulse 2s ease-in-out infinite;
+	}
+
+	@keyframes pulse {
+		0%, 100% { transform: scale(1); opacity: 0.6; }
+		50% { transform: scale(1.3); opacity: 1; }
+	}
+
+	.node-icon {
+		width: 80px;
+		height: 80px;
+		border-radius: 12px;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		font-size: 2rem;
+		font-weight: 700;
+		color: white;
+		position: relative;
+		z-index: 1;
+		border: 2px solid var(--primary-neon);
+	}
+
+	.builder-icon {
+		background: linear-gradient(135deg, #667eea, #764ba2);
+	}
+
+	.github-icon {
+		background: linear-gradient(135deg, #1a1a2e, #16213e);
+	}
+
+	.astro-icon {
+		background: linear-gradient(135deg, #ff5a3d, #ffa500);
+	}
+
+	.cloudflare-icon {
+		background: linear-gradient(135deg, #f38020, #f39c12);
+	}
+
+	.node-label {
+		font-weight: 700;
+		font-size: 1.1rem;
+		position: relative;
+		z-index: 1;
+	}
+
+	.node-desc {
+		font-size: 0.9rem;
+		color: var(--text-secondary);
+		position: relative;
+		z-index: 1;
+	}
+
+	.pipeline-connector {
+		display: flex;
+		align-items: center;
+		gap: 0.5rem;
+		min-width: 60px;
+		position: relative;
+	}
+
+	.connector-line {
+		flex: 1;
+		height: 2px;
+		background: linear-gradient(90deg, var(--primary-neon), var(--tertiary-neon), transparent);
+		position: relative;
+	}
+
+	.connector-line::after {
+		content: '';
+		position: absolute;
+		right: 0;
+		top: 50%;
+		transform: translateY(-50%);
+		width: 2px;
+		height: 20px;
+		background: linear-gradient(90deg, var(--primary-neon), transparent);
+		animation: pulse-line 1.5s ease-in-out infinite;
+	}
+
+	@keyframes pulse-line {
+		0%, 100% { opacity: 0.5; }
+		50% { opacity: 1; }
+	}
+
+	.connector-arrow {
+		color: var(--primary-neon);
+		font-size: 1.5rem;
+		animation: bounce 1.5s ease-in-out infinite;
+	}
+
+	@keyframes bounce {
+		0%, 100% { transform: translateX(0); }
+		50% { transform: translateX(5px); }
+	}
+
+	.stack-benefits {
+		display: grid;
+		grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+		gap: 2rem;
+		max-width: 900px;
+		margin: 3rem auto 0;
+	}
+
+	.benefit-item {
+		text-align: center;
+		padding: 1.5rem;
+		border-radius: 8px;
+		background: rgba(0, 212, 255, 0.05);
+		border: 1px solid var(--border-glow);
+		transition: all 0.3s ease;
+	}
+
+	.benefit-item:hover {
+		background: rgba(0, 212, 255, 0.1);
+		border-color: var(--primary-neon);
+	}
+
+	.benefit-icon {
+		font-size: 2rem;
+		display: block;
+		margin-bottom: 0.5rem;
+	}
+
+	.benefit-item p {
+		color: var(--text-secondary);
+		line-height: 1.6;
+	}
+
+	.benefit-item strong {
+		color: var(--primary-neon);
+	}
+</style>

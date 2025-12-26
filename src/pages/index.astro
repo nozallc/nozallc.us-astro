@@ -1,16 +1,44 @@
 ---
+import RootLayout from '../layouts/RootLayout.astro';
+import Hero from '../components/Hero.astro';
+import Services from '../components/Services.astro';
+import Stack from '../components/Stack.astro';
+import Portfolio from '../components/Portfolio.astro';
+import Consulting from '../components/Consulting.astro';
+import VendorNetwork from '../components/VendorNetwork.astro';
+import FAQ from '../components/FAQ.astro';
+import FinalCTA from '../components/FinalCTA.astro';
+import Footer from '../components/Footer.astro';
 
+const pageTitle = 'NOZA LLC - Digital Marketing, Branding & Web Design in Lexington, KY';
+const pageDescription = 'Digital marketing, branding, websites & business consulting for Lexington KY small businesses. Creative workflows powered by Builder.io, GitHub, Astro & Cloudflare.';
 ---
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro</h1>
-	</body>
-</html>
+<RootLayout title={pageTitle} description={pageDescription}>
+	<!-- Hero Section -->
+	<Hero />
+
+	<!-- Services Overview Section -->
+	<Services />
+
+	<!-- The Stack Section -->
+	<Stack />
+
+	<!-- Portfolio Section -->
+	<Portfolio />
+
+	<!-- Consulting Section -->
+	<Consulting />
+
+	<!-- Vendor Network Section -->
+	<VendorNetwork />
+
+	<!-- FAQ Section -->
+	<FAQ />
+
+	<!-- Final CTA Section -->
+	<FinalCTA />
+
+	<!-- Footer -->
+	<Footer />
+</RootLayout>
