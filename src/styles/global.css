@@ -361,6 +361,16 @@ button {
 }
 
 /* Utility Classes */
+/* Respect prefers-reduced-motion preferences */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
 @media (max-width: 768px) {
   .section-header {
     margin-bottom: 3rem;
