@@ -7,7 +7,7 @@ interface Props {
 }
 
 const lang = Astro.props.lang || 'en';
-const t = (key: string): string => getTranslation(key as any, lang as any);
+const t = (key) => getTranslation(key, lang);
 ---
 
 <section class="faq">
