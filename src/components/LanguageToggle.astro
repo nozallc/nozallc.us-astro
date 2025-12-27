@@ -154,13 +154,20 @@
 </style>
 
 <script>
-	// Client-side language toggle logic
+	// Client-side language toggle logic with landing animation support
 	const toggle = document.getElementById('languageToggle');
 
 	if (toggle) {
 		// Initialize toggle state from localStorage or default to English
 		const currentLang = localStorage.getItem('preferredLanguage') || 'en';
 		updateToggleState(currentLang);
+
+		// Remove landing animation after it completes (2 seconds)
+		// This ensures it only plays once on initial page load
+		const animationDuration = 2000;
+		setTimeout(() => {
+			toggle.removeAttribute('data-landing-animation');
+		}, animationDuration);
 
 		// Handle click
 		toggle.addEventListener('click', () => {
@@ -170,8 +177,8 @@
 			localStorage.setItem('preferredLanguage', newLang);
 
 			// Announce change to screen readers
-			const announcement = newLang === 'es' 
-				? 'Language switched to Spanish' 
+			const announcement = newLang === 'es'
+				? 'Language switched to Spanish'
 				: 'Language switched to English';
 			announceToScreenReader(announcement);
 		});
