@@ -99,3 +99,25 @@
 		flex-wrap: wrap;
 	}
 </style>
+
+<script>
+	document.addEventListener('DOMContentLoaded', () => {
+		const ctaButtons = document.querySelector('.cta-buttons');
+		if (ctaButtons) {
+			const buttons = ctaButtons.querySelectorAll('button');
+			buttons.forEach((button, index) => {
+				if (index === 0) {
+					// "Start Your Project" -> Contact page
+					button.addEventListener('click', () => {
+						window.location.href = '/contact';
+					});
+				} else if (index === 1) {
+					// "Book a Call" -> Contact page
+					button.addEventListener('click', () => {
+						window.location.href = '/contact';
+					});
+				}
+			});
+		}
+	});
+</script>
