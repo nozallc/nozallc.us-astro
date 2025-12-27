@@ -1,10 +1,19 @@
 ---
 ---
+import { getTranslation } from '../i18n/utils';
+
+interface Props {
+  lang?: 'en' | 'es';
+}
+
+const lang = Astro.props.lang || 'en';
+const t = (key: string): string => getTranslation(key as any, lang as any);
+---
 
 <section class="portfolio">
 	<div class="section-header">
-		<h2>Real Projects. Real Growth.</h2>
-		<p class="section-subtitle">Case studies that showcase our creative power</p>
+		<h2>{t('portfolio.title')}</h2>
+		<p class="section-subtitle">{t('portfolio.subtitle')}</p>
 	</div>
 
 	<div class="portfolio-grid">
