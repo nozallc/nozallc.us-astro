@@ -395,10 +395,6 @@ import RootLayout from '../../layouts/RootLayout.astro';
 		animation: twinkle 3s infinite;
 	}
 
-	@keyframes twinkle {
-		0%, 100% { opacity: 0.3; }
-		50% { opacity: 1; }
-	}
 
 	.nebula {
 		position: absolute;
@@ -434,10 +430,6 @@ import RootLayout from '../../layouts/RootLayout.astro';
 		animation: drift 12s ease-in-out infinite;
 	}
 
-	@keyframes drift {
-		0%, 100% { transform: translate(0, 0); }
-		50% { transform: translate(50px, 50px); }
-	}
 
 	.particles {
 		position: absolute;
@@ -460,10 +452,6 @@ import RootLayout from '../../layouts/RootLayout.astro';
 		animation: float 6s ease-in-out infinite;
 	}
 
-	@keyframes float {
-		0%, 100% { transform: translateY(0) translateX(0); opacity: 0.5; }
-		50% { transform: translateY(-50px) translateX(30px); opacity: 1; }
-	}
 
 	.hero-content {
 		position: relative;
@@ -518,16 +506,6 @@ import RootLayout from '../../layouts/RootLayout.astro';
 		font-style: italic;
 	}
 
-	@keyframes fade-in-up {
-		from {
-			opacity: 0;
-			transform: translateY(30px);
-		}
-		to {
-			opacity: 1;
-			transform: translateY(0);
-		}
-	}
 
 	/* Intro Section */
 	.marketing-intro {
@@ -1074,16 +1052,6 @@ import RootLayout from '../../layouts/RootLayout.astro';
 		font-size: 0.95rem;
 	}
 
-	@keyframes expand {
-		from {
-			opacity: 0;
-			max-height: 0;
-		}
-		to {
-			opacity: 1;
-			max-height: 800px;
-		}
-	}
 
 	/* CTA Section */
 	.marketing-cta {
