@@ -261,45 +261,42 @@
 	}
 </style>
 
-<script is:inline>
-	(function() {
+<script>
+	document.addEventListener('DOMContentLoaded', function() {
 		try {
 			const hamburger = document.getElementById('hamburger');
 			const navLinks = document.getElementById('navLinks');
 			const navbar = document.querySelector('.navbar');
 
-			// Hamburger menu toggle
-			if (hamburger) {
-				hamburger.addEventListener('click', () => {
-					if (hamburger && navLinks) {
-						hamburger.classList.toggle('active');
-						navLinks.classList.toggle('active');
-					}
-				});
+			if (!hamburger || !navLinks || !navbar) {
+				return;
 			}
 
+			// Hamburger menu toggle
+			hamburger.addEventListener('click', () => {
+				hamburger.classList.toggle('active');
+				navLinks.classList.toggle('active');
+			});
+
 			// Close menu when a link is clicked
-			const navLinksElements = document.querySelectorAll('.nav-links a');
-			navLinksElements.forEach(link => {
+			document.querySelectorAll('.nav-links a').forEach(link => {
 				link.addEventListener('click', () => {
-					if (hamburger) hamburger.classList.remove('active');
-					if (navLinks) navLinks.classList.remove('active');
+					hamburger.classList.remove('active');
+					navLinks.classList.remove('active');
 				});
 			});
 
 			// Scroll handler for navbar opacity
 			window.addEventListener('scroll', () => {
 				const scrollY = window.scrollY;
-				if (navbar) {
-					if (scrollY > 50) {
-						navbar.classList.add('scrolled');
-					} else {
-						navbar.classList.remove('scrolled');
-					}
+				if (scrollY > 50) {
+					navbar.classList.add('scrolled');
+				} else {
+					navbar.classList.remove('scrolled');
 				}
 			});
 		} catch (error) {
-			console.error('Navigation script error:', error);
+			console.error('Navigation initialization error:', error);
 		}
-	})();
+	});
 </script>
