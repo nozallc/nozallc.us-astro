@@ -1,4 +1,5 @@
 # NOZA LLC Website Audit Report
+
 **Date**: December 27, 2025  
 **Stack**: Builder.io → GitHub → Astro v5.16.6 → Cloudflare Pages
 
@@ -40,6 +41,7 @@
 ### ⚠️ ISSUES IDENTIFIED & RECOMMENDATIONS
 
 #### **Issue #1: Contact Form Not Wired to Backend**
+
 **Severity**: CRITICAL  
 **Current State**: Form uses `method="POST" action="/contact"` - this will fail on static Astro site  
 **Location**: `src/pages/contact/index.astro` (line 63)
@@ -47,6 +49,7 @@
 **Solution**: See Section 4 (Contact Form Backend Integration) below.
 
 #### **Issue #2: Hamburger Menu Relies on Client-Side JavaScript**
+
 **Severity**: LOW (acceptable)  
 **Location**: `src/components/Nav.astro`  
 **Assessment**: Navigation script is wrapped in error handling and uses safe DOM queries. This is fine for Astro. No progressive enhancement issue.
@@ -100,8 +103,10 @@
 ### ⚠️ INCONSISTENCIES FOUND
 
 #### **Issue #3: Footer Placement Inconsistency**
+
 **Severity**: MEDIUM  
-**Current State**: 
+**Current State**:
+
 - Home page (`index.astro`) includes Footer component explicitly
 - Other pages (websites, branding, etc.) also import Footer in their files
 - However, RootLayout doesn't include Footer, meaning each page must import it
@@ -109,6 +114,7 @@
 **Finding**: While Footer exists and is included in pages, it's NOT imported in ALL pages consistently. Some pages may be missing it.
 
 **Verification Needed**: Check if every page has Footer imported:
+
 ```
 Contact page: ✅ Shows footer in file
 Consulting page: ❓ Need to verify
@@ -124,10 +130,12 @@ Photo-Video page: ✅ Shows footer in original code
 **Recommendation**: Move `<Footer />` component import to RootLayout so ALL pages get it automatically, rather than relying on manual import in each page.
 
 #### **Issue #4: Footer Links Use Hash Anchors (#services) Instead of Routes**
+
 **Severity**: LOW  
 **Location**: `src/components/Footer.astro` (lines 20-35)
 
 **Current State**:
+
 ```html
 <li><a href="#services">Digital Marketing</a></li>
 <li><a href="#services">Web Design</a></li>
@@ -138,6 +146,7 @@ Photo-Video page: ✅ Shows footer in original code
 **Problem**: These hash links don't correspond to actual page routes or on-page IDs. They won't navigate anywhere.
 
 **Recommendation**: Change to proper routes:
+
 ```html
 <li><a href="/digital-marketing">Digital Marketing</a></li>
 <li><a href="/websites">Web Design</a></li>
@@ -182,26 +191,31 @@ Photo-Video page: ✅ Shows footer in original code
 ### ⚠️ MINOR ISSUES
 
 #### **Issue #5: Schema.org Phone Number Placeholder**
+
 **Severity**: LOW  
 **Location**: `src/layouts/RootLayout.astro` (line ~138)
 
 **Current**:
+
 ```json
 "telephone": "+1-XXXXXXXXXX"
 ```
 
 **Recommendation**: Update to actual phone number:
+
 ```json
 "telephone": "+1-859-452-8415"
 ```
 
 #### **Issue #6: Missing Favicon for Non-SVG Support**
+
 **Severity**: LOW  
 **Current**: Only SVG favicon set
 
 **Recommendation**: Add PNG fallback:
+
 ```html
-<link rel="icon" type="image/png" href="/favicon.png">
+<link rel="icon" type="image/png" href="/favicon.png" />
 ```
 
 ---
@@ -209,9 +223,11 @@ Photo-Video page: ✅ Shows footer in original code
 ## 📬 4. CONTACT FORM BACKEND INTEGRATION - COMPLETE GUIDE
 
 ### Current State Analysis
+
 The contact form in `src/pages/contact/index.astro` (line 63):
+
 ```html
-<form class="contact-form" method="POST" action="/contact">
+<form class="contact-form" method="POST" action="/contact"></form>
 ```
 
 **Problem**: This POST action won't work on a static Astro site served on Cloudflare Pages. Static sites don't have server endpoints.
@@ -221,18 +237,21 @@ The contact form in `src/pages/contact/index.astro` (line 63):
 ### SOLUTION OPTIONS FOR ASTRO + CLOUDFLARE PAGES
 
 #### **OPTION 1: Cloudflare Pages Functions (RECOMMENDED)** ⭐
+
 **Best For**: Native Cloudflare integration, no external dependencies  
 **Cost**: Free (Cloudflare Pages Functions included)
 
 **Implementation Steps**:
 
 1. Create a Cloudflare Pages Function:
+
    ```
    functions/
    └── contact.ts
    ```
 
 2. Create `functions/contact.ts`:
+
    ```typescript
    export async function onRequest(context) {
      if (context.request.method !== 'POST') {
@@ -251,7 +270,7 @@ The contact form in `src/pages/contact/index.astro` (line 63):
      // Option A: Send email via Resend or similar
      // Option B: Store in D1 database
      // Option C: Send to Zapier webhook
-     
+
      // Example: Send to email
      const emailBody = `
        Name: ${name}
@@ -266,22 +285,26 @@ The contact form in `src/pages/contact/index.astro` (line 63):
      // Send email (using email service)
      // ... implementation depends on service
 
-     return new Response(JSON.stringify({ 
-       success: true, 
-       message: 'Form submitted successfully' 
-     }), {
-       status: 200,
-       headers: { 'Content-Type': 'application/json' }
-     });
+     return new Response(
+       JSON.stringify({
+         success: true,
+         message: 'Form submitted successfully',
+       }),
+       {
+         status: 200,
+         headers: { 'Content-Type': 'application/json' },
+       }
+     );
    }
    ```
 
 3. Update form action in `src/pages/contact/index.astro`:
    ```html
-   <form class="contact-form" method="POST" action="/api/contact">
+   <form class="contact-form" method="POST" action="/api/contact"></form>
    ```
 
 **Configuration in wrangler.toml**:
+
 ```toml
 [build]
 command = "npm run build"
@@ -291,6 +314,7 @@ cwd = "./"
 ---
 
 #### **OPTION 2: Formspree (EASIEST)** ⭐⭐
+
 **Best For**: Quick setup with no coding  
 **Cost**: Free tier available (50 submissions/month)  
 **Setup Time**: 5 minutes
@@ -303,10 +327,15 @@ cwd = "./"
 4. Get form ID (e.g., `fXXXXXXXX`)
 5. Update form in `src/pages/contact/index.astro`:
    ```html
-   <form class="contact-form" method="POST" action="https://formspree.io/f/YOUR_FORM_ID">
+   <form
+     class="contact-form"
+     method="POST"
+     action="https://formspree.io/f/YOUR_FORM_ID"
+   ></form>
    ```
 
 **Advantages**:
+
 - No backend coding required
 - Built-in spam protection
 - Email notifications to your inbox
@@ -315,6 +344,7 @@ cwd = "./"
 ---
 
 #### **OPTION 3: Zapier + Cloudflare Pages Functions**
+
 **Best For**: Advanced workflows (CRM sync, notifications, etc.)  
 **Cost**: Free tier or paid Zapier plan
 
@@ -323,13 +353,22 @@ cwd = "./"
 1. Create Zapier Webhook
 2. In `functions/contact.ts`, send webhook to Zapier:
    ```typescript
-   const response = await fetch('https://hooks.zapier.com/hooks/catch/YOUR_ZAPIER_WEBHOOK_ID/', {
-     method: 'POST',
-     headers: { 'Content-Type': 'application/json' },
-     body: JSON.stringify({
-       name, email, phone, company, service, message, updates
-     })
-   });
+   const response = await fetch(
+     'https://hooks.zapier.com/hooks/catch/YOUR_ZAPIER_WEBHOOK_ID/',
+     {
+       method: 'POST',
+       headers: { 'Content-Type': 'application/json' },
+       body: JSON.stringify({
+         name,
+         email,
+         phone,
+         company,
+         service,
+         message,
+         updates,
+       }),
+     }
+   );
    ```
 3. Configure Zapier to:
    - Send email to you
@@ -340,6 +379,7 @@ cwd = "./"
 ---
 
 #### **OPTION 4: Resend + Cloudflare Pages Functions** ⭐
+
 **Best For**: Modern email service with good templating  
 **Cost**: Free tier (100 emails/day)
 
@@ -348,18 +388,20 @@ cwd = "./"
 1. Sign up at https://resend.com/
 2. Get API key
 3. Store in Cloudflare Environment Variable (via `wrangler.toml`):
+
    ```toml
    [env.production]
    vars = { RESEND_API_KEY = "your_api_key" }
    ```
 
 4. In `functions/contact.ts`:
+
    ```typescript
    import { Resend } from 'resend';
 
    export async function onRequest(context) {
      const resend = new Resend(context.env.RESEND_API_KEY);
-     
+
      const { data, error } = await resend.emails.send({
        from: 'contact@nozallc.us',
        to: 'hello@nozallc.us',
@@ -369,7 +411,7 @@ cwd = "./"
          <p><strong>Email:</strong> ${formData.get('email')}</p>
          <p><strong>Service:</strong> ${formData.get('service')}</p>
          <p><strong>Message:</strong> ${formData.get('message')}</p>
-       `
+       `,
      });
 
      if (error) return new Response(JSON.stringify({ error }), { status: 400 });
@@ -384,11 +426,13 @@ cwd = "./"
 **Choose: Formspree (FASTEST) or Cloudflare Pages Functions + Resend (BEST)**
 
 **If you want speed**: Use Formspree (no code, instant)
+
 ```html
-<form method="POST" action="https://formspree.io/f/YOUR_FORM_ID">
+<form method="POST" action="https://formspree.io/f/YOUR_FORM_ID"></form>
 ```
 
 **If you want power & control**: Use Cloudflare Pages Functions + Resend
+
 - Full control over submissions
 - Beautiful email templates
 - Can integrate with Zapier later
@@ -399,12 +443,14 @@ cwd = "./"
 ### WHAT HAPPENS AFTER FORM SUBMISSION
 
 **With Formspree**:
+
 1. Form submits to Formspree servers
 2. You receive email with submission
 3. Optional: Form response page shows success message
 4. Submissions visible in Formspree dashboard
 
 **With Cloudflare Pages Functions**:
+
 1. Form submits to `POST /api/contact`
 2. Cloudflare Function receives data
 3. Function sends email via Resend/SendGrid/etc.
@@ -421,26 +467,28 @@ Add success/error handling with JavaScript:
 
 ```html
 <script>
-  document.querySelector('.contact-form').addEventListener('submit', async (e) => {
-    e.preventDefault();
-    const formData = new FormData(this);
-    
-    try {
-      const response = await fetch(this.action, {
-        method: 'POST',
-        body: formData
-      });
-      
-      if (response.ok) {
-        alert('Thank you! We\'ll be in touch soon.');
-        this.reset();
-      } else {
-        alert('Something went wrong. Please try again.');
+  document
+    .querySelector('.contact-form')
+    .addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const formData = new FormData(this);
+
+      try {
+        const response = await fetch(this.action, {
+          method: 'POST',
+          body: formData,
+        });
+
+        if (response.ok) {
+          alert("Thank you! We'll be in touch soon.");
+          this.reset();
+        } else {
+          alert('Something went wrong. Please try again.');
+        }
+      } catch (error) {
+        alert('Error submitting form. Please try email instead.');
       }
-    } catch (error) {
-      alert('Error submitting form. Please try email instead.');
-    }
-  });
+    });
 </script>
 ```
 
@@ -449,14 +497,17 @@ Add success/error handling with JavaScript:
 ## ✅ FINAL SUMMARY & ACTION ITEMS
 
 ### Critical (Must Fix Before Deployment)
+
 - [ ] **Issue #1**: Wire contact form to backend service (Formspree or Cloudflare Functions)
 - [ ] **Issue #3**: Add Footer to RootLayout OR ensure all pages import it
 
 ### Important (Should Fix)
+
 - [ ] **Issue #4**: Update footer links to use proper routes instead of hash anchors
 - [ ] **Issue #5**: Update phone number placeholder in Schema.org data
 
 ### Nice to Have (Polish)
+
 - [ ] **Issue #6**: Add PNG favicon fallback
 - [ ] Add form submission success/error messaging UI
 
@@ -485,7 +536,7 @@ Before pushing to production:
 
 1. **GitHub Setup**: Push all changes to `main` branch
 2. **Cloudflare Pages**: Connect repository (already done)
-3. **Build Configuration**: 
+3. **Build Configuration**:
    - Build command: `npm run build`
    - Build output: `dist/`
 4. **Environment Variables** (if using Resend):
@@ -508,7 +559,8 @@ Before pushing to production:
 
 **Report Status**: READY FOR DEPLOYMENT WITH MINOR FIXES
 
-**Next Steps**: 
+**Next Steps**:
+
 1. Choose contact form backend solution (Formspree recommended for speed)
 2. Fix footer consistency (move to RootLayout)
 3. Update schema.org phone number

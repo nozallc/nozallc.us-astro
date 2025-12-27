@@ -1,4 +1,5 @@
 # Quick Fix Guide - Production Readiness
+
 ## 5 Priority Fixes (Est. 25 minutes total)
 
 ---
@@ -8,6 +9,7 @@
 **File:** `astro.config.mjs`
 
 **Before:**
+
 ```javascript
 vite: {
   build: {
@@ -28,6 +30,7 @@ vite: {
 ```
 
 **After:**
+
 ```javascript
 vite: {
   build: {
@@ -56,6 +59,7 @@ The rollupOptions reference a non-existent `animations.css` file. This was remov
 **File:** `src/pages/index.astro`
 
 **Before (lines 1-15):**
+
 ```javascript
 ---
 import RootLayout from '../layouts/RootLayout.astro';
@@ -71,6 +75,7 @@ import Footer from '../components/Footer.astro';  // ← REMOVE THIS LINE
 ```
 
 **After:**
+
 ```javascript
 ---
 import RootLayout from '../layouts/RootLayout.astro';
@@ -85,6 +90,7 @@ import FinalCTA from '../components/FinalCTA.astro';
 ```
 
 **Also remove from template (line 43):**
+
 ```html
 <!-- REMOVE THIS LINE: -->
 <!-- <Footer /> -->
@@ -99,13 +105,15 @@ import FinalCTA from '../components/FinalCTA.astro';
 **File:** `src/layouts/RootLayout.astro`
 
 **Before (line 28):**
+
 ```html
 <link rel="canonical" href="https://nozallc.us" />
 ```
 
 **After:**
+
 ```html
-<link rel="canonical" href={Astro.url} />
+<link rel="canonical" href="{Astro.url}" />
 ```
 
 **Why:** Each page should have its own canonical URL, not always homepage.
@@ -122,18 +130,35 @@ import FinalCTA from '../components/FinalCTA.astro';
 /* Animation Keyframes - Global */
 
 @keyframes twinkle {
-  0%, 100% { opacity: 0.3; }
-  50% { opacity: 1; }
+  0%,
+  100% {
+    opacity: 0.3;
+  }
+  50% {
+    opacity: 1;
+  }
 }
 
 @keyframes drift {
-  0%, 100% { transform: translate(0, 0); }
-  50% { transform: translate(50px, 50px); }
+  0%,
+  100% {
+    transform: translate(0, 0);
+  }
+  50% {
+    transform: translate(50px, 50px);
+  }
 }
 
 @keyframes float {
-  0%, 100% { transform: translateY(0) translateX(0); opacity: 0.5; }
-  50% { transform: translateY(-50px) translateX(30px); opacity: 1; }
+  0%,
+  100% {
+    transform: translateY(0) translateX(0);
+    opacity: 0.5;
+  }
+  50% {
+    transform: translateY(-50px) translateX(30px);
+    opacity: 1;
+  }
 }
 
 @keyframes fade-in-up {
@@ -159,7 +184,9 @@ import FinalCTA from '../components/FinalCTA.astro';
 }
 
 @keyframes pulse {
-  0%, 60%, 100% {
+  0%,
+  60%,
+  100% {
     opacity: 0.4;
     transform: scale(0.8);
   }
@@ -181,22 +208,37 @@ import FinalCTA from '../components/FinalCTA.astro';
 }
 
 @keyframes pulse-line {
-  0%, 100% { opacity: 0.5; }
-  50% { opacity: 1; }
+  0%,
+  100% {
+    opacity: 0.5;
+  }
+  50% {
+    opacity: 1;
+  }
 }
 
 @keyframes bounce {
-  0%, 100% { transform: translateX(0); }
-  50% { transform: translateX(10px); }
+  0%,
+  100% {
+    transform: translateX(0);
+  }
+  50% {
+    transform: translateX(10px);
+  }
 }
 
 @keyframes spin-orbit {
-  0% { transform: translate(-50%, -50%) rotateX(75deg) rotateZ(0deg); }
-  100% { transform: translate(-50%, -50%) rotateX(75deg) rotateZ(360deg); }
+  0% {
+    transform: translate(-50%, -50%) rotateX(75deg) rotateZ(0deg);
+  }
+  100% {
+    transform: translate(-50%, -50%) rotateX(75deg) rotateZ(360deg);
+  }
 }
 
 @keyframes pulse-glow {
-  0%, 100% { 
+  0%,
+  100% {
     opacity: 0.5;
     filter: drop-shadow(0 0 8px rgba(0, 212, 255, 0.4));
   }
@@ -207,37 +249,82 @@ import FinalCTA from '../components/FinalCTA.astro';
 }
 
 @keyframes orbit-motion-1 {
-  0% { top: 0%; left: 50%; transform: translateX(-50%); }
-  100% { top: 100%; left: 50%; transform: translateX(-50%); }
+  0% {
+    top: 0%;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+  100% {
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+  }
 }
 
 @keyframes orbit-motion-2 {
-  0% { top: 13.4%; left: 84.3%; }
-  100% { top: 100%; left: 84.3%; }
+  0% {
+    top: 13.4%;
+    left: 84.3%;
+  }
+  100% {
+    top: 100%;
+    left: 84.3%;
+  }
 }
 
 @keyframes orbit-motion-3 {
-  0% { top: 50%; left: 93.3%; transform: translateY(-50%); }
-  100% { top: 50%; left: -5%; transform: translateY(-50%); }
+  0% {
+    top: 50%;
+    left: 93.3%;
+    transform: translateY(-50%);
+  }
+  100% {
+    top: 50%;
+    left: -5%;
+    transform: translateY(-50%);
+  }
 }
 
 @keyframes orbit-motion-4 {
-  0% { bottom: 13.4%; right: 15.7%; }
-  100% { bottom: 100%; right: 15.7%; }
+  0% {
+    bottom: 13.4%;
+    right: 15.7%;
+  }
+  100% {
+    bottom: 100%;
+    right: 15.7%;
+  }
 }
 
 @keyframes orbit-motion-5 {
-  0% { bottom: 0%; left: 50%; transform: translateX(-50%); }
-  100% { bottom: 100%; left: 50%; transform: translateX(-50%); }
+  0% {
+    bottom: 0%;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+  100% {
+    bottom: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+  }
 }
 
 @keyframes orbit-motion-6 {
-  0% { top: 50%; left: 6.7%; transform: translateY(-50%); }
-  100% { top: 50%; left: 93.3%; transform: translateY(-50%); }
+  0% {
+    top: 50%;
+    left: 6.7%;
+    transform: translateY(-50%);
+  }
+  100% {
+    top: 50%;
+    left: 93.3%;
+    transform: translateY(-50%);
+  }
 }
 ```
 
 **Then remove @keyframes from all these files:**
+
 - `src/pages/services/index.astro`
 - `src/pages/websites/index.astro`
 - `src/pages/branding/index.astro`
@@ -281,6 +368,7 @@ npm run preview
 ```
 
 Expected results:
+
 - ✓ Build completes without errors
 - ✓ All pages load
 - ✓ All links work
@@ -293,14 +381,14 @@ Expected results:
 
 ## 📊 IMPACT SUMMARY
 
-| Fix | File Changes | Time | Bundle Impact |
-|-----|--------------|------|----------------|
-| #1: Remove svgo | 1 file modified | 1 min | -0 bytes (config) |
-| #2: Remove rollup config | 1 file modified | 1 min | -0 bytes (config) |
-| #3: Remove Footer dup | 1 file modified | 2 min | -50 bytes |
-| #4: Fix canonical | 1 file modified | 5 min | +5 bytes (Astro.url) |
-| #5: Move animations | 13 files modified | 15 min | -5KB (removed dups) |
-| **Total** | **17 files** | **25 min** | **-5KB** |
+| Fix                      | File Changes      | Time       | Bundle Impact        |
+| ------------------------ | ----------------- | ---------- | -------------------- |
+| #1: Remove svgo          | 1 file modified   | 1 min      | -0 bytes (config)    |
+| #2: Remove rollup config | 1 file modified   | 1 min      | -0 bytes (config)    |
+| #3: Remove Footer dup    | 1 file modified   | 2 min      | -50 bytes            |
+| #4: Fix canonical        | 1 file modified   | 5 min      | +5 bytes (Astro.url) |
+| #5: Move animations      | 13 files modified | 15 min     | -5KB (removed dups)  |
+| **Total**                | **17 files**      | **25 min** | **-5KB**             |
 
 ---
 

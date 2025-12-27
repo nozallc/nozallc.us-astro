@@ -1,5 +1,7 @@
 # Final Infrastructure Audit Report
+
 ## NOZA LLC Astro Website - Production Readiness Check
+
 **Date:** December 27, 2025  
 **Status:** Production-Ready with Minor Fixes Recommended
 
@@ -8,6 +10,7 @@
 ## 1️⃣ STACK & DEPLOYMENT VALIDATION
 
 ### ✅ **PASS: Astro Compatibility**
+
 - Framework: Astro v5.16.6 ✓
 - Adapter: @astrojs/cloudflare (advanced mode) ✓
 - Output Mode: static ✓
@@ -18,7 +21,9 @@
 ### ⚠️ **ISSUES FOUND:**
 
 #### Issue #1: `svgo` Externalized but Not Declared
+
 **File:** `astro.config.mjs` (line 31)
+
 ```javascript
 vite: {
   ssr: {
@@ -26,9 +31,11 @@ vite: {
   }
 }
 ```
+
 **Problem:** The config externalizes `svgo` for SSR builds, but `svgo` is not listed in dependencies. If any build tooling expects it, the build could fail.
 
 **Fix:** Remove the line or add svgo to dependencies if needed.
+
 ```javascript
 // Option A: Remove (recommended - site doesn't use svgo)
 // vite: { ssr: { external: [] } }
@@ -38,28 +45,35 @@ vite: {
 ```
 
 #### Issue #2: Adapter Mode vs Output Mode Mismatch
+
 **File:** `astro.config.mjs`
+
 ```javascript
-adapter: cloudflare({ mode: 'advanced' })
-output: 'static'
+adapter: cloudflare({ mode: 'advanced' });
+output: 'static';
 ```
+
 **Problem:** Advanced mode (for Cloudflare Workers) is configured but output is `static`. This works for Cloudflare Pages, but could be optimized.
 
 **Recommendation:** Confirm deployment target:
+
 - If deploying to **Cloudflare Pages (recommended):** Change to `output: 'server'` with `mode: 'directory'`
 - If deploying to **Cloudflare Worker:** Current setup works but may have unnecessary overhead
 
 **Current Recommendation:** Keep as-is for Cloudflare Pages hosting. ✓
 
 #### Issue #3: Unused React Integration
+
 **File:** `package.json` & `astro.config.mjs`
+
 - React dependency: 19.2.3 (unused)
 - @astrojs/react integration present (unused)
 - No .jsx or .tsx components found
 
 **Impact:** Increases bundle size unnecessarily (~40KB gzip)
 
-**Fix:** 
+**Fix:**
+
 ```bash
 # Option A: Remove React (recommended)
 npm uninstall react react-dom @astrojs/react
@@ -76,6 +90,7 @@ npm uninstall react react-dom @astrojs/react
 ### ✅ **PASS: Routing is Correct**
 
 **Page Inventory:**
+
 ```
 ✓ src/pages/index.astro → /
 ✓ src/pages/about/index.astro → /about
@@ -90,6 +105,7 @@ npm uninstall react react-dom @astrojs/react
 ```
 
 **Navigation Consistency:**
+
 - Nav.astro links: All correct, use absolute paths ✓
 - Footer.astro links: All correct, use absolute paths ✓
 - No orphaned pages ✓
@@ -97,13 +113,17 @@ npm uninstall react react-dom @astrojs/react
 - Internal CTA links route to `/contact` ✓
 
 ### ⚠️ **MINOR ISSUE: Duplicate Footer Import**
+
 **File:** `src/pages/index.astro` (line 11)
+
 ```javascript
-import Footer from '../components/Footer.astro';  // Redundant
+import Footer from '../components/Footer.astro'; // Redundant
 ```
+
 **Problem:** Footer is already rendered by RootLayout. Homepage imports it again.
 
 **Fix:**
+
 ```javascript
 // Remove line 11 from src/pages/index.astro
 // Remove the <Footer /> component from line 43
@@ -116,10 +136,12 @@ import Footer from '../components/Footer.astro';  // Redundant
 ### ✅ **PASS: Global Components Are Consistent**
 
 **Global Components (in RootLayout):**
+
 - Nav.astro: Consistent hamburger menu, scroll behavior, links ✓
 - Footer.astro: Consistent layout, branding, links ✓
 
 **Design System Uniformity:**
+
 - Color palette: var(--primary-neon), var(--secondary-neon), var(--tertiary-neon) ✓
 - Typography scale: clamp() functions used consistently ✓
 - Section spacing: 6rem padding normalized ✓
@@ -132,6 +154,7 @@ import Footer from '../components/Footer.astro';  // Redundant
 **Problem:** Animations like `@keyframes twinkle`, `drift`, `float`, `fade-in-up` are defined in every page file.
 
 **Files Affected:**
+
 - src/pages/index.astro (not checked - uses components)
 - src/pages/services/index.astro
 - src/pages/websites/index.astro
@@ -146,21 +169,39 @@ import Footer from '../components/Footer.astro';  // Redundant
 **Impact:** Code duplication (~500 bytes per page × 10 pages = 5KB wasted)
 
 **Fix:** Move all animation keyframes to `src/styles/global.css`
+
 ```css
 /* Add to global.css */
 @keyframes twinkle {
-  0%, 100% { opacity: 0.3; }
-  50% { opacity: 1; }
+  0%,
+  100% {
+    opacity: 0.3;
+  }
+  50% {
+    opacity: 1;
+  }
 }
 
 @keyframes drift {
-  0%, 100% { transform: translate(0, 0); }
-  50% { transform: translate(50px, 50px); }
+  0%,
+  100% {
+    transform: translate(0, 0);
+  }
+  50% {
+    transform: translate(50px, 50px);
+  }
 }
 
 @keyframes float {
-  0%, 100% { transform: translateY(0) translateX(0); opacity: 0.5; }
-  50% { transform: translateY(-50px) translateX(30px); opacity: 1; }
+  0%,
+  100% {
+    transform: translateY(0) translateX(0);
+    opacity: 0.5;
+  }
+  50% {
+    transform: translateY(-50px) translateX(30px);
+    opacity: 1;
+  }
 }
 
 @keyframes fade-in-up {
@@ -186,7 +227,9 @@ import Footer from '../components/Footer.astro';  // Redundant
 }
 
 @keyframes pulse {
-  0%, 60%, 100% {
+  0%,
+  60%,
+  100% {
     opacity: 0.4;
     transform: scale(0.8);
   }
@@ -215,11 +258,13 @@ import Footer from '../components/Footer.astro';  // Redundant
 ### ✅ **PASS: Form Configuration is Correct**
 
 **Formspree Integration:**
+
 - Endpoint: `https://formspree.io/f/myzojzzw` ✓
 - Method: POST ✓
 - Action: Correct form tag attribute ✓
 
 **Form Fields:**
+
 - Email (required, validated) ✓
 - Name (optional, autocomplete) ✓
 - Phone (optional, autocomplete) ✓
@@ -229,6 +274,7 @@ import Footer from '../components/Footer.astro';  // Redundant
 - Message (required, textarea) ✓
 
 **Success/Error States:**
+
 - Inline success message shown ✓
 - Inline error message shown ✓
 - No page redirect ✓
@@ -237,11 +283,13 @@ import Footer from '../components/Footer.astro';  // Redundant
 
 **CTA Button Routing:**
 All CTAs correctly route to `/contact`:
+
 - Final CTA buttons link to `/contact` ✓
 - Contact section is scroll-friendly ✓
 - No broken anchors ✓
 
 ### ✅ **STATIC-SITE SAFE**
+
 - No server-side validation required ✓
 - Formspree handles submissions ✓
 - Client-side validation sufficient ✓
@@ -254,6 +302,7 @@ All CTAs correctly route to `/contact`:
 ### ⚠️ **CRITICAL: No Spanish/Multi-Language Implementation Found**
 
 **Findings:**
+
 - No i18n package configured (@astrojs/i18n not present)
 - No `/es` directory structure
 - No language toggle component
@@ -292,12 +341,14 @@ The audit requested validation of "Español language toggle implementation," but
 
 **Metadata Coverage:**
 Each page has unique, appropriate:
+
 - Page title (e.g., "Web Design & Development in Lexington, KY - NOZA LLC")
 - Meta description
 - H1 tag (semantic, not duplicated)
 - Schema.org structured data (LocalBusiness, Organization)
 
 **Pages Audited:**
+
 ```
 ✓ / → "NOZA LLC - Digital Marketing, Branding & Web Design in Lexington, KY"
 ✓ /services → "Services - NOZA LLC" + "Digital Marketing & Creative Services..."
@@ -312,18 +363,21 @@ Each page has unique, appropriate:
 ```
 
 **Semantic HTML:**
+
 - Proper heading hierarchy (H1 → H2 → H3) ✓
 - No duplicate H1s ✓
 - Landmark elements (<nav>, <footer>, <main>) ✓
 - Form labels properly associated ✓
 
 **Schema Markup:**
+
 - LocalBusiness schema ✓
 - Organization schema ✓
 - Contact information included ✓
 - Service areas defined ✓
 
 **Google/AI Engine Compatibility:**
+
 - No noindex tags ✓
 - No blocking robots.txt ✓
 - Canonical URL set ✓
@@ -331,23 +385,30 @@ Each page has unique, appropriate:
 - Twitter Card tags present ✓
 
 ### ⚠️ **ISSUE #5: Hardcoded Canonical URL**
+
 **File:** `src/layouts/RootLayout.astro` (line 28)
+
 ```html
 <link rel="canonical" href="https://nozallc.us" />
 ```
+
 **Problem:** Canonical URL is hardcoded to homepage for ALL pages. Should be dynamic.
 
 **Fix:**
+
 ```html
 <!-- Calculate current page URL from Astro.url -->
-<link rel="canonical" href={Astro.url} />
+<link rel="canonical" href="{Astro.url}" />
 ```
 
 ### ⚠️ **ISSUE #6: Hardcoded Domain in Meta Tags**
+
 **File:** `src/layouts/RootLayout.astro` (lines 20-24, 33, 40)
+
 ```javascript
 <meta property="og:url" content="https://nozallc.us" />
 ```
+
 **Problem:** Domain is hardcoded. Should be dynamic or from .env
 
 **Fix:** Use `Astro.url` or environment variable
@@ -359,6 +420,7 @@ Each page has unique, appropriate:
 ### ✅ **PASS: Performance is Good**
 
 **JavaScript Usage:**
+
 - Nav.astro: Minimal JS for mobile menu toggle ✓
 - Contact form: Client-side validation + Formspree ✓
 - No heavy libraries ✓
@@ -366,6 +428,7 @@ Each page has unique, appropriate:
 - Prefetch enabled (prefetchAll: true) ✓
 
 **CSS & Animations:**
+
 - Scoped styles in components ✓
 - Global CSS for design tokens ✓
 - Hardware-accelerated animations (transform, opacity) ✓
@@ -373,15 +436,18 @@ Each page has unique, appropriate:
 - Font system fonts (no Google Fonts loads) ✓
 
 **Assets:**
+
 ```
 ✓ public/NOZA.LOGO.svg
 ✓ public/NOZALLC.US.svg
 ✓ public/noza.favicon.svg
 ✓ public/nozallc.svg
 ```
+
 All SVGs properly optimized. No raster images. ✓
 
 **Build Configuration:**
+
 ```
 ✓ inlineStylesheets: 'auto'
 ✓ CSS code splitting enabled
@@ -390,7 +456,9 @@ All SVGs properly optimized. No raster images. ✓
 ```
 
 ### ⚠️ **ISSUE #7: Misconfigured Rollup Config**
+
 **File:** `astro.config.mjs` (lines 21-26)
+
 ```javascript
 rollupOptions: {
   output: {
@@ -400,9 +468,11 @@ rollupOptions: {
   },
 },
 ```
+
 **Problem:** References non-existent `animations.css` file. Build still works because it's a non-critical optimization.
 
 **Fix:** Remove the config:
+
 ```javascript
 vite: {
   build: {
@@ -414,6 +484,7 @@ vite: {
 ```
 
 ### ✅ **MAINTAINABILITY: Good**
+
 - Clear component structure ✓
 - Consistent file naming ✓
 - No proprietary frameworks ✓
@@ -427,19 +498,21 @@ vite: {
 ## 📋 SUMMARY: ISSUES & ACTION ITEMS
 
 ### 🔴 **CRITICAL ISSUES:** 0
+
 ### 🟡 **WARNINGS:** 7
+
 ### 🟢 **COMPLIANT:** Multiple
 
-| # | Issue | Severity | File | Fix |
-|---|-------|----------|------|-----|
-| 1 | svgo externalized but not in dependencies | Low | astro.config.mjs | Remove external: ['svgo'] |
-| 2 | Adapter/output mode clarity needed | Low | astro.config.mjs | Verify Cloudflare Pages target (current OK) |
-| 3 | Unused React integration | Low | package.json, astro.config.mjs | Remove React (optional) |
-| 4 | Duplicate Footer import | Low | src/pages/index.astro | Remove duplicate import + component |
-| 5 | Duplicate animation keyframes | Medium | All pages | Move to global.css |
-| 6 | Hardcoded canonical URL | Medium | src/layouts/RootLayout.astro | Use Astro.url |
-| 7 | Misconfigured rollup animations config | Low | astro.config.mjs | Remove rollupOptions |
-| 8 | No Spanish/i18n implementation | Info | N/A | Clarify business requirement |
+| #   | Issue                                     | Severity | File                           | Fix                                         |
+| --- | ----------------------------------------- | -------- | ------------------------------ | ------------------------------------------- |
+| 1   | svgo externalized but not in dependencies | Low      | astro.config.mjs               | Remove external: ['svgo']                   |
+| 2   | Adapter/output mode clarity needed        | Low      | astro.config.mjs               | Verify Cloudflare Pages target (current OK) |
+| 3   | Unused React integration                  | Low      | package.json, astro.config.mjs | Remove React (optional)                     |
+| 4   | Duplicate Footer import                   | Low      | src/pages/index.astro          | Remove duplicate import + component         |
+| 5   | Duplicate animation keyframes             | Medium   | All pages                      | Move to global.css                          |
+| 6   | Hardcoded canonical URL                   | Medium   | src/layouts/RootLayout.astro   | Use Astro.url                               |
+| 7   | Misconfigured rollup animations config    | Low      | astro.config.mjs               | Remove rollupOptions                        |
+| 8   | No Spanish/i18n implementation            | Info     | N/A                            | Clarify business requirement                |
 
 ---
 
@@ -455,14 +528,16 @@ vite: {
 ✓ Performance is optimized  
 ✓ Design system is cohesive  
 ✓ Animations are performant  
-✓ No breaking issues  
+✓ No breaking issues
 
 **Recommended Actions Before Launch:**
 
 **MUST FIX (Blocking):**
+
 - None
 
 **SHOULD FIX (Recommended):**
+
 1. Fix hardcoded canonical URL (Issue #6) — 5 min
 2. Move animation keyframes to global.css (Issue #5) — 15 min
 3. Remove duplicate Footer import (Issue #4) — 2 min
@@ -472,6 +547,7 @@ vite: {
 **Total estimated fix time: ~25 minutes**
 
 **NICE TO HAVE (Optional):**
+
 - Remove unused React integration (saves ~40KB) — 5 min
 - Clarify Spanish language requirements — planning
 
@@ -480,6 +556,7 @@ vite: {
 ## 🚀 DEPLOYMENT CHECKLIST
 
 ### Pre-Launch:
+
 - [ ] Run `npm run build` locally (should complete without errors)
 - [ ] Run `npm run preview` and test all links
 - [ ] Test form submission on `/contact` page
@@ -490,12 +567,14 @@ vite: {
 - [ ] Check page load performance (should be <2s)
 
 ### Cloudflare Pages Deployment:
+
 1. Connect repository to Cloudflare Pages
 2. Set build command: `npm run build`
 3. Set publish directory: `dist`
 4. Deploy!
 
 ### Post-Launch:
+
 - [ ] Test production URL in Lighthouse
 - [ ] Monitor 404 errors in analytics
 - [ ] Test form submissions go to Formspree
@@ -507,6 +586,7 @@ vite: {
 ## 📝 NOTES
 
 **Git Status:** Cannot be read in this environment. Run locally:
+
 ```bash
 git status
 git branch --show-current

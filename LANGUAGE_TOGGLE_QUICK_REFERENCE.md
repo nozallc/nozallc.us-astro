@@ -1,4 +1,5 @@
 # Language Toggle - Quick Reference Guide
+
 ## For Developers
 
 ---
@@ -23,26 +24,28 @@
 
 ## ♿ Accessibility Features at a Glance
 
-| Feature | Implementation |
-|---------|---|
-| **Keyboard Support** | Tab, Enter, Space |
-| **Screen Readers** | ARIA labels + live region |
-| **State** | `aria-pressed` + visual highlight |
-| **Focus** | Visible outline + cyan glow |
-| **Motion** | Respects `prefers-reduced-motion` |
-| **Mobile** | Touch-friendly, 44x44px+ |
+| Feature              | Implementation                    |
+| -------------------- | --------------------------------- |
+| **Keyboard Support** | Tab, Enter, Space                 |
+| **Screen Readers**   | ARIA labels + live region         |
+| **State**            | `aria-pressed` + visual highlight |
+| **Focus**            | Visible outline + cyan glow       |
+| **Motion**           | Respects `prefers-reduced-motion` |
+| **Mobile**           | Touch-friendly, 44x44px+          |
 
 ---
 
 ## 🔧 How to Use (For Developers)
 
 ### Get Current Language
+
 ```javascript
 const lang = localStorage.getItem('preferredLanguage') || 'en';
 // Returns: 'en' or 'es'
 ```
 
 ### Listen to Language Changes
+
 ```javascript
 document.getElementById('languageToggle')?.addEventListener('click', () => {
   const lang = localStorage.getItem('preferredLanguage');
@@ -51,6 +54,7 @@ document.getElementById('languageToggle')?.addEventListener('click', () => {
 ```
 
 ### Render Based on Language
+
 ```astro
 ---
 const currentLang = localStorage.getItem('preferredLanguage') || 'en';
@@ -124,6 +128,7 @@ Mobile (≤ 768px)
 ## 🧪 Testing Quick Commands
 
 ### Check Keyboard Navigation
+
 ```
 1. Tab to toggle
 2. Press Enter or Space
@@ -132,6 +137,7 @@ Mobile (≤ 768px)
 ```
 
 ### Test Screen Reader (macOS VoiceOver)
+
 ```
 1. Cmd+F5 to enable VoiceOver
 2. Tab to toggle
@@ -141,6 +147,7 @@ Mobile (≤ 768px)
 ```
 
 ### Test Reduced Motion
+
 ```
 In macOS System Preferences:
 Accessibility → Display → Reduce motion
@@ -152,16 +159,19 @@ Language toggle animations should disable
 ## 🚨 Common Issues & Solutions
 
 ### Toggle not working?
+
 - Check localStorage enabled in browser
 - Verify component imported in Nav.astro
 - Check browser console for errors
 
 ### Screen reader not announcing?
+
 - Verify `aria-label` attribute present
 - Check live region (sr-announcement div)
 - Test with different screen reader
 
 ### Mobile layout broken?
+
 - Check `order: 2` CSS applied
 - Verify nav-container has gap
 - Test on real mobile device
@@ -207,6 +217,7 @@ const lang = Astro.locals.preferredLanguage || 'en';
 ## 📚 Full Documentation
 
 For complete details, see:
+
 - `LANGUAGE_TOGGLE_ACCESSIBILITY.md` - Full implementation guide
 - `ACCESSIBILITY_SUMMARY.md` - Compliance checklist
 - Component code: `src/components/LanguageToggle.astro` - Well documented
