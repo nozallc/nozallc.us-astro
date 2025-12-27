@@ -1,9 +1,11 @@
 ---
 ---
-import { getTranslation } from '../i18n/utils';
+import en from '../i18n/locales/en.json';
+import es from '../i18n/locales/es.json';
 
 const lang = Astro.props.lang || 'en';
-const t = (key) => getTranslation(key, lang);
+const translations = lang === 'es' ? es : en;
+const t = (key) => translations[key] || key;
 ---
 
 <section class="faq">
