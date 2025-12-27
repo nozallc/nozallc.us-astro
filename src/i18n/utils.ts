@@ -7,7 +7,7 @@ export const LANGUAGES = {
   es: 'es',
 } as const;
 
-export type Language = typeof LANGUAGES[keyof typeof LANGUAGES];
+export type Language = (typeof LANGUAGES)[keyof typeof LANGUAGES];
 
 // Type-safe translation lookup
 type TranslationKey = keyof typeof en;
@@ -81,7 +81,7 @@ export function getLanguageFromPath(pathname: string): Language {
  */
 export function getCurrentLanguage(params: Record<string, any>): Language {
   const lang = params.lang;
-  
+
   if (isValidLanguage(lang)) {
     return lang;
   }
@@ -118,12 +118,12 @@ export function getAlternateLanguage(currentLang: Language): Language {
 export function getLocalizedPath(path: string, lang: Language): string {
   // Remove leading slash if present
   const cleanPath = path.startsWith('/') ? path.slice(1) : path;
-  
+
   // Always include language prefix
   if (lang === 'en') {
     return `/${lang}/${cleanPath}`;
   }
-  
+
   return `/${lang}/${cleanPath}`;
 }
 
