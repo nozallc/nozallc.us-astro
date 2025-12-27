@@ -111,6 +111,11 @@
 		align-items: center;
 		justify-content: center;
 		cursor: pointer;
+		transition: transform 0.3s ease;
+	}
+
+	.orbit-node:hover {
+		transform: scale(1.1);
 	}
 
 	/* Stable circular positioning - 6 nodes in a circle, no chaotic drift */
@@ -120,3 +125,14 @@
 	.node-4 { bottom: 5%; left: 50%; transform: translateX(-50%); }
 	.node-5 { bottom: 23%; left: 10%; }
 	.node-6 { top: 23%; left: 10%; }
+
+	/* Respect reduced motion preferences */
+	@media (prefers-reduced-motion: reduce) {
+		.orbit-node {
+			transition: none;
+		}
+
+		.orbit-node:hover {
+			transform: none;
+		}
+	}
