@@ -87,6 +87,12 @@ import LanguageToggle from './LanguageToggle.astro';
 		filter: brightness(1.2) drop-shadow(0 0 16px rgba(0, 212, 255, 0.6));
 	}
 
+	/* Language Toggle */
+	:global(.language-toggle) {
+		flex-shrink: 0;
+		order: 2;
+	}
+
 	/* Navigation Links */
 	.nav-links {
 		display: flex;
