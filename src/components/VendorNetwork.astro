@@ -114,21 +114,10 @@
 		cursor: pointer;
 	}
 
-	.node-1 { top: 0%; left: 50%; transform: translateX(-50%); animation: orbit-motion-1 45s ease-in-out infinite; }
-	.node-2 { animation: orbit-motion-2 45s ease-in-out infinite; }
-	.node-3 { animation: orbit-motion-3 45s ease-in-out infinite; }
-	.node-4 { animation: orbit-motion-4 45s ease-in-out infinite; }
-	.node-5 { animation: orbit-motion-5 45s ease-in-out infinite; }
-	.node-6 { animation: orbit-motion-6 45s ease-in-out infinite; }
-
-	/* Respect reduced motion preferences */
-	@media (prefers-reduced-motion: reduce) {
-		.node-1,
-		.node-2,
-		.node-3,
-		.node-4,
-		.node-5,
-		.node-6 {
-			animation: none;
-		}
-	}
+	/* Stable circular positioning - 6 nodes in a circle, no chaotic drift */
+	.node-1 { top: 5%; left: 50%; transform: translateX(-50%); }
+	.node-2 { top: 23%; right: 10%; }
+	.node-3 { bottom: 23%; right: 10%; }
+	.node-4 { bottom: 5%; left: 50%; transform: translateX(-50%); }
+	.node-5 { bottom: 23%; left: 10%; }
+	.node-6 { top: 23%; left: 10%; }
