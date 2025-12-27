@@ -28,16 +28,6 @@ export default defineConfig({
     build: {
       minify: 'esbuild',
       cssCodeSplit: true,
-      rollupOptions: {
-        output: {
-          manualChunks: {
-            'vendor-animations': ['src/styles/animations.css'],
-          },
-        },
-      },
-    },
-    ssr: {
-      external: ['svgo'],
     },
   },
   // Enable prefetching for better performance
