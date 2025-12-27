@@ -1,10 +1,19 @@
 ---
 ---
+import { getTranslation } from '../i18n/utils';
+
+interface Props {
+  lang?: 'en' | 'es';
+}
+
+const lang = Astro.props.lang || 'en';
+const t = (key: string): string => getTranslation(key as any, lang as any);
+---
 
 <section class="vendor-network">
 	<div class="section-header">
-		<h2>The NOZA Orbit</h2>
-		<p class="section-subtitle">Building a network of trusted partners</p>
+		<h2>{t('vendorNetwork.title')}</h2>
+		<p class="section-subtitle">{t('vendorNetwork.subtitle')}</p>
 	</div>
 
 	<div class="orbit-container">
@@ -15,34 +24,34 @@
 		<div class="orbit-nodes">
 			<div class="orbit-node node-1">
 				<div class="node-dot"></div>
-				<p class="node-name">Cleaning Services</p>
+				<p class="node-name">{t('vendorNetwork.cleaning')}</p>
 			</div>
 			<div class="orbit-node node-2">
 				<div class="node-dot"></div>
-				<p class="node-name">Contracting</p>
+				<p class="node-name">{t('vendorNetwork.contracting')}</p>
 			</div>
 			<div class="orbit-node node-3">
 				<div class="node-dot"></div>
-				<p class="node-name">Landscaping</p>
+				<p class="node-name">{t('vendorNetwork.landscaping')}</p>
 			</div>
 			<div class="orbit-node node-4">
 				<div class="node-dot"></div>
-				<p class="node-name">Real Estate</p>
+				<p class="node-name">{t('vendorNetwork.realEstate')}</p>
 			</div>
 			<div class="orbit-node node-5">
 				<div class="node-dot"></div>
-				<p class="node-name">Consulting</p>
+				<p class="node-name">{t('vendorNetwork.consulting')}</p>
 			</div>
 			<div class="orbit-node node-6">
 				<div class="node-dot"></div>
-				<p class="node-name">Digital Services</p>
+				<p class="node-name">{t('vendorNetwork.digital')}</p>
 			</div>
 		</div>
 	</div>
 
 	<div class="vendor-info">
-		<p><strong>NOZA connects businesses with trusted vendors in our ecosystem.</strong> We operate on a referral-based revenue model where our partners grow together. When we find the perfect match between a client need and a vendor capability, everyone wins.</p>
-		<button class="cta-primary vendor-cta">Apply to Join the NOZA Network</button>
+		<p><strong>{t('vendorNetwork.description')}</strong></p>
+		<button class="cta-primary vendor-cta">{t('vendorNetwork.cta')}</button>
 	</div>
 </section>
 
