@@ -1,5 +1,15 @@
 ---
 ---
+import { getTranslation, type Language } from '../i18n/utils';
+
+interface Props {
+  lang?: Language;
+}
+
+const { lang = 'en' } = Astro.props;
+
+const t = (key: string): string => getTranslation(key as any, lang);
+---
 
 <section class="hero">
 	<div class="cosmic-background">
