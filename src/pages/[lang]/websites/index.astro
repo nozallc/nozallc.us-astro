@@ -1,0 +1,18 @@
+---
+import { getCurrentLanguage, getAvailableLanguages, type Language } from '../../../i18n/utils';
+import RootLayout from '../../../layouts/RootLayout.astro';
+
+export function getStaticPaths() {
+  return getAvailableLanguages().map(lang => ({ params: { lang } }));
+}
+
+const { lang } = Astro.params as { lang: Language };
+const currentLang = getCurrentLanguage({ lang });
+const pageTitle = currentLang === 'en' ? 'Web Design & Development in Lexington, KY - NOZA LLC' : 'Diseño y Desarrollo Web en Lexington, KY - NOZA LLC';
+---
+
+<RootLayout title={pageTitle} description="Web Design & Development Services">
+  <div style="padding: 4rem 2rem; max-width: 1200px; margin: 0 auto;">
+    <h1>Websites - {lang.toUpperCase()}</h1>
+  </div>
+</RootLayout>

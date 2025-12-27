@@ -1,0 +1,1213 @@
+---
+import RootLayout from '../../layouts/RootLayout.astro';
+---
+
+<RootLayout 
+	title="Contact NOZA LLC - Digital Marketing & Web Design in Lexington, KY" 
+	description="Get in touch with NOZA LLC for digital marketing, web design, branding, or consulting services in Lexington, Kentucky."
+>
+	<!-- Hero Section -->
+	<section class="contact-hero">
+		<div class="cosmic-background">
+			<div class="stars"></div>
+			<div class="nebula nebula-1"></div>
+			<div class="nebula nebula-2"></div>
+			<div class="nebula nebula-3"></div>
+		</div>
+
+		<div class="particles"></div>
+
+		<div class="hero-content">
+			<h1 class="contact-headline">Let's Talk</h1>
+			<p class="contact-subheadline">Have a project in mind? Question about our services? Or just want to chat? We'd love to hear from you. Reach out and let's start a conversation.</p>
+		</div>
+	</section>
+
+	<!-- Contact Options Section -->
+	<section class="contact-options">
+		<div class="options-container">
+			<div class="options-grid">
+				<div class="option-card">
+					<div class="option-icon">📞</div>
+					<h3>Call Us</h3>
+					<p>Have a quick question? Give us a call.</p>
+					<a href="tel:+1-859-452-8415" class="option-link">+1 (859) 452-8415</a>
+				</div>
+
+				<div class="option-card">
+					<div class="option-icon">📍</div>
+					<h3>Visit Us</h3>
+					<p>Based in Lexington, Kentucky. Serving Central KY and beyond.</p>
+					<p class="location-text">Lexington, KY 40507</p>
+				</div>
+
+				<div class="option-card">
+					<div class="option-icon">⏰</div>
+					<h3>Business Hours</h3>
+					<p>Monday - Friday: 9am - 5pm CT</p>
+					<p class="hours-text">Saturday & Sunday: Closed</p>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<!-- Local SEO Intro Block -->
+	<section class="local-signal-intro">
+		<div class="intro-container">
+			<h2 class="intro-title">Contact NOZA LLC in Lexington, KY</h2>
+			<p class="intro-description">We serve Central Kentucky and beyond. Whether you're a startup, established business, or contractor, our team is ready to help you succeed online.</p>
+			<div class="intro-highlights">
+				<div class="highlight-item">
+					<span class="highlight-icon">✓</span>
+					<span>Lexington-based digital experts</span>
+				</div>
+				<div class="highlight-item">
+					<span class="highlight-icon">✓</span>
+					<span>24-hour response guarantee</span>
+				</div>
+				<div class="highlight-item">
+					<span class="highlight-icon">✓</span>
+					<span>Free discovery call included</span>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<!-- Contact Form Section -->
+	<section class="contact-form-section">
+		<div class="form-container">
+			<div class="form-wrapper">
+				<div class="form-header">
+					<h2 class="form-title">Send Us a Message</h2>
+					<p class="form-subtitle">Fill out the form below and we'll get back to you within 24 hours</p>
+				</div>
+
+				<!-- Success Message -->
+				<div class="form-message form-success" id="successMessage" style="display: none;">
+					<span class="message-icon">✓</span>
+					<span class="message-text">Thanks — we got your message. We'll reach out soon.</span>
+				</div>
+
+				<!-- Error Message -->
+				<div class="form-message form-error" id="errorMessage" style="display: none;">
+					<span class="message-icon">⚠</span>
+					<span class="message-text" id="errorText">An error occurred. Please try again.</span>
+				</div>
+
+				<form class="contact-form" id="contactForm" method="POST" action="https://formspree.io/f/myzojzzw">
+					<!-- Email (Required) -->
+					<div class="form-group">
+						<label for="email">Email Address <span class="required-asterisk">*</span></label>
+						<input 
+							type="email" 
+							id="email" 
+							name="email" 
+							required 
+							placeholder="your@email.com"
+							autocomplete="email"
+						>
+					</div>
+
+					<!-- Full Name -->
+					<div class="form-group">
+						<label for="name">Full Name</label>
+						<input 
+							type="text" 
+							id="name" 
+							name="name" 
+							placeholder="John Smith"
+							autocomplete="name"
+						>
+					</div>
+
+					<!-- Phone -->
+					<div class="form-group">
+						<label for="phone">Phone Number</label>
+						<input 
+							type="tel" 
+							id="phone" 
+							name="phone" 
+							placeholder="(859) 555-0000"
+							autocomplete="tel"
+						>
+					</div>
+
+					<!-- Service Interest -->
+					<div class="form-group">
+						<label for="service">Service Interest</label>
+						<select id="service" name="service">
+							<option value="">-- Select a service --</option>
+							<option value="Websites">Websites</option>
+							<option value="Branding">Branding</option>
+							<option value="Digital Marketing">Digital Marketing</option>
+							<option value="Photo & Video">Photo & Video</option>
+							<option value="Consulting">Consulting</option>
+							<option value="Vendor Network">Vendor Network</option>
+						</select>
+					</div>
+
+					<!-- Budget Range -->
+					<div class="form-group">
+						<label for="budget">Budget Range</label>
+						<select id="budget" name="budget">
+							<option value="">-- Select a budget --</option>
+							<option value="Under $5,000">Under $5,000</option>
+							<option value="$5,000 - $15,000">$5,000 - $15,000</option>
+							<option value="$15,000 - $50,000">$15,000 - $50,000</option>
+							<option value="$50,000 - $100,000">$50,000 - $100,000</option>
+							<option value="$100,000+">$100,000+</option>
+							<option value="Not sure yet">Not sure yet</option>
+						</select>
+					</div>
+
+					<!-- Timeline -->
+					<div class="form-group">
+						<label for="timeline">Timeline</label>
+						<select id="timeline" name="timeline">
+							<option value="">-- Select a timeline --</option>
+							<option value="ASAP">ASAP</option>
+							<option value="1–2 weeks">1–2 weeks</option>
+							<option value="This month">This month</option>
+							<option value="Next 1–3 months">Next 1–3 months</option>
+							<option value="Flexible">Flexible</option>
+						</select>
+					</div>
+
+					<!-- Message (Required) -->
+					<div class="form-group">
+						<label for="message">Tell us about your project <span class="required-asterisk">*</span></label>
+						<textarea 
+							id="message" 
+							name="message" 
+							rows="5" 
+							required 
+							placeholder="What's on your mind? What are you hoping to achieve?"
+						></textarea>
+					</div>
+
+					<button type="submit" class="form-submit" id="submitButton">
+						<span class="button-text">Send Message</span>
+						<span class="button-loader" style="display: none;">
+							<span class="loader-dot"></span>
+							<span class="loader-dot"></span>
+							<span class="loader-dot"></span>
+						</span>
+					</button>
+				</form>
+			</div>
+
+			<!-- Form Sidebar -->
+			<div class="form-sidebar">
+				<div class="sidebar-card">
+					<h3>Quick Discovery Call</h3>
+					<p>Prefer to chat? Book a 30-minute discovery call to discuss your project, goals, and how we can help.</p>
+					<button class="cta-secondary">Schedule a Call</button>
+				</div>
+
+				<div class="sidebar-card">
+					<h3>Email Inquiry</h3>
+					<p>Send us a direct email with details about your project and we'll respond within 24 hours.</p>
+					<a href="mailto:hello@nozallc.us" class="email-link">hello@nozallc.us</a>
+				</div>
+
+				<div class="sidebar-card">
+					<h3>Based in Lexington</h3>
+					<p>We're rooted in Central Kentucky and passionate about helping local businesses succeed online.</p>
+					<p class="local-text">Serving Lexington & Central Kentucky</p>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<!-- FAQ Section -->
+	<section class="contact-faq">
+		<div class="faq-header">
+			<h2 class="faq-title">Contact Questions</h2>
+			<p class="faq-subtitle">Common questions about getting in touch</p>
+		</div>
+
+		<div class="faq-container">
+			<details class="faq-item">
+				<summary class="faq-question">What's the best way to reach you?</summary>
+				<div class="faq-answer">
+					<p>We respond to all inquiries within 24 hours. Use whichever method works for you: fill out the contact form, call us, send an email, or schedule a discovery call. All are equally effective.</p>
+				</div>
+			</details>
+
+			<details class="faq-item">
+				<summary class="faq-question">When will I hear back?</summary>
+				<div class="faq-answer">
+					<p>We aim to respond to all inquiries within 24 business hours. During busy periods, responses may take up to 48 hours. We'll confirm receipt of your message and set up a time to discuss your project.</p>
+				</div>
+			</details>
+
+			<details class="faq-item">
+				<summary class="faq-question">Do you offer free consultations?</summary>
+				<div class="faq-answer">
+					<p>Yes! We're happy to discuss your project, answer questions, and explore whether we're a good fit. Most initial discovery calls are complimentary so we can understand your needs and you can get to know our team.</p>
+				</div>
+			</details>
+
+			<details class="faq-item">
+				<summary class="faq-question">Do you serve clients outside Lexington?</summary>
+				<div class="faq-answer">
+					<p>We're based in Lexington and serve Central Kentucky clients primarily. However, we also work with clients throughout Kentucky and beyond. Digital services aren't limited by geography anymore. If you're interested in working together, reach out!</p>
+				</div>
+			</details>
+
+			<details class="faq-item">
+				<summary class="faq-question">What if I'm not sure which service I need?</summary>
+				<div class="faq-answer">
+					<p>That's completely normal. Tell us about your business and what you're hoping to achieve. We'll recommend the right services for your situation. It's better to discuss your needs than to guess.</p>
+				</div>
+			</details>
+		</div>
+	</section>
+
+	<!-- Final CTA Section -->
+	<section class="final-cta">
+		<div class="cta-content">
+			<h2 class="cta-title">What Are You Waiting For?</h2>
+			<p class="cta-description">Whether you're ready to start a project or just want to explore options, let's connect. Our team is excited to help your Lexington business succeed online.</p>
+			<div class="cta-buttons">
+				<button class="cta-primary cta-large" onclick="document.getElementById('contactForm').scrollIntoView({ behavior: 'smooth' })">Start a Conversation</button>
+				<button class="cta-secondary cta-large">Schedule a Call</button>
+			</div>
+		</div>
+	</section>
+</RootLayout>
+
+<script>
+	// Handle form submission with Formspree
+	const contactForm = document.getElementById('contactForm');
+	const successMessage = document.getElementById('successMessage');
+	const errorMessage = document.getElementById('errorMessage');
+	const errorText = document.getElementById('errorText');
+	const submitButton = document.getElementById('submitButton');
+	const buttonText = submitButton.querySelector('.button-text');
+	const buttonLoader = submitButton.querySelector('.button-loader');
+
+	if (contactForm) {
+		contactForm.addEventListener('submit', async (e) => {
+			e.preventDefault();
+
+			// Validate required fields
+			const email = document.getElementById('email').value.trim();
+			const message = document.getElementById('message').value.trim();
+
+			if (!email || !message) {
+				errorText.textContent = 'Please fill in all required fields.';
+				errorMessage.style.display = 'flex';
+				successMessage.style.display = 'none';
+				return;
+			}
+
+			// Validate email format
+			const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+			if (!emailRegex.test(email)) {
+				errorText.textContent = 'Please enter a valid email address.';
+				errorMessage.style.display = 'flex';
+				successMessage.style.display = 'none';
+				return;
+			}
+
+			// Show loading state
+			submitButton.disabled = true;
+			buttonText.style.display = 'none';
+			buttonLoader.style.display = 'flex';
+
+			try {
+				const formData = new FormData(contactForm);
+				const response = await fetch('https://formspree.io/f/myzojzzw', {
+					method: 'POST',
+					body: formData,
+					headers: {
+						Accept: 'application/json',
+					},
+				});
+
+				if (response.ok) {
+					// Success
+					successMessage.style.display = 'flex';
+					errorMessage.style.display = 'none';
+					contactForm.reset();
+
+					// Scroll to success message
+					successMessage.scrollIntoView({ behavior: 'smooth', block: 'center' });
+
+					// Hide success message after 5 seconds and reset button
+					setTimeout(() => {
+						successMessage.style.display = 'none';
+						submitButton.disabled = false;
+						buttonText.style.display = 'inline';
+						buttonLoader.style.display = 'none';
+					}, 5000);
+				} else {
+					// Error response
+					errorText.textContent = 'Failed to send message. Please try again.';
+					errorMessage.style.display = 'flex';
+					successMessage.style.display = 'none';
+
+					// Reset button
+					submitButton.disabled = false;
+					buttonText.style.display = 'inline';
+					buttonLoader.style.display = 'none';
+				}
+			} catch (error) {
+				console.error('Form submission error:', error);
+				errorText.textContent = 'An error occurred. Please check your connection and try again.';
+				errorMessage.style.display = 'flex';
+				successMessage.style.display = 'none';
+
+				// Reset button
+				submitButton.disabled = false;
+				buttonText.style.display = 'inline';
+				buttonLoader.style.display = 'none';
+			}
+		});
+	}
+</script>
+
+<style>
+	/* Hero Section */
+	.contact-hero {
+		position: relative;
+		min-height: 40vh;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		overflow: hidden;
+		padding: 4rem 2rem;
+	}
+
+	.cosmic-background {
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+		z-index: 0;
+		overflow: hidden;
+	}
+
+	.stars {
+		position: absolute;
+		width: 2px;
+		height: 2px;
+		background: white;
+		border-radius: 50%;
+		box-shadow: 100px 100px white, 200px 150px white, 300px 50px white, 450px 200px white,
+					550px 100px white, 150px 300px white, 400px 400px white, 600px 300px white,
+					700px 150px white, 800px 400px white, 900px 250px white, 200px 500px white,
+					700px 500px white, 500px 600px white, 100px 700px white, 800px 700px white,
+					300px 800px white;
+		animation: twinkle 3s infinite;
+	}
+
+
+	.nebula {
+		position: absolute;
+		border-radius: 50%;
+		filter: blur(80px);
+		opacity: 0.6;
+	}
+
+	.nebula-1 {
+		width: 400px;
+		height: 400px;
+		background: radial-gradient(circle, rgba(0, 212, 255, 0.3) 0%, transparent 70%);
+		top: 10%;
+		left: 10%;
+		animation: drift 8s ease-in-out infinite;
+	}
+
+	.nebula-2 {
+		width: 500px;
+		height: 500px;
+		background: radial-gradient(circle, rgba(163, 0, 255, 0.2) 0%, transparent 70%);
+		top: 50%;
+		right: 5%;
+		animation: drift 10s ease-in-out infinite reverse;
+	}
+
+	.nebula-3 {
+		width: 350px;
+		height: 350px;
+		background: radial-gradient(circle, rgba(255, 0, 110, 0.2) 0%, transparent 70%);
+		bottom: 10%;
+		left: 50%;
+		animation: drift 12s ease-in-out infinite;
+	}
+
+
+	.particles {
+		position: absolute;
+		width: 100%;
+		height: 100%;
+		overflow: hidden;
+	}
+
+	.particles::before {
+		content: '';
+		position: absolute;
+		width: 2px;
+		height: 2px;
+		background: var(--primary-neon);
+		border-radius: 50%;
+		box-shadow: 100px 200px var(--primary-neon), 250px 100px var(--primary-neon),
+					150px 400px var(--secondary-neon), 450px 150px var(--tertiary-neon),
+					600px 250px var(--primary-neon), 350px 300px var(--secondary-neon),
+					800px 100px var(--tertiary-neon), 200px 600px var(--primary-neon);
+		animation: float 6s ease-in-out infinite;
+	}
+
+
+	.hero-content {
+		position: relative;
+		z-index: 1;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		text-align: center;
+		max-width: 900px;
+		gap: 1.5rem;
+		animation: fade-in-up 1s ease-out;
+	}
+
+	.contact-headline {
+		font-size: clamp(2.5rem, 6vw, 3.5rem);
+		font-weight: 800;
+		background: linear-gradient(135deg, var(--primary-neon), var(--secondary-neon), var(--tertiary-neon));
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+		background-clip: text;
+		line-height: 1.2;
+	}
+
+	.contact-subheadline {
+		font-size: clamp(1rem, 2vw, 1.2rem);
+		color: var(--text-secondary);
+		max-width: 700px;
+		line-height: 1.8;
+	}
+
+
+	/* Contact Options Section */
+	.contact-options {
+		position: relative;
+		padding: 4rem 2rem;
+		background: linear-gradient(180deg, var(--dark-bg) 0%, rgba(15, 24, 53, 0.8) 100%);
+		z-index: 2;
+	}
+
+	.options-container {
+		max-width: 1200px;
+		margin: 0 auto;
+	}
+
+	.options-grid {
+		display: grid;
+		grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+		gap: 2rem;
+	}
+
+	.option-card {
+		padding: 2rem;
+		background: rgba(0, 212, 255, 0.05);
+		border: 1px solid rgba(0, 212, 255, 0.15);
+		border-radius: 12px;
+		text-align: center;
+		transition: all 0.3s ease;
+		position: relative;
+		overflow: hidden;
+	}
+
+	.option-card::before {
+		content: '';
+		position: absolute;
+		top: 0;
+		left: -100%;
+		width: 100%;
+		height: 100%;
+		background: linear-gradient(90deg, transparent, rgba(0, 212, 255, 0.1), transparent);
+		transition: left 0.6s ease;
+		z-index: 0;
+	}
+
+	.option-card:hover::before {
+		left: 100%;
+	}
+
+	.option-card:hover {
+		background: rgba(0, 212, 255, 0.12);
+		border-color: var(--primary-neon);
+		transform: translateY(-8px);
+		box-shadow: 0 12px 32px rgba(0, 212, 255, 0.25);
+	}
+
+	.option-icon {
+		font-size: 2.5rem;
+		margin-bottom: 1rem;
+	}
+
+	.option-card h3 {
+		font-size: 1.2rem;
+		color: var(--text-primary);
+		margin-bottom: 0.75rem;
+		font-weight: 700;
+	}
+
+	.option-card p {
+		color: var(--text-secondary);
+		font-size: 0.95rem;
+		line-height: 1.6;
+		margin-bottom: 0.75rem;
+	}
+
+	.option-link {
+		display: inline-block;
+		color: var(--primary-neon);
+		font-weight: 600;
+		text-decoration: none;
+		transition: all 0.3s ease;
+	}
+
+	.option-link:hover {
+		text-decoration: underline;
+	}
+
+	.location-text,
+	.hours-text {
+		color: var(--primary-neon) !important;
+		font-weight: 600 !important;
+	}
+
+	/* Local Signal Intro Section */
+	.local-signal-intro {
+		position: relative;
+		padding: 6rem 2rem;
+		background: linear-gradient(180deg, rgba(15, 24, 53, 0.8) 0%, var(--dark-bg) 100%);
+		z-index: 2;
+	}
+
+	.intro-container {
+		max-width: 900px;
+		margin: 0 auto;
+		text-align: center;
+	}
+
+	.intro-title {
+		font-size: clamp(2rem, 6vw, 3rem);
+		background: linear-gradient(135deg, var(--primary-neon), var(--secondary-neon));
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+		background-clip: text;
+		margin-bottom: 1rem;
+		font-weight: 800;
+		line-height: 1.2;
+	}
+
+	.intro-description {
+		font-size: 1.1rem;
+		color: var(--text-secondary);
+		margin-bottom: 3rem;
+		line-height: 1.8;
+	}
+
+	.intro-highlights {
+		display: grid;
+		grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+		gap: 1.5rem;
+	}
+
+	.highlight-item {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		gap: 0.75rem;
+		padding: 1.25rem;
+		background: rgba(0, 212, 255, 0.05);
+		border: 1px solid rgba(0, 212, 255, 0.15);
+		border-radius: 12px;
+		backdrop-filter: blur(8px);
+		transition: all 0.3s ease;
+		position: relative;
+		overflow: hidden;
+	}
+
+	.highlight-item::before {
+		content: '';
+		position: absolute;
+		top: 0;
+		left: -100%;
+		width: 100%;
+		height: 100%;
+		background: linear-gradient(90deg, transparent, rgba(0, 212, 255, 0.05), transparent);
+		transition: left 0.6s ease;
+		z-index: 0;
+	}
+
+	.highlight-item:hover::before {
+		left: 100%;
+	}
+
+	.highlight-item:hover {
+		background: rgba(0, 212, 255, 0.12);
+		border-color: var(--primary-neon);
+		transform: translateY(-8px);
+		box-shadow: 0 8px 24px rgba(0, 212, 255, 0.2);
+	}
+
+	.highlight-icon {
+		color: var(--primary-neon);
+		font-weight: 700;
+		font-size: 1.3rem;
+		flex-shrink: 0;
+		position: relative;
+		z-index: 1;
+	}
+
+	.highlight-item span:last-child {
+		color: var(--text-secondary);
+		font-size: 0.95rem;
+		position: relative;
+		z-index: 1;
+	}
+
+	/* Contact Form Section */
+	.contact-form-section {
+		position: relative;
+		padding: 6rem 2rem;
+		background: linear-gradient(180deg, var(--dark-bg) 0%, rgba(15, 24, 53, 0.8) 100%);
+		z-index: 2;
+	}
+
+	.form-container {
+		max-width: 1200px;
+		margin: 0 auto;
+		display: grid;
+		grid-template-columns: 1fr 350px;
+		gap: 3rem;
+		align-items: start;
+	}
+
+	.form-wrapper {
+		padding: 3rem;
+		background: rgba(0, 212, 255, 0.05);
+		border: 1px solid rgba(0, 212, 255, 0.15);
+		border-radius: 16px;
+		backdrop-filter: blur(10px);
+		transition: all 0.3s ease;
+		position: relative;
+		overflow: hidden;
+	}
+
+	.form-wrapper::before {
+		content: '';
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+		background: linear-gradient(135deg, rgba(0, 212, 255, 0.05) 0%, transparent 100%);
+		opacity: 0;
+		transition: opacity 0.3s ease;
+		pointer-events: none;
+		z-index: 0;
+	}
+
+	.form-wrapper:hover::before {
+		opacity: 1;
+	}
+
+	.form-header {
+		margin-bottom: 2rem;
+		position: relative;
+		z-index: 1;
+	}
+
+	.form-title {
+		font-size: 1.8rem;
+		color: var(--text-primary);
+		margin-bottom: 0.5rem;
+		font-weight: 800;
+	}
+
+	.form-subtitle {
+		color: var(--text-secondary);
+		font-size: 0.95rem;
+	}
+
+	/* Form Messages */
+	.form-message {
+		padding: 1.25rem;
+		border-radius: 10px;
+		margin-bottom: 2rem;
+		display: flex;
+		align-items: center;
+		gap: 1rem;
+		animation: slide-in 0.3s ease-out;
+	}
+
+
+	.form-success {
+		background: rgba(76, 175, 80, 0.15);
+		border: 1px solid rgba(76, 175, 80, 0.4);
+		color: #81c784;
+	}
+
+	.form-error {
+		background: rgba(244, 67, 54, 0.15);
+		border: 1px solid rgba(244, 67, 54, 0.4);
+		color: #ef5350;
+	}
+
+	.message-icon {
+		font-size: 1.3rem;
+		font-weight: 700;
+		flex-shrink: 0;
+	}
+
+	.message-text {
+		font-size: 0.95rem;
+		line-height: 1.5;
+	}
+
+	/* Contact Form */
+	.contact-form {
+		display: flex;
+		flex-direction: column;
+		gap: 1.5rem;
+		position: relative;
+		z-index: 1;
+	}
+
+	.form-group {
+		display: flex;
+		flex-direction: column;
+		gap: 0.5rem;
+	}
+
+	.form-group label {
+		color: var(--text-primary);
+		font-weight: 600;
+		font-size: 0.95rem;
+	}
+
+	.required-asterisk {
+		color: var(--secondary-neon);
+	}
+
+	.form-group input,
+	.form-group select,
+	.form-group textarea {
+		padding: 0.875rem 1rem;
+		background: rgba(0, 212, 255, 0.03);
+		border: 1px solid rgba(0, 212, 255, 0.15);
+		border-radius: 10px;
+		color: var(--text-primary);
+		font-family: inherit;
+		font-size: 0.95rem;
+		transition: all 0.3s ease;
+	}
+
+	.form-group input:focus,
+	.form-group select:focus,
+	.form-group textarea:focus {
+		outline: none;
+		background: rgba(0, 212, 255, 0.08);
+		border-color: var(--primary-neon);
+		box-shadow: 0 0 15px rgba(0, 212, 255, 0.2), inset 0 0 10px rgba(0, 212, 255, 0.05);
+	}
+
+	.form-group textarea {
+		resize: vertical;
+		min-height: 120px;
+	}
+
+	/* Form Submit Button */
+	.form-submit {
+		padding: 1rem 2rem;
+		background: linear-gradient(135deg, var(--primary-neon), var(--tertiary-neon));
+		color: var(--darker-bg);
+		border: none;
+		border-radius: 10px;
+		font-weight: 700;
+		font-size: 1rem;
+		cursor: pointer;
+		transition: all 0.3s ease;
+		box-shadow: 0 0 20px rgba(0, 212, 255, 0.4);
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		position: relative;
+		overflow: hidden;
+		z-index: 1;
+	}
+
+	.form-submit::before {
+		content: '';
+		position: absolute;
+		top: 0;
+		left: -100%;
+		width: 100%;
+		height: 100%;
+		background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+		transition: left 0.6s ease;
+	}
+
+	.form-submit:hover:not(:disabled)::before {
+		left: 100%;
+	}
+
+	.form-submit:hover:not(:disabled) {
+		transform: translateY(-2px) scale(1.02);
+		box-shadow: 0 8px 32px rgba(0, 212, 255, 0.5), 0 0 60px var(--tertiary-neon);
+	}
+
+	.form-submit:disabled {
+		opacity: 0.7;
+		cursor: not-allowed;
+	}
+
+	.button-text {
+		display: inline;
+		position: relative;
+		z-index: 1;
+	}
+
+	.button-loader {
+		display: flex;
+		gap: 0.35rem;
+		align-items: center;
+		justify-content: center;
+		position: relative;
+		z-index: 1;
+	}
+
+	.loader-dot {
+		width: 6px;
+		height: 6px;
+		background: currentColor;
+		border-radius: 50%;
+		animation: pulse 1.4s ease-in-out infinite;
+	}
+
+	.loader-dot:nth-child(2) {
+		animation-delay: 0.2s;
+	}
+
+	.loader-dot:nth-child(3) {
+		animation-delay: 0.4s;
+	}
+
+
+	/* Form Sidebar */
+	.form-sidebar {
+		display: flex;
+		flex-direction: column;
+		gap: 1.5rem;
+	}
+
+	.sidebar-card {
+		padding: 1.5rem;
+		background: rgba(0, 212, 255, 0.05);
+		border: 1px solid rgba(0, 212, 255, 0.15);
+		border-radius: 12px;
+		backdrop-filter: blur(8px);
+		transition: all 0.3s ease;
+		position: relative;
+		overflow: hidden;
+	}
+
+	.sidebar-card::before {
+		content: '';
+		position: absolute;
+		top: 0;
+		left: -100%;
+		width: 100%;
+		height: 100%;
+		background: linear-gradient(90deg, transparent, rgba(0, 212, 255, 0.08), transparent);
+		transition: left 0.6s ease;
+		z-index: 0;
+	}
+
+	.sidebar-card:hover::before {
+		left: 100%;
+	}
+
+	.sidebar-card:hover {
+		background: rgba(0, 212, 255, 0.12);
+		border-color: var(--primary-neon);
+		transform: translateY(-8px);
+		box-shadow: 0 12px 32px rgba(0, 212, 255, 0.2);
+	}
+
+	.sidebar-card h3 {
+		font-size: 1rem;
+		color: var(--text-primary);
+		margin-bottom: 0.75rem;
+		font-weight: 700;
+		position: relative;
+		z-index: 1;
+	}
+
+	.sidebar-card p {
+		font-size: 0.85rem;
+		color: var(--text-secondary);
+		line-height: 1.5;
+		margin-bottom: 0.75rem;
+		position: relative;
+		z-index: 1;
+	}
+
+	.sidebar-card .cta-secondary {
+		width: 100%;
+		padding: 0.75rem 1rem;
+		font-size: 0.9rem;
+		position: relative;
+		z-index: 1;
+	}
+
+	.email-link {
+		display: inline-block;
+		color: var(--primary-neon);
+		font-weight: 600;
+		text-decoration: none;
+		word-break: break-all;
+		transition: all 0.3s ease;
+	}
+
+	.email-link:hover {
+		text-decoration: underline;
+	}
+
+	.local-text {
+		color: var(--primary-neon) !important;
+		font-weight: 600 !important;
+	}
+
+	/* FAQ Section */
+	.contact-faq {
+		position: relative;
+		padding: 6rem 2rem;
+		background: linear-gradient(180deg, var(--dark-bg) 0%, rgba(15, 24, 53, 0.8) 100%);
+		z-index: 2;
+	}
+
+	.faq-header {
+		text-align: center;
+		margin-bottom: 3rem;
+		max-width: 800px;
+		margin-left: auto;
+		margin-right: auto;
+	}
+
+	.faq-title {
+		font-size: clamp(1.8rem, 5vw, 2.5rem);
+		background: linear-gradient(135deg, var(--secondary-neon), var(--primary-neon));
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+		background-clip: text;
+		margin-bottom: 0.5rem;
+		font-weight: 800;
+	}
+
+	.faq-subtitle {
+		font-size: 1.1rem;
+		color: var(--text-secondary);
+	}
+
+	.faq-container {
+		max-width: 900px;
+		margin: 0 auto;
+	}
+
+	.faq-item {
+		margin-bottom: 1.5rem;
+		border-radius: 12px;
+		overflow: hidden;
+		background: rgba(0, 212, 255, 0.05);
+		border: 1px solid rgba(0, 212, 255, 0.15);
+		transition: all 0.3s ease;
+		backdrop-filter: blur(8px);
+	}
+
+	.faq-item[open] {
+		background: rgba(0, 212, 255, 0.12);
+		border-color: var(--primary-neon);
+		box-shadow: 0 8px 24px rgba(0, 212, 255, 0.15);
+	}
+
+	.faq-item:hover {
+		border-color: rgba(0, 212, 255, 0.3);
+	}
+
+	.faq-question {
+		padding: 1.5rem;
+		cursor: pointer;
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		font-weight: 600;
+		color: var(--text-primary);
+		transition: all 0.3s ease;
+		user-select: none;
+		font-size: 1rem;
+	}
+
+	.faq-item:hover .faq-question {
+		color: var(--primary-neon);
+	}
+
+	.faq-question::after {
+		content: '▼';
+		color: var(--primary-neon);
+		font-size: 0.8rem;
+		transition: transform 0.3s ease;
+		flex-shrink: 0;
+		margin-left: 1rem;
+	}
+
+	.faq-item[open] .faq-question::after {
+		transform: rotate(180deg);
+	}
+
+	.faq-answer {
+		padding: 0 1.5rem 1.5rem;
+		animation: expand 0.3s ease-out;
+		color: var(--text-secondary);
+		line-height: 1.8;
+		font-size: 0.95rem;
+	}
+
+
+	/* Final CTA Section */
+	.final-cta {
+		position: relative;
+		padding: 6rem 2rem;
+		background: linear-gradient(180deg, rgba(15, 24, 53, 0.8) 0%, var(--dark-bg) 100%);
+		z-index: 2;
+		min-height: 400px;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+	}
+
+	.cta-content {
+		text-align: center;
+		max-width: 700px;
+	}
+
+	.cta-title {
+		font-size: clamp(1.8rem, 5vw, 2.8rem);
+		background: linear-gradient(135deg, var(--tertiary-neon), var(--primary-neon));
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+		background-clip: text;
+		margin-bottom: 1.5rem;
+		font-weight: 800;
+	}
+
+	.cta-description {
+		font-size: 1.1rem;
+		color: var(--text-secondary);
+		margin-bottom: 2.5rem;
+		line-height: 1.8;
+	}
+
+	.cta-buttons {
+		display: flex;
+		gap: 1.5rem;
+		justify-content: center;
+		flex-wrap: wrap;
+	}
+
+	.cta-large {
+		padding: 1.2rem 3rem;
+		font-size: 1.1rem;
+	}
+
+	/* Responsive Design */
+	@media (max-width: 768px) {
+		.contact-hero {
+			min-height: 35vh;
+			padding: 3rem 1.5rem;
+		}
+
+		.local-signal-intro,
+		.contact-options,
+		.contact-form-section,
+		.contact-faq,
+		.final-cta {
+			padding: 4rem 1.5rem;
+		}
+
+		.form-container {
+			grid-template-columns: 1fr;
+			gap: 2rem;
+		}
+
+		.form-wrapper {
+			padding: 2rem;
+		}
+
+		.options-grid {
+			gap: 1.5rem;
+		}
+
+		.intro-highlights {
+			grid-template-columns: 1fr;
+		}
+
+		.cta-buttons {
+			flex-direction: column;
+			gap: 1rem;
+		}
+
+		.cta-large {
+			width: 100%;
+			padding: 1rem 2rem;
+		}
+	}
+
+	@media (max-width: 480px) {
+		.contact-headline {
+			font-size: clamp(1.5rem, 5vw, 2.2rem);
+		}
+
+		.contact-subheadline {
+			font-size: 0.95rem;
+		}
+
+		.form-title,
+		.faq-title,
+		.cta-title,
+		.intro-title {
+			font-size: clamp(1.5rem, 5vw, 2rem);
+		}
+
+		.faq-question {
+			padding: 1.25rem;
+			font-size: 0.95rem;
+		}
+
+		.faq-answer {
+			font-size: 0.9rem;
+		}
+
+		.form-wrapper,
+		.option-card,
+		.sidebar-card {
+			padding: 1.5rem;
+		}
+
+		.intro-description {
+			font-size: 1rem;
+		}
+
+		.highlight-item {
+			font-size: 0.9rem;
+		}
+	}
+</style>

@@ -1,47 +1,53 @@
 ---
+import en from '../i18n/locales/en.json';
+import es from '../i18n/locales/es.json';
+
+const lang = Astro.props.lang || 'en';
+const translations = lang === 'es' ? es : en;
+const t = (key) => translations[key] || key;
 ---
 
 <section class="services">
 	<div class="section-header">
-		<h2>Our Services</h2>
-		<p class="section-subtitle">Creative solutions powered by innovation</p>
+		<h2>{t('services.title')}</h2>
+		<p class="section-subtitle">{t('services.subtitle')}</p>
 	</div>
 
 	<div class="services-grid">
 		<div class="service-card">
 			<div class="card-icon digital-marketing"></div>
-			<h3>Digital Marketing Strategy</h3>
-			<p>Data-driven campaigns designed to grow your reach, engage your audience, and drive measurable results for your Lexington business.</p>
+			<h3>{t('services.digitalMarketing.title')}</h3>
+			<p>{t('services.digitalMarketing.desc')}</p>
 		</div>
 
 		<div class="service-card">
 			<div class="card-icon branding"></div>
-			<h3>Branding & Logo Design</h3>
-			<p>Distinctive visual identities that capture your brand essence and resonate with your Central Kentucky market.</p>
+			<h3>{t('services.branding.title')}</h3>
+			<p>{t('services.branding.desc')}</p>
 		</div>
 
 		<div class="service-card">
 			<div class="card-icon web-design"></div>
-			<h3>Websites (Astro + Cloudflare)</h3>
-			<p>Ultra-fast, SEO-optimized websites built with cutting-edge technology for limitless customization and speed.</p>
+			<h3>{t('services.websites.title')}</h3>
+			<p>{t('services.websites.desc')}</p>
 		</div>
 
 		<div class="service-card">
 			<div class="card-icon social-media"></div>
-			<h3>Social Media Campaigns</h3>
-			<p>Strategic content creation and community management that builds authentic connections with your audience.</p>
+			<h3>{t('services.socialMedia.title')}</h3>
+			<p>{t('services.socialMedia.desc')}</p>
 		</div>
 
 		<div class="service-card">
 			<div class="card-icon media"></div>
-			<h3>Photo, Video & Drone Media</h3>
-			<p>Professional media production that showcases your brand story and captivates your viewers.</p>
+			<h3>{t('services.photoVideo.title')}</h3>
+			<p>{t('services.photoVideo.desc')}</p>
 		</div>
 
 		<div class="service-card">
 			<div class="card-icon consulting"></div>
-			<h3>Business Consulting</h3>
-			<p>Strategic guidance for growth, systems optimization, and sustainable business development in your market.</p>
+			<h3>{t('services.consulting.title')}</h3>
+			<p>{t('services.consulting.desc')}</p>
 		</div>
 	</div>
 </section>

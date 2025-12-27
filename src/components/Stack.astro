@@ -1,73 +1,76 @@
 ---
+import en from '../i18n/locales/en.json';
+import es from '../i18n/locales/es.json';
+
+const lang = Astro.props.lang || 'en';
+const translations = lang === 'es' ? es : en;
+const t = (key) => translations[key] || key;
 ---
 
 <section class="stack">
 	<div class="section-header">
-		<h2>A Modern, Limitless Workflow Built for Speed and Creativity</h2>
-		<p class="section-subtitle">The technology that powers exceptional results</p>
+		<h2>{t('stack.title')}</h2>
+		<p class="section-subtitle">{t('stack.subtitle')}</p>
 	</div>
 
 	<div class="pipeline-container">
 		<div class="pipeline-node">
 			<div class="node-glow"></div>
 			<div class="node-icon builder-icon">B</div>
-			<p class="node-label">Builder.io</p>
-			<p class="node-desc">Visual design & collaboration</p>
+			<p class="node-label">{t('stack.builder')}</p>
+			<p class="node-desc">{t('stack.builderDesc')}</p>
 		</div>
 
 		<div class="pipeline-connector">
 			<div class="connector-line"></div>
-			<span class="connector-arrow">→</span>
 		</div>
 
 		<div class="pipeline-node">
 			<div class="node-glow"></div>
 			<div class="node-icon github-icon">G</div>
-			<p class="node-label">GitHub</p>
-			<p class="node-desc">Version control & sync</p>
+			<p class="node-label">{t('stack.github')}</p>
+			<p class="node-desc">{t('stack.githubDesc')}</p>
 		</div>
 
 		<div class="pipeline-connector">
 			<div class="connector-line"></div>
-			<span class="connector-arrow">→</span>
 		</div>
 
 		<div class="pipeline-node">
 			<div class="node-glow"></div>
 			<div class="node-icon astro-icon">A</div>
-			<p class="node-label">Astro</p>
-			<p class="node-desc">Fast framework</p>
+			<p class="node-label">{t('stack.astro')}</p>
+			<p class="node-desc">{t('stack.astroDesc')}</p>
 		</div>
 
 		<div class="pipeline-connector">
 			<div class="connector-line"></div>
-			<span class="connector-arrow">→</span>
 		</div>
 
 		<div class="pipeline-node">
 			<div class="node-glow"></div>
 			<div class="node-icon cloudflare-icon">C</div>
-			<p class="node-label">Cloudflare Pages</p>
-			<p class="node-desc">Lightning-fast hosting</p>
+			<p class="node-label">{t('stack.cloudflare')}</p>
+			<p class="node-desc">{t('stack.cloudflareDesc')}</p>
 		</div>
 	</div>
 
 	<div class="stack-benefits">
 		<div class="benefit-item">
 			<span class="benefit-icon">✨</span>
-			<p><strong>Limitless Customization</strong> — Full creative control with no restrictions</p>
+			<p>{t('stack.customization')}</p>
 		</div>
 		<div class="benefit-item">
 			<span class="benefit-icon">⚡</span>
-			<p><strong>Extremely Fast Load Speeds</strong> — Sub-second performance globally</p>
+			<p>{t('stack.speed')}</p>
 		</div>
 		<div class="benefit-item">
 			<span class="benefit-icon">🔍</span>
-			<p><strong>Strong SEO</strong> — Built for search visibility and rankings</p>
+			<p>{t('stack.seo')}</p>
 		</div>
 		<div class="benefit-item">
 			<span class="benefit-icon">📝</span>
-			<p><strong>Easier Updates</strong> — Simple content management and deployment</p>
+			<p>{t('stack.updates')}</p>
 		</div>
 	</div>
 </section>
@@ -109,10 +112,6 @@
 		animation: pulse 2s ease-in-out infinite;
 	}
 
-	@keyframes pulse {
-		0%, 100% { transform: scale(1); opacity: 0.6; }
-		50% { transform: scale(1.3); opacity: 1; }
-	}
 
 	.node-icon {
 		width: 80px;
@@ -186,10 +185,6 @@
 		animation: pulse-line 1.5s ease-in-out infinite;
 	}
 
-	@keyframes pulse-line {
-		0%, 100% { opacity: 0.5; }
-		50% { opacity: 1; }
-	}
 
 	.connector-arrow {
 		color: var(--primary-neon);
@@ -197,10 +192,6 @@
 		animation: bounce 1.5s ease-in-out infinite;
 	}
 
-	@keyframes bounce {
-		0%, 100% { transform: translateX(0); }
-		50% { transform: translateX(5px); }
-	}
 
 	.stack-benefits {
 		display: grid;

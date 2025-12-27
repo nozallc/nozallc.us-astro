@@ -1,0 +1,38 @@
+---
+import { getCurrentLanguage, getTranslation, type Language } from '../i18n/utils';
+import RootLayout from './RootLayout.astro';
+
+interface Props {
+  title: string;
+  description: string;
+  lang?: Language;
+  params?: Record<string, any>;
+}
+
+const { title, description, lang, params } = Astro.props;
+
+// Get language from params or props
+const currentLang = params ? getCurrentLanguage(params) : (lang || 'en');
+
+// Create a helper function for translations within child components
+const t = (key: string): string => {
+  return getTranslation(key as any, currentLang);
+};
+
+// Expose language and translation function to child components via slot context
+---
+
+<RootLayout title={title} description={description}>
+  <slot />
+</RootLayout>
+
+<script define:vars={{ currentLang, t }}>
+  // Make translations available globally
+  window.__i18n = {
+    lang: currentLang,
+    t: function(key) {
+      // This will be overridden per-component
+      return key;
+    }
+  };
+</script>

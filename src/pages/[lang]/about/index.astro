@@ -1,0 +1,42 @@
+---
+import { getCurrentLanguage, getLanguageTranslations, getAvailableLanguages, type Language } from '../../../i18n/utils';
+import RootLayout from '../../../layouts/RootLayout.astro';
+
+export function getStaticPaths() {
+  return getAvailableLanguages().map(lang => ({
+    params: { lang },
+  }));
+}
+
+const { lang } = Astro.params as { lang: Language };
+const currentLang = getCurrentLanguage({ lang });
+
+const pageTitle = currentLang === 'en'
+  ? 'About NOZA LLC - Digital Marketing & Web Design in Lexington, KY'
+  : 'Sobre NOZA LLC - Marketing Digital y Diseño Web en Lexington, KY';
+
+const pageDescription = currentLang === 'en'
+  ? 'Learn about NOZA LLC, a Lexington-based digital agency focused on helping small businesses succeed online.'
+  : 'Conozca a NOZA LLC, una agencia digital basada en Lexington enfocada en ayudar a pequeños negocios a tener éxito en línea.';
+---
+
+<RootLayout title={pageTitle} description={pageDescription}>
+  <div class="about-page">
+    <h1>About Page - {lang.toUpperCase()}</h1>
+    <p>Language-specific about page content coming soon.</p>
+  </div>
+</RootLayout>
+
+<style>
+  .about-page {
+    padding: 4rem 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+    min-height: 60vh;
+  }
+
+  h1 {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+  }
+</style>

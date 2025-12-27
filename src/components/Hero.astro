@@ -1,4 +1,10 @@
 ---
+import en from '../i18n/locales/en.json';
+import es from '../i18n/locales/es.json';
+
+const lang = Astro.props.lang || 'en';
+const translations = lang === 'es' ? es : en;
+const t = (key) => translations[key] || key;
 ---
 
 <section class="hero">
@@ -21,15 +27,15 @@
 		</div>
 
 		<div class="hero-text">
-			<h1 class="hero-headline">Launch Your Business Into the Future</h1>
-			<p class="hero-subheadline">For small businesses - serviced by powerful Builder.io → lean Astro framework → served on Cloudflare's 32,000+ global servers.</p>
+			<h1 class="hero-headline">{t('hero.headline')}</h1>
+			<p class="hero-subheadline">{t('hero.subheadline')}</p>
 			
 			<div class="hero-ctas">
-				<button class="cta-primary">Book a Discovery Call</button>
-				<button class="cta-secondary">See Our Work</button>
+				<button class="cta-primary">{t('hero.cta.discovery')}</button>
+				<button class="cta-secondary">{t('hero.cta.seeWork')}</button>
 			</div>
 
-			<p class="hero-location">📍 Based in Lexington, Kentucky • Serving Central KY & beyond</p>
+			<p class="hero-location">{t('hero.location')}</p>
 		</div>
 	</div>
 </section>
@@ -69,22 +75,17 @@
 		animation: twinkle 3s infinite;
 	}
 
-	@keyframes twinkle {
-		0%, 100% { opacity: 0.3; }
-		50% { opacity: 1; }
-	}
-
 	.nebula {
 		position: absolute;
 		border-radius: 50%;
 		filter: blur(80px);
-		opacity: 0.6;
+		opacity: 0.08;
 	}
 
 	.nebula-1 {
 		width: 400px;
 		height: 400px;
-		background: radial-gradient(circle, rgba(0, 212, 255, 0.3) 0%, transparent 70%);
+		background: radial-gradient(circle, rgba(0, 212, 255, 0.15) 0%, transparent 70%);
 		top: 10%;
 		left: 10%;
 		animation: drift 8s ease-in-out infinite;
@@ -93,7 +94,7 @@
 	.nebula-2 {
 		width: 500px;
 		height: 500px;
-		background: radial-gradient(circle, rgba(163, 0, 255, 0.2) 0%, transparent 70%);
+		background: radial-gradient(circle, rgba(163, 0, 255, 0.1) 0%, transparent 70%);
 		top: 50%;
 		right: 5%;
 		animation: drift 10s ease-in-out infinite reverse;
@@ -102,15 +103,10 @@
 	.nebula-3 {
 		width: 350px;
 		height: 350px;
-		background: radial-gradient(circle, rgba(255, 0, 110, 0.2) 0%, transparent 70%);
+		background: radial-gradient(circle, rgba(255, 0, 110, 0.1) 0%, transparent 70%);
 		bottom: 10%;
 		left: 50%;
 		animation: drift 12s ease-in-out infinite;
-	}
-
-	@keyframes drift {
-		0%, 100% { transform: translate(0, 0); }
-		50% { transform: translate(50px, 50px); }
 	}
 
 	.particles {
@@ -132,11 +128,6 @@
 					600px 250px var(--primary-neon), 350px 300px var(--secondary-neon),
 					800px 100px var(--tertiary-neon), 200px 600px var(--primary-neon);
 		animation: float 6s ease-in-out infinite;
-	}
-
-	@keyframes float {
-		0%, 100% { transform: translateY(0) translateX(0); opacity: 0.5; }
-		50% { transform: translateY(-50px) translateX(30px); opacity: 1; }
 	}
 
 	.hero-content {
@@ -171,17 +162,6 @@
 		box-shadow: 0 0 80px var(--primary-neon), 0 0 120px var(--tertiary-neon);
 	}
 
-	@keyframes pulse-glow {
-		0%, 100% { 
-			transform: translate(-50%, -50%) scale(1);
-			box-shadow: 0 0 80px var(--primary-neon), 0 0 120px var(--tertiary-neon);
-		}
-		50% { 
-			transform: translate(-50%, -50%) scale(1.2);
-			box-shadow: 0 0 120px var(--primary-neon), 0 0 160px var(--tertiary-neon);
-		}
-	}
-
 	.orbit-ring {
 		position: absolute;
 		border: 2px solid;
@@ -212,11 +192,6 @@
 		border-color: rgba(255, 0, 110, 0.15);
 		transform: translate(-50%, -50%) rotateX(45deg);
 		animation: spin-orbit 12s linear infinite;
-	}
-
-	@keyframes spin-orbit {
-		0% { transform: translate(-50%, -50%) rotateX(75deg) rotateZ(0deg); }
-		100% { transform: translate(-50%, -50%) rotateX(75deg) rotateZ(360deg); }
 	}
 
 	.hero-logo {
@@ -255,17 +230,6 @@
 		animation: fade-in-up 1s ease-out 0.2s both;
 	}
 
-	@keyframes fade-in-up {
-		from {
-			opacity: 0;
-			transform: translateY(30px);
-		}
-		to {
-			opacity: 1;
-			transform: translateY(0);
-		}
-	}
-
 	.hero-ctas {
 		display: flex;
 		gap: 1.5rem;
@@ -279,4 +243,50 @@
 		color: var(--text-secondary);
 		animation: fade-in-up 1s ease-out 0.6s both;
 	}
+
+	/* Respect reduced motion preferences */
+	@media (prefers-reduced-motion: reduce) {
+		.nebula,
+		.stars,
+		.particles::before,
+		.glowing-orb,
+		.orbit-ring,
+		.hero-headline,
+		.hero-subheadline,
+		.hero-ctas,
+		.hero-location {
+			animation: none !important;
+		}
+
+		.orbit-ring {
+			transform: translate(-50%, -50%);
+		}
+	}
 </style>
+
+<script>
+	document.addEventListener('DOMContentLoaded', () => {
+		const heroCtas = document.querySelector('.hero-ctas');
+		if (heroCtas) {
+			const buttons = heroCtas.querySelectorAll('button');
+			// Get current language from URL
+			const currentPath = window.location.pathname;
+			const langMatch = currentPath.match(/^\/([a-z]{2})\//);
+			const lang = langMatch ? langMatch[1] : 'en';
+
+			buttons.forEach((button, index) => {
+				if (index === 0) {
+					// "Book a Discovery Call" -> Contact page
+					button.addEventListener('click', () => {
+						window.location.href = `/${lang}/contact`;
+					});
+				} else if (index === 1) {
+					// "See Our Work" -> Services page
+					button.addEventListener('click', () => {
+						window.location.href = `/${lang}/services`;
+					});
+				}
+			});
+		}
+	});
+</script>

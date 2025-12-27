@@ -1,49 +1,54 @@
 ---
+import en from '../i18n/locales/en.json';
+import es from '../i18n/locales/es.json';
+
+const lang = Astro.props.lang || 'en';
+const translations = lang === 'es' ? es : en;
+const t = (key) => translations[key] || key;
 ---
 
 <section class="vendor-network">
 	<div class="section-header">
-		<h2>The NOZA Orbit</h2>
-		<p class="section-subtitle">Building a network of trusted partners</p>
+		<h2>{t('vendorNetwork.title')}</h2>
+		<p class="section-subtitle">{t('vendorNetwork.subtitle')}</p>
 	</div>
 
 	<div class="orbit-container">
 		<div class="orbit-center">
-			<img src="/nozallc.svg" alt="NOZA LLC Logo" class="orbit-logo" />
-			<p class="orbit-center-text">NOZA</p>
+			<img src="/NOZA.LOGO.svg" alt="NOZA LLC Logo" class="orbit-logo" width="80" height="80" />
 		</div>
 
 		<div class="orbit-nodes">
 			<div class="orbit-node node-1">
 				<div class="node-dot"></div>
-				<p class="node-name">Cleaning Services</p>
+				<p class="node-name">{t('vendorNetwork.cleaning')}</p>
 			</div>
 			<div class="orbit-node node-2">
 				<div class="node-dot"></div>
-				<p class="node-name">Contracting</p>
+				<p class="node-name">{t('vendorNetwork.contracting')}</p>
 			</div>
 			<div class="orbit-node node-3">
 				<div class="node-dot"></div>
-				<p class="node-name">Landscaping</p>
+				<p class="node-name">{t('vendorNetwork.landscaping')}</p>
 			</div>
 			<div class="orbit-node node-4">
 				<div class="node-dot"></div>
-				<p class="node-name">Real Estate</p>
+				<p class="node-name">{t('vendorNetwork.realEstate')}</p>
 			</div>
 			<div class="orbit-node node-5">
 				<div class="node-dot"></div>
-				<p class="node-name">Consulting</p>
+				<p class="node-name">{t('vendorNetwork.consulting')}</p>
 			</div>
 			<div class="orbit-node node-6">
 				<div class="node-dot"></div>
-				<p class="node-name">Digital Services</p>
+				<p class="node-name">{t('vendorNetwork.digital')}</p>
 			</div>
 		</div>
 	</div>
 
 	<div class="vendor-info">
-		<p><strong>NOZA connects businesses with trusted vendors in our ecosystem.</strong> We operate on a referral-based revenue model where our partners grow together. When we find the perfect match between a client need and a vendor capability, everyone wins.</p>
-		<button class="cta-primary vendor-cta">Apply to Join the NOZA Network</button>
+		<p><strong>{t('vendorNetwork.description')}</strong></p>
+		<button class="cta-primary vendor-cta">{t('vendorNetwork.cta')}</button>
 	</div>
 </section>
 
@@ -85,16 +90,6 @@
 		width: 80px;
 		height: 80px;
 		object-fit: contain;
-		filter: brightness(1.2);
-	}
-
-	.orbit-center-text {
-		font-weight: 700;
-		font-size: 0.9rem;
-		color: var(--primary-neon);
-		text-align: center;
-		position: absolute;
-		bottom: 10px;
 	}
 
 	.orbit-nodes {
@@ -112,93 +107,70 @@
 		align-items: center;
 		justify-content: center;
 		cursor: pointer;
+		transition: transform 0.3s ease;
 	}
 
-	.node-1 { top: 0%; left: 50%; transform: translateX(-50%); animation: orbit-motion-1 20s linear infinite; }
-	.node-2 { animation: orbit-motion-2 20s linear infinite; }
-	.node-3 { animation: orbit-motion-3 20s linear infinite; }
-	.node-4 { animation: orbit-motion-4 20s linear infinite; }
-	.node-5 { animation: orbit-motion-5 20s linear infinite; }
-	.node-6 { animation: orbit-motion-6 20s linear infinite; }
-
-	@keyframes orbit-motion-1 {
-		0% { top: 0%; left: 50%; transform: translateX(-50%); }
-		100% { top: 0%; left: 50%; transform: translateX(-50%) rotateZ(360deg); }
+	.orbit-node:hover {
+		transform: scale(1.1);
 	}
 
-	@keyframes orbit-motion-2 {
-		0% { top: 13.4%; left: 84.3%; }
-		100% { top: 13.4%; left: 84.3%; transform: rotateZ(360deg); }
-	}
+	.node-1 { top: 5%; left: 50%; transform: translateX(-50%); }
+	.node-2 { top: 23%; right: 10%; }
+	.node-3 { bottom: 23%; right: 10%; }
+	.node-4 { bottom: 5%; left: 50%; transform: translateX(-50%); }
+	.node-5 { bottom: 23%; left: 10%; }
+	.node-6 { top: 23%; left: 10%; }
 
-	@keyframes orbit-motion-3 {
-		0% { top: 50%; left: 93.3%; transform: translateY(-50%); }
-		100% { top: 50%; left: 93.3%; transform: translateY(-50%) rotateZ(360deg); }
-	}
+	@media (prefers-reduced-motion: reduce) {
+		.orbit-node {
+			transition: none;
+		}
 
-	@keyframes orbit-motion-4 {
-		0% { bottom: 13.4%; right: 15.7%; }
-		100% { bottom: 13.4%; right: 15.7%; transform: rotateZ(360deg); }
-	}
-
-	@keyframes orbit-motion-5 {
-		0% { bottom: 0%; left: 50%; transform: translateX(-50%); }
-		100% { bottom: 0%; left: 50%; transform: translateX(-50%) rotateZ(360deg); }
-	}
-
-	@keyframes orbit-motion-6 {
-		0% { top: 50%; left: 6.7%; transform: translateY(-50%); }
-		100% { top: 50%; left: 6.7%; transform: translateY(-50%) rotateZ(360deg); }
-	}
-
-	.node-dot {
-		width: 12px;
-		height: 12px;
-		border-radius: 50%;
-		background: var(--primary-neon);
-		box-shadow: 0 0 20px var(--primary-neon);
-		margin-bottom: 0.5rem;
-	}
-
-	.node-name {
-		font-size: 0.85rem;
-		text-align: center;
-		color: var(--text-secondary);
-		transition: all 0.3s ease;
-	}
-
-	.orbit-node:hover .node-name {
-		color: var(--primary-neon);
-		font-weight: 600;
-	}
-
-	.orbit-node:hover .node-dot {
-		transform: scale(1.5);
-		background: var(--secondary-neon);
-		box-shadow: 0 0 30px var(--secondary-neon);
+		.orbit-node:hover {
+			transform: none;
+		}
 	}
 
 	.vendor-info {
 		max-width: 700px;
 		margin: 3rem auto;
 		text-align: center;
-		padding: 2rem;
-		background: rgba(0, 212, 255, 0.05);
-		border: 1px solid var(--border-glow);
-		border-radius: 12px;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		gap: 2rem;
 	}
 
 	.vendor-info p {
-		margin-bottom: 1.5rem;
-		color: var(--text-secondary);
+		font-size: 1.1rem;
 		line-height: 1.8;
+		color: var(--text-secondary);
 	}
 
-	.vendor-info strong {
-		color: var(--primary-neon);
+	.vendor-info p strong {
+		color: var(--text-primary);
 	}
 
 	.vendor-cta {
+		align-self: center;
 		margin-top: 1rem;
+	}
+
+	@media (max-width: 768px) {
+		.vendor-network {
+			padding: 4rem 1.5rem;
+		}
+
+		.orbit-container {
+			margin: 2rem auto;
+		}
+
+		.vendor-info {
+			margin: 2rem 1rem;
+		}
+
+		.vendor-info p {
+			font-size: 1rem;
+		}
 	}
 </style>

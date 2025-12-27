@@ -1,0 +1,42 @@
+---
+import { getCurrentLanguage, getLanguageTranslations, getAvailableLanguages, type Language } from '../../i18n/utils';
+import RootLayout from '../../layouts/RootLayout.astro';
+import Hero from '../../components/Hero.astro';
+import Services from '../../components/Services.astro';
+import Stack from '../../components/Stack.astro';
+import Portfolio from '../../components/Portfolio.astro';
+import Consulting from '../../components/Consulting.astro';
+import VendorNetwork from '../../components/VendorNetwork.astro';
+import FAQ from '../../components/FAQ.astro';
+import FinalCTA from '../../components/FinalCTA.astro';
+
+export function getStaticPaths() {
+  return getAvailableLanguages().map(lang => ({
+    params: { lang },
+  }));
+}
+
+const { lang } = Astro.params as { lang: Language };
+const currentLang = getCurrentLanguage({ lang });
+const translations = getLanguageTranslations(currentLang);
+
+// Get page title and description from translations
+const pageTitle = currentLang === 'en'
+  ? 'NOZA LLC - Digital Marketing, Branding & Web Design in Lexington, KY'
+  : 'NOZA LLC - Marketing Digital, Branding y Diseño Web en Lexington, KY';
+
+const pageDescription = currentLang === 'en'
+  ? 'Digital marketing, branding, websites & business consulting for Lexington KY small businesses. Creative workflows powered by Builder.io, GitHub, Astro & Cloudflare.'
+  : 'Marketing digital, branding, sitios web y consultoría empresarial para pequeños negocios en Lexington KY. Flujos de trabajo creativos impulsados por Builder.io, GitHub, Astro y Cloudflare.';
+---
+
+<RootLayout title={pageTitle} description={pageDescription}>
+  <Hero lang={currentLang} />
+  <Services lang={currentLang} />
+  <Stack lang={currentLang} />
+  <Portfolio lang={currentLang} />
+  <Consulting lang={currentLang} />
+  <VendorNetwork lang={currentLang} />
+  <FAQ lang={currentLang} />
+  <FinalCTA lang={currentLang} />
+</RootLayout>

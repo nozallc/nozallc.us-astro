@@ -1,58 +1,64 @@
 ---
+import en from '../i18n/locales/en.json';
+import es from '../i18n/locales/es.json';
+
+const lang = Astro.props.lang || 'en';
+const translations = lang === 'es' ? es : en;
+const t = (key) => translations[key] || key;
 ---
 
 <section class="portfolio">
 	<div class="section-header">
-		<h2>Real Projects. Real Growth.</h2>
-		<p class="section-subtitle">Case studies that showcase our creative power</p>
+		<h2>{t('portfolio.title')}</h2>
+		<p class="section-subtitle">{t('portfolio.subtitle')}</p>
 	</div>
 
 	<div class="portfolio-grid">
 		<div class="portfolio-item">
 			<div class="portfolio-image branding-case"></div>
 			<div class="portfolio-overlay">
-				<h3>Brand Identity Redesign</h3>
-				<p>Complete visual brand system</p>
+				<h3>{t('portfolio.brand')}</h3>
+				<p>{t('portfolio.brandDesc')}</p>
 			</div>
 		</div>
 
 		<div class="portfolio-item">
 			<div class="portfolio-image website-case"></div>
 			<div class="portfolio-overlay">
-				<h3>E-Commerce Site</h3>
-				<p>Ultra-fast Astro powered site</p>
+				<h3>{t('portfolio.ecommerce')}</h3>
+				<p>{t('portfolio.ecommerceDesc')}</p>
 			</div>
 		</div>
 
 		<div class="portfolio-item">
 			<div class="portfolio-image campaign-case"></div>
 			<div class="portfolio-overlay">
-				<h3>Digital Marketing Campaign</h3>
-				<p>Multi-channel strategy & execution</p>
+				<h3>{t('portfolio.marketing')}</h3>
+				<p>{t('portfolio.marketingDesc')}</p>
 			</div>
 		</div>
 
 		<div class="portfolio-item">
 			<div class="portfolio-image video-case"></div>
 			<div class="portfolio-overlay">
-				<h3>Drone & Video Production</h3>
-				<p>Professional cinematic content</p>
+				<h3>{t('portfolio.drone')}</h3>
+				<p>{t('portfolio.droneDesc')}</p>
 			</div>
 		</div>
 
 		<div class="portfolio-item">
 			<div class="portfolio-image rebranding-case"></div>
 			<div class="portfolio-overlay">
-				<h3>Full Brand Relaunch</h3>
-				<p>Website, identity & marketing</p>
+				<h3>{t('portfolio.relaunch')}</h3>
+				<p>{t('portfolio.relaunghDesc')}</p>
 			</div>
 		</div>
 
 		<div class="portfolio-item">
 			<div class="portfolio-image consulting-case"></div>
 			<div class="portfolio-overlay">
-				<h3>Business Growth Strategy</h3>
-				<p>Systems & lead generation</p>
+				<h3>{t('portfolio.growth')}</h3>
+				<p>{t('portfolio.growthDesc')}</p>
 			</div>
 		</div>
 	</div>

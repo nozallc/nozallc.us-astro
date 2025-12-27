@@ -1,0 +1,18 @@
+---
+import { getCurrentLanguage, getAvailableLanguages, type Language } from '../../../i18n/utils';
+import RootLayout from '../../../layouts/RootLayout.astro';
+
+export function getStaticPaths() {
+  return getAvailableLanguages().map(lang => ({ params: { lang } }));
+}
+
+const { lang } = Astro.params as { lang: Language };
+const currentLang = getCurrentLanguage({ lang });
+const pageTitle = currentLang === 'en' ? 'Photo, Video & Drone Services in Lexington, KY - NOZA LLC' : 'Servicios de Foto, Video y Dron en Lexington, KY - NOZA LLC';
+---
+
+<RootLayout title={pageTitle} description="Photo, Video & Drone Services">
+  <div style="padding: 4rem 2rem; max-width: 1200px; margin: 0 auto;">
+    <h1>Photo & Video - {lang.toUpperCase()}</h1>
+  </div>
+</RootLayout>

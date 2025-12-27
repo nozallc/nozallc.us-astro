@@ -1,6 +1,8 @@
 ---
 import '../styles/global.css';
 import Nav from '../components/Nav.astro';
+import Footer from '../components/Footer.astro';
+import LanguageToggle from '../components/LanguageToggle.astro';
 
 interface Props {
   title: string;
@@ -41,7 +43,7 @@ const { title, description } = Astro.props;
 		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
 		
 		<!-- Canonical URL -->
-		<link rel="canonical" href="https://nozallc.us" />
+		<link rel="canonical" href={Astro.url} />
 		
 		<!-- Preconnect to external resources -->
 		<link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -82,7 +84,7 @@ const { title, description } = Astro.props;
 			"logo": "https://nozallc.us/nozallc.svg",
 			"contact": {
 				"@type": "ContactPoint",
-				"telephone": "+1-XXXXXXXXXX",
+				"telephone": "+1-859-452-8415",
 				"contactType": "Business Inquiries"
 			}
 		}
@@ -91,5 +93,7 @@ const { title, description } = Astro.props;
 	<body>
 		<Nav />
 		<slot />
+		<Footer />
+		<LanguageToggle />
 	</body>
 </html>

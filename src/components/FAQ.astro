@@ -1,50 +1,56 @@
 ---
+import en from '../i18n/locales/en.json';
+import es from '../i18n/locales/es.json';
+
+const lang = Astro.props.lang || 'en';
+const translations = lang === 'es' ? es : en;
+const t = (key) => translations[key] || key;
 ---
 
 <section class="faq">
 	<div class="section-header">
-		<h2>Frequently Asked Questions</h2>
-		<p class="section-subtitle">Everything you need to know</p>
+		<h2>{t('faq.title')}</h2>
+		<p class="section-subtitle">{t('faq.subtitle')}</p>
 	</div>
 
 	<div class="faq-container">
 		<details class="faq-item">
-			<summary class="faq-question">What digital marketing services do you offer in Lexington KY?</summary>
+			<summary class="faq-question">{t('faq.q1')}</summary>
 			<div class="faq-answer">
 				<p>We offer a full spectrum of digital marketing services tailored to Lexington small businesses, including SEO optimization, social media management, paid advertising campaigns, content strategy, email marketing, and analytics-driven optimization. All strategies are customized to your local market and business goals.</p>
 			</div>
 		</details>
 
 		<details class="faq-item">
-			<summary class="faq-question">How much does a small business website cost?</summary>
+			<summary class="faq-question">{t('faq.q2')}</summary>
 			<div class="faq-answer">
 				<p>Website costs vary based on complexity, features, and customization. Typically, small business websites range from foundational Astro-built sites to fully custom experiences. We offer flexible pricing models including project-based fees and performance-based pricing. Contact us for a personalized quote based on your specific needs.</p>
 			</div>
 		</details>
 
 		<details class="faq-item">
-			<summary class="faq-question">Do you work with contractors and service trades?</summary>
+			<summary class="faq-question">{t('faq.q3')}</summary>
 			<div class="faq-answer">
 				<p>Absolutely! We specialize in serving service-based businesses and trades in Central Kentucky. We understand the unique challenges contractors, cleaners, landscapers, and real estate professionals face, and we've built solutions that generate leads and build credibility in those industries.</p>
 			</div>
 		</details>
 
 		<details class="faq-item">
-			<summary class="faq-question">Why use Astro + Cloudflare?</summary>
+			<summary class="faq-question">{t('faq.q4')}</summary>
 			<div class="faq-answer">
 				<p>Astro provides superior performance through modern framework architecture, while Cloudflare Pages delivers lightning-fast global hosting with built-in security. Together, they create websites that rank better in search, load in milliseconds, and provide an exceptional user experience—all while keeping costs low and customization unlimited.</p>
 			</div>
 		</details>
 
 		<details class="faq-item">
-			<summary class="faq-question">Do you provide social media content creation?</summary>
+			<summary class="faq-question">{t('faq.q5')}</summary>
 			<div class="faq-answer">
 				<p>Yes! We provide complete social media services including content strategy, copywriting, graphic design, video production, community management, and campaign execution across Instagram, Facebook, LinkedIn, TikTok, and other relevant platforms for your business.</p>
 			</div>
 		</details>
 
 		<details class="faq-item">
-			<summary class="faq-question">Do you help new businesses get started?</summary>
+			<summary class="faq-question">{t('faq.q6')}</summary>
 			<div class="faq-answer">
 				<p>Yes! If you're launching a new business or venture, we provide comprehensive startup guidance including business name and brand positioning, visual identity design, website launch, initial marketing strategy, and foundational systems to help you get customers from day one.</p>
 			</div>
@@ -113,14 +119,4 @@
 		line-height: 1.8;
 	}
 
-	@keyframes expand {
-		from {
-			opacity: 0;
-			max-height: 0;
-		}
-		to {
-			opacity: 1;
-			max-height: 500px;
-		}
-	}
 </style>
