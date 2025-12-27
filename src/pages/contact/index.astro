@@ -1,0 +1,824 @@
+---
+import RootLayout from '../../layouts/RootLayout.astro';
+---
+
+<RootLayout 
+	title="Contact NOZA LLC - Digital Marketing & Web Design in Lexington, KY" 
+	description="Get in touch with NOZA LLC for digital marketing, web design, branding, or consulting services in Lexington, Kentucky."
+>
+	<!-- Hero Section -->
+	<section class="contact-hero">
+		<div class="cosmic-background">
+			<div class="stars"></div>
+			<div class="nebula nebula-1"></div>
+			<div class="nebula nebula-2"></div>
+			<div class="nebula nebula-3"></div>
+		</div>
+
+		<div class="particles"></div>
+
+		<div class="hero-content">
+			<h1 class="contact-headline">Let's Talk</h1>
+			<p class="contact-subheadline">Have a project in mind? Question about our services? Or just want to chat? We'd love to hear from you. Reach out and let's start a conversation.</p>
+		</div>
+	</section>
+
+	<!-- Contact Options Section -->
+	<section class="contact-options">
+		<div class="options-container">
+			<div class="options-grid">
+				<div class="option-card">
+					<div class="option-icon">📞</div>
+					<h3>Call Us</h3>
+					<p>Have a quick question? Give us a call.</p>
+					<a href="tel:+1-859-555-0000" class="option-link">+1 (859) 555-0000</a>
+				</div>
+
+				<div class="option-card">
+					<div class="option-icon">📍</div>
+					<h3>Visit Us</h3>
+					<p>Based in Lexington, Kentucky. Serving Central KY and beyond.</p>
+					<p class="location-text">Lexington, KY 40507</p>
+				</div>
+
+				<div class="option-card">
+					<div class="option-icon">⏰</div>
+					<h3>Business Hours</h3>
+					<p>Monday - Friday: 9am - 5pm CT</p>
+					<p class="hours-text">Saturday & Sunday: Closed</p>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<!-- Contact Form Section -->
+	<section class="contact-form-section">
+		<div class="form-container">
+			<div class="form-wrapper">
+				<div class="form-header">
+					<h2 class="form-title">Send Us a Message</h2>
+					<p class="form-subtitle">Fill out the form below and we'll get back to you within 24 hours</p>
+				</div>
+
+				<form class="contact-form" method="POST" action="/contact">
+					<div class="form-group">
+						<label for="name">Your Name *</label>
+						<input type="text" id="name" name="name" required placeholder="John Smith">
+					</div>
+
+					<div class="form-group">
+						<label for="email">Email Address *</label>
+						<input type="email" id="email" name="email" required placeholder="john@example.com">
+					</div>
+
+					<div class="form-group">
+						<label for="phone">Phone Number</label>
+						<input type="tel" id="phone" name="phone" placeholder="(859) 555-0000">
+					</div>
+
+					<div class="form-group">
+						<label for="company">Company Name</label>
+						<input type="text" id="company" name="company" placeholder="Your Business">
+					</div>
+
+					<div class="form-group">
+						<label for="service">What service are you interested in? *</label>
+						<select id="service" name="service" required>
+							<option value="">-- Select a service --</option>
+							<option value="websites">Website Design & Development</option>
+							<option value="branding">Branding & Logo Design</option>
+							<option value="digital-marketing">Digital Marketing</option>
+							<option value="photo-video">Photo & Video Production</option>
+							<option value="consulting">Business Consulting</option>
+							<option value="vendor-network">Vendor Network Access</option>
+							<option value="other">Other</option>
+						</select>
+					</div>
+
+					<div class="form-group">
+						<label for="message">Tell us about your project *</label>
+						<textarea id="message" name="message" rows="6" required placeholder="What's on your mind? What are you hoping to achieve?"></textarea>
+					</div>
+
+					<div class="form-group checkbox">
+						<input type="checkbox" id="updates" name="updates">
+						<label for="updates" class="checkbox-label">Send me updates and tips about digital marketing and web design</label>
+					</div>
+
+					<button type="submit" class="form-submit">Send Message</button>
+				</form>
+			</div>
+
+			<div class="form-sidebar">
+				<div class="sidebar-card">
+					<h3>Quick Discovery Call</h3>
+					<p>Prefer to chat? Book a 30-minute discovery call to discuss your project, goals, and how we can help.</p>
+					<button class="cta-secondary">Schedule a Call</button>
+				</div>
+
+				<div class="sidebar-card">
+					<h3>Email Inquiry</h3>
+					<p>Send us a direct email with details about your project and we'll respond within 24 hours.</p>
+					<a href="mailto:hello@nozallc.us" class="email-link">hello@nozallc.us</a>
+				</div>
+
+				<div class="sidebar-card">
+					<h3>Based in Lexington</h3>
+					<p>We're rooted in Central Kentucky and passionate about helping local businesses succeed online.</p>
+					<p class="local-text">Serving Lexington & Central Kentucky</p>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<!-- FAQ Section -->
+	<section class="contact-faq">
+		<div class="faq-header">
+			<h2 class="faq-title">Contact Questions</h2>
+			<p class="faq-subtitle">Common questions about getting in touch</p>
+		</div>
+
+		<div class="faq-container">
+			<details class="faq-item">
+				<summary class="faq-question">What's the best way to reach you?</summary>
+				<div class="faq-answer">
+					<p>We respond to all inquiries within 24 hours. Use whichever method works for you: fill out the contact form, call us, send an email, or schedule a discovery call. All are equally effective.</p>
+				</div>
+			</details>
+
+			<details class="faq-item">
+				<summary class="faq-question">When will I hear back?</summary>
+				<div class="faq-answer">
+					<p>We aim to respond to all inquiries within 24 business hours. During busy periods, responses may take up to 48 hours. We'll confirm receipt of your message and set up a time to discuss your project.</p>
+				</div>
+			</details>
+
+			<details class="faq-item">
+				<summary class="faq-question">Do you offer free consultations?</summary>
+				<div class="faq-answer">
+					<p>Yes! We're happy to discuss your project, answer questions, and explore whether we're a good fit. Most initial discovery calls are complimentary so we can understand your needs and you can get to know our team.</p>
+				</div>
+			</details>
+
+			<details class="faq-item">
+				<summary class="faq-question">Do you serve clients outside Lexington?</summary>
+				<div class="faq-answer">
+					<p>We're based in Lexington and serve Central Kentucky clients primarily. However, we also work with clients throughout Kentucky and beyond. Digital services aren't limited by geography anymore. If you're interested in working together, reach out!</p>
+				</div>
+			</details>
+
+			<details class="faq-item">
+				<summary class="faq-question">What if I'm not sure which service I need?</summary>
+				<div class="faq-answer">
+					<p>That's completely normal. Tell us about your business and what you're hoping to achieve. We'll recommend the right services for your situation. It's better to discuss your needs than to guess.</p>
+				</div>
+			</details>
+
+			<details class="faq-item">
+				<summary class="faq-question">Do you offer package deals?</summary>
+				<div class="faq-answer">
+					<p>Yes! Many of our best clients combine services. Website design + branding, digital marketing + consulting, etc. Bundle prices are often better than separate services. We'll discuss the best approach for your needs.</p>
+				</div>
+			</details>
+
+			<details class="faq-item">
+				<summary class="faq-question">How quickly can you start a project?</summary>
+				<div class="faq-answer">
+					<p>It depends on current projects and your timeline. Some projects can start within 1-2 weeks. Others may have a longer lead time. We'll discuss availability and work with you to find a timeline that works.</p>
+				</div>
+			</details>
+
+			<details class="faq-item">
+				<summary class="faq-question">What's your cancellation policy?</summary>
+				<div class="faq-answer">
+					<p>We're committed to seeing projects through successfully. Cancellation policies are included in our service agreements and vary by project type. We'll discuss terms clearly before you commit to anything.</p>
+				</div>
+			</details>
+		</div>
+	</section>
+
+	<!-- Final CTA Section -->
+	<section class="final-cta">
+		<div class="cta-content">
+			<h2 class="cta-title">What Are You Waiting For?</h2>
+			<p class="cta-description">Whether you're ready to start a project or just want to explore options, let's connect. Our team is excited to help your Lexington business succeed online.</p>
+			<div class="cta-buttons">
+				<button class="cta-primary cta-large">Start a Conversation</button>
+				<button class="cta-secondary cta-large">Schedule a Call</button>
+			</div>
+		</div>
+	</section>
+</RootLayout>
+
+<style>
+	/* Hero Section */
+	.contact-hero {
+		position: relative;
+		min-height: 40vh;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		overflow: hidden;
+		padding: 4rem 2rem;
+	}
+
+	.cosmic-background {
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+		z-index: 0;
+		overflow: hidden;
+	}
+
+	.stars {
+		position: absolute;
+		width: 2px;
+		height: 2px;
+		background: white;
+		border-radius: 50%;
+		box-shadow: 100px 100px white, 200px 150px white, 300px 50px white, 450px 200px white,
+					550px 100px white, 150px 300px white, 400px 400px white, 600px 300px white,
+					700px 150px white, 800px 400px white, 900px 250px white, 200px 500px white,
+					700px 500px white, 500px 600px white, 100px 700px white, 800px 700px white,
+					300px 800px white;
+		animation: twinkle 3s infinite;
+	}
+
+	@keyframes twinkle {
+		0%, 100% { opacity: 0.3; }
+		50% { opacity: 1; }
+	}
+
+	.nebula {
+		position: absolute;
+		border-radius: 50%;
+		filter: blur(80px);
+		opacity: 0.6;
+	}
+
+	.nebula-1 {
+		width: 400px;
+		height: 400px;
+		background: radial-gradient(circle, rgba(0, 212, 255, 0.3) 0%, transparent 70%);
+		top: 10%;
+		left: 10%;
+		animation: drift 8s ease-in-out infinite;
+	}
+
+	.nebula-2 {
+		width: 500px;
+		height: 500px;
+		background: radial-gradient(circle, rgba(163, 0, 255, 0.2) 0%, transparent 70%);
+		top: 50%;
+		right: 5%;
+		animation: drift 10s ease-in-out infinite reverse;
+	}
+
+	.nebula-3 {
+		width: 350px;
+		height: 350px;
+		background: radial-gradient(circle, rgba(255, 0, 110, 0.2) 0%, transparent 70%);
+		bottom: 10%;
+		left: 50%;
+		animation: drift 12s ease-in-out infinite;
+	}
+
+	@keyframes drift {
+		0%, 100% { transform: translate(0, 0); }
+		50% { transform: translate(50px, 50px); }
+	}
+
+	.particles {
+		position: absolute;
+		width: 100%;
+		height: 100%;
+		overflow: hidden;
+	}
+
+	.particles::before {
+		content: '';
+		position: absolute;
+		width: 2px;
+		height: 2px;
+		background: var(--primary-neon);
+		border-radius: 50%;
+		box-shadow: 100px 200px var(--primary-neon), 250px 100px var(--primary-neon),
+					150px 400px var(--secondary-neon), 450px 150px var(--tertiary-neon),
+					600px 250px var(--primary-neon), 350px 300px var(--secondary-neon),
+					800px 100px var(--tertiary-neon), 200px 600px var(--primary-neon);
+		animation: float 6s ease-in-out infinite;
+	}
+
+	@keyframes float {
+		0%, 100% { transform: translateY(0) translateX(0); opacity: 0.5; }
+		50% { transform: translateY(-50px) translateX(30px); opacity: 1; }
+	}
+
+	.hero-content {
+		position: relative;
+		z-index: 1;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		text-align: center;
+		max-width: 900px;
+		gap: 1.5rem;
+		animation: fade-in-up 1s ease-out;
+	}
+
+	.contact-headline {
+		font-size: clamp(2.5rem, 6vw, 3.5rem);
+		font-weight: 800;
+		background: linear-gradient(135deg, var(--primary-neon), var(--secondary-neon), var(--tertiary-neon));
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+		background-clip: text;
+		line-height: 1.2;
+	}
+
+	.contact-subheadline {
+		font-size: clamp(1rem, 2vw, 1.2rem);
+		color: var(--text-secondary);
+		max-width: 700px;
+		line-height: 1.8;
+	}
+
+	@keyframes fade-in-up {
+		from {
+			opacity: 0;
+			transform: translateY(30px);
+		}
+		to {
+			opacity: 1;
+			transform: translateY(0);
+		}
+	}
+
+	/* Contact Options Section */
+	.contact-options {
+		position: relative;
+		padding: 4rem 2rem;
+		background: linear-gradient(180deg, var(--dark-bg) 0%, rgba(15, 24, 53, 0.8) 100%);
+		z-index: 2;
+	}
+
+	.options-container {
+		max-width: 1200px;
+		margin: 0 auto;
+	}
+
+	.options-grid {
+		display: grid;
+		grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+		gap: 2rem;
+	}
+
+	.option-card {
+		padding: 2rem;
+		background: rgba(0, 212, 255, 0.05);
+		border: 1px solid var(--border-glow);
+		border-radius: 14px;
+		text-align: center;
+		transition: all 0.3s ease;
+	}
+
+	.option-card:hover {
+		background: rgba(0, 212, 255, 0.12);
+		border-color: var(--primary-neon);
+		transform: translateY(-8px);
+	}
+
+	.option-icon {
+		font-size: 2.5rem;
+		margin-bottom: 1rem;
+	}
+
+	.option-card h3 {
+		font-size: 1.2rem;
+		color: var(--text-primary);
+		margin-bottom: 0.75rem;
+		font-weight: 700;
+	}
+
+	.option-card p {
+		color: var(--text-secondary);
+		font-size: 0.95rem;
+		line-height: 1.6;
+		margin-bottom: 0.75rem;
+	}
+
+	.option-link {
+		display: inline-block;
+		color: var(--primary-neon);
+		font-weight: 600;
+		text-decoration: none;
+		transition: all 0.3s ease;
+	}
+
+	.option-link:hover {
+		text-decoration: underline;
+	}
+
+	.location-text,
+	.hours-text {
+		color: var(--primary-neon) !important;
+		font-weight: 600 !important;
+	}
+
+	/* Contact Form Section */
+	.contact-form-section {
+		position: relative;
+		padding: 6rem 2rem;
+		background: linear-gradient(180deg, rgba(15, 24, 53, 0.8) 0%, var(--dark-bg) 100%);
+		z-index: 2;
+	}
+
+	.form-container {
+		max-width: 1200px;
+		margin: 0 auto;
+		display: grid;
+		grid-template-columns: 1fr 350px;
+		gap: 3rem;
+		align-items: start;
+	}
+
+	.form-wrapper {
+		padding: 3rem;
+		background: rgba(0, 212, 255, 0.05);
+		border: 2px solid var(--border-glow);
+		border-radius: 16px;
+	}
+
+	.form-header {
+		margin-bottom: 2rem;
+	}
+
+	.form-title {
+		font-size: 1.8rem;
+		color: var(--text-primary);
+		margin-bottom: 0.5rem;
+		font-weight: 800;
+	}
+
+	.form-subtitle {
+		color: var(--text-secondary);
+		font-size: 0.95rem;
+	}
+
+	.contact-form {
+		display: flex;
+		flex-direction: column;
+		gap: 1.5rem;
+	}
+
+	.form-group {
+		display: flex;
+		flex-direction: column;
+		gap: 0.5rem;
+	}
+
+	.form-group label {
+		color: var(--text-primary);
+		font-weight: 600;
+		font-size: 0.95rem;
+	}
+
+	.form-group input,
+	.form-group select,
+	.form-group textarea {
+		padding: 0.875rem;
+		background: rgba(0, 212, 255, 0.03);
+		border: 1px solid var(--border-glow);
+		border-radius: 8px;
+		color: var(--text-primary);
+		font-family: inherit;
+		font-size: 0.95rem;
+		transition: all 0.3s ease;
+	}
+
+	.form-group input:focus,
+	.form-group select:focus,
+	.form-group textarea:focus {
+		outline: none;
+		background: rgba(0, 212, 255, 0.08);
+		border-color: var(--primary-neon);
+		box-shadow: 0 0 15px rgba(0, 212, 255, 0.2);
+	}
+
+	.form-group textarea {
+		resize: vertical;
+		min-height: 120px;
+	}
+
+	.form-group.checkbox {
+		flex-direction: row;
+		align-items: flex-start;
+		gap: 0.75rem;
+	}
+
+	.form-group.checkbox input {
+		width: 20px;
+		height: 20px;
+		margin-top: 2px;
+		cursor: pointer;
+	}
+
+	.checkbox-label {
+		cursor: pointer;
+		color: var(--text-secondary);
+		font-weight: 400;
+		font-size: 0.9rem;
+	}
+
+	.form-submit {
+		padding: 1rem 2rem;
+		background: linear-gradient(135deg, var(--primary-neon), var(--tertiary-neon));
+		color: var(--darker-bg);
+		border: none;
+		border-radius: 8px;
+		font-weight: 700;
+		font-size: 1rem;
+		cursor: pointer;
+		transition: all 0.3s ease;
+		box-shadow: 0 0 20px rgba(0, 212, 255, 0.5);
+	}
+
+	.form-submit:hover {
+		transform: scale(1.05);
+		box-shadow: 0 0 40px rgba(0, 212, 255, 0.8);
+	}
+
+	/* Form Sidebar */
+	.form-sidebar {
+		display: flex;
+		flex-direction: column;
+		gap: 1.5rem;
+	}
+
+	.sidebar-card {
+		padding: 1.5rem;
+		background: rgba(0, 212, 255, 0.05);
+		border: 1px solid var(--border-glow);
+		border-radius: 12px;
+		transition: all 0.3s ease;
+	}
+
+	.sidebar-card:hover {
+		background: rgba(0, 212, 255, 0.12);
+		border-color: var(--primary-neon);
+	}
+
+	.sidebar-card h3 {
+		font-size: 1rem;
+		color: var(--text-primary);
+		margin-bottom: 0.75rem;
+		font-weight: 700;
+	}
+
+	.sidebar-card p {
+		font-size: 0.85rem;
+		color: var(--text-secondary);
+		line-height: 1.5;
+		margin-bottom: 0.75rem;
+	}
+
+	.sidebar-card .cta-secondary {
+		width: 100%;
+		padding: 0.75rem 1rem;
+		font-size: 0.9rem;
+	}
+
+	.email-link {
+		display: inline-block;
+		color: var(--primary-neon);
+		font-weight: 600;
+		text-decoration: none;
+		word-break: break-all;
+		transition: all 0.3s ease;
+	}
+
+	.email-link:hover {
+		text-decoration: underline;
+	}
+
+	.local-text {
+		color: var(--primary-neon) !important;
+		font-weight: 600 !important;
+	}
+
+	/* FAQ Section */
+	.contact-faq {
+		position: relative;
+		padding: 6rem 2rem;
+		background: linear-gradient(180deg, var(--dark-bg) 0%, rgba(15, 24, 53, 0.8) 100%);
+		z-index: 2;
+	}
+
+	.faq-header {
+		text-align: center;
+		margin-bottom: 3rem;
+		max-width: 800px;
+		margin-left: auto;
+		margin-right: auto;
+	}
+
+	.faq-title {
+		font-size: clamp(1.8rem, 5vw, 2.5rem);
+		background: linear-gradient(135deg, var(--secondary-neon), var(--primary-neon));
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+		background-clip: text;
+		margin-bottom: 0.5rem;
+		font-weight: 800;
+	}
+
+	.faq-subtitle {
+		font-size: 1.1rem;
+		color: var(--text-secondary);
+	}
+
+	.faq-container {
+		max-width: 900px;
+		margin: 0 auto;
+	}
+
+	.faq-item {
+		margin-bottom: 1.5rem;
+		border-radius: 12px;
+		overflow: hidden;
+		background: rgba(0, 212, 255, 0.05);
+		border: 1px solid var(--border-glow);
+		transition: all 0.3s ease;
+	}
+
+	.faq-item[open] {
+		background: rgba(0, 212, 255, 0.12);
+		border-color: var(--primary-neon);
+	}
+
+	.faq-question {
+		padding: 1.5rem;
+		cursor: pointer;
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		font-weight: 600;
+		color: var(--text-primary);
+		transition: all 0.3s ease;
+		user-select: none;
+		font-size: 1rem;
+	}
+
+	.faq-item:hover .faq-question {
+		color: var(--primary-neon);
+	}
+
+	.faq-question::after {
+		content: '▼';
+		color: var(--primary-neon);
+		font-size: 0.8rem;
+		transition: transform 0.3s ease;
+		flex-shrink: 0;
+		margin-left: 1rem;
+	}
+
+	.faq-item[open] .faq-question::after {
+		transform: rotate(180deg);
+	}
+
+	.faq-answer {
+		padding: 0 1.5rem 1.5rem;
+		animation: expand 0.3s ease-out;
+		color: var(--text-secondary);
+		line-height: 1.8;
+		font-size: 0.95rem;
+	}
+
+	@keyframes expand {
+		from {
+			opacity: 0;
+			max-height: 0;
+		}
+		to {
+			opacity: 1;
+			max-height: 800px;
+		}
+	}
+
+	/* Final CTA Section */
+	.final-cta {
+		position: relative;
+		padding: 6rem 2rem;
+		background: linear-gradient(180deg, rgba(15, 24, 53, 0.8) 0%, var(--dark-bg) 100%);
+		z-index: 2;
+		min-height: 400px;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+	}
+
+	.cta-content {
+		text-align: center;
+		max-width: 700px;
+	}
+
+	.cta-title {
+		font-size: clamp(1.8rem, 5vw, 2.8rem);
+		background: linear-gradient(135deg, var(--tertiary-neon), var(--primary-neon));
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+		background-clip: text;
+		margin-bottom: 1.5rem;
+		font-weight: 800;
+	}
+
+	.cta-description {
+		font-size: 1.1rem;
+		color: var(--text-secondary);
+		margin-bottom: 2.5rem;
+		line-height: 1.8;
+	}
+
+	.cta-buttons {
+		display: flex;
+		gap: 1.5rem;
+		justify-content: center;
+		flex-wrap: wrap;
+	}
+
+	.cta-large {
+		padding: 1.2rem 3rem;
+		font-size: 1.1rem;
+	}
+
+	/* Responsive Design */
+	@media (max-width: 768px) {
+		.contact-hero {
+			min-height: 35vh;
+			padding: 3rem 1.5rem;
+		}
+
+		.contact-options,
+		.contact-form-section,
+		.contact-faq,
+		.final-cta {
+			padding: 4rem 1.5rem;
+		}
+
+		.form-container {
+			grid-template-columns: 1fr;
+			gap: 2rem;
+		}
+
+		.form-wrapper {
+			padding: 2rem;
+		}
+
+		.options-grid {
+			gap: 1.5rem;
+		}
+
+		.cta-buttons {
+			flex-direction: column;
+			gap: 1rem;
+		}
+
+		.cta-large {
+			width: 100%;
+			padding: 1rem 2rem;
+		}
+	}
+
+	@media (max-width: 480px) {
+		.contact-headline {
+			font-size: clamp(1.5rem, 5vw, 2.2rem);
+		}
+
+		.contact-subheadline {
+			font-size: 0.95rem;
+		}
+
+		.form-title,
+		.faq-title,
+		.cta-title {
+			font-size: clamp(1.5rem, 5vw, 2rem);
+		}
+
+		.faq-question {
+			padding: 1.25rem;
+			font-size: 0.95rem;
+		}
+
+		.faq-answer {
+			font-size: 0.9rem;
+		}
+
+		.form-wrapper,
+		.option-card,
+		.sidebar-card {
+			padding: 1.5rem;
+		}
+	}
+</style>
