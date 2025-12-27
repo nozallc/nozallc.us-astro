@@ -181,7 +181,27 @@
 				? 'Language switched to Spanish'
 				: 'Language switched to English';
 			announceToScreenReader(announcement);
+
+			// Navigate to language-specific URL
+			navigateToLanguage(newLang);
 		});
+
+		// Function to navigate to the language-specific URL
+		function navigateToLanguage(lang) {
+			const currentPath = window.location.pathname;
+
+			// Remove existing language prefix if present
+			let cleanPath = currentPath;
+			if (currentPath.startsWith('/en/') || currentPath.startsWith('/es/')) {
+				cleanPath = currentPath.substring(3); // Remove /en/ or /es/
+			} else if (currentPath === '/en' || currentPath === '/es') {
+				cleanPath = '/';
+			}
+
+			// Build new path with language prefix
+			const newPath = lang === 'en' ? `/en${cleanPath}` : `/es${cleanPath}`;
+			window.location.href = newPath;
+		}
 
 		// Handle keyboard (Enter and Space)
 		toggle.addEventListener('keydown', (e: KeyboardEvent) => {
