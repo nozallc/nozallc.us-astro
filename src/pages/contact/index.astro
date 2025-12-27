@@ -588,7 +588,7 @@ import RootLayout from '../../layouts/RootLayout.astro';
 	/* Local Signal Intro Section */
 	.local-signal-intro {
 		position: relative;
-		padding: 4rem 2rem;
+		padding: 6rem 2rem;
 		background: linear-gradient(180deg, rgba(15, 24, 53, 0.8) 0%, var(--dark-bg) 100%);
 		z-index: 2;
 	}
@@ -600,25 +600,26 @@ import RootLayout from '../../layouts/RootLayout.astro';
 	}
 
 	.intro-title {
-		font-size: clamp(1.8rem, 5vw, 2.5rem);
-		background: linear-gradient(135deg, var(--primary-neon), var(--tertiary-neon));
+		font-size: clamp(2rem, 6vw, 3rem);
+		background: linear-gradient(135deg, var(--primary-neon), var(--secondary-neon));
 		-webkit-background-clip: text;
 		-webkit-text-fill-color: transparent;
 		background-clip: text;
 		margin-bottom: 1rem;
 		font-weight: 800;
+		line-height: 1.2;
 	}
 
 	.intro-description {
 		font-size: 1.1rem;
 		color: var(--text-secondary);
-		margin-bottom: 2rem;
+		margin-bottom: 3rem;
 		line-height: 1.8;
 	}
 
 	.intro-highlights {
 		display: grid;
-		grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+		grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
 		gap: 1.5rem;
 	}
 
@@ -627,28 +628,53 @@ import RootLayout from '../../layouts/RootLayout.astro';
 		align-items: center;
 		justify-content: center;
 		gap: 0.75rem;
-		padding: 1rem;
-		background: rgba(0, 212, 255, 0.08);
-		border: 1px solid var(--border-glow);
-		border-radius: 10px;
+		padding: 1.25rem;
+		background: rgba(0, 212, 255, 0.05);
+		border: 1px solid rgba(0, 212, 255, 0.15);
+		border-radius: 12px;
+		backdrop-filter: blur(8px);
 		transition: all 0.3s ease;
+		position: relative;
+		overflow: hidden;
+	}
+
+	.highlight-item::before {
+		content: '';
+		position: absolute;
+		top: 0;
+		left: -100%;
+		width: 100%;
+		height: 100%;
+		background: linear-gradient(90deg, transparent, rgba(0, 212, 255, 0.05), transparent);
+		transition: left 0.6s ease;
+		z-index: 0;
+	}
+
+	.highlight-item:hover::before {
+		left: 100%;
 	}
 
 	.highlight-item:hover {
-		background: rgba(0, 212, 255, 0.15);
+		background: rgba(0, 212, 255, 0.12);
 		border-color: var(--primary-neon);
+		transform: translateY(-8px);
+		box-shadow: 0 8px 24px rgba(0, 212, 255, 0.2);
 	}
 
 	.highlight-icon {
 		color: var(--primary-neon);
 		font-weight: 700;
-		font-size: 1.2rem;
+		font-size: 1.3rem;
 		flex-shrink: 0;
+		position: relative;
+		z-index: 1;
 	}
 
 	.highlight-item span:last-child {
 		color: var(--text-secondary);
 		font-size: 0.95rem;
+		position: relative;
+		z-index: 1;
 	}
 
 	/* Contact Form Section */
