@@ -5,6 +5,7 @@ import react from '@astrojs/react';
 
 // https://astro.build/config
 export default defineConfig({
+	integrations: [react()],
 	adapter: cloudflare({
 		// Cloudflare Pages Functions for advanced routing
 		mode: 'advanced'
