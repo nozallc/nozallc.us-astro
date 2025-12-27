@@ -1,8 +1,624 @@
 ---
 import RootLayout from '../../layouts/RootLayout.astro';
-import Services from '../../components/Services.astro';
 ---
 
-<RootLayout title="Services - NOZA LLC" description="Digital marketing, branding, websites, consulting, and more for Lexington KY businesses.">
-	<Services />
+<RootLayout 
+	title="Services - NOZA LLC" 
+	description="Digital marketing, branding, websites, consulting, and creative services for Lexington KY businesses. Explore our full range of digital solutions."
+>
+	<section class="services-hero">
+		<div class="cosmic-background">
+			<div class="stars"></div>
+			<div class="nebula nebula-1"></div>
+			<div class="nebula nebula-2"></div>
+			<div class="nebula nebula-3"></div>
+		</div>
+
+		<div class="particles"></div>
+
+		<div class="hero-content">
+			<h1 class="services-headline">Digital Marketing & Creative Services in Lexington, KY</h1>
+			<p class="services-subheadline">NOZA LLC is your trusted partner for comprehensive digital solutions. We serve Central Kentucky small businesses with cutting-edge marketing, stunning design, and strategic business guidance.</p>
+		</div>
+	</section>
+
+	<section class="services-intro">
+		<div class="intro-content">
+			<h2 class="intro-title">Comprehensive Solutions for Growing Businesses</h2>
+			<p class="intro-text">
+				Whether you're just starting out or looking to scale your existing operation, NOZA LLC combines creative excellence with data-driven strategy. Our integrated approach means all your services—from web design to marketing to branding—work together seamlessly to drive real business growth.
+			</p>
+			<p class="intro-text">
+				Located in Lexington, Kentucky, we understand the unique needs of Central Kentucky businesses. We're committed to helping you build a powerful digital presence that stands out in your market.
+			</p>
+		</div>
+	</section>
+
+	<section class="services-showcase">
+		<div class="showcase-header">
+			<h2 class="showcase-title">Our Core Services</h2>
+			<p class="showcase-subtitle">Each service is designed to solve real business challenges and deliver measurable results</p>
+		</div>
+
+		<div class="services-grid">
+			<a href="/websites/" class="service-card-link">
+				<div class="service-card">
+					<div class="card-header">
+						<div class="card-icon web-icon"></div>
+						<h3>Websites</h3>
+					</div>
+					<p class="card-description">Ultra-fast, SEO-optimized websites built with Astro and deployed on Cloudflare. We create digital experiences that convert visitors into customers.</p>
+					<div class="card-cta">
+						<span class="cta-text">Explore Websites</span>
+						<span class="cta-arrow">→</span>
+					</div>
+				</div>
+			</a>
+
+			<a href="/branding/" class="service-card-link">
+				<div class="service-card">
+					<div class="card-header">
+						<div class="card-icon branding-icon"></div>
+						<h3>Branding</h3>
+					</div>
+					<p class="card-description">Distinctive visual identities and logo design that capture your brand essence and resonate with your Central Kentucky audience.</p>
+					<div class="card-cta">
+						<span class="cta-text">Explore Branding</span>
+						<span class="cta-arrow">→</span>
+					</div>
+				</div>
+			</a>
+
+			<a href="/digital-marketing/" class="service-card-link">
+				<div class="service-card">
+					<div class="card-header">
+						<div class="card-icon marketing-icon"></div>
+						<h3>Digital Marketing</h3>
+					</div>
+					<p class="card-description">Data-driven campaigns designed to grow your reach, engage your audience, and drive measurable results for your business.</p>
+					<div class="card-cta">
+						<span class="cta-text">Explore Marketing</span>
+						<span class="cta-arrow">→</span>
+					</div>
+				</div>
+			</a>
+
+			<a href="/photo-video/" class="service-card-link">
+				<div class="service-card">
+					<div class="card-header">
+						<div class="card-icon video-icon"></div>
+						<h3>Photo & Video</h3>
+					</div>
+					<p class="card-description">Professional media production including photography, videography, and drone footage that showcases your brand story and captivates viewers.</p>
+					<div class="card-cta">
+						<span class="cta-text">Explore Photo & Video</span>
+						<span class="cta-arrow">→</span>
+					</div>
+				</div>
+			</a>
+
+			<a href="/consulting/" class="service-card-link">
+				<div class="service-card">
+					<div class="card-header">
+						<div class="card-icon consulting-icon"></div>
+						<h3>Business Consulting</h3>
+					</div>
+					<p class="card-description">Strategic guidance for growth, systems optimization, and sustainable business development tailored to your market and goals.</p>
+					<div class="card-cta">
+						<span class="cta-text">Explore Consulting</span>
+						<span class="cta-arrow">→</span>
+					</div>
+				</div>
+			</a>
+
+			<a href="/vendor-network/" class="service-card-link">
+				<div class="service-card">
+					<div class="card-header">
+						<div class="card-icon vendor-icon"></div>
+						<h3>Vendor Network</h3>
+					</div>
+					<p class="card-description">Access to our curated network of trusted specialists and service providers to expand your capabilities and reach new markets.</p>
+					<div class="card-cta">
+						<span class="cta-text">Explore Network</span>
+						<span class="cta-arrow">→</span>
+					</div>
+				</div>
+			</a>
+		</div>
+	</section>
+
+	<section class="services-cta">
+		<div class="cta-content">
+			<h2 class="cta-title">Ready to Elevate Your Business?</h2>
+			<p class="cta-description">Start your journey toward digital transformation. Our team is ready to discuss your goals and create a custom strategy for your success.</p>
+			<div class="cta-buttons">
+				<button class="cta-primary">Book a Discovery Call</button>
+				<button class="cta-secondary">Get in Touch</button>
+			</div>
+		</div>
+	</section>
 </RootLayout>
+
+<style>
+	/* Hero Section */
+	.services-hero {
+		position: relative;
+		min-height: 50vh;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		overflow: hidden;
+		padding: 4rem 2rem;
+	}
+
+	.cosmic-background {
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+		z-index: 0;
+		overflow: hidden;
+	}
+
+	.stars {
+		position: absolute;
+		width: 2px;
+		height: 2px;
+		background: white;
+		border-radius: 50%;
+		box-shadow: 100px 100px white, 200px 150px white, 300px 50px white, 450px 200px white,
+					550px 100px white, 150px 300px white, 400px 400px white, 600px 300px white,
+					700px 150px white, 800px 400px white, 900px 250px white, 200px 500px white,
+					700px 500px white, 500px 600px white, 100px 700px white, 800px 700px white,
+					300px 800px white;
+		animation: twinkle 3s infinite;
+	}
+
+	@keyframes twinkle {
+		0%, 100% { opacity: 0.3; }
+		50% { opacity: 1; }
+	}
+
+	.nebula {
+		position: absolute;
+		border-radius: 50%;
+		filter: blur(80px);
+		opacity: 0.6;
+	}
+
+	.nebula-1 {
+		width: 400px;
+		height: 400px;
+		background: radial-gradient(circle, rgba(0, 212, 255, 0.3) 0%, transparent 70%);
+		top: 10%;
+		left: 10%;
+		animation: drift 8s ease-in-out infinite;
+	}
+
+	.nebula-2 {
+		width: 500px;
+		height: 500px;
+		background: radial-gradient(circle, rgba(163, 0, 255, 0.2) 0%, transparent 70%);
+		top: 50%;
+		right: 5%;
+		animation: drift 10s ease-in-out infinite reverse;
+	}
+
+	.nebula-3 {
+		width: 350px;
+		height: 350px;
+		background: radial-gradient(circle, rgba(255, 0, 110, 0.2) 0%, transparent 70%);
+		bottom: 10%;
+		left: 50%;
+		animation: drift 12s ease-in-out infinite;
+	}
+
+	@keyframes drift {
+		0%, 100% { transform: translate(0, 0); }
+		50% { transform: translate(50px, 50px); }
+	}
+
+	.particles {
+		position: absolute;
+		width: 100%;
+		height: 100%;
+		overflow: hidden;
+	}
+
+	.particles::before {
+		content: '';
+		position: absolute;
+		width: 2px;
+		height: 2px;
+		background: var(--primary-neon);
+		border-radius: 50%;
+		box-shadow: 100px 200px var(--primary-neon), 250px 100px var(--primary-neon),
+					150px 400px var(--secondary-neon), 450px 150px var(--tertiary-neon),
+					600px 250px var(--primary-neon), 350px 300px var(--secondary-neon),
+					800px 100px var(--tertiary-neon), 200px 600px var(--primary-neon);
+		animation: float 6s ease-in-out infinite;
+	}
+
+	@keyframes float {
+		0%, 100% { transform: translateY(0) translateX(0); opacity: 0.5; }
+		50% { transform: translateY(-50px) translateX(30px); opacity: 1; }
+	}
+
+	.hero-content {
+		position: relative;
+		z-index: 1;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		text-align: center;
+		max-width: 900px;
+		gap: 1.5rem;
+		animation: fade-in-up 1s ease-out;
+	}
+
+	.services-headline {
+		font-size: clamp(2rem, 6vw, 3.5rem);
+		font-weight: 800;
+		background: linear-gradient(135deg, var(--primary-neon), var(--secondary-neon), var(--tertiary-neon));
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+		background-clip: text;
+		line-height: 1.2;
+	}
+
+	.services-subheadline {
+		font-size: clamp(1rem, 2vw, 1.2rem);
+		color: var(--text-secondary);
+		max-width: 700px;
+		line-height: 1.8;
+	}
+
+	@keyframes fade-in-up {
+		from {
+			opacity: 0;
+			transform: translateY(30px);
+		}
+		to {
+			opacity: 1;
+			transform: translateY(0);
+		}
+	}
+
+	/* Intro Section */
+	.services-intro {
+		position: relative;
+		padding: 4rem 2rem;
+		background: linear-gradient(180deg, var(--dark-bg) 0%, rgba(15, 24, 53, 0.8) 100%);
+		z-index: 2;
+	}
+
+	.intro-content {
+		max-width: 900px;
+		margin: 0 auto;
+	}
+
+	.intro-title {
+		font-size: clamp(1.8rem, 5vw, 2.5rem);
+		background: linear-gradient(135deg, var(--primary-neon), var(--tertiary-neon));
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+		background-clip: text;
+		margin-bottom: 1.5rem;
+		font-weight: 700;
+	}
+
+	.intro-text {
+		font-size: 1.1rem;
+		color: var(--text-secondary);
+		line-height: 1.8;
+		margin-bottom: 1.5rem;
+	}
+
+	/* Services Showcase Section */
+	.services-showcase {
+		position: relative;
+		padding: 6rem 2rem;
+		background: linear-gradient(180deg, rgba(15, 24, 53, 0.8) 0%, var(--dark-bg) 100%);
+		z-index: 2;
+	}
+
+	.showcase-header {
+		text-align: center;
+		margin-bottom: 4rem;
+		max-width: 800px;
+		margin-left: auto;
+		margin-right: auto;
+	}
+
+	.showcase-title {
+		font-size: clamp(2rem, 6vw, 3rem);
+		background: linear-gradient(135deg, var(--primary-neon), var(--secondary-neon));
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+		background-clip: text;
+		margin-bottom: 1rem;
+		font-weight: 800;
+	}
+
+	.showcase-subtitle {
+		font-size: 1.1rem;
+		color: var(--text-secondary);
+	}
+
+	.services-grid {
+		display: grid;
+		grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+		gap: 2rem;
+		max-width: 1400px;
+		margin: 0 auto;
+	}
+
+	.service-card-link {
+		text-decoration: none;
+		color: inherit;
+		transition: all 0.3s ease;
+	}
+
+	.service-card {
+		padding: 2.5rem;
+		background: rgba(0, 212, 255, 0.05);
+		border: 1px solid var(--border-glow);
+		border-radius: 16px;
+		cursor: pointer;
+		transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+		position: relative;
+		overflow: hidden;
+		display: flex;
+		flex-direction: column;
+		gap: 1.5rem;
+		height: 100%;
+	}
+
+	.service-card::before {
+		content: '';
+		position: absolute;
+		top: 0;
+		left: -100%;
+		width: 100%;
+		height: 100%;
+		background: linear-gradient(90deg, transparent, rgba(0, 212, 255, 0.1), transparent);
+		transition: left 0.6s ease;
+		z-index: 0;
+	}
+
+	.service-card::after {
+		content: '';
+		position: absolute;
+		top: 0;
+		left: 0;
+		right: 0;
+		bottom: 0;
+		background: radial-gradient(circle at top-left, rgba(0, 212, 255, 0.1) 0%, transparent 60%);
+		opacity: 0;
+		transition: opacity 0.4s ease;
+		z-index: 0;
+	}
+
+	.service-card-link:hover .service-card::before {
+		left: 100%;
+	}
+
+	.service-card-link:hover .service-card::after {
+		opacity: 1;
+	}
+
+	.service-card-link:hover .service-card {
+		background: rgba(0, 212, 255, 0.15);
+		border-color: var(--primary-neon);
+		transform: translateY(-12px);
+		box-shadow: 0 20px 50px rgba(0, 212, 255, 0.3), inset 0 1px 0 rgba(0, 212, 255, 0.2);
+	}
+
+	.card-header {
+		display: flex;
+		align-items: flex-start;
+		gap: 1.5rem;
+		position: relative;
+		z-index: 1;
+	}
+
+	.card-icon {
+		width: 70px;
+		height: 70px;
+		border-radius: 14px;
+		flex-shrink: 0;
+		transition: all 0.4s ease;
+	}
+
+	.web-icon {
+		background: linear-gradient(135deg, var(--primary-neon), rgba(0, 212, 255, 0.6));
+		box-shadow: 0 0 20px rgba(0, 212, 255, 0.4);
+	}
+
+	.branding-icon {
+		background: linear-gradient(135deg, var(--secondary-neon), rgba(255, 0, 110, 0.6));
+		box-shadow: 0 0 20px rgba(255, 0, 110, 0.4);
+	}
+
+	.marketing-icon {
+		background: linear-gradient(135deg, var(--tertiary-neon), rgba(163, 0, 255, 0.6));
+		box-shadow: 0 0 20px rgba(163, 0, 255, 0.4);
+	}
+
+	.video-icon {
+		background: linear-gradient(135deg, #ff8c00, rgba(255, 140, 0, 0.6));
+		box-shadow: 0 0 20px rgba(255, 140, 0, 0.4);
+	}
+
+	.consulting-icon {
+		background: linear-gradient(135deg, #00ff88, rgba(0, 255, 136, 0.6));
+		box-shadow: 0 0 20px rgba(0, 255, 136, 0.4);
+	}
+
+	.vendor-icon {
+		background: linear-gradient(135deg, #ff00ff, rgba(255, 0, 255, 0.6));
+		box-shadow: 0 0 20px rgba(255, 0, 255, 0.4);
+	}
+
+	.service-card-link:hover .card-icon {
+		transform: scale(1.1) rotate(-5deg);
+	}
+
+	.service-card h3 {
+		font-size: 1.4rem;
+		position: relative;
+		z-index: 1;
+		color: var(--text-primary);
+		font-weight: 700;
+		margin: 0;
+	}
+
+	.card-description {
+		color: var(--text-secondary);
+		position: relative;
+		z-index: 1;
+		line-height: 1.7;
+		flex-grow: 1;
+		font-size: 1rem;
+	}
+
+	.card-cta {
+		display: flex;
+		align-items: center;
+		gap: 0.5rem;
+		position: relative;
+		z-index: 1;
+		color: var(--primary-neon);
+		font-weight: 600;
+		font-size: 0.95rem;
+		transition: all 0.3s ease;
+	}
+
+	.cta-arrow {
+		display: inline-block;
+		transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+	}
+
+	.service-card-link:hover .cta-arrow {
+		transform: translateX(5px);
+	}
+
+	/* CTA Section */
+	.services-cta {
+		position: relative;
+		padding: 6rem 2rem;
+		background: linear-gradient(180deg, var(--dark-bg) 0%, rgba(15, 24, 53, 0.8) 100%);
+		z-index: 2;
+	}
+
+	.cta-content {
+		max-width: 700px;
+		margin: 0 auto;
+		text-align: center;
+	}
+
+	.cta-title {
+		font-size: clamp(2rem, 5vw, 2.8rem);
+		background: linear-gradient(135deg, var(--primary-neon), var(--secondary-neon));
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+		background-clip: text;
+		margin-bottom: 1.5rem;
+		font-weight: 800;
+	}
+
+	.cta-description {
+		font-size: 1.1rem;
+		color: var(--text-secondary);
+		margin-bottom: 2.5rem;
+		line-height: 1.8;
+	}
+
+	.cta-buttons {
+		display: flex;
+		gap: 1.5rem;
+		justify-content: center;
+		flex-wrap: wrap;
+	}
+
+	/* Responsive Design */
+	@media (max-width: 768px) {
+		.services-hero {
+			min-height: 40vh;
+			padding: 3rem 1.5rem;
+		}
+
+		.services-intro {
+			padding: 3rem 1.5rem;
+		}
+
+		.services-showcase {
+			padding: 4rem 1.5rem;
+		}
+
+		.services-cta {
+			padding: 4rem 1.5rem;
+		}
+
+		.services-grid {
+			gap: 1.5rem;
+		}
+
+		.service-card {
+			padding: 2rem;
+		}
+
+		.card-header {
+			gap: 1rem;
+		}
+
+		.card-icon {
+			width: 60px;
+			height: 60px;
+		}
+
+		.service-card h3 {
+			font-size: 1.2rem;
+		}
+
+		.card-description {
+			font-size: 0.95rem;
+		}
+
+		.cta-buttons {
+			flex-direction: column;
+			gap: 1rem;
+		}
+	}
+
+	@media (max-width: 480px) {
+		.services-headline {
+			font-size: clamp(1.5rem, 5vw, 2.2rem);
+		}
+
+		.services-subheadline {
+			font-size: clamp(0.9rem, 2vw, 1rem);
+		}
+
+		.intro-text {
+			font-size: 1rem;
+		}
+
+		.showcase-title {
+			font-size: clamp(1.5rem, 5vw, 2.2rem);
+		}
+
+		.services-grid {
+			grid-template-columns: 1fr;
+		}
+
+		.cta-title {
+			font-size: clamp(1.5rem, 5vw, 2rem);
+		}
+
+		.cta-description {
+			font-size: 1rem;
+		}
+	}
+</style>
