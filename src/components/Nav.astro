@@ -292,17 +292,6 @@
 				});
 			});
 
-			// Also close menu when language toggle is clicked (on mobile)
-			const languageToggle = document.getElementById('languageToggle');
-			if (languageToggle) {
-				languageToggle.addEventListener('click', () => {
-					if (window.innerWidth <= 768) {
-						hamburger.classList.remove('active');
-						navLinks.classList.remove('active');
-					}
-				});
-			}
-
 			// Scroll handler for navbar opacity
 			window.addEventListener('scroll', () => {
 				const scrollY = window.scrollY;
