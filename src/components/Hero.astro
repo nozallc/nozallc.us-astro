@@ -243,6 +243,25 @@
 		color: var(--text-secondary);
 		animation: fade-in-up 1s ease-out 0.6s both;
 	}
+
+	/* Respect reduced motion preferences */
+	@media (prefers-reduced-motion: reduce) {
+		.nebula,
+		.stars,
+		.particles::before,
+		.glowing-orb,
+		.orbit-ring,
+		.hero-headline,
+		.hero-subheadline,
+		.hero-ctas,
+		.hero-location {
+			animation: none !important;
+		}
+
+		.orbit-ring {
+			transform: translate(-50%, -50%);
+		}
+	}
 </style>
 
 <script>
