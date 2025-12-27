@@ -271,16 +271,21 @@ const t = (key: string): string => getTranslation(key as any, lang as Language);
 		const heroCtas = document.querySelector('.hero-ctas');
 		if (heroCtas) {
 			const buttons = heroCtas.querySelectorAll('button');
+			// Get current language from URL
+			const currentPath = window.location.pathname;
+			const langMatch = currentPath.match(/^\/([a-z]{2})\//);
+			const lang = langMatch ? langMatch[1] : 'en';
+
 			buttons.forEach((button, index) => {
 				if (index === 0) {
 					// "Book a Discovery Call" -> Contact page
 					button.addEventListener('click', () => {
-						window.location.href = '/contact';
+						window.location.href = `/${lang}/contact`;
 					});
 				} else if (index === 1) {
 					// "See Our Work" -> Services page
 					button.addEventListener('click', () => {
-						window.location.href = '/services';
+						window.location.href = `/${lang}/services`;
 					});
 				}
 			});
