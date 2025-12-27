@@ -69,10 +69,6 @@
 		animation: twinkle 3s infinite;
 	}
 
-	@keyframes twinkle {
-		0%, 100% { opacity: 0.3; }
-		50% { opacity: 1; }
-	}
 
 	.nebula {
 		position: absolute;
@@ -108,10 +104,6 @@
 		animation: drift 12s ease-in-out infinite;
 	}
 
-	@keyframes drift {
-		0%, 100% { transform: translate(0, 0); }
-		50% { transform: translate(50px, 50px); }
-	}
 
 	.particles {
 		position: absolute;
@@ -134,10 +126,6 @@
 		animation: float 6s ease-in-out infinite;
 	}
 
-	@keyframes float {
-		0%, 100% { transform: translateY(0) translateX(0); opacity: 0.5; }
-		50% { transform: translateY(-50px) translateX(30px); opacity: 1; }
-	}
 
 	.hero-content {
 		position: relative;
@@ -171,16 +159,6 @@
 		box-shadow: 0 0 80px var(--primary-neon), 0 0 120px var(--tertiary-neon);
 	}
 
-	@keyframes pulse-glow {
-		0%, 100% { 
-			transform: translate(-50%, -50%) scale(1);
-			box-shadow: 0 0 80px var(--primary-neon), 0 0 120px var(--tertiary-neon);
-		}
-		50% { 
-			transform: translate(-50%, -50%) scale(1.2);
-			box-shadow: 0 0 120px var(--primary-neon), 0 0 160px var(--tertiary-neon);
-		}
-	}
 
 	.orbit-ring {
 		position: absolute;
@@ -214,10 +192,6 @@
 		animation: spin-orbit 12s linear infinite;
 	}
 
-	@keyframes spin-orbit {
-		0% { transform: translate(-50%, -50%) rotateX(75deg) rotateZ(0deg); }
-		100% { transform: translate(-50%, -50%) rotateX(75deg) rotateZ(360deg); }
-	}
 
 	.hero-logo {
 		position: absolute;
@@ -255,16 +229,6 @@
 		animation: fade-in-up 1s ease-out 0.2s both;
 	}
 
-	@keyframes fade-in-up {
-		from {
-			opacity: 0;
-			transform: translateY(30px);
-		}
-		to {
-			opacity: 1;
-			transform: translateY(0);
-		}
-	}
 
 	.hero-ctas {
 		display: flex;
