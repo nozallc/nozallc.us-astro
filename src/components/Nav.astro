@@ -191,8 +191,19 @@ import LanguageToggle from './LanguageToggle.astro';
 			padding: 1rem 1.5rem;
 		}
 
+		.nav-container {
+			gap: 1rem;
+		}
+
 		.hamburger-menu {
 			display: flex;
+			order: 3;
+		}
+
+		:global(.language-toggle) {
+			order: 2;
+			font-size: 0.75rem;
+			padding: 0.4rem 0.6rem;
 		}
 
 		.nav-links {
