@@ -1072,11 +1072,17 @@ import RootLayout from '../../layouts/RootLayout.astro';
 		background: rgba(0, 212, 255, 0.05);
 		border: 1px solid rgba(0, 212, 255, 0.15);
 		transition: all 0.3s ease;
+		backdrop-filter: blur(8px);
 	}
 
 	.faq-item[open] {
 		background: rgba(0, 212, 255, 0.12);
 		border-color: var(--primary-neon);
+		box-shadow: 0 8px 24px rgba(0, 212, 255, 0.15);
+	}
+
+	.faq-item:hover {
+		border-color: rgba(0, 212, 255, 0.3);
 	}
 
 	.faq-question {
