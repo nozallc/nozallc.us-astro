@@ -1,4 +1,12 @@
 ---
+import { getTranslation } from '../i18n/utils';
+
+interface Props {
+  lang?: 'en' | 'es';
+}
+
+const lang = Astro.props.lang || 'en';
+const t = (key: string): string => getTranslation(key as any, lang as any);
 ---
 
 <section class="final-cta">
@@ -8,12 +16,12 @@
 	</div>
 
 	<div class="cta-content">
-		<h2 class="cta-headline">Ready to Build Something Extraordinary?</h2>
-		<p class="cta-subheadline">Let's launch your business into the future.</p>
+		<h2 class="cta-headline">{t('finalCta.headline')}</h2>
+		<p class="cta-subheadline">{t('finalCta.subheadline')}</p>
 
 		<div class="cta-buttons">
-			<button class="cta-primary cta-large">Start Your Project</button>
-			<button class="cta-secondary cta-large">Book a Call</button>
+			<button class="cta-primary cta-large">{t('finalCta.start')}</button>
+			<button class="cta-secondary cta-large">{t('finalCta.call')}</button>
 		</div>
 	</div>
 </section>
