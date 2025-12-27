@@ -1,12 +1,8 @@
 ---
-import { getTranslation, type Language } from '../i18n/utils';
-
-interface Props {
-  lang?: 'en' | 'es';
-}
+import { getTranslation } from '../i18n/utils';
 
 const lang = Astro.props.lang || 'en';
-const t = (key: string): string => getTranslation(key as any, lang as Language);
+const t = (key) => getTranslation(key, lang);
 ---
 
 <section class="hero">
