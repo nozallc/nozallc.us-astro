@@ -1,10 +1,19 @@
 ---
 ---
+import { getTranslation } from '../i18n/utils';
+
+interface Props {
+  lang?: 'en' | 'es';
+}
+
+const lang = Astro.props.lang || 'en';
+const t = (key: string): string => getTranslation(key as any, lang as any);
+---
 
 <section class="stack">
 	<div class="section-header">
-		<h2>A Modern, Limitless Workflow Built for Speed and Creativity</h2>
-		<p class="section-subtitle">The technology that powers exceptional results</p>
+		<h2>{t('stack.title')}</h2>
+		<p class="section-subtitle">{t('stack.subtitle')}</p>
 	</div>
 
 	<div class="pipeline-container">
