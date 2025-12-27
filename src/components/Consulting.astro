@@ -1,34 +1,43 @@
 ---
 ---
+import { getTranslation } from '../i18n/utils';
+
+interface Props {
+  lang?: 'en' | 'es';
+}
+
+const lang = Astro.props.lang || 'en';
+const t = (key: string): string => getTranslation(key as any, lang as any);
+---
 
 <section class="consulting">
 	<div class="section-header">
-		<h2>Strategy, Systems & Support for Real Small Businesses</h2>
-		<p class="section-subtitle">Consulting that delivers sustainable growth</p>
+		<h2>{t('consulting.title')}</h2>
+		<p class="section-subtitle">{t('consulting.subtitle')}</p>
 	</div>
 
 	<div class="consulting-cards">
 		<div class="consulting-card">
 			<div class="card-number">01</div>
-			<h3>Startup Guidance</h3>
-			<p>From concept to launch—we help new businesses establish their foundation, brand identity, and first-customer acquisition strategy.</p>
+			<h3>{t('consulting.startup')}</h3>
+			<p>{t('consulting.startupDesc')}</p>
 		</div>
 
 		<div class="consulting-card">
 			<div class="card-number">02</div>
-			<h3>Local Business Growth Plans</h3>
-			<p>Strategic roadmaps tailored to Lexington and Central Kentucky markets, with actionable steps for expansion and market penetration.</p>
+			<h3>{t('consulting.growth')}</h3>
+			<p>{t('consulting.growthDesc')}</p>
 		</div>
 
 		<div class="consulting-card">
 			<div class="card-number">03</div>
-			<h3>Branding Clarity</h3>
-			<p>Define your unique value proposition, messaging, and positioning to stand out in your industry and market.</p>
+			<h3>{t('consulting.branding')}</h3>
+			<p>{t('consulting.brandingDesc')}</p>
 		</div>
 
 		<div class="consulting-card">
 			<div class="card-number">04</div>
-			<h3>Lead Systems</h3>
+			<h3>{t('consulting.leads')}</h3>
 			<p>Build reliable customer acquisition funnels powered by digital marketing, automation, and conversion optimization.</p>
 		</div>
 
