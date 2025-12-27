@@ -2,10 +2,6 @@
 ---
 import { getTranslation } from '../i18n/utils';
 
-interface Props {
-  lang?: 'en' | 'es';
-}
-
 const lang = Astro.props.lang || 'en';
 const t = (key) => getTranslation(key, lang);
 ---
