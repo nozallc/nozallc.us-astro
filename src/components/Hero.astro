@@ -244,3 +244,25 @@
 		animation: fade-in-up 1s ease-out 0.6s both;
 	}
 </style>
+
+<script>
+	document.addEventListener('DOMContentLoaded', () => {
+		const heroCtas = document.querySelector('.hero-ctas');
+		if (heroCtas) {
+			const buttons = heroCtas.querySelectorAll('button');
+			buttons.forEach((button, index) => {
+				if (index === 0) {
+					// "Book a Discovery Call" -> Contact page
+					button.addEventListener('click', () => {
+						window.location.href = '/contact';
+					});
+				} else if (index === 1) {
+					// "See Our Work" -> Services page
+					button.addEventListener('click', () => {
+						window.location.href = '/services';
+					});
+				}
+			});
+		}
+	});
+</script>
