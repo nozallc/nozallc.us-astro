@@ -92,7 +92,6 @@ const t = (key) => translations[key] || key;
 		object-fit: contain;
 	}
 
-
 	.orbit-nodes {
 		position: absolute;
 		width: 100%;
@@ -115,7 +114,6 @@ const t = (key) => translations[key] || key;
 		transform: scale(1.1);
 	}
 
-	/* Stable circular positioning - 6 nodes in a circle, no chaotic drift */
 	.node-1 { top: 5%; left: 50%; transform: translateX(-50%); }
 	.node-2 { top: 23%; right: 10%; }
 	.node-3 { bottom: 23%; right: 10%; }
@@ -123,7 +121,6 @@ const t = (key) => translations[key] || key;
 	.node-5 { bottom: 23%; left: 10%; }
 	.node-6 { top: 23%; left: 10%; }
 
-	/* Respect reduced motion preferences */
 	@media (prefers-reduced-motion: reduce) {
 		.orbit-node {
 			transition: none;
@@ -133,3 +130,47 @@ const t = (key) => translations[key] || key;
 			transform: none;
 		}
 	}
+
+	.vendor-info {
+		max-width: 700px;
+		margin: 3rem auto;
+		text-align: center;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		gap: 2rem;
+	}
+
+	.vendor-info p {
+		font-size: 1.1rem;
+		line-height: 1.8;
+		color: var(--text-secondary);
+	}
+
+	.vendor-info p strong {
+		color: var(--text-primary);
+	}
+
+	.vendor-cta {
+		align-self: center;
+		margin-top: 1rem;
+	}
+
+	@media (max-width: 768px) {
+		.vendor-network {
+			padding: 4rem 1.5rem;
+		}
+
+		.orbit-container {
+			margin: 2rem auto;
+		}
+
+		.vendor-info {
+			margin: 2rem 1rem;
+		}
+
+		.vendor-info p {
+			font-size: 1rem;
+		}
+	}
+</style>
