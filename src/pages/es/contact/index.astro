@@ -1,12 +1,12 @@
 ---
-import RootLayout from '../../layouts/RootLayout.astro';
+import RootLayout from '../../../layouts/RootLayout.astro';
 ---
 
 <RootLayout
-	title="Contact NOZA LLC - Digital Marketing & Web Design in Lexington, KY"
-	description="Get in touch with NOZA LLC for digital marketing, web design, branding, or consulting services in Lexington, Kentucky."
-	lang="en"
-	alternateUrl="/es/contact"
+	title="Contacto - NOZA LLC - Diseño Web & Marketing Digital en Lexington, KY"
+	description="Ponte en contacto con NOZA LLC para servicios de marketing digital, diseño web, branding o consultoría en Lexington, Kentucky."
+	lang="es"
+	alternateUrl="/contact"
 >
 	<!-- Hero Section -->
 	<section class="contact-hero">
@@ -20,8 +20,8 @@ import RootLayout from '../../layouts/RootLayout.astro';
 		<div class="particles"></div>
 
 		<div class="hero-content">
-			<h1 class="contact-headline">Let's Talk</h1>
-			<p class="contact-subheadline">Have a project in mind? Question about our services? Or just want to chat? We'd love to hear from you. Reach out and let's start a conversation.</p>
+			<h1 class="contact-headline">Hablemos</h1>
+			<p class="contact-subheadline">¿Tienes un proyecto en mente? ¿Preguntas sobre nuestros servicios? ¿O simplemente quieres charlar? Nos encantaría escucharte. Ponte en contacto y comencemos una conversación.</p>
 		</div>
 	</section>
 
@@ -31,23 +31,23 @@ import RootLayout from '../../layouts/RootLayout.astro';
 			<div class="options-grid">
 				<div class="option-card">
 					<div class="option-icon">📞</div>
-					<h3>Call Us</h3>
-					<p>Have a quick question? Give us a call.</p>
+					<h3>Llámanos</h3>
+					<p>¿Tienes una pregunta rápida? Llámanos.</p>
 					<a href="tel:+1-859-452-8415" class="option-link">+1 (859) 452-8415</a>
 				</div>
 
 				<div class="option-card">
 					<div class="option-icon">📍</div>
-					<h3>Visit Us</h3>
-					<p>Based in Lexington, Kentucky. Serving Central KY and beyond.</p>
+					<h3>Visítanos</h3>
+					<p>Ubicados en Lexington, Kentucky. Sirviendo el centro de KY y más allá.</p>
 					<p class="location-text">Lexington, KY 40507</p>
 				</div>
 
 				<div class="option-card">
 					<div class="option-icon">⏰</div>
-					<h3>Business Hours</h3>
-					<p>Monday - Friday: 9am - 5pm CT</p>
-					<p class="hours-text">Saturday & Sunday: Closed</p>
+					<h3>Horario</h3>
+					<p>Lunes - Viernes: 9am - 5pm CT</p>
+					<p class="hours-text">Sábado y domingo: Cerrado</p>
 				</div>
 			</div>
 		</div>
@@ -56,20 +56,20 @@ import RootLayout from '../../layouts/RootLayout.astro';
 	<!-- Local SEO Intro Block -->
 	<section class="local-signal-intro">
 		<div class="intro-container">
-			<h2 class="intro-title">Contact NOZA LLC in Lexington, KY</h2>
-			<p class="intro-description">We serve Central Kentucky and beyond. Whether you're a startup, established business, or contractor, our team is ready to help you succeed online.</p>
+			<h2 class="intro-title">Contacta a NOZA LLC en Lexington, KY</h2>
+			<p class="intro-description">Servimos a Central Kentucky y más allá. Ya seas una startup, un negocio establecido o un contratista, nuestro equipo está listo para ayudarte a tener éxito en línea.</p>
 			<div class="intro-highlights">
 				<div class="highlight-item">
 					<span class="highlight-icon">✓</span>
-					<span>Lexington-based digital experts</span>
+					<span>Expertos digitales basados en Lexington</span>
 				</div>
 				<div class="highlight-item">
 					<span class="highlight-icon">✓</span>
-					<span>24-hour response guarantee</span>
+					<span>Garantía de respuesta en 24 horas</span>
 				</div>
 				<div class="highlight-item">
 					<span class="highlight-icon">✓</span>
-					<span>Free discovery call included</span>
+					<span>Llamada de descubrimiento gratuita incluida</span>
 				</div>
 			</div>
 		</div>
@@ -80,51 +80,51 @@ import RootLayout from '../../layouts/RootLayout.astro';
 		<div class="form-container">
 			<div class="form-wrapper">
 				<div class="form-header">
-					<h2 class="form-title">Send Us a Message</h2>
-					<p class="form-subtitle">Fill out the form below and we'll get back to you within 24 hours</p>
+					<h2 class="form-title">Envíanos un Mensaje</h2>
+					<p class="form-subtitle">Completa el formulario a continuación y nos pondremos en contacto dentro de 24 horas</p>
 				</div>
 
 				<!-- Success Message -->
 				<div class="form-message form-success" id="successMessage" style="display: none;">
 					<span class="message-icon">✓</span>
-					<span class="message-text">Thanks — we got your message. We'll reach out soon.</span>
+					<span class="message-text">Gracias — recibimos tu mensaje. Nos comunicaremos pronto.</span>
 				</div>
 
 				<!-- Error Message -->
 				<div class="form-message form-error" id="errorMessage" style="display: none;">
 					<span class="message-icon">⚠</span>
-					<span class="message-text" id="errorText">An error occurred. Please try again.</span>
+					<span class="message-text" id="errorText">Ocurrió un error. Por favor, inténtalo de nuevo.</span>
 				</div>
 
 				<form class="contact-form" id="contactForm" method="POST" action="https://formspree.io/f/myzojzzw">
 					<!-- Email (Required) -->
 					<div class="form-group">
-						<label for="email">Email Address <span class="required-asterisk">*</span></label>
+						<label for="email">Correo Electrónico <span class="required-asterisk">*</span></label>
 						<input 
 							type="email" 
 							id="email" 
 							name="email" 
 							required 
-							placeholder="your@email.com"
+							placeholder="tu@email.com"
 							autocomplete="email"
 						>
 					</div>
 
 					<!-- Full Name -->
 					<div class="form-group">
-						<label for="name">Full Name</label>
+						<label for="name">Nombre Completo</label>
 						<input 
 							type="text" 
 							id="name" 
 							name="name" 
-							placeholder="John Smith"
+							placeholder="Juan Pérez"
 							autocomplete="name"
 						>
 					</div>
 
 					<!-- Phone -->
 					<div class="form-group">
-						<label for="phone">Phone Number</label>
+						<label for="phone">Número de Teléfono</label>
 						<input 
 							type="tel" 
 							id="phone" 
@@ -136,59 +136,59 @@ import RootLayout from '../../layouts/RootLayout.astro';
 
 					<!-- Service Interest -->
 					<div class="form-group">
-						<label for="service">Service Interest</label>
+						<label for="service">Servicio de Interés</label>
 						<select id="service" name="service">
-							<option value="">-- Select a service --</option>
-							<option value="Websites">Websites</option>
+							<option value="">-- Selecciona un servicio --</option>
+							<option value="Websites">Sitios Web</option>
 							<option value="Branding">Branding</option>
-							<option value="Digital Marketing">Digital Marketing</option>
-							<option value="Photo & Video">Photo & Video</option>
-							<option value="Consulting">Consulting</option>
-							<option value="Vendor Network">Vendor Network</option>
+							<option value="Digital Marketing">Marketing Digital</option>
+							<option value="Photo & Video">Foto y Vídeo</option>
+							<option value="Consulting">Consultoría</option>
+							<option value="Vendor Network">Red de Proveedores</option>
 						</select>
 					</div>
 
 					<!-- Budget Range -->
 					<div class="form-group">
-						<label for="budget">Budget Range</label>
+						<label for="budget">Rango de Presupuesto</label>
 						<select id="budget" name="budget">
-							<option value="">-- Select a budget --</option>
-							<option value="Under $5,000">Under $5,000</option>
+							<option value="">-- Selecciona un presupuesto --</option>
+							<option value="Under $5,000">Menos de $5,000</option>
 							<option value="$5,000 - $15,000">$5,000 - $15,000</option>
 							<option value="$15,000 - $50,000">$15,000 - $50,000</option>
 							<option value="$50,000 - $100,000">$50,000 - $100,000</option>
 							<option value="$100,000+">$100,000+</option>
-							<option value="Not sure yet">Not sure yet</option>
+							<option value="Not sure yet">Aún no estoy seguro</option>
 						</select>
 					</div>
 
 					<!-- Timeline -->
 					<div class="form-group">
-						<label for="timeline">Timeline</label>
+						<label for="timeline">Cronograma</label>
 						<select id="timeline" name="timeline">
-							<option value="">-- Select a timeline --</option>
-							<option value="ASAP">ASAP</option>
-							<option value="1–2 weeks">1–2 weeks</option>
-							<option value="This month">This month</option>
-							<option value="Next 1–3 months">Next 1–3 months</option>
+							<option value="">-- Selecciona un cronograma --</option>
+							<option value="ASAP">Lo Antes Posible</option>
+							<option value="1–2 weeks">1–2 semanas</option>
+							<option value="This month">Este mes</option>
+							<option value="Next 1–3 months">Próximos 1–3 meses</option>
 							<option value="Flexible">Flexible</option>
 						</select>
 					</div>
 
 					<!-- Message (Required) -->
 					<div class="form-group">
-						<label for="message">Tell us about your project <span class="required-asterisk">*</span></label>
+						<label for="message">Cuéntanos sobre tu proyecto <span class="required-asterisk">*</span></label>
 						<textarea 
 							id="message" 
 							name="message" 
 							rows="5" 
 							required 
-							placeholder="What's on your mind? What are you hoping to achieve?"
+							placeholder="¿Qué está en tu mente? ¿Qué esperas lograr?"
 						></textarea>
 					</div>
 
 					<button type="submit" class="form-submit" id="submitButton">
-						<span class="button-text">Send Message</span>
+						<span class="button-text">Enviar Mensaje</span>
 						<span class="button-loader" style="display: none;">
 							<span class="loader-dot"></span>
 							<span class="loader-dot"></span>
@@ -201,21 +201,21 @@ import RootLayout from '../../layouts/RootLayout.astro';
 			<!-- Form Sidebar -->
 			<div class="form-sidebar">
 				<div class="sidebar-card">
-					<h3>Quick Discovery Call</h3>
-					<p>Prefer to chat? Book a 30-minute discovery call to discuss your project, goals, and how we can help.</p>
-					<button class="cta-secondary">Schedule a Call</button>
+					<h3>Llamada de Descubrimiento Rápida</h3>
+					<p>¿Prefieres chatear? Reserva una llamada de descubrimiento de 30 minutos para discutir tu proyecto, objetivos y cómo podemos ayudarte.</p>
+					<button class="cta-secondary">Programar Llamada</button>
 				</div>
 
 				<div class="sidebar-card">
-					<h3>Email Inquiry</h3>
-					<p>Send us a direct email with details about your project and we'll respond within 24 hours.</p>
+					<h3>Consulta por Correo</h3>
+					<p>Envíanos un correo directo con detalles sobre tu proyecto y responderemos dentro de 24 horas.</p>
 					<a href="mailto:hello@nozallc.us" class="email-link">hello@nozallc.us</a>
 				</div>
 
 				<div class="sidebar-card">
-					<h3>Based in Lexington</h3>
-					<p>We're rooted in Central Kentucky and passionate about helping local businesses succeed online.</p>
-					<p class="local-text">Serving Lexington & Central Kentucky</p>
+					<h3>Ubicados en Lexington</h3>
+					<p>Estamos enraizados en Central Kentucky y apasionados por ayudar a los negocios locales a tener éxito en línea.</p>
+					<p class="local-text">Sirviendo a Lexington y Central Kentucky</p>
 				</div>
 			</div>
 		</div>
@@ -224,43 +224,43 @@ import RootLayout from '../../layouts/RootLayout.astro';
 	<!-- FAQ Section -->
 	<section class="contact-faq">
 		<div class="faq-header">
-			<h2 class="faq-title">Contact Questions</h2>
-			<p class="faq-subtitle">Common questions about getting in touch</p>
+			<h2 class="faq-title">Preguntas de Contacto</h2>
+			<p class="faq-subtitle">Preguntas frecuentes sobre cómo ponerse en contacto</p>
 		</div>
 
 		<div class="faq-container">
 			<details class="faq-item">
-				<summary class="faq-question">What's the best way to reach you?</summary>
+				<summary class="faq-question">¿Cuál es la mejor manera de contactarte?</summary>
 				<div class="faq-answer">
-					<p>We respond to all inquiries within 24 hours. Use whichever method works for you: fill out the contact form, call us, send an email, or schedule a discovery call. All are equally effective.</p>
+					<p>Respondemos a todas las consultas dentro de 24 horas. Utiliza el método que mejor te funcione: completa el formulario de contacto, llámanos, envía un correo o programa una llamada de descubrimiento. Todos son igualmente efectivos.</p>
 				</div>
 			</details>
 
 			<details class="faq-item">
-				<summary class="faq-question">When will I hear back?</summary>
+				<summary class="faq-question">¿Cuándo escucharé de ustedes?</summary>
 				<div class="faq-answer">
-					<p>We aim to respond to all inquiries within 24 business hours. During busy periods, responses may take up to 48 hours. We'll confirm receipt of your message and set up a time to discuss your project.</p>
+					<p>Nuestro objetivo es responder a todas las consultas dentro de 24 horas hábiles. Durante períodos ocupados, las respuestas pueden tardar hasta 48 horas. Confirmaremos la recepción de tu mensaje y programaremos una hora para discutir tu proyecto.</p>
 				</div>
 			</details>
 
 			<details class="faq-item">
-				<summary class="faq-question">Do you offer free consultations?</summary>
+				<summary class="faq-question">¿Ofrecen consultas gratuitas?</summary>
 				<div class="faq-answer">
-					<p>Yes! We're happy to discuss your project, answer questions, and explore whether we're a good fit. Most initial discovery calls are complimentary so we can understand your needs and you can get to know our team.</p>
+					<p>¡Sí! Estamos felices de discutir tu proyecto, responder preguntas y explorar si somos una buena opción para ti. La mayoría de las llamadas iniciales de descubrimiento son gratuitas para que podamos entender tus necesidades y que conozcas a nuestro equipo.</p>
 				</div>
 			</details>
 
 			<details class="faq-item">
-				<summary class="faq-question">Do you serve clients outside Lexington?</summary>
+				<summary class="faq-question">¿Atienden clientes fuera de Lexington?</summary>
 				<div class="faq-answer">
-					<p>We're based in Lexington and serve Central Kentucky clients primarily. However, we also work with clients throughout Kentucky and beyond. Digital services aren't limited by geography anymore. If you're interested in working together, reach out!</p>
+					<p>Estamos ubicados en Lexington y atendemos principalmente a clientes de Central Kentucky. Sin embargo, también trabajamos con clientes en todo Kentucky y más allá. Los servicios digitales ya no están limitados por geografía. ¡Si estás interesado en trabajar con nosotros, ponte en contacto!</p>
 				</div>
 			</details>
 
 			<details class="faq-item">
-				<summary class="faq-question">What if I'm not sure which service I need?</summary>
+				<summary class="faq-question">¿Qué pasa si no estoy seguro de qué servicio necesito?</summary>
 				<div class="faq-answer">
-					<p>That's completely normal. Tell us about your business and what you're hoping to achieve. We'll recommend the right services for your situation. It's better to discuss your needs than to guess.</p>
+					<p>Eso es completamente normal. Cuéntanos sobre tu negocio y qué esperas lograr. Recomendaremos los servicios adecuados para tu situación. Es mejor discutir tus necesidades que adivinar.</p>
 				</div>
 			</details>
 		</div>
@@ -269,11 +269,11 @@ import RootLayout from '../../layouts/RootLayout.astro';
 	<!-- Final CTA Section -->
 	<section class="final-cta">
 		<div class="cta-content">
-			<h2 class="cta-title">What Are You Waiting For?</h2>
-			<p class="cta-description">Whether you're ready to start a project or just want to explore options, let's connect. Our team is excited to help your Lexington business succeed online.</p>
+			<h2 class="cta-title">¿Qué Estás Esperando?</h2>
+			<p class="cta-description">Ya sea que estés listo para iniciar un proyecto o simplemente quieras explorar opciones, conectémonos. Nuestro equipo está emocionado de ayudar a tu negocio de Lexington a tener éxito en línea.</p>
 			<div class="cta-buttons">
-				<button class="cta-primary cta-large" onclick="document.getElementById('contactForm').scrollIntoView({ behavior: 'smooth' })">Start a Conversation</button>
-				<button class="cta-secondary cta-large">Schedule a Call</button>
+				<button class="cta-primary cta-large" onclick="document.getElementById('contactForm').scrollIntoView({ behavior: 'smooth' })">Iniciar Conversación</button>
+				<button class="cta-secondary cta-large">Programar Llamada</button>
 			</div>
 		</div>
 	</section>
@@ -298,7 +298,7 @@ import RootLayout from '../../layouts/RootLayout.astro';
 			const message = document.getElementById('message').value.trim();
 
 			if (!email || !message) {
-				errorText.textContent = 'Please fill in all required fields.';
+				errorText.textContent = 'Por favor, completa todos los campos requeridos.';
 				errorMessage.style.display = 'flex';
 				successMessage.style.display = 'none';
 				return;
@@ -307,7 +307,7 @@ import RootLayout from '../../layouts/RootLayout.astro';
 			// Validate email format
 			const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 			if (!emailRegex.test(email)) {
-				errorText.textContent = 'Please enter a valid email address.';
+				errorText.textContent = 'Por favor, ingresa una dirección de correo válida.';
 				errorMessage.style.display = 'flex';
 				successMessage.style.display = 'none';
 				return;
@@ -346,7 +346,7 @@ import RootLayout from '../../layouts/RootLayout.astro';
 					}, 5000);
 				} else {
 					// Error response
-					errorText.textContent = 'Failed to send message. Please try again.';
+					errorText.textContent = 'Error al enviar el mensaje. Por favor, inténtalo de nuevo.';
 					errorMessage.style.display = 'flex';
 					successMessage.style.display = 'none';
 
@@ -357,7 +357,7 @@ import RootLayout from '../../layouts/RootLayout.astro';
 				}
 			} catch (error) {
 				console.error('Form submission error:', error);
-				errorText.textContent = 'An error occurred. Please check your connection and try again.';
+				errorText.textContent = 'Ocurrió un error. Por favor, verifica tu conexión e inténtalo de nuevo.';
 				errorMessage.style.display = 'flex';
 				successMessage.style.display = 'none';
 

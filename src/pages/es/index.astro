@@ -1,0 +1,28 @@
+---
+import RootLayout from '../../layouts/RootLayout.astro';
+import Hero from '../../components/Hero.astro';
+import Services from '../../components/Services.astro';
+import Stack from '../../components/Stack.astro';
+import Portfolio from '../../components/Portfolio.astro';
+import Consulting from '../../components/Consulting.astro';
+import VendorNetwork from '../../components/VendorNetwork.astro';
+import FAQ from '../../components/FAQ.astro';
+import FinalCTA from '../../components/FinalCTA.astro';
+
+const pageTitle = 'NOZA LLC - Marketing Digital, Branding y Diseño Web en Lexington, KY';
+const pageDescription = 'Marketing digital, branding, sitios web y consultoría empresarial para pequeños negocios en Lexington KY. Flujos de trabajo creativos impulsados por Builder.io, GitHub, Astro y Cloudflare.';
+const currentLang = 'es';
+const alternateLang = 'en';
+const alternateUrl = '/';
+---
+
+<RootLayout title={pageTitle} description={pageDescription} lang={currentLang} alternateUrl={alternateUrl}>
+  <Hero lang={currentLang} />
+  <Services lang={currentLang} />
+  <Stack lang={currentLang} />
+  <Portfolio lang={currentLang} />
+  <Consulting lang={currentLang} />
+  <VendorNetwork lang={currentLang} />
+  <FAQ lang={currentLang} />
+  <FinalCTA lang={currentLang} />
+</RootLayout>

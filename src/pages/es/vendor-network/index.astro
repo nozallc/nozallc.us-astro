@@ -1,0 +1,19 @@
+---
+import RootLayout from '../../../layouts/RootLayout.astro';
+import VendorNetwork from '../../../components/VendorNetwork.astro';
+import Stack from '../../../components/Stack.astro';
+import FAQ from '../../../components/FAQ.astro';
+import FinalCTA from '../../../components/FinalCTA.astro';
+
+const pageTitle = 'Red de Proveedores - NOZA LLC';
+const pageDescription = 'La órbita NOZA - nuestra red confiable de socios comerciales en Lexington KY.';
+const currentLang = 'es';
+const alternateUrl = '/vendor-network';
+---
+
+<RootLayout title={pageTitle} description={pageDescription} lang={currentLang} alternateUrl={alternateUrl}>
+  <VendorNetwork lang={currentLang} />
+  <Stack lang={currentLang} />
+  <FAQ lang={currentLang} />
+  <FinalCTA lang={currentLang} />
+</RootLayout>

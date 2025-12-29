@@ -7,13 +7,22 @@ import LanguageToggle from '../components/LanguageToggle.astro';
 interface Props {
   title: string;
   description: string;
+  lang?: string;
+  alternateUrl?: string;
 }
 
-const { title, description } = Astro.props;
+const { title, description, lang = 'en', alternateUrl } = Astro.props;
+
+// Get the base URL
+const protocol = Astro.url.protocol;
+const host = Astro.url.host;
+const baseUrl = `${protocol}//${host}`;
+const currentUrl = `${baseUrl}${Astro.url.pathname}`;
+const alternateFullUrl = alternateUrl ? `${baseUrl}${alternateUrl}` : undefined;
 ---
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang={lang === 'es' ? 'es' : 'en'}>
 	<head>
 		<meta charset="utf-8" />
 		<link rel="icon" type="image/svg+xml" href="/NOZA.LOGO.svg" />
@@ -43,7 +52,21 @@ const { title, description } = Astro.props;
 		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
 		
 		<!-- Canonical URL -->
-		<link rel="canonical" href={Astro.url} />
+		<link rel="canonical" href={currentUrl} />
+
+		<!-- hreflang tags for language alternates -->
+		{lang === 'en' && alternateFullUrl && (
+			<>
+				<link rel="alternate" hreflang="en" href={currentUrl} />
+				<link rel="alternate" hreflang="es" href={alternateFullUrl} />
+			</>
+		)}
+		{lang === 'es' && alternateFullUrl && (
+			<>
+				<link rel="alternate" hreflang="es" href={currentUrl} />
+				<link rel="alternate" hreflang="en" href={alternateFullUrl} />
+			</>
+		)}
 		
 		<!-- Preconnect to external resources -->
 		<link rel="preconnect" href="https://fonts.googleapis.com" />

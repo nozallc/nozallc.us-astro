@@ -1,0 +1,21 @@
+---
+import RootLayout from '../../../layouts/RootLayout.astro';
+import Services from '../../../components/Services.astro';
+import Stack from '../../../components/Stack.astro';
+import Portfolio from '../../../components/Portfolio.astro';
+import FAQ from '../../../components/FAQ.astro';
+import FinalCTA from '../../../components/FinalCTA.astro';
+
+const pageTitle = 'Servicios - NOZA LLC';
+const pageDescription = 'Marketing digital, branding, sitios web, consultoría y servicios creativos para negocios en Lexington KY.';
+const currentLang = 'es';
+const alternateUrl = '/services';
+---
+
+<RootLayout title={pageTitle} description={pageDescription} lang={currentLang} alternateUrl={alternateUrl}>
+  <Services lang={currentLang} />
+  <Stack lang={currentLang} />
+  <Portfolio lang={currentLang} />
+  <FAQ lang={currentLang} />
+  <FinalCTA lang={currentLang} />
+</RootLayout>
