@@ -10,21 +10,21 @@
 
 		<div class="footer-col">
 			<h4>Services</h4>
-			<ul>
-				<li><a href="/digital-marketing">Digital Marketing</a></li>
-				<li><a href="/websites">Web Design</a></li>
-				<li><a href="/branding">Branding</a></li>
-				<li><a href="/consulting">Business Consulting</a></li>
+			<ul id="footer-services-list">
+				<li><a href="/digital-marketing" class="footer-digital-marketing">Digital Marketing</a></li>
+				<li><a href="/websites" class="footer-websites">Web Design</a></li>
+				<li><a href="/branding" class="footer-branding">Branding</a></li>
+				<li><a href="/consulting" class="footer-consulting">Business Consulting</a></li>
 			</ul>
 		</div>
 
 		<div class="footer-col">
 			<h4>Company</h4>
-			<ul>
-				<li><a href="/about">About Us</a></li>
-				<li><a href="/services">Services</a></li>
-				<li><a href="/vendor-network">Vendor Network</a></li>
-				<li><a href="/contact">Contact</a></li>
+			<ul id="footer-company-list">
+				<li><a href="/about" class="footer-about">About Us</a></li>
+				<li><a href="/services" class="footer-services">Services</a></li>
+				<li><a href="/vendor-network" class="footer-vendor-network">Vendor Network</a></li>
+				<li><a href="/contact" class="footer-contact">Contact</a></li>
 			</ul>
 		</div>
 
@@ -106,3 +106,36 @@
 		font-size: 0.9rem;
 	}
 </style>
+
+<script>
+	// Update footer links based on current language
+	function updateFooterLinks() {
+		const pathname = window.location.pathname;
+		const isSpanish = pathname.startsWith('/es/') || pathname === '/es';
+
+		const footerLinks = {
+			'footer-digital-marketing': isSpanish ? '/es/digital-marketing' : '/digital-marketing',
+			'footer-websites': isSpanish ? '/es/websites' : '/websites',
+			'footer-branding': isSpanish ? '/es/branding' : '/branding',
+			'footer-consulting': isSpanish ? '/es/consulting' : '/consulting',
+			'footer-about': isSpanish ? '/es/about' : '/about',
+			'footer-services': isSpanish ? '/es/services' : '/services',
+			'footer-vendor-network': isSpanish ? '/es/vendor-network' : '/vendor-network',
+			'footer-contact': isSpanish ? '/es/contact' : '/contact',
+		};
+
+		for (const [className, href] of Object.entries(footerLinks)) {
+			const link = document.querySelector(`.${className}`);
+			if (link) {
+				link.href = href;
+			}
+		}
+	}
+
+	// Run on page load
+	if (document.readyState === 'loading') {
+		document.addEventListener('DOMContentLoaded', updateFooterLinks);
+	} else {
+		updateFooterLinks();
+	}
+</script>

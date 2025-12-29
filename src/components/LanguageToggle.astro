@@ -158,9 +158,19 @@
 	const toggle = document.getElementById('languageToggle');
 
 	if (toggle) {
-		// Initialize toggle state from localStorage or default to English
-		const currentLang = localStorage.getItem('preferredLanguage') || 'en';
+		// Determine current language from URL
+		function getCurrentLanguageFromUrl() {
+			const pathname = window.location.pathname;
+			if (pathname.startsWith('/es/') || pathname === '/es') {
+				return 'es';
+			}
+			return 'en';
+		}
+
+		// Initialize toggle state from current URL
+		const currentLang = getCurrentLanguageFromUrl();
 		updateToggleState(currentLang);
+		localStorage.setItem('preferredLanguage', currentLang);
 
 		// Remove landing animation after it completes (2 seconds)
 		// This ensures it only plays once on initial page load
@@ -192,14 +202,16 @@
 
 			// Remove existing language prefix if present
 			let cleanPath = currentPath;
-			if (currentPath.startsWith('/en/') || currentPath.startsWith('/es/')) {
-				cleanPath = currentPath.substring(3); // Remove /en/ or /es/
-			} else if (currentPath === '/en' || currentPath === '/es') {
+			if (currentPath.startsWith('/es/')) {
+				cleanPath = currentPath.substring(3); // Remove /es/
+			} else if (currentPath === '/es') {
 				cleanPath = '/';
 			}
 
-			// Build new path with language prefix
-			const newPath = lang === 'en' ? `/en${cleanPath}` : `/es${cleanPath}`;
+			// Build new path with correct language prefix
+			// English: no prefix (e.g., /contact)
+			// Spanish: /es/ prefix (e.g., /es/contact)
+			const newPath = lang === 'en' ? cleanPath : `/es${cleanPath}`;
 			window.location.href = newPath;
 		}
 

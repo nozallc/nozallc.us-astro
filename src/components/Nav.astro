@@ -1,7 +1,7 @@
 ---
 ---
 
-<nav class="navbar">
+<nav class="navbar" data-current-path={Astro.url.pathname}>
 	<div class="nav-container">
 		<!-- Logo -->
 		<a href="/" class="nav-logo">
@@ -17,15 +17,15 @@
 
 		<!-- Navigation Links -->
 		<ul class="nav-links" id="navLinks">
-			<li><a href="/">Home</a></li>
-			<li><a href="/services">Services</a></li>
-			<li><a href="/websites">Websites</a></li>
-			<li><a href="/branding">Branding</a></li>
-			<li><a href="/digital-marketing">Digital Marketing</a></li>
-			<li><a href="/photo-video">Photo & Video</a></li>
-			<li><a href="/consulting">Consulting</a></li>
-			<li><a href="/vendor-network">Vendor Network</a></li>
-			<li class="nav-cta"><a href="/contact">Contact</a></li>
+			<li><a href="/" class="nav-home-link">Home</a></li>
+			<li><a href="/services" class="nav-services-link">Services</a></li>
+			<li><a href="/websites" class="nav-websites-link">Websites</a></li>
+			<li><a href="/branding" class="nav-branding-link">Branding</a></li>
+			<li><a href="/digital-marketing" class="nav-digital-marketing-link">Digital Marketing</a></li>
+			<li><a href="/photo-video" class="nav-photo-video-link">Photo & Video</a></li>
+			<li><a href="/consulting" class="nav-consulting-link">Consulting</a></li>
+			<li><a href="/vendor-network" class="nav-vendor-network-link">Vendor Network</a></li>
+			<li class="nav-cta"><a href="/contact" class="nav-contact-link">Contact</a></li>
 		</ul>
 	</div>
 </nav>
@@ -276,6 +276,41 @@
 			if (!hamburger || !navLinks || !navbar) {
 				return;
 			}
+
+			// Determine current language from URL
+			function getCurrentLanguage() {
+				const pathname = window.location.pathname;
+				if (pathname.startsWith('/es/') || pathname === '/es') {
+					return 'es';
+				}
+				return 'en';
+			}
+
+			// Update nav links based on current language
+			function updateNavLinks() {
+				const currentLang = getCurrentLanguage();
+				const links = {
+					'nav-home-link': currentLang === 'en' ? '/' : '/es/',
+					'nav-services-link': currentLang === 'en' ? '/services' : '/es/services',
+					'nav-websites-link': currentLang === 'en' ? '/websites' : '/es/websites',
+					'nav-branding-link': currentLang === 'en' ? '/branding' : '/es/branding',
+					'nav-digital-marketing-link': currentLang === 'en' ? '/digital-marketing' : '/es/digital-marketing',
+					'nav-photo-video-link': currentLang === 'en' ? '/photo-video' : '/es/photo-video',
+					'nav-consulting-link': currentLang === 'en' ? '/consulting' : '/es/consulting',
+					'nav-vendor-network-link': currentLang === 'en' ? '/vendor-network' : '/es/vendor-network',
+					'nav-contact-link': currentLang === 'en' ? '/contact' : '/es/contact',
+				};
+
+				for (const [className, href] of Object.entries(links)) {
+					const link = navLinks.querySelector(`.${className}`);
+					if (link) {
+						link.href = href;
+					}
+				}
+			}
+
+			// Initial nav link update
+			updateNavLinks();
 
 			// Hamburger menu toggle
 			hamburger.addEventListener('click', () => {

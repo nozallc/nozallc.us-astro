@@ -113,18 +113,19 @@ export function getAlternateLanguage(currentLang: Language): Language {
  * Build a localized URL path
  * @param path - The path without language prefix (e.g., "/about", "/services")
  * @param lang - The language code
- * @returns The localized path (e.g., "/en/about", "/es/servicios")
+ * @returns The localized path (e.g., "/about" for English, "/es/about" for Spanish)
  */
 export function getLocalizedPath(path: string, lang: Language): string {
   // Remove leading slash if present
   const cleanPath = path.startsWith('/') ? path.slice(1) : path;
 
-  // Always include language prefix
+  // English has no prefix (default)
   if (lang === 'en') {
-    return `/${lang}/${cleanPath}`;
+    return `/${cleanPath}`;
   }
 
-  return `/${lang}/${cleanPath}`;
+  // Spanish uses /es/ prefix
+  return `/es/${cleanPath}`;
 }
 
 /**
@@ -146,4 +147,25 @@ export function getLanguageName(lang: Language): string {
     es: 'Español',
   };
   return names[lang] || 'English';
+}
+
+/**
+ * Get the alternate language URL for the current path
+ * @param currentPath - The current URL path
+ * @param currentLang - The current language
+ * @returns The path in the alternate language
+ */
+export function getAlternateLanguagePath(currentPath: string, currentLang: Language): string {
+  const alternateLang = getAlternateLanguage(currentLang);
+
+  // Remove language prefixes from the current path
+  let cleanPath = currentPath;
+  if (currentPath.startsWith('/es/')) {
+    cleanPath = currentPath.substring(3);
+  } else if (currentPath.startsWith('/es')) {
+    cleanPath = '/';
+  }
+
+  // Build the path in the alternate language
+  return getLocalizedPath(cleanPath, alternateLang);
 }

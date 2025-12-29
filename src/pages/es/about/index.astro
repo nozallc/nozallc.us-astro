@@ -1,0 +1,19 @@
+---
+import RootLayout from '../../../layouts/RootLayout.astro';
+import Services from '../../../components/Services.astro';
+import Stack from '../../../components/Stack.astro';
+import Portfolio from '../../../components/Portfolio.astro';
+import FinalCTA from '../../../components/FinalCTA.astro';
+
+const pageTitle = 'Sobre NOZA LLC - Marketing Digital y Diseño Web en Lexington, KY';
+const pageDescription = 'Conozca a NOZA LLC, una agencia digital basada en Lexington enfocada en ayudar a pequeños negocios a tener éxito en línea.';
+const currentLang = 'es';
+const alternateUrl = '/about';
+---
+
+<RootLayout title={pageTitle} description={pageDescription} lang={currentLang} alternateUrl={alternateUrl}>
+  <Services lang={currentLang} />
+  <Stack lang={currentLang} />
+  <Portfolio lang={currentLang} />
+  <FinalCTA lang={currentLang} />
+</RootLayout>

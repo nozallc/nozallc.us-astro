@@ -1,16 +1,14 @@
 # Cloudflare Pages Redirects Configuration
 # Reference: https://developers.cloudflare.com/pages/platform/redirects/
 
-# Redirect /about, /services, etc. to /en/about, /en/services (English default)
-/about /en/about 302
-/services /en/services 302
-/websites /en/websites 302
-/branding /en/branding 302
-/consulting /en/consulting 302
-/digital-marketing /en/digital-marketing 302
-/photo-video /en/photo-video 302
-/vendor-network /en/vendor-network 302
-/contact /en/contact 302
-
-# Route all requests through Cloudflare's routing
-# This ensures proper handling of i18n paths
+# Redirect /en/* to /* (English default - no prefix)
+/en/ / 302
+/en/about /about 302
+/en/services /services 302
+/en/websites /websites 302
+/en/branding /branding 302
+/en/consulting /consulting 302
+/en/digital-marketing /digital-marketing 302
+/en/photo-video /photo-video 302
+/en/vendor-network /vendor-network 302
+/en/contact /contact 302

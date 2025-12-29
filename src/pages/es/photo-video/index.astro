@@ -1,0 +1,17 @@
+---
+import RootLayout from '../../../layouts/RootLayout.astro';
+import Portfolio from '../../../components/Portfolio.astro';
+import Stack from '../../../components/Stack.astro';
+import FinalCTA from '../../../components/FinalCTA.astro';
+
+const pageTitle = 'Foto y Video - NOZA LLC';
+const pageDescription = 'Producción profesional de foto, video y medios con drones para negocios en Lexington KY.';
+const currentLang = 'es';
+const alternateUrl = '/photo-video';
+---
+
+<RootLayout title={pageTitle} description={pageDescription} lang={currentLang} alternateUrl={alternateUrl}>
+  <Portfolio lang={currentLang} />
+  <Stack lang={currentLang} />
+  <FinalCTA lang={currentLang} />
+</RootLayout>
