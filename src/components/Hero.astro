@@ -5,6 +5,9 @@ import es from '../i18n/locales/es.json';
 const lang = Astro.props.lang || 'en';
 const translations = lang === 'es' ? es : en;
 const t = (key) => translations[key] || key;
+
+// English default = no prefix. Spanish = /es prefix.
+const prefix = lang === 'es' ? '/es' : '';
 ---
 
 <section class="hero">
@@ -23,16 +26,20 @@ const t = (key) => translations[key] || key;
 			<div class="orbit-ring orbit-ring-1"></div>
 			<div class="orbit-ring orbit-ring-2"></div>
 			<div class="orbit-ring orbit-ring-3"></div>
+
+			<!-- NEW: logo-driven glow source -->
+			<div class="logo-glow"></div>
+
 			<img src="/NOZA.LOGO.svg" alt="NOZA LLC" class="hero-logo" />
 		</div>
 
 		<div class="hero-text">
 			<h1 class="hero-headline">{t('hero.headline')}</h1>
 			<p class="hero-subheadline">{t('hero.subheadline')}</p>
-			
+
 			<div class="hero-ctas">
-				<button class="cta-primary">{t('hero.cta.discovery')}</button>
-				<button class="cta-secondary">{t('hero.cta.seeWork')}</button>
+				<a class="cta-primary" href={`${prefix}/contact`}>{t('hero.cta.discovery')}</a>
+				<a class="cta-secondary" href={`${prefix}/services`}>{t('hero.cta.seeWork')}</a>
 			</div>
 
 			<p class="hero-location">{t('hero.location')}</p>
@@ -53,26 +60,50 @@ const t = (key) => translations[key] || key;
 
 	.cosmic-background {
 		position: absolute;
-		top: 0;
-		left: 0;
-		width: 100%;
-		height: 100%;
+		inset: 0;
 		z-index: 0;
 		overflow: hidden;
 	}
 
+	/* ✅ FIX: Full-width stars using percentage-based radial gradients (not px box-shadows) */
 	.stars {
 		position: absolute;
-		width: 2px;
-		height: 2px;
-		background: white;
-		border-radius: 50%;
-		box-shadow: 100px 100px white, 200px 150px white, 300px 50px white, 450px 200px white,
-					550px 100px white, 150px 300px white, 400px 400px white, 600px 300px white,
-					700px 150px white, 800px 400px white, 900px 250px white, 200px 500px white,
-					700px 500px white, 500px 600px white, 100px 700px white, 800px 700px white,
-					300px 800px white;
-		animation: twinkle 3s infinite;
+		inset: 0;
+		opacity: 0.7;
+		background-repeat: no-repeat;
+		background-image:
+			radial-gradient(circle, rgba(255,255,255,0.75) 1px, transparent 2px),
+			radial-gradient(circle, rgba(255,255,255,0.55) 1px, transparent 2px),
+			radial-gradient(circle, rgba(255,255,255,0.45) 1px, transparent 2px),
+			radial-gradient(circle, rgba(255,255,255,0.35) 1px, transparent 2px),
+			radial-gradient(circle, rgba(255,255,255,0.65) 1px, transparent 2px),
+			radial-gradient(circle, rgba(255,255,255,0.50) 1px, transparent 2px),
+			radial-gradient(circle, rgba(255,255,255,0.40) 1px, transparent 2px),
+			radial-gradient(circle, rgba(255,255,255,0.30) 1px, transparent 2px),
+			radial-gradient(circle, rgba(255,255,255,0.60) 1px, transparent 2px),
+			radial-gradient(circle, rgba(255,255,255,0.45) 1px, transparent 2px),
+			radial-gradient(circle, rgba(255,255,255,0.35) 1px, transparent 2px),
+			radial-gradient(circle, rgba(255,255,255,0.55) 1px, transparent 2px);
+		background-size: 2px 2px;
+		background-position:
+			6% 12%,
+			12% 78%,
+			18% 42%,
+			24% 18%,
+			32% 64%,
+			40% 28%,
+			52% 80%,
+			60% 38%,
+			72% 22%,
+			78% 70%,
+			88% 46%,
+			94% 16%;
+		animation: twinkle 3.2s ease-in-out infinite;
+	}
+
+	@keyframes twinkle {
+		0%, 100% { opacity: 0.35; }
+		50% { opacity: 0.95; }
 	}
 
 	.nebula {
@@ -109,25 +140,70 @@ const t = (key) => translations[key] || key;
 		animation: drift 12s ease-in-out infinite;
 	}
 
+	@keyframes drift {
+		0%, 100% { transform: translate3d(0,0,0); }
+		50% { transform: translate3d(18px,-14px,0); }
+	}
+
+	/* ✅ FIX: Full-width particles (2 layers) */
 	.particles {
 		position: absolute;
-		width: 100%;
-		height: 100%;
+		inset: 0;
 		overflow: hidden;
+		z-index: 0;
+	}
+
+	.particles::before,
+	.particles::after {
+		content: '';
+		position: absolute;
+		inset: -40px;
+		pointer-events: none;
+		background-repeat: no-repeat;
+		opacity: 0.7;
+		animation: particle-drift 10s ease-in-out infinite;
 	}
 
 	.particles::before {
-		content: '';
-		position: absolute;
-		width: 2px;
-		height: 2px;
-		background: var(--primary-neon);
-		border-radius: 50%;
-		box-shadow: 100px 200px var(--primary-neon), 250px 100px var(--primary-neon),
-					150px 400px var(--secondary-neon), 450px 150px var(--tertiary-neon),
-					600px 250px var(--primary-neon), 350px 300px var(--secondary-neon),
-					800px 100px var(--tertiary-neon), 200px 600px var(--primary-neon);
-		animation: float 6s ease-in-out infinite;
+		background-image:
+			radial-gradient(circle, rgba(0,212,255,0.9) 1px, transparent 2px),
+			radial-gradient(circle, rgba(163,0,255,0.8) 1px, transparent 2px),
+			radial-gradient(circle, rgba(255,0,110,0.8) 1px, transparent 2px),
+			radial-gradient(circle, rgba(255,255,255,0.55) 1px, transparent 2px),
+			radial-gradient(circle, rgba(0,212,255,0.7) 1px, transparent 2px),
+			radial-gradient(circle, rgba(255,255,255,0.45) 1px, transparent 2px);
+		background-size: 2px 2px;
+		background-position:
+			10% 30%,
+			22% 70%,
+			38% 40%,
+			54% 76%,
+			70% 24%,
+			90% 58%;
+		filter: blur(0.2px);
+	}
+
+	.particles::after {
+		opacity: 0.5;
+		animation-duration: 14s;
+		background-image:
+			radial-gradient(circle, rgba(0,212,255,0.6) 1px, transparent 2px),
+			radial-gradient(circle, rgba(163,0,255,0.6) 1px, transparent 2px),
+			radial-gradient(circle, rgba(255,0,110,0.6) 1px, transparent 2px),
+			radial-gradient(circle, rgba(255,255,255,0.45) 1px, transparent 2px),
+			radial-gradient(circle, rgba(0,212,255,0.55) 1px, transparent 2px);
+		background-size: 2px 2px;
+		background-position:
+			8% 86%,
+			30% 18%,
+			56% 84%,
+			82% 62%,
+			94% 22%;
+	}
+
+	@keyframes particle-drift {
+		0%, 100% { transform: translate3d(0,0,0); }
+		50% { transform: translate3d(18px, -16px, 0); }
 	}
 
 	.hero-content {
@@ -146,8 +222,11 @@ const t = (key) => translations[key] || key;
 		width: 200px;
 		height: 200px;
 		margin-bottom: 2rem;
+		display: grid;
+		place-items: center;
 	}
 
+	/* Slightly calmer orb so the logo glow feels like the source */
 	.glowing-orb {
 		position: absolute;
 		width: 150px;
@@ -155,11 +234,39 @@ const t = (key) => translations[key] || key;
 		top: 50%;
 		left: 50%;
 		transform: translate(-50%, -50%);
-		background: radial-gradient(circle at 35% 35%, rgba(0, 212, 255, 0.8), rgba(163, 0, 255, 0.6), rgba(255, 0, 110, 0.4));
+		background: radial-gradient(circle at 35% 35%, rgba(0, 212, 255, 0.55), rgba(163, 0, 255, 0.35), rgba(255, 0, 110, 0.22));
 		border-radius: 50%;
-		filter: blur(30px);
+		filter: blur(22px);
 		animation: pulse-glow 3s ease-in-out infinite;
-		box-shadow: 0 0 80px var(--primary-neon), 0 0 120px var(--tertiary-neon);
+		box-shadow: 0 0 55px rgba(0,212,255,0.35), 0 0 85px rgba(255,0,110,0.18);
+		z-index: 0;
+	}
+
+	@keyframes pulse-glow {
+		0%, 100% { transform: translate(-50%, -50%) scale(1); opacity: 0.8; }
+		50% { transform: translate(-50%, -50%) scale(1.05); opacity: 1; }
+	}
+
+	/* ✅ Logo-driven glow: ignite → fill orb → dim */
+	.logo-glow {
+		position: absolute;
+		width: 140px;
+		height: 140px;
+		top: 50%;
+		left: 50%;
+		transform: translate(-50%, -50%);
+		border-radius: 50%;
+		background: radial-gradient(circle, rgba(0,212,255,0.65) 0%, rgba(163,0,255,0.35) 45%, transparent 70%);
+		filter: blur(10px);
+		opacity: 0.25;
+		animation: logo-ignite 3.8s ease-in-out infinite;
+		z-index: 1;
+	}
+
+	@keyframes logo-ignite {
+		0%, 100% { opacity: 0.18; transform: translate(-50%, -50%) scale(0.95); }
+		35% { opacity: 0.85; transform: translate(-50%, -50%) scale(1.08); }
+		60% { opacity: 0.30; transform: translate(-50%, -50%) scale(1.00); }
 	}
 
 	.orbit-ring {
@@ -194,6 +301,11 @@ const t = (key) => translations[key] || key;
 		animation: spin-orbit 12s linear infinite;
 	}
 
+	@keyframes spin-orbit {
+		from { transform: translate(-50%, -50%) rotateX(65deg) rotateZ(0deg); }
+		to { transform: translate(-50%, -50%) rotateX(65deg) rotateZ(360deg); }
+	}
+
 	.hero-logo {
 		position: absolute;
 		width: 110px;
@@ -202,13 +314,17 @@ const t = (key) => translations[key] || key;
 		left: 50%;
 		transform: translate(-50%, -50%);
 		z-index: 2;
+		animation: logo-shimmer 3.8s ease-in-out infinite;
+		filter: drop-shadow(0 0 10px rgba(0,212,255,0.30));
 	}
 
-	.hero-text {
-		display: flex;
-		flex-direction: column;
-		gap: 1.5rem;
+	@keyframes logo-shimmer {
+		0%, 100% { filter: drop-shadow(0 0 10px rgba(0,212,255,0.30)); }
+		35% { filter: drop-shadow(0 0 24px rgba(0,212,255,0.70)); }
+		60% { filter: drop-shadow(0 0 12px rgba(0,212,255,0.40)); }
 	}
+
+	.hero-text { display: flex; flex-direction: column; gap: 1.5rem; }
 
 	.hero-headline {
 		font-size: clamp(2.5rem, 8vw, 4rem);
@@ -238,10 +354,23 @@ const t = (key) => translations[key] || key;
 		animation: fade-in-up 1s ease-out 0.4s both;
 	}
 
+	/* Make <a> look like your buttons */
+	.hero-ctas a {
+		text-decoration: none;
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+	}
+
 	.hero-location {
 		font-size: 0.95rem;
 		color: var(--text-secondary);
 		animation: fade-in-up 1s ease-out 0.6s both;
+	}
+
+	@keyframes fade-in-up {
+		from { opacity: 0; transform: translateY(18px); }
+		to { opacity: 1; transform: translateY(0); }
 	}
 
 	/* Respect reduced motion preferences */
@@ -249,8 +378,11 @@ const t = (key) => translations[key] || key;
 		.nebula,
 		.stars,
 		.particles::before,
+		.particles::after,
 		.glowing-orb,
+		.logo-glow,
 		.orbit-ring,
+		.hero-logo,
 		.hero-headline,
 		.hero-subheadline,
 		.hero-ctas,
@@ -258,35 +390,6 @@ const t = (key) => translations[key] || key;
 			animation: none !important;
 		}
 
-		.orbit-ring {
-			transform: translate(-50%, -50%);
-		}
+		.orbit-ring { transform: translate(-50%, -50%); }
 	}
 </style>
-
-<script>
-	document.addEventListener('DOMContentLoaded', () => {
-		const heroCtas = document.querySelector('.hero-ctas');
-		if (heroCtas) {
-			const buttons = heroCtas.querySelectorAll('button');
-			// Get current language from URL
-			const currentPath = window.location.pathname;
-			const langMatch = currentPath.match(/^\/([a-z]{2})\//);
-			const lang = langMatch ? langMatch[1] : 'en';
-
-			buttons.forEach((button, index) => {
-				if (index === 0) {
-					// "Book a Discovery Call" -> Contact page
-					button.addEventListener('click', () => {
-						window.location.href = `/${lang}/contact`;
-					});
-				} else if (index === 1) {
-					// "See Our Work" -> Services page
-					button.addEventListener('click', () => {
-						window.location.href = `/${lang}/services`;
-					});
-				}
-			});
-		}
-	});
-</script>
