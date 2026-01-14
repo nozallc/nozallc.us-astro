@@ -13,12 +13,10 @@ interface Props {
 
 const { title, description, lang = 'en', alternateUrl } = Astro.props;
 
-// Get the base URL
-const protocol = Astro.url.protocol;
-const host = Astro.url.host;
-const baseUrl = `${protocol}//${host}`;
-const currentUrl = `${baseUrl}${Astro.url.pathname}`;
-const alternateFullUrl = alternateUrl ? `${baseUrl}${alternateUrl}` : undefined;
+// Use production domain for canonical URLs
+const productionDomain = 'https://nozallc.us';
+const canonicalUrl = `${productionDomain}${Astro.url.pathname}`;
+const alternateFullUrl = alternateUrl ? `${productionDomain}${alternateUrl}` : undefined;
 ---
 
 <!DOCTYPE html>
@@ -52,25 +50,27 @@ const alternateFullUrl = alternateUrl ? `${baseUrl}${alternateUrl}` : undefined;
 		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
 		
 		<!-- Canonical URL -->
-		<link rel="canonical" href={currentUrl} />
+		<link rel="canonical" href={canonicalUrl} />
 
 		<!-- hreflang tags for language alternates -->
 		{lang === 'en' && alternateFullUrl && (
 			<>
-				<link rel="alternate" hreflang="en" href={currentUrl} />
+				<link rel="alternate" hreflang="en" href={canonicalUrl} />
 				<link rel="alternate" hreflang="es" href={alternateFullUrl} />
 			</>
 		)}
 		{lang === 'es' && alternateFullUrl && (
 			<>
-				<link rel="alternate" hreflang="es" href={currentUrl} />
+				<link rel="alternate" hreflang="es" href={canonicalUrl} />
 				<link rel="alternate" hreflang="en" href={alternateFullUrl} />
 			</>
 		)}
 		
-		<!-- Preconnect to external resources -->
-		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<!-- DNS Prefetch for CDN -->
 		<link rel="dns-prefetch" href="https://cdn.cloudflare.com" />
+		
+		<!-- Preload critical client JS for faster hydration -->
+		<link rel="preload" as="script" href="/_astro/page.B1D-nYk3.js" />
 		
 		<!-- Schema.org Structured Data -->
 		<script type="application/ld+json">
@@ -120,7 +120,12 @@ const alternateFullUrl = alternateUrl ? `${baseUrl}${alternateUrl}` : undefined;
 					window.dataLayer = window.dataLayer || [];
 					function gtag(){dataLayer.push(arguments);}
 					gtag('js', new Date());
-					gtag('config', measurementId);
+				// Defer config to after LCP to avoid blocking paint
+				if ('requestIdleCallback' in window) {
+					requestIdleCallback(() => gtag('config', measurementId));
+				} else {
+					setTimeout(() => gtag('config', measurementId), 100);
+				}
 				</script>
 			</>
 		)}

@@ -1,0 +1,18 @@
+# NOZA LLC - robots.txt for Cloudflare Pages
+# Generated for https://nozallc.us
+
+User-agent: *
+Allow: /
+
+# Disallow admin/internal paths if they exist
+Disallow: /_astro/
+Disallow: /_worker.js/
+
+# Allow search engines to crawl all public content
+Allow: /
+
+# Sitemap location
+Sitemap: https://nozallc.us/sitemap.xml
+
+# Crawl delay (optional - most search engines ignore this)
+# Crawl-delay: 1

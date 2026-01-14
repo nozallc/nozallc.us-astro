@@ -9,11 +9,17 @@
 		</a>
 
 		<!-- Hamburger Menu -->
-		<div class="hamburger-menu" id="hamburger">
-			<span></span>
-			<span></span>
-			<span></span>
-		</div>
+		<button
+			class="hamburger-menu"
+			id="hamburger"
+			aria-label="Toggle navigation menu"
+			aria-expanded="false"
+			type="button"
+		>
+			<span aria-hidden="true"></span>
+			<span aria-hidden="true"></span>
+			<span aria-hidden="true"></span>
+		</button>
 
 		<!-- Navigation Links -->
 		<ul class="nav-links" id="navLinks">
@@ -153,6 +159,10 @@
 		cursor: pointer;
 		z-index: 1001;
 		gap: 6px;
+		background: none;
+		border: none;
+		padding: 0;
+		margin: 0;
 	}
 
 	.hamburger-menu span {
@@ -316,6 +326,9 @@
 			hamburger.addEventListener('click', () => {
 				hamburger.classList.toggle('active');
 				navLinks.classList.toggle('active');
+				// Update aria-expanded for accessibility
+				const isExpanded = hamburger.getAttribute('aria-expanded') === 'true';
+				hamburger.setAttribute('aria-expanded', (!isExpanded).toString());
 			});
 
 			// Close menu when a link is clicked
@@ -323,6 +336,7 @@
 				link.addEventListener('click', () => {
 					hamburger.classList.remove('active');
 					navLinks.classList.remove('active');
+					hamburger.setAttribute('aria-expanded', 'false');
 				});
 			});
 
@@ -336,7 +350,7 @@
 				}
 			});
 		} catch (error) {
-			console.error('Navigation initialization error:', error);
+			// Silent error handling - nav functionality will degrade gracefully
 		}
 	});
 </script>

@@ -9,10 +9,7 @@
     "astro": "astro"
   },
   "dependencies": {
-    "@astrojs/react": "^4.4.2",
-    "astro": "^5.16.6",
-    "react": "^19.2.3",
-    "react-dom": "^19.2.3"
+    "astro": "^5.16.6"
   },
   "devDependencies": {
     "@astrojs/cloudflare": "^12.6.12"

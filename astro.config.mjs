@@ -1,11 +1,10 @@
 // @ts-check
 import { defineConfig } from 'astro/config';
 import cloudflare from '@astrojs/cloudflare';
-import react from '@astrojs/react';
 
 // https://astro.build/config
 export default defineConfig({
-  integrations: [react()],
+  integrations: [],
   adapter: cloudflare({
     // Cloudflare Pages Functions for advanced routing
     mode: 'advanced',
@@ -20,14 +19,14 @@ export default defineConfig({
   },
   // Build optimization
   build: {
-    inlineStylesheets: 'auto',
+    inlineStylesheets: 'never',
     assets: '_astro',
+    cssCodeSplit: false,
   },
   // Development settings
   vite: {
     build: {
       minify: 'esbuild',
-      cssCodeSplit: true,
     },
   },
   // Enable prefetching for better performance
