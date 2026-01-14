@@ -21,6 +21,10 @@ import RootLayout from '../../layouts/RootLayout.astro';
 		<div class="hero-content">
 			<h1 class="services-headline">Digital Marketing & Creative Services in Lexington, KY</h1>
 			<p class="services-subheadline">NOZA LLC is your trusted partner for comprehensive digital solutions. We serve Central Kentucky small businesses with cutting-edge marketing, stunning design, and strategic business guidance.</p>
+			<div class="hero-pricing">
+				<a href="/contact" class="price-badge">Free Discovery Call</a>
+				<span class="price-subtext">Let's discuss your business goals</span>
+			</div>
 		</div>
 	</section>
 
@@ -134,8 +138,8 @@ import RootLayout from '../../layouts/RootLayout.astro';
 			<h2 class="cta-title">Ready to Elevate Your Business?</h2>
 			<p class="cta-description">Start your journey toward digital transformation. Our team is ready to discuss your goals and create a custom strategy for your success.</p>
 			<div class="cta-buttons">
-				<button class="cta-primary">Book a Discovery Call</button>
-				<button class="cta-secondary">Get in Touch</button>
+				<a href="/contact" class="cta-primary">Book a Discovery Call</a>
+				<a href="/contact" class="cta-secondary">Get in Touch</a>
 			</div>
 		</div>
 	</section>
@@ -245,6 +249,37 @@ import RootLayout from '../../layouts/RootLayout.astro';
 		max-width: 900px;
 		gap: 1.5rem;
 		animation: fade-in-up 1s ease-out;
+	}
+
+	.hero-pricing {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		gap: 0.75rem;
+		margin-top: 1rem;
+	}
+
+	.price-badge {
+		display: inline-block;
+		padding: 0.75rem 1.5rem;
+		background: linear-gradient(135deg, var(--primary-neon), var(--tertiary-neon));
+		color: var(--darker-bg);
+		border-radius: 50px;
+		font-weight: 700;
+		font-size: 1.1rem;
+		text-decoration: none;
+		transition: all 0.3s ease;
+	}
+
+	.price-badge:hover {
+		opacity: 0.9;
+		transform: translateY(-2px);
+	}
+
+	.price-subtext {
+		font-size: 0.95rem;
+		color: var(--text-secondary);
+		font-style: italic;
 	}
 
 	.services-headline {
