@@ -1,46 +1,55 @@
 ---
+import en from '../i18n/locales/en.json';
+import es from '../i18n/locales/es.json';
+
+const lang = Astro.props.lang || 'en';
+const translations = lang === 'es' ? es : en;
+const t = (key) => translations[key] || key;
+
+// English default = no prefix. Spanish = /es prefix.
+const prefix = lang === 'es' ? '/es' : '';
 ---
 
 <footer class="footer">
 	<div class="footer-content">
 		<div class="footer-col">
 			<img src="/NOZALLC.US.svg" alt="NOZA LLC" width="100" height="100" class="footer-logo" />
-			<p class="footer-tagline">Digital marketing, branding & web design for Lexington, Kentucky</p>
+			<p class="footer-tagline">{t('footer.tagline')}</p>
 		</div>
 
 		<div class="footer-col">
-			<h4>Services</h4>
+			<h4>{t('footer.services')}</h4>
 			<ul id="footer-services-list">
-				<li><a href="/digital-marketing" class="footer-digital-marketing">Digital Marketing</a></li>
-				<li><a href="/websites" class="footer-websites">Web Design</a></li>
-				<li><a href="/branding" class="footer-branding">Branding</a></li>
-				<li><a href="/consulting" class="footer-consulting">Business Consulting</a></li>
+				<li><a href={`${prefix}/digital-marketing`} class="footer-digital-marketing">{t('footer.digitalMarketing')}</a></li>
+				<li><a href={`${prefix}/websites`} class="footer-websites">{t('footer.webDesign')}</a></li>
+				<li><a href={`${prefix}/branding`} class="footer-branding">{t('footer.branding')}</a></li>
+				<li><a href={`${prefix}/consulting`} class="footer-consulting">{t('footer.consulting')}</a></li>
 			</ul>
 		</div>
 
 		<div class="footer-col">
-			<h4>Company</h4>
+			<h4>{t('footer.company')}</h4>
 			<ul id="footer-company-list">
-				<li><a href="/about" class="footer-about">About Us</a></li>
-				<li><a href="/services" class="footer-services">Services</a></li>
-				<li><a href="/vendor-network" class="footer-vendor-network">Vendor Network</a></li>
-				<li><a href="/contact" class="footer-contact">Contact</a></li>
+				<li><a href={`${prefix}/about`} class="footer-about">{t('footer.aboutUs')}</a></li>
+				<li><a href={`${prefix}/services`} class="footer-services">{t('footer.services')}</a></li>
+				<li><a href={`${prefix}/vendor-network`} class="footer-vendor-network">{t('footer.vendorNetwork')}</a></li>
+				<li><a href={`${prefix}/contact`} class="footer-contact">Contact</a></li>
 			</ul>
 		</div>
 
 		<div class="footer-col">
-			<h4>Connect</h4>
+			<h4>{t('footer.connect')}</h4>
 			<ul>
-				<li><a href="https://instagram.com/nozallc" target="_blank">Instagram</a></li>
-				<li><a href="https://facebook.com/nozallc" target="_blank">Facebook</a></li>
-				<li><a href="https://linkedin.com/company/nozallc" target="_blank">LinkedIn</a></li>
-				<li><a href="mailto:hello@nozallc.us">Email</a></li>
+				<li><a href="https://www.instagram.com/nozallc.us" target="_blank" rel="noopener noreferrer">{t('footer.instagram')}</a></li>
+				<li><a href="https://www.facebook.com/nozallc.us" target="_blank" rel="noopener noreferrer">{t('footer.facebook')}</a></li>
+				<li><a href="https://www.linkedin.com/company/nozallc.us" target="_blank" rel="noopener noreferrer">{t('footer.linkedin')}</a></li>
+				<li><a href="mailto:hello@nozallc.us">{t('footer.email')}</a></li>
 			</ul>
 		</div>
 	</div>
 
 	<div class="footer-bottom">
-		<p>&copy; 2025 NOZA LLC. All rights reserved. | Based in Lexington, Kentucky</p>
+		<p>{t('footer.copyright')}</p>
 	</div>
 </footer>
 
