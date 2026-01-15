@@ -1,5 +1,31 @@
-/*
+# Short cache for HTML pages (revalidate frequently for content changes)
+/index.html
+  Cache-Control: public, max-age=600
   X-Frame-Options: DENY
   X-Content-Type-Options: nosniff
-  Cache-Control: public, max-age=3600
+
+# Long cache for language-specific index pages
+/es/index.html
+  Cache-Control: public, max-age=600
+  X-Frame-Options: DENY
+  X-Content-Type-Options: nosniff
+
+# Long cache for all hashed Astro assets (immutable by content hash)
+/_astro/*
+  Cache-Control: public, max-age=31536000, immutable
+  X-Frame-Options: DENY
+  X-Content-Type-Options: nosniff
+
+# Long cache for static brand assets (logos never change)
+/NOZA*.svg
+/noza*.svg
+  Cache-Control: public, max-age=31536000, immutable
+  X-Frame-Options: DENY
+  X-Content-Type-Options: nosniff
+
+# Default security headers for all other assets
+/*
+  Cache-Control: public, max-age=2592000
+  X-Frame-Options: DENY
+  X-Content-Type-Options: nosniff
   Cf-Email-Obfuscation: off
