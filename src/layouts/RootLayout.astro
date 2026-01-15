@@ -113,22 +113,63 @@ const alternateFullUrl = alternateUrl ? `${productionDomain}${alternateUrl}` : u
 		}
 		</script>
 		<!-- Google Analytics 4 (gtag.js) - Production Only -->
+		<!-- Deferred to after first user interaction to avoid LCP blocking -->
 		{import.meta.env.PROD && import.meta.env.PUBLIC_GA_MEASUREMENT_ID && (
-			<>
-				<script async src={`https://www.googletagmanager.com/gtag/js?id=${import.meta.env.PUBLIC_GA_MEASUREMENT_ID}`}></script>
-				<script define:vars={{measurementId: import.meta.env.PUBLIC_GA_MEASUREMENT_ID}}>
-					window.dataLayer = window.dataLayer || [];
-					function gtag(){dataLayer.push(arguments);}
-					gtag('js', new Date());
-				// Defer config to after LCP to avoid blocking paint
-				if ('requestIdleCallback' in window) {
-					requestIdleCallback(() => gtag('config', measurementId));
-				} else {
-					setTimeout(() => gtag('config', measurementId), 100);
+			<script define:vars={{measurementId: import.meta.env.PUBLIC_GA_MEASUREMENT_ID}}>
+				// Initialize dataLayer stub immediately
+				window.dataLayer = window.dataLayer || [];
+				function gtag(){dataLayer.push(arguments);}
+				window.gtag = gtag;
+				
+				// Load gtag after first user interaction or timeout
+				function loadGtag() {
+					const script = document.createElement('script');
+					script.src = `https://www.googletagmanager.com/gtag/js?id=${window.gtagMeasurementId}`;
+					script.async = true;
+					document.head.appendChild(script);
+					
+					// Initial setup after script loads
+					window.addEventListener('load', () => {
+						gtag('js', new Date());
+						gtag('config', window.gtagMeasurementId);
+					}, { once: true });
 				}
-				</script>
-			</>
+				
+				// Store measurement ID for later use
+				window.gtagMeasurementId = measurementId;
+				
+				// Load on first interaction (click, keydown, touch)
+				['click', 'keydown', 'touchstart', 'scroll'].forEach(event => {
+					document.addEventListener(event, loadGtag, { once: true, passive: true });
+				});
+				
+				// Fallback: load after 3 seconds if no interaction
+				setTimeout(loadGtag, 3000);
+			</script>
 		)}
+
+		<!-- Enable CTA button glow effects after page renders for Lighthouse performance -->
+		<script>
+			// Use requestAnimationFrame twice to ensure rendering is complete
+			// First frame: browser processes paint
+			// Second frame: glow effects are enabled
+			requestAnimationFrame(() => {
+				requestAnimationFrame(() => {
+					document.documentElement.classList.add('glow-ready');
+				});
+			});
+
+			// Fallback for browsers with performance issues
+			// Ensure glow is enabled by 100ms after DOM load
+			if (document.readyState === 'loading') {
+				document.addEventListener('DOMContentLoaded', () => {
+					setTimeout(() => {
+						document.documentElement.classList.add('glow-ready');
+					}, 100);
+				}, { once: true });
+			}
+		</script>
+
 	</head>
 	<body>
 		<Nav />
