@@ -52,6 +52,16 @@ const alternateFullUrl = alternateUrl ? `${productionDomain}${alternateUrl}` : u
 		<!-- Canonical URL -->
 		<link rel="canonical" href={canonicalUrl} />
 
+		<!-- Preconnect to critical origins -->
+		<link rel="preconnect" href="https://fonts.googleapis.com">
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+		<link rel="preconnect" href="https://www.googletagmanager.com">
+		<link rel="preconnect" href="https://www.google-analytics.com">
+		
+		<!-- DNS Prefetch for third-party resources -->
+		<link rel="dns-prefetch" href="https://cdn.cloudflare.com" />
+		<link rel="dns-prefetch" href="https://static.cloudflareinsights.com">
+
 		<!-- hreflang tags for language alternates -->
 		{lang === 'en' && alternateFullUrl && (
 			<>

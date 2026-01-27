@@ -19,6 +19,9 @@
 
 html {
   scroll-behavior: smooth;
+  /* Improve rendering performance */
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
 }
 
 body {
@@ -34,6 +37,40 @@ body {
   color: var(--text-primary);
   line-height: 1.6;
   overflow-x: hidden;
+}
+
+/* Content Visibility - Defer rendering of below-fold content */
+main, section, article, aside {
+  content-visibility: auto;
+  contain-intrinsic-size: auto 500px;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  content-visibility: auto;
+  contain-intrinsic-size: auto 1.2em;
+}
+
+/* Image and media optimization */
+img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+  decoding: async;
+}
+
+picture img {
+  decoding: async;
+}
+
+video {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+/* Prevent layout shift */
+img[width][height] {
+  aspect-ratio: attr(width) / attr(height);
 }
 
 /* Section Header Styles */
@@ -78,6 +115,15 @@ body {
   transition: all 0.3s ease;
   box-shadow: none;
   position: relative;
+  /* Optimize button rendering */
+  will-change: transform;
+  contain: layout style paint;
+  /* Minimum touch target size */
+  min-height: 48px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
   overflow: hidden;
   display: inline-block;
   text-decoration: none;
@@ -130,9 +176,17 @@ body {
   cursor: pointer;
   transition: all 0.3s ease;
   backdrop-filter: blur(10px);
-  display: inline-block;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
   text-decoration: none;
   box-shadow: none;
+  /* Optimize button rendering */
+  will-change: transform, box-shadow;
+  contain: layout style paint;
+  /* Minimum touch target size */
+  min-height: 48px;
+}
 }
 
 .cta-secondary:hover {

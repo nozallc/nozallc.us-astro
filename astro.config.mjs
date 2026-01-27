@@ -23,12 +23,7 @@ export default defineConfig({
     assets: '_astro',
     cssCodeSplit: false,
   },
-  // Development settings
-  vite: {
-    build: {
-      minify: 'esbuild',
-    },
-  },
+  // Development settings\n  vite: {\n    build: {\n      minify: 'terser',\n      cssMinify: true,\n      sourcemap: false,\n    },\n  },
   // Enable prefetching for better performance
   prefetch: {
     prefetchAll: true,
