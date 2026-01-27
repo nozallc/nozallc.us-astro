@@ -1,0 +1,1499 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Contractor | Lead Generation Proposal</title>
+  <style>
+    :root {
+      --gray-900: #111827;
+      --gray-700: #374151;
+      --gray-600: #4b5563;
+      --gray-500: #6b7280;
+      --gray-400: #9ca3af;
+      --gray-200: #e5e7eb;
+      --gray-100: #f3f4f6;
+      --gray-50: #f9fafb;
+      --blue-900: #1e3a8a;
+      --blue-600: #2563eb;
+      --blue-50: #eff6ff;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      background-color: var(--gray-100);
+      color: var(--gray-900);
+      margin: 0;
+      line-height: 1.5;
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
+
+    /* PASSWORD GATE */
+    #password-gate {
+      position: fixed;
+      top: 0; left: 0; width: 100%; height: 100%;
+      background: #fff;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      z-index: 9999;
+    }
+
+    .gate-box {
+      width: 100%;
+      max-width: 400px;
+      text-align: center;
+      padding: 40px;
+    }
+
+    .gate-box h2 {
+      font-size: 28px;
+      font-weight: 700;
+      color: var(--gray-900);
+      margin: 0 0 12px 0;
+    }
+
+    .gate-box p {
+      font-size: 16px;
+      color: var(--gray-500);
+      margin: 0 0 32px 0;
+    }
+
+    .gate-input {
+      width: 100%;
+      padding: 14px;
+      border: 1px solid var(--gray-200);
+      border-radius: 12px;
+      margin-bottom: 16px;
+      font-size: 16px;
+      outline: none;
+    }
+
+    .gate-input:focus {
+      border-color: var(--blue-600);
+      box-shadow: 0 0 0 3px var(--blue-50);
+    }
+
+    .gate-btn {
+      width: 100%;
+      background: var(--blue-600);
+      color: #fff;
+      border: none;
+      padding: 14px;
+      border-radius: 12px;
+      font-weight: 700;
+      cursor: pointer;
+      font-size: 16px;
+      transition: background 0.2s;
+    }
+
+    .gate-btn:hover {
+      background: var(--blue-900);
+    }
+
+    .gate-err {
+      color: #dc2626;
+      font-size: 14px;
+      margin-top: 12px;
+      visibility: hidden;
+    }
+
+    /* MAIN CONTENT WRAPPER */
+    #content-wrap {
+      display: none;
+    }
+
+    /* HEADER / NAV */
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 16px 40px;
+      background: #fff;
+      border-bottom: 1px solid var(--gray-100);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    .logo-text {
+      font-weight: 700;
+      font-size: 18px;
+      color: var(--blue-900);
+      font-style: italic;
+    }
+
+    .print-btn {
+      background: var(--gray-900);
+      color: #fff;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 8px;
+      font-size: 14px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+
+    .print-btn:hover {
+      background: var(--blue-600);
+    }
+
+    .section-label {
+      display: block;
+      text-align: center;
+      background: var(--gray-50);
+      padding: 12px 0;
+      font-size: 12px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.2em;
+      color: var(--gray-400);
+      border-bottom: 1px solid var(--gray-100);
+    }
+
+    .main-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 40px;
+    }
+
+    /* SLIDES & SECTIONS */
+    .slide-block {
+      padding: 100px 0;
+      border-bottom: 1px solid var(--gray-50);
+    }
+
+    .slide-title {
+      font-size: 38px;
+      font-weight: 300;
+      color: var(--blue-900);
+      margin-bottom: 64px;
+      text-align: center;
+      text-transform: uppercase;
+      letter-spacing: -0.01em;
+    }
+
+    .slide-subtitle {
+      font-size: 18px;
+      color: var(--gray-600);
+      text-align: center;
+      margin-bottom: 60px;
+      max-width: 800px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    /* GRID LAYOUTS */
+    .grid-3 {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 60px 40px;
+      margin-bottom: 40px;
+    }
+
+    .grid-6 {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 60px 40px;
+    }
+
+    @media (max-width: 768px) {
+      .grid-6 { grid-template-columns: 1fr; }
+      .grid-3 { grid-template-columns: 1fr; }
+    }
+
+    .card {
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .icon-box {
+      width: 80px;
+      height: 80px;
+      background: var(--blue-50);
+      border: 1px solid #dbeafe;
+      border-radius: 24px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 24px;
+      color: var(--blue-600);
+    }
+
+    .icon-box svg {
+      width: 40px;
+      height: 40px;
+    }
+
+    .card-h {
+      font-size: 19px;
+      font-weight: 700;
+      color: var(--gray-900);
+      margin-bottom: 12px;
+    }
+
+    .card-p {
+      font-size: 16px;
+      color: var(--gray-500);
+      max-width: 280px;
+      margin: 0 auto;
+      line-height: 1.6;
+    }
+
+    .quote-block {
+      margin-top: 80px;
+      padding: 40px;
+      border-top: 1px solid var(--gray-50);
+      text-align: center;
+      font-style: italic;
+      color: rgba(30, 58, 138, 0.6);
+      font-size: 20px;
+      font-weight: 300;
+      max-width: 800px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    /* SCOPE CARDS */
+    .scope-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 40px;
+      margin-top: 60px;
+      width: 100%;
+    }
+
+    @media (max-width: 1024px) {
+      .scope-grid { grid-template-columns: 1fr; }
+    }
+
+    .scope-card {
+      background: #fdfdfd;
+      border: 1px solid var(--gray-100);
+      border-radius: 32px;
+      padding: 40px;
+      display: flex;
+      flex-direction: column;
+      width: 100%;
+      overflow: hidden;
+    }
+
+    .scope-card.accent {
+      background: #f8fbff;
+      border-color: #dbeafe;
+    }
+
+    .scope-card h2 {
+      font-size: 24px;
+      font-weight: 700;
+      color: var(--gray-900);
+      margin: 0 0 8px 0;
+    }
+
+    .scope-card > p {
+      font-size: 14px;
+      color: var(--gray-500);
+      margin: 0 0 24px 0;
+    }
+
+    .tree-pre {
+      font-family: 'JetBrains Mono', 'Courier New', monospace;
+      font-size: 13px;
+      line-height: 1.5;
+      color: var(--gray-600);
+      background: var(--gray-50);
+      padding: 24px;
+      border-radius: 16px;
+      overflow-x: auto;
+      overflow-y: auto;
+      max-width: 100%;
+      margin: 24px 0;
+      white-space: pre;
+      word-break: normal;
+      overflow-wrap: normal;
+      max-height: 400px;
+    }
+
+    .tree-f {
+      color: var(--blue-900);
+      font-weight: 700;
+    }
+
+    .scope-price-container {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      margin-top: 32px;
+      padding-top: 24px;
+      border-top: 1px solid var(--gray-100);
+    }
+
+    .scope-price-btn {
+      background: var(--blue-600);
+      color: #fff;
+      padding: 16px 32px;
+      border-radius: 12px;
+      font-weight: 800;
+      font-size: 18px;
+      cursor: pointer;
+      transition: all 0.3s;
+      white-space: nowrap;
+    }
+
+    .scope-price-btn:hover {
+      background: var(--blue-900);
+      transform: scale(1.05);
+    }
+
+    .scope-price-label {
+      font-size: 12px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--gray-600);
+    }
+
+    /* TWO-COLUMN PHILOSOPHY */
+    .philosophy-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 40px;
+      margin-top: 60px;
+    }
+
+    @media (max-width: 768px) {
+      .philosophy-grid { grid-template-columns: 1fr; }
+    }
+
+    .philosophy-card {
+      background: #fdfdfd;
+      border: 1px solid var(--gray-100);
+      border-radius: 24px;
+      padding: 40px;
+    }
+
+    .philosophy-card.accent {
+      background: #f8fbff;
+      border-color: #dbeafe;
+    }
+
+    .philosophy-card h3 {
+      font-size: 24px;
+      font-weight: 700;
+      color: var(--gray-900);
+      margin: 0 0 24px 0;
+    }
+
+    .philosophy-bullets {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    .philosophy-bullets li {
+      font-size: 16px;
+      color: var(--gray-700);
+      margin-bottom: 16px;
+      padding-left: 24px;
+      position: relative;
+    }
+
+    .philosophy-bullets li::before {
+      content: "•";
+      position: absolute;
+      left: 0;
+      color: var(--blue-600);
+      font-weight: 800;
+    }
+
+    /* ROI CALCULATOR */
+    .roi-box {
+      background: var(--blue-50);
+      border: 1px solid #dbeafe;
+      border-radius: 24px;
+      padding: 40px;
+      max-width: 700px;
+      margin: 60px auto;
+    }
+
+    .roi-box h3 {
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--blue-900);
+      margin: 0 0 24px 0;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .roi-field {
+      margin-bottom: 24px;
+    }
+
+    .roi-label {
+      display: block;
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--gray-600);
+      text-transform: uppercase;
+      margin-bottom: 8px;
+    }
+
+    .roi-input-group {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .roi-input-group span {
+      font-size: 14px;
+      color: var(--gray-600);
+    }
+
+    .roi-input-group input {
+      flex: 1;
+      padding: 12px;
+      background: #fff;
+      border: 1px solid var(--gray-100);
+      border-radius: 12px;
+      font-size: 16px;
+      outline: none;
+    }
+
+    .roi-input-group input:focus {
+      border-color: var(--blue-600);
+      box-shadow: 0 0 0 3px var(--blue-50);
+    }
+
+    .roi-assumptions {
+      background: #fff;
+      border: 1px solid var(--gray-100);
+      border-radius: 16px;
+      padding: 24px;
+      margin-bottom: 24px;
+    }
+
+    .roi-assumptions-label {
+      font-size: 12px;
+      color: var(--gray-500);
+      text-transform: uppercase;
+      font-weight: 700;
+      margin: 0 0 12px 0;
+    }
+
+    .roi-assumptions ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      font-size: 14px;
+      color: var(--gray-700);
+    }
+
+    .roi-assumptions li {
+      margin-bottom: 8px;
+    }
+
+    .roi-result {
+      background: var(--blue-900);
+      color: #fff;
+      border-radius: 16px;
+      padding: 24px;
+      text-align: center;
+    }
+
+    .roi-result-label {
+      font-size: 12px;
+      text-transform: uppercase;
+      font-weight: 700;
+      color: rgba(255, 255, 255, 0.8);
+      margin: 0 0 8px 0;
+    }
+
+    .roi-result-number {
+      font-size: 32px;
+      font-weight: 700;
+      margin: 0;
+    }
+
+    /* PHILOSOPHY EXPLAINER */
+    .philosophy-explainer {
+      text-align: center;
+      font-size: 15px;
+      color: var(--gray-600);
+      margin: 60px auto;
+      max-width: 900px;
+      line-height: 1.8;
+    }
+
+    /* TIMELINE SECTION */
+    .timeline {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 32px;
+      margin-top: 60px;
+    }
+
+    .timeline-item {
+      text-align: center;
+    }
+
+    .timeline-num {
+      font-size: 48px;
+      font-weight: 800;
+      color: var(--blue-600);
+      margin-bottom: 8px;
+    }
+
+    .timeline-title {
+      font-size: 18px;
+      font-weight: 700;
+      color: var(--gray-900);
+      margin-bottom: 8px;
+    }
+
+    .timeline-desc {
+      font-size: 14px;
+      color: var(--gray-600);
+      line-height: 1.6;
+    }
+
+    /* FOOTER */
+    footer {
+      text-align: center;
+      padding: 60px 40px;
+      background: var(--gray-50);
+      border-top: 1px solid var(--gray-100);
+      margin-top: 100px;
+    }
+
+    footer p {
+      margin: 4px 0;
+      font-size: 14px;
+      color: var(--gray-600);
+    }
+
+    /* PRINT STYLES */
+    @media print {
+      body {
+        background-color: white;
+        color: black;
+        font-size: 10pt;
+      }
+      .no-print {
+        display: none !important;
+      }
+      header {
+        display: none !important;
+      }
+      .section-label {
+        display: none !important;
+      }
+      .slide-block {
+        page-break-inside: avoid;
+        border: none;
+        padding: 40px 0;
+      }
+      .p-header {
+        page-break-after: avoid;
+      }
+    }
+
+    /* PRINT TEMPLATE (HIDDEN FROM SCREEN) */
+    .hidden-print {
+      display: none;
+    }
+
+    .p-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 40px;
+      padding-bottom: 24px;
+      border-bottom: 2px solid #1e3a8a;
+    }
+
+    .p-header h1 {
+      font-size: 28px;
+      margin: 0;
+      color: #1e3a8a;
+    }
+
+    .p-header > div:first-child p {
+      color: #666;
+      margin-top: 4px;
+      font-size: 12px;
+    }
+
+    .p-header > div:last-child {
+      text-align: right;
+    }
+
+    .p-header .p-logo {
+      font-size: 24px;
+      font-weight: 800;
+      color: #2563eb;
+    }
+
+    .p-header .p-url {
+      color: #999;
+      font-size: 12px;
+    }
+
+    .p-grid {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 40px;
+      padding-bottom: 24px;
+      border-bottom: 1px solid #e5e7eb;
+    }
+
+    .p-label {
+      font-size: 10px;
+      text-transform: uppercase;
+      font-weight: 700;
+      color: #999;
+      margin-bottom: 4px;
+    }
+
+    .p-val {
+      font-size: 16px;
+      font-weight: 700;
+      color: #1f2937;
+    }
+
+    .p-box {
+      background: #f9fafb;
+      border: 1px solid #e5e7eb;
+      padding: 24px;
+      border-radius: 8px;
+      margin-bottom: 40px;
+      page-break-inside: avoid;
+    }
+
+    .p-box h2 {
+      font-size: 24px;
+      margin: 0;
+      color: #1e3a8a;
+    }
+
+    .p-price {
+      font-size: 32px;
+      font-weight: 800;
+      color: #2563eb;
+    }
+
+    .p-tree {
+      font-family: 'Courier New', monospace;
+      font-size: 11px;
+      line-height: 1.4;
+      white-space: pre-wrap;
+      word-wrap: break-word;
+      background: white;
+      padding: 16px;
+      border: 1px solid #e5e7eb;
+      border-radius: 4px;
+      max-height: 600px;
+      overflow-y: auto;
+      margin-top: 16px;
+    }
+
+    .p-sigs {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 60px;
+    }
+
+    .p-sig-col {
+      flex: 1;
+      text-align: center;
+      border-top: 1px solid #333;
+      padding-top: 12px;
+      font-size: 11px;
+      font-weight: 700;
+    }
+  </style>
+</head>
+<body>
+  <!-- PASSWORD GATE -->
+  <div id="password-gate">
+    <div class="gate-box">
+      <h2>Proposal Access</h2>
+      <p>Enter the access code to view this proposal.</p>
+      <form id="password-form">
+        <input type="password" id="gate-pass" class="gate-input" placeholder="Access Code" />
+        <button type="submit" class="gate-btn">Enter</button>
+      </form>
+      <div id="gate-err" class="gate-err">Incorrect code. Try again.</div>
+    </div>
+  </div>
+
+  <!-- MAIN CONTENT -->
+  <div id="content-wrap">
+    <!-- HEADER -->
+    <header class="no-print">
+      <div class="logo-text">Contractor Lead Engine Proposal</div>
+      <button class="print-btn no-print" onclick="window.print()">📥 Save PDF</button>
+    </header>
+
+    <!-- SECTION 01: HERO -->
+    <div class="section-label">Section 01 — Introduction</div>
+    <main class="main-container">
+      <section class="slide-block">
+        <h1 class="slide-title">Contractor Website + Lead Engine Proposal</h1>
+        <p class="slide-subtitle">Own your digital territory. Control calls, leads, and booked jobs.</p>
+        
+        <div class="grid-3">
+          <div class="card">
+            <div class="icon-box">
+              <svg fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+              </svg>
+            </div>
+            <h3 class="card-h">More Calls</h3>
+            <p class="card-p">Ranking for "[Service] + [City]" puts your phone number in front of homeowners ready to call right now.</p>
+          </div>
+          <div class="card">
+            <div class="icon-box">
+              <svg fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+              </svg>
+            </div>
+            <h3 class="card-h">More Quote Forms</h3>
+            <p class="card-p">Dedicated service pages with structured forms capture intent-rich leads, not just window shoppers.</p>
+          </div>
+          <div class="card">
+            <div class="icon-box">
+              <svg fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M8 7V3m8 3V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+              </svg>
+            </div>
+            <h3 class="card-h">More Booked Jobs</h3>
+            <p class="card-p">Click-to-call + inspection booking CTAs on every page make the next step obvious and easy.</p>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- SECTION 02: CURRENT STATE -->
+    <div class="section-label">Section 02 — Current State (Problems)</div>
+    <main class="main-container">
+      <section class="slide-block">
+        <h1 class="slide-title">What Your Site Is NOT Doing (Critical Gap)</h1>
+        
+        <div class="grid-6">
+          <div class="card">
+            <div class="icon-box">
+              <svg fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M13 10V3L4 14h7v7l9-11h-7z" />
+              </svg>
+            </div>
+            <h3 class="card-h">Slow Platform</h3>
+            <p class="card-p">WordPress + plugins = bloated, slow-loading pages that lose mobile visitors in seconds.</p>
+          </div>
+          <div class="card">
+            <div class="icon-box">
+              <svg fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-.553-.894L15 4m0 13V4m0 0L9 7" />
+              </svg>
+            </div>
+            <h3 class="card-h">Weak Local Ranking</h3>
+            <p class="card-p">Footer mentions cities, but no dedicated pages means Google can't confidently rank you for local searches.</p>
+          </div>
+          <div class="card">
+            <div class="icon-box">
+              <svg fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 6h16M4 12h16M4 18h16" />
+              </svg>
+            </div>
+            <h3 class="card-h">No Service Depth</h3>
+            <p class="card-p">Homepage lists all services together. Google can't tell which one you actually specialize in.</p>
+          </div>
+          <div class="card">
+            <div class="icon-box">
+              <svg fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 9v2m0 4v2m0 4v2M6.34 5.34a9 9 0 1112.73 0" />
+              </svg>
+            </div>
+            <h3 class="card-h">Plugin Fatigue</h3>
+            <p class="card-p">Plugins break, slow things down, create security risks. Every update is a potential site failure.</p>
+          </div>
+          <div class="card">
+            <div class="icon-box">
+              <svg fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9" />
+              </svg>
+            </div>
+            <h3 class="card-h">Hidden Number</h3>
+            <p class="card-p">Contact info exists but isn't structured for Google Business Profile or AI assistants to surface it easily.</p>
+          </div>
+          <div class="card">
+            <div class="icon-box">
+              <svg fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M13 9l3 3L9 20H5v-4l8-8z" />
+              </svg>
+            </div>
+            <h3 class="card-h">No Clear Path</h3>
+            <p class="card-p">Visitor lands on homepage, gets lost in menus, and calls a competitor instead of you.</p>
+          </div>
+        </div>
+
+        <div class="quote-block">"A brochure-style website supports existing awareness — it doesn't create new demand."</div>
+      </section>
+    </main>
+
+    <!-- SECTION 03: BACKEND VIEW -->
+    <div class="section-label">Section 03 — Backend Reality</div>
+    <main class="main-container">
+      <section class="slide-block">
+        <h1 class="slide-title">What Google & AI Engines See (Backend)</h1>
+        
+        <div class="grid-6">
+          <div class="card">
+            <div class="icon-box">
+              <svg fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 6h16M4 12h16M4 18h16" />
+              </svg>
+            </div>
+            <h3 class="card-h">Too Much Noise</h3>
+            <p class="card-p">One homepage trying to represent roofing, siding, gutters, warranties, financing, and insurance. Too much.</p>
+          </div>
+          <div class="card">
+            <div class="icon-box">
+              <svg fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
+              </svg>
+            </div>
+            <h3 class="card-h">Ranking Reality</h3>
+            <p class="card-p">Broad lists don't rank. Focused pages do. One page per service per city is what Google rewards.</p>
+          </div>
+          <div class="card">
+            <div class="icon-box">
+              <svg fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M13 10V3L4 14h7v7l9-11h-7z" />
+              </svg>
+            </div>
+            <h3 class="card-h">Speed Signals</h3>
+            <p class="card-p">Pages load slowly = low trust signal = lower rankings. Google punishes slow sites.</p>
+          </div>
+          <div class="card">
+            <div class="icon-box">
+              <svg fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 3v2m6-2v2M9 19v2m6-2v2M5 9H3m2 6H3m18-6h-2m2 6h-2M7 19h10a2 2 0 002-2V7a2 2 0 00-2-2H7a2 2 0 00-2 2v10a2 2 0 002 2zM9 9h6v6H9V9z" />
+              </svg>
+            </div>
+            <h3 class="card-h">AI Limitation</h3>
+            <p class="card-p">New AI tools look for short, clear answers on focused pages, not broad homepages.</p>
+          </div>
+          <div class="card">
+            <div class="icon-box">
+              <svg fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
+              </svg>
+            </div>
+            <h3 class="card-h">Local Presence Gap</h3>
+            <p class="card-p">Footer location links aren't strong enough for local search ranking. Dedicated pages are needed.</p>
+          </div>
+          <div class="card">
+            <div class="icon-box">
+              <svg fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
+              </svg>
+            </div>
+            <h3 class="card-h">Platform Risk</h3>
+            <p class="card-p">Heavy systems break easily. One plugin update can crash your forms, your rankings, your leads.</p>
+          </div>
+        </div>
+
+        <div class="quote-block">"The website is trying to do too much with too few pages."</div>
+      </section>
+    </main>
+
+    <!-- SECTION 04: VISION -->
+    <div class="section-label">Section 04 — Vision (NEW)</div>
+    <main class="main-container">
+      <section class="slide-block">
+        <h1 class="slide-title">The New Foundation: Built for Speed, Growth & Territory Control</h1>
+        
+        <div class="grid-6">
+          <div class="card">
+            <div class="icon-box">
+              <svg fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
+              </svg>
+            </div>
+            <h3 class="card-h">Modern Structure</h3>
+            <p class="card-p">Clean, purpose-built system designed specifically for lead generation and scaling without breaking.</p>
+          </div>
+          <div class="card">
+            <div class="icon-box">
+              <svg fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+              </svg>
+            </div>
+            <h3 class="card-h">Instant Trust</h3>
+            <p class="card-p">Pages load in under 1 second. Fast loading = professional authority signal to homeowners.</p>
+          </div>
+          <div class="card">
+            <div class="icon-box">
+              <svg fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M13 10V3L4 14h7v7l9-11h-7z" />
+              </svg>
+            </div>
+            <h3 class="card-h">Territory Ownership</h3>
+            <p class="card-p">Dedicated pages for each service in each city = you own those search results locally.</p>
+          </div>
+          <div class="card">
+            <div class="icon-box">
+              <svg fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M5 13l4 4L19 7" />
+              </svg>
+            </div>
+            <h3 class="card-h">AI-Ready</h3>
+            <p class="card-p">Focused content + structured data = AI assistants recommend you over generic competitors.</p>
+          </div>
+          <div class="card">
+            <div class="icon-box">
+              <svg fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 6h16M4 12h16M4 18h16" />
+              </svg>
+            </div>
+            <h3 class="card-h">One Topic per Page</h3>
+            <p class="card-p">Roofing Lexington. Siding Richmond. Gutters Winchester. Each its own focused page = maximum clarity.</p>
+          </div>
+          <div class="card">
+            <div class="icon-box">
+              <svg fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+              </svg>
+            </div>
+            <h3 class="card-h">Owned Asset</h3>
+            <p class="card-p">No recurring hosting fees, no plugin subscriptions, no dependency on third parties. You own it completely.</p>
+          </div>
+        </div>
+
+        <div class="quote-block">"We're going to make sure homeowners find you first."</div>
+      </section>
+    </main>
+
+    <!-- SECTION 05: LEAD ENGINE -->
+    <div class="section-label">Section 05 — Lead Engine</div>
+    <main class="main-container">
+      <section class="slide-block">
+        <h1 class="slide-title">Built to Scale — Easy for Google & AI to Understand</h1>
+        
+        <div class="grid-6">
+          <div class="card">
+            <div class="icon-box">
+              <svg fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M13 10V3L4 14h7v7l9-11h-7z" />
+              </svg>
+            </div>
+            <h3 class="card-h">Performance First</h3>
+            <p class="card-p">Fast sites get more action. Call buttons are visible sooner, forms load instantly.</p>
+          </div>
+          <div class="card">
+            <div class="icon-box">
+              <svg fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-.553-.894L15 4m0 13V4m0 0L9 7" />
+              </svg>
+            </div>
+            <h3 class="card-h">Local Authority</h3>
+            <p class="card-p">Google needs to know exactly where you serve. Each city gets its own hub for ranking.</p>
+          </div>
+          <div class="card">
+            <div class="icon-box">
+              <svg fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
+              </svg>
+            </div>
+            <h3 class="card-h">Service Connections</h3>
+            <p class="card-p">When someone searches nearby for a specific service, the right page appears automatically.</p>
+          </div>
+          <div class="card">
+            <div class="icon-box">
+              <svg fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+              </svg>
+            </div>
+            <h3 class="card-h">Intent Capture</h3>
+            <p class="card-p">Pages match how homeowners search. Clear steps for next action = easier conversion.</p>
+          </div>
+          <div class="card">
+            <div class="icon-box">
+              <svg fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M8 7V3m8 3V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+              </svg>
+            </div>
+            <h3 class="card-h">Conversion Optimized</h3>
+            <p class="card-p">Built specifically to drive phone calls and quote requests every single day.</p>
+          </div>
+          <div class="card">
+            <div class="icon-box">
+              <svg fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+              </svg>
+            </div>
+            <h3 class="card-h">Owned Infrastructure</h3>
+            <p class="card-p">You own this asset completely. No recurring marketing fees, no platform dependency.</p>
+          </div>
+        </div>
+
+        <div class="quote-block">"This isn't a brochure website. It's a 24/7 lead-generating machine."</div>
+      </section>
+    </main>
+
+    <!-- SECTION 06: SCOPE & FILE TREES -->
+    <div class="section-label">Section 06 — Scope & Architecture</div>
+    <main class="main-container">
+      <section class="slide-block">
+        <h1 class="slide-title">The Architecture of Growth</h1>
+        
+        <div class="scope-grid">
+          <div class="scope-card">
+            <h2>Local Foundation</h2>
+            <p>Streamlined, budget-conscious local authority build for immediate market presence.</p>
+            
+            <pre class="tree-pre">/
+├── index.astro
+│   └── Homepage: Authority positioning, service selector, call + quote CTA
+│
+├── services/
+│   ├── shingle-roofing/
+│   ├── metal-roofing/
+│   ├── gutters-drainage/
+│   ├── vinyl-siding/
+│   └── metal-siding/
+│
+├── locations/  [Optional Cities]
+│   ├── richmond-ky/
+│   │   ├── index.astro
+│   │   ├── shingle-roofing.astro
+│   │   ├── metal-roofing.astro
+│   │   ├── gutters-drainage.astro
+│   │   ├── vinyl-siding.astro
+│   │   └── metal-siding.astro
+│   │
+│   ├── lexington-ky/
+│   │   ├── index.astro
+│   │   ├── shingle-roofing.astro
+│   │   ├── metal-roofing.astro
+│   │   ├── gutters-drainage.astro
+│   │   ├── vinyl-siding.astro
+│   │   └── metal-siding.astro
+│   │
+│   └── winchester-ky/
+│       ├── index.astro
+│       ├── shingle-roofing.astro
+│       ├── metal-roofing.astro
+│       ├── gutters-drainage.astro
+│       ├── vinyl-siding.astro
+│       └── metal-siding.astro
+│
+├── about/
+│   └── index.astro
+│
+├── faq/
+│   └── index.astro
+│
+└── contact/
+    └── index.astro</pre>
+
+            <div class="scope-price-container">
+              <div class="scope-price-btn">$3,000</div>
+              <span class="scope-price-label">Exceptional Value</span>
+            </div>
+          </div>
+
+          <div class="scope-card accent">
+            <h2>Maximum Impact Expansion</h2>
+            <p>Aggressive acquisition architecture with deep authority hubs and expanded service coverage.</p>
+            
+            <pre class="tree-pre">/
+├── index.astro
+│   └── Homepage: Territory selector, multi-service explorer
+│
+├── services/
+│   ├── shingle-roofing/
+│   ├── metal-roofing/
+│   ├── gutters-drainage/
+│   ├── vinyl-siding/
+│   ├── metal-siding/
+│   ├── storm-restoration/
+│   ├── roof-repair/
+│   ├── skylights/
+│   ├── commercial-roofing/
+│   └── roof-inspections/
+│
+├── service-areas/  [Optional Cities x 13]
+│   ├── richmond-ky/ [All 10 services]
+│   ├── lexington-ky/ [All 10 services]
+│   ├── winchester-ky/ [All 10 services]
+│   └── [10 optional cities] [All 10 services]
+│
+├── case-studies/
+│   ├── index.astro
+│   ├── recent-projects.astro
+│   └── [Additional case studies]
+│
+├── trust-content/
+│   ├── storm-damage-guide.astro
+│   └── insurance-claims.astro
+│
+├── about/
+│   └── index.astro
+│
+├── faq/
+│   └── index.astro
+│
+└── contact/
+    └── index.astro</pre>
+
+            <div class="scope-price-container">
+              <div class="scope-price-btn">$5,000</div>
+              <span class="scope-price-label">Maximum Impact</span>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- SECTION 07: ROI CALCULATOR -->
+    <div class="section-label">Section 07 — ROI (Philosophy & Calculator)</div>
+    <main class="main-container">
+      <section class="slide-block">
+        <h1 class="slide-title">Launching Your Digital Future</h1>
+        <p class="slide-subtitle">An investment in homeowner acquisition — not a recurring marketing expense</p>
+
+        <div class="philosophy-grid">
+          <div class="philosophy-card">
+            <h3>What This Is NOT</h3>
+            <ul class="philosophy-bullets">
+              <li>A template-based WordPress site</li>
+              <li>A recurring monthly SEO subscription</li>
+              <li>A generic marketing package</li>
+              <li>A site built just to "be online"</li>
+            </ul>
+          </div>
+
+          <div class="philosophy-card accent">
+            <h3>What This IS</h3>
+            <ul class="philosophy-bullets">
+              <li>A locally dominant lead-generation engine</li>
+              <li>Infrastructure designed to scale without rebuilding</li>
+              <li>A system engineered for real homeowner demand</li>
+              <li>A long-term digital asset you own completely</li>
+            </ul>
+          </div>
+        </div>
+
+        <p class="philosophy-explainer">Most marketing expenses disappear the moment you stop paying. This approach is different. We build durable digital infrastructure that compounds over time — separating operational spend from long-term asset creation.</p>
+
+        <div class="roi-box">
+          <h3>Simple ROI Reality Check</h3>
+          
+          <div class="roi-field">
+            <label class="roi-label">Average value per new job</label>
+            <div class="roi-input-group">
+              <span>$</span>
+              <input type="number" id="roiJobValue" placeholder="e.g. 8500" value="8500" />
+            </div>
+          </div>
+
+          <div class="roi-field">
+            <label class="roi-label">Close rate (% of quote requests that become jobs)</label>
+            <div class="roi-input-group">
+              <input type="number" id="roiCloseRate" placeholder="e.g. 15" value="15" min="1" max="100" />
+              <span>%</span>
+            </div>
+          </div>
+
+          <div class="roi-field">
+            <label class="roi-label">Current monthly leads</label>
+            <div class="roi-input-group">
+              <input type="number" id="roiCurrentLeads" placeholder="e.g. 5" value="5" min="1" />
+            </div>
+          </div>
+
+          <div class="roi-field">
+            <label class="roi-label">Expected lead increase (%)</label>
+            <div class="roi-input-group">
+              <input type="number" id="roiLiftPercent" placeholder="e.g. 50" value="50" min="1" max="500" />
+              <span>%</span>
+            </div>
+          </div>
+
+          <div class="roi-field">
+            <label class="roi-label">Gross margin (optional, for profit calculation)</label>
+            <div class="roi-input-group">
+              <input type="number" id="roiMargin" placeholder="e.g. 35" min="1" max="100" />
+              <span>%</span>
+            </div>
+          </div>
+
+          <div class="roi-assumptions">
+            <p class="roi-assumptions-label">How This Works</p>
+            <ul class="roi-assumptions">
+              <li>• New monthly leads = Current leads × (1 + Lead Increase %)</li>
+              <li>• New monthly jobs = New leads × (Close rate / 100)</li>
+              <li>• New monthly revenue = New jobs × Job value</li>
+              <li>• Break-even = Build cost / Monthly revenue</li>
+            </ul>
+          </div>
+
+          <div class="roi-result">
+            <p class="roi-result-label">Months to break even on $3,000 build</p>
+            <p class="roi-result-number" id="roiOutput3k">3</p>
+          </div>
+
+          <div class="roi-result" style="margin-top: 16px;">
+            <p class="roi-result-label">Months to break even on $5,000 build</p>
+            <p class="roi-result-number" id="roiOutput5k">5</p>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- SECTION 08: PRICING -->
+    <div class="section-label">Section 08 — Packages & Pricing</div>
+    <main class="main-container">
+      <section class="slide-block">
+        <h1 class="slide-title">Your Commitment</h1>
+
+        <div class="scope-grid">
+          <div class="scope-card">
+            <h2>Local Foundation</h2>
+            <p>Professional presence build for local domination.</p>
+            
+            <div style="background: var(--blue-50); border: 1px solid #dbeafe; border-radius: 16px; padding: 16px; margin-bottom: 24px;">
+              <div style="font-size: 12px; font-weight: 700; color: var(--gray-600); text-transform: uppercase; margin-bottom: 8px;">Includes</div>
+              <ul style="list-style: none; padding: 0; margin: 0; font-size: 14px; color: var(--gray-700);">
+                <li style="margin-bottom: 6px;">• Core local authority (3 cities)</li>
+                <li style="margin-bottom: 6px;">• 5 core services</li>
+                <li style="margin-bottom: 6px;">• SEO-optimized structure</li>
+                <li style="margin-bottom: 6px;">• Click-to-call + quote forms</li>
+                <li style="margin-bottom: 6px;">• Fast performance (Astro + Cloudflare)</li>
+                <li>• Owned asset (no recurring fees)</li>
+              </ul>
+            </div>
+
+            <div class="scope-price-container">
+              <div class="scope-price-btn">$3,000</div>
+              <span class="scope-price-label">Exceptional Value</span>
+            </div>
+          </div>
+
+          <div class="scope-card accent">
+            <h2>Maximum Impact Expansion</h2>
+            <p>Deep visibility build for aggressive lead acquisition.</p>
+            
+            <div style="background: #f8fbff; border: 1px solid #dbeafe; border-radius: 16px; padding: 16px; margin-bottom: 24px;">
+              <div style="font-size: 12px; font-weight: 700; color: var(--gray-600); text-transform: uppercase; margin-bottom: 8px;">Includes</div>
+              <ul style="list-style: none; padding: 0; margin: 0; font-size: 14px; color: var(--gray-700);">
+                <li style="margin-bottom: 6px;">• Multi-city domination (13 total)</li>
+                <li style="margin-bottom: 6px;">• Up to 10 services</li>
+                <li style="margin-bottom: 6px;">• Case studies hub</li>
+                <li style="margin-bottom: 6px;">• Trust content pages</li>
+                <li style="margin-bottom: 6px;">• Advanced schema + AI-ready</li>
+                <li>• Fully scalable for future growth</li>
+              </ul>
+            </div>
+
+            <div class="scope-price-container">
+              <div class="scope-price-btn">$5,000</div>
+              <span class="scope-price-label">Maximum Impact</span>
+            </div>
+          </div>
+        </div>
+
+        <div style="background: var(--gray-50); border: 1px solid var(--gray-200); border-radius: 24px; padding: 32px; text-align: center; margin-top: 60px; max-width: 600px; margin-left: auto; margin-right: auto;">
+          <p style="margin: 0; font-size: 16px; font-weight: 700; color: var(--gray-900); margin-bottom: 8px;">Flexible Payment Options</p>
+          <p style="margin: 0; font-size: 14px; color: var(--gray-600);">Installment plans available starting at 40% upfront. Balance can be split based on your monthly cash flow.</p>
+        </div>
+      </section>
+    </main>
+
+    <!-- SECTION 09: TIMELINE -->
+    <div class="section-label">Section 09 — Process & Timeline</div>
+    <main class="main-container">
+      <section class="slide-block">
+        <h1 class="slide-title">Getting From Here to Launch</h1>
+
+        <div class="timeline">
+          <div class="timeline-item">
+            <div class="timeline-num">1</div>
+            <div class="timeline-title">Discovery</div>
+            <div class="timeline-desc">Confirm services, cities, and content readiness. Map your target areas.</div>
+          </div>
+          <div class="timeline-item">
+            <div class="timeline-num">2</div>
+            <div class="timeline-title">Build</div>
+            <div class="timeline-desc">Pages created, structured data added, forms tested. Quality checkpoint.</div>
+          </div>
+          <div class="timeline-item">
+            <div class="timeline-num">3</div>
+            <div class="timeline-title">Content</div>
+            <div class="timeline-desc">Service descriptions, location copy, authority signals configured.</div>
+          </div>
+          <div class="timeline-item">
+            <div class="timeline-num">4</div>
+            <div class="timeline-title">Launch</div>
+            <div class="timeline-desc">Performance tested, indexing primed, local signals aligned.</div>
+          </div>
+          <div class="timeline-item">
+            <div class="timeline-num">5</div>
+            <div class="timeline-title">Support</div>
+            <div class="timeline-desc">30 days of launch support, monitoring, and performance tracking.</div>
+          </div>
+        </div>
+
+        <p style="text-align: center; font-size: 16px; color: var(--gray-600); margin-top: 60px; font-weight: 600;">Typical timeline: 2–4 weeks depending on content readiness and package selection.</p>
+      </section>
+    </main>
+
+    <!-- SECTION 10: FOOTER / CLOSING CTA -->
+    <footer>
+      <p><strong>Contractor Lead Generation Proposal</strong></p>
+      <p style="font-size: 13px;">Built by NOZA LLC | Digital Strategies & Performance Websites</p>
+      <p style="font-size: 12px; color: var(--gray-500); margin-top: 16px;">www.nozallc.us</p>
+    </footer>
+  </div>
+
+  <!-- HIDDEN PRINT TEMPLATE -->
+  <div class="hidden-print" id="print-template">
+    <div class="p-header">
+      <div>
+        <h1>Build Order Summary</h1>
+        <p>Digital Strategies & Performance Websites</p>
+      </div>
+      <div>
+        <div class="p-logo">NOZA LLC</div>
+        <div class="p-url">www.nozallc.us</div>
+      </div>
+    </div>
+
+    <div class="p-grid">
+      <div>
+        <div class="p-label">Client</div>
+        <div class="p-val" id="pClient">Contractor</div>
+        <div style="color:#666; font-size:12px; margin-top:2px;">Lead Generation Build Strategy</div>
+      </div>
+      <div style="text-align:right">
+        <div class="p-label">Proposal Date</div>
+        <div class="p-val" id="pDate">00/00/0000</div>
+      </div>
+    </div>
+
+    <div class="p-box">
+      <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom: 24px;">
+        <div>
+          <div class="p-label">Package</div>
+          <h2 style="font-size: 24px; margin: 0; color: var(--blue-900);" id="pName">Local Foundation</h2>
+        </div>
+        <div class="p-price" id="pPrice">$3,000</div>
+      </div>
+      
+      <div>
+        <div class="p-label">Primary Scope</div>
+        <ul id="pBullets" style="font-size: 14px; margin: 10px 0; padding-left: 20px;"></ul>
+      </div>
+    </div>
+
+    <div style="margin-bottom: 40px;">
+      <div class="p-label">Architecture Manifest</div>
+      <div class="p-tree" id="pTree"></div>
+    </div>
+
+    <div style="border-left: 4px solid var(--blue-600); padding-left: 24px; margin-bottom: 60px;">
+      <div class="p-label">Commitment Terms</div>
+      <p style="font-size: 13px; color: #444; margin: 4px 0;">Flexible installment plans available. All technical assets and ownership transfer to client upon project completion. Built on modern, durable frameworks for long-term business safety and scalability.</p>
+    </div>
+
+    <div class="p-sigs">
+      <div class="p-sig-col">Client Authorized Signature</div>
+      <div class="p-sig-col">NOZA LLC Representative</div>
+    </div>
+  </div>
+
+  <script>
+    (function() {
+      const PASS = "Contractors#2026";
+      const gate = document.getElementById('password-gate');
+      const wrap = document.getElementById('content-wrap');
+      const passIn = document.getElementById('gate-pass');
+      const passForm = document.getElementById('password-form');
+      const passErr = document.getElementById('gate-err');
+
+      // Password validation
+      function checkPass(e) {
+        e.preventDefault();
+        if (passIn.value === PASS) {
+          sessionStorage.setItem('auth', 'true');
+          gate.style.display = 'none';
+          wrap.style.display = 'block';
+        } else {
+          passErr.style.visibility = 'visible';
+          passIn.value = '';
+          passIn.focus();
+        }
+      }
+
+      passForm.addEventListener('submit', checkPass);
+
+      // Check if already authenticated
+      if (sessionStorage.getItem('auth') === 'true') {
+        gate.style.display = 'none';
+        wrap.style.display = 'block';
+      }
+
+      // ROI Calculator
+      const roiJobValue = document.getElementById('roiJobValue');
+      const roiCloseRate = document.getElementById('roiCloseRate');
+      const roiCurrentLeads = document.getElementById('roiCurrentLeads');
+      const roiLiftPercent = document.getElementById('roiLiftPercent');
+      const roiMargin = document.getElementById('roiMargin');
+      const roiOutput3k = document.getElementById('roiOutput3k');
+      const roiOutput5k = document.getElementById('roiOutput5k');
+
+      function updateROI() {
+        const jobValue = parseFloat(roiJobValue.value) || 8500;
+        const closeRate = parseFloat(roiCloseRate.value) || 15;
+        const currentLeads = parseFloat(roiCurrentLeads.value) || 5;
+        const liftPercent = parseFloat(roiLiftPercent.value) || 50;
+
+        // Calculate new leads
+        const newLeads = currentLeads * (1 + liftPercent / 100);
+        
+        // Calculate new jobs
+        const newJobs = newLeads * (closeRate / 100);
+        
+        // Calculate monthly revenue
+        const monthlyRevenue = newJobs * jobValue;
+
+        // Break-even calculations
+        const breakEven3k = monthlyRevenue > 0 ? Math.ceil(3000 / monthlyRevenue) : 999;
+        const breakEven5k = monthlyRevenue > 0 ? Math.ceil(5000 / monthlyRevenue) : 999;
+
+        roiOutput3k.textContent = breakEven3k > 100 ? '100+' : breakEven3k;
+        roiOutput5k.textContent = breakEven5k > 100 ? '100+' : breakEven5k;
+      }
+
+      roiJobValue.addEventListener('input', updateROI);
+      roiCloseRate.addEventListener('input', updateROI);
+      roiCurrentLeads.addEventListener('input', updateROI);
+      roiLiftPercent.addEventListener('input', updateROI);
+      roiMargin.addEventListener('input', updateROI);
+
+      updateROI();
+
+      // Set today's date on print template
+      document.getElementById('pDate').textContent = new Date().toLocaleDateString();
+    })();
+  </script>
+</body>
+</html>
