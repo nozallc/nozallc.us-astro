@@ -27,7 +27,6 @@ body {
   margin: 0;
   line-height: 1.5;
   -webkit-font-smoothing: antialiased;
-  display: none;
 }
 
 /* Password Overlay */
@@ -132,6 +131,10 @@ header {
 footer { padding: 80px 40px; text-align: center; color: var(--gray-400); font-size: 14px; border-top: 1px solid var(--gray-100); margin-top: 100px; }
 
 .hidden { display: none !important; }
+
+#content-wrap {
+  display: none;
+}
 
 @media print {
   .no-print { display: none !important; }
@@ -591,7 +594,7 @@ footer { padding: 80px 40px; text-align: center; color: var(--gray-400); font-si
       if (passIn.value === PASS) {
         sessionStorage.setItem('auth', 'true');
         gate.style.display = 'none';
-        document.body.style.display = 'block';
+        wrap.style.display = 'block';
       } else {
         passErr.style.visibility = 'visible';
       }
@@ -601,7 +604,7 @@ footer { padding: 80px 40px; text-align: center; color: var(--gray-400); font-si
     
     if (sessionStorage.getItem('auth') === 'true') {
       gate.style.display = 'none';
-      document.body.style.display = 'block';
+      wrap.style.display = 'block';
     }
 
     // Pricing Data
