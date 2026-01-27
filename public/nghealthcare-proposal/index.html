@@ -420,29 +420,159 @@ footer { padding: 80px 40px; text-align: center; color: var(--gray-400); font-si
           <h2>Focused Foundation</h2>
           <p style="color:var(--gray-500); font-size: 14px;">Streamlined, budget-conscious local authority build.</p>
           <div class="tree-pre"><span class="tree-f">/</span>
-├── index.astro <span class="tree-c">(Homepage Hub)</span>
+├── index.astro
+│   └── (Homepage: private care positioning, urgency, city selector, call + appointment CTA)
+│
 ├── locations/
-│   ├── lexington-ky/ <span class="tree-f">(1 Hub)</span>
-│   └── berea-ky/ <span class="tree-f">(1 Hub)</span>
+│   ├── lexington-ky/
+│   │   ├── index.astro
+│   │   │   └── (Lexington Location Authority Page)
+│   │   │
+│   │   ├── adult-adhd-evaluation.astro
+│   │   ├── psychiatric-medication-management.astro
+│   │   └── concierge-primary-care.astro
+│   │
+│   └── berea-ky/
+│       ├── index.astro
+│       │   └── (Berea Location Authority Page)
+│       │
+│       ├── adult-adhd-evaluation.astro
+│       ├── psychiatric-medication-management.astro
+│       └── concierge-primary-care.astro
+│
 ├── services/
-│   ├── adhd-eval.astro
-│   ├── med-mgmt.astro
-│   └── primary-care.astro
+│   ├── adhd-evaluation.astro
+│   ├── psychiatric-medication-management.astro
+│   ├── concierge-primary-care.astro
+│   └── therapy-counseling.astro
+│
+├── pricing/
+│   └── index.astro
+│       └── (Transparent pricing / no-insurance explanation)
+│
+├── process/
+│   └── what-to-expect.astro
+│       └── (First visit, privacy, wait-time advantage)
+│
+├── providers/
+│   └── index.astro
+│       └── (Primary provider(s) credibility + trust)
+│
+├── request-care/
+│   └── index.astro
+│       └── (Appointment request / call-first CTA)
+│
+├── about/
+│   └── index.astro
+│       └── (Care philosophy + boutique positioning)
+│
 └── trust/
-    └── hipaa.astro</div>
+    ├── hipaa-notice.astro
+    └── privacy-policy.astro</div>
         </div>
         <div class="scope-card accent">
           <h2>Growth Engine</h2>
           <p style="color:var(--gray-500); font-size: 14px;">Aggressive acquisition architecture with deep authority hubs.</p>
           <div class="tree-pre"><span class="tree-f">/</span>
-├── index.astro <span class="tree-c">(Instant Selector)</span>
+├── index.astro
+│   └── (Homepage: Immediate access, private care positioning, city selector)
+│
 ├── locations/
-│   ├── lexington/ <span class="tree-f">(9 Pages)</span>
-│   └── berea/ <span class="tree-f">(9 Pages)</span>
-├── services/ <span class="tree-f">(Hubs + 20 subpages)</span>
-├── communities/ <span class="tree-f">(Neighborhood SEO)</span>
+│   ├── lexington-ky/
+│   │   ├── index.astro
+│   │   │   └── (Lexington Location Authority Hub)
+│   │   │
+│   │   ├── concierge-primary-care.astro
+│   │   ├── executive-health-physical.astro
+│   │   ├── adult-adhd-evaluation.astro
+│   │   ├── psychiatric-medication-management.astro
+│   │   ├── anxiety-depression-therapy.astro
+│   │   ├── private-pay-medical-visit.astro
+│   │   ├── same-day-mental-health-appointments.astro
+│   │   └── pricing-no-insurance.astro
+│   │
+│   └── berea-ky/
+│       ├── index.astro
+│       │   └── (Berea Location Authority Hub)
+│       │
+│       ├── concierge-primary-care.astro
+│       ├── family-primary-care.astro
+│       ├── adult-adhd-evaluation.astro
+│       ├── child-adolescent-mental-health.astro
+│       ├── psychiatric-medication-management.astro
+│       ├── anxiety-depression-therapy.astro
+│       ├── cash-pay-medical-care.astro
+│       └── pricing-no-insurance.astro
+│
+├── services/
+│   ├── concierge-primary-care/
+│   │   ├── index.astro
+│   │   ├── direct-primary-care-vs-insurance.astro
+│   │   ├── membership-benefits.astro
+│   │   └── hsa-fsa-eligibility.astro
+│   │
+│   ├── adhd-evaluation/
+│   │   ├── index.astro
+│   │   ├── adult-adhd-diagnostic-process.astro
+│   │   ├── child-adhd-assessment.astro
+│   │   ├── adhd-medication-vs-therapy.astro
+│   │   └── adhd-anxiety-overlap.astro
+│   │
+│   ├── psychiatry/
+│   │   ├── index.astro
+│   │   ├── medication-management.astro
+│   │   ├── accepting-new-patients.astro
+│   │   └── telehealth-followups.astro
+│   │
+│   ├── therapy/
+│   │   ├── index.astro
+│   │   ├── cbt-therapy.astro
+│   │   ├── dbt-therapy.astro
+│   │   ├── emdr-therapy.astro
+│   │   ├── neurodivergent-affirming-therapy.astro
+│   │   └── couples-therapy.astro
+│   │
+│   └── pricing/
+│       ├── index.astro
+│       ├── transparent-price-list.astro
+│       ├── good-faith-estimates.astro
+│       └── membership-vs-fee-for-service.astro
+│
+├── process/
+│   ├── adult-adhd-diagnostic-journey.astro
+│   ├── what-to-expect-first-visit.astro
+│   ├── same-week-appointments.astro
+│   └── insurance-vs-private-pay.astro
+│
+├── providers/
+│   ├── index.astro
+│   ├── dr-lastname-md.astro
+│   ├── psychiatric-np-lastname.astro
+│   └── therapist-lastname-lcsw.astro
+│
+├── communities-we-serve/
+│   ├── berea-communities.astro
+│   ├── lexington-neighborhoods.astro
+│   └── madison-county.astro
+│
+├── request-care/
+│   ├── index.astro
+│   ├── request-appointment.astro
+│   └── request-consultation.astro
+│
+├── trust-compliance/
+│   ├── hipaa-notice-of-privacy-practices.astro
+│   ├── privacy-policy.astro
+│   └── medical-review-policy.astro
+│
+├── about/
+│   ├── index.astro
+│   ├── care-philosophy.astro
+│   └── why-private-care.astro
+│
 └── legal/
-    └── medical-review.astro</div>
+    ├── terms-of-service.astro
+    └── accessibility-statement.astro</div>
         </div>
       </div>
     </section>
@@ -617,7 +747,7 @@ footer { padding: 80px 40px; text-align: center; color: var(--gray-400); font-si
           "HIPAA compliant privacy-first build",
           "Practice-owned lead generation asset"
         ],
-        tree: "/\n├── index.astro (Homepage Hub)\n├── locations/\n│   ├── lexington-ky/ (1 Hub)\n│   └── berea-ky/ (1 Hub)\n├── services/\n│   ├── adhd-eval.astro\n│   ├── med-mgmt.astro\n│   └── primary-care.astro\n└── trust/\n    └── hipaa.astro"
+        tree: "/\n├── index.astro\n│   └── (Homepage: private care positioning, urgency, city selector, call + appointment CTA)\n│\n├── locations/\n│   ├── lexington-ky/\n│   │   ├── index.astro\n│   │   │   └── (Lexington Location Authority Page)\n│   │   │\n│   │   ├── adult-adhd-evaluation.astro\n│   │   ├── psychiatric-medication-management.astro\n│   │   └── concierge-primary-care.astro\n│   │\n│   └── berea-ky/\n│       ├── index.astro\n│       │   └── (Berea Location Authority Page)\n│       │\n│       ├── adult-adhd-evaluation.astro\n│       ├── psychiatric-medication-management.astro\n│       └── concierge-primary-care.astro\n│\n├── services/\n│   ├── adhd-evaluation.astro\n│   ├── psychiatric-medication-management.astro\n│   ├── concierge-primary-care.astro\n│   └── therapy-counseling.astro\n│\n├── pricing/\n│   └── index.astro\n│       └── (Transparent pricing / no-insurance explanation)\n│\n├── process/\n│   └── what-to-expect.astro\n│       └── (First visit, privacy, wait-time advantage)\n│\n├── providers/\n│   └── index.astro\n│       └── (Primary provider(s) credibility + trust)\n│\n├── request-care/\n│   └── index.astro\n│       └── (Appointment request / call-first CTA)\n│\n├── about/\n│   └── index.astro\n│       └── (Care philosophy + boutique positioning)\n│\n└── trust/\n    ├── hipaa-notice.astro\n    └── privacy-policy.astro"
       },
       B: {
         name: "Growth Engine",
@@ -627,7 +757,7 @@ footer { padding: 80px 40px; text-align: center; color: var(--gray-400); font-si
           "Deep diagnostic service authority pages",
           "Fully scalable search visibility engine"
         ],
-        tree: "/\n├── index.astro (Instant Selector)\n├── locations/\n│   ├── lexington/ (9 Pages)\n│   └── berea/ (9 Pages)\n├── services/ (Hubs + 20 subpages)\n├── communities/ (Neighborhood SEO)\n└── legal/\n    └── medical-review.astro"
+        tree: "/\n├── index.astro\n│   └── (Homepage: Immediate access, private care positioning, city selector)\n│\n├── locations/\n│   ├── lexington-ky/\n│   │   ├── index.astro\n│   │   │   └── (Lexington Location Authority Hub)\n│   │   │\n│   │   ├── concierge-primary-care.astro\n│   │   ├── executive-health-physical.astro\n│   │   ├── adult-adhd-evaluation.astro\n│   │   ├── psychiatric-medication-management.astro\n│   │   ├── anxiety-depression-therapy.astro\n│   │   ├── private-pay-medical-visit.astro\n│   │   ├── same-day-mental-health-appointments.astro\n│   │   └── pricing-no-insurance.astro\n│   │\n│   └── berea-ky/\n│       ├── index.astro\n│       │   └── (Berea Location Authority Hub)\n│       │\n│       ├── concierge-primary-care.astro\n│       ├── family-primary-care.astro\n│       ├── adult-adhd-evaluation.astro\n│       ├── child-adolescent-mental-health.astro\n│       ├── psychiatric-medication-management.astro\n│       ├── anxiety-depression-therapy.astro\n│       ├── cash-pay-medical-care.astro\n│       └── pricing-no-insurance.astro\n│\n├── services/\n│   ├── concierge-primary-care/\n│   │   ├── index.astro\n│   │   ├── direct-primary-care-vs-insurance.astro\n│   │   ├── membership-benefits.astro\n│   │   └── hsa-fsa-eligibility.astro\n│   │\n│   ├── adhd-evaluation/\n│   │   ├── index.astro\n│   │   ├── adult-adhd-diagnostic-process.astro\n│   │   ├── child-adhd-assessment.astro\n│   │   ├── adhd-medication-vs-therapy.astro\n│   │   └── adhd-anxiety-overlap.astro\n│   │\n│   ├── psychiatry/\n│   │   ├── index.astro\n│   │   ├── medication-management.astro\n│   │   ├── accepting-new-patients.astro\n│   │   └── telehealth-followups.astro\n│   │\n│   ├── therapy/\n│   │   ├── index.astro\n│   │   ├── cbt-therapy.astro\n│   │   ├── dbt-therapy.astro\n│   │   ├── emdr-therapy.astro\n│   │   ├── neurodivergent-affirming-therapy.astro\n│   │   └── couples-therapy.astro\n│   │\n│   └── pricing/\n│       ├── index.astro\n│       ├── transparent-price-list.astro\n│       ├── good-faith-estimates.astro\n│       └── membership-vs-fee-for-service.astro\n│\n├── process/\n│   ├── adult-adhd-diagnostic-journey.astro\n│   ├── what-to-expect-first-visit.astro\n│   ├── same-week-appointments.astro\n│   └── insurance-vs-private-pay.astro\n│\n├── providers/\n│   ├── index.astro\n│   ├── dr-lastname-md.astro\n│   ├── psychiatric-np-lastname.astro\n│   └── therapist-lastname-lcsw.astro\n│\n├── communities-we-serve/\n│   ├── berea-communities.astro\n│   ├── lexington-neighborhoods.astro\n│   └── madison-county.astro\n│\n├── request-care/\n│   ├── index.astro\n│   ├── request-appointment.astro\n│   └── request-consultation.astro\n│\n├── trust-compliance/\n│   ├── hipaa-notice-of-privacy-practices.astro\n│   ├── privacy-policy.astro\n│   └── medical-review-policy.astro\n│\n├── about/\n│   ├── index.astro\n│   ├── care-philosophy.astro\n│   └── why-private-care.astro\n│\n└── legal/\n    ├── terms-of-service.astro\n    └── accessibility-statement.astro"
       }
     };
 
