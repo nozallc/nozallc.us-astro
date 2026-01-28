@@ -499,6 +499,50 @@
       margin-bottom: 8px;
     }
 
+    /* FILE TREE TOGGLE */
+    .tree-toggle-box {
+      margin-bottom: 24px;
+      border-bottom: 1px solid var(--gray-200);
+      padding-bottom: 24px;
+    }
+
+    .toggle-link {
+      background: none;
+      border: none;
+      color: var(--blue-600);
+      font-size: 14px;
+      font-weight: 600;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 0;
+    }
+
+    .toggle-link:hover {
+      text-decoration: underline;
+    }
+
+    .preview-box {
+      background: var(--gray-50);
+      border: 1px solid var(--gray-200);
+      border-radius: 12px;
+      padding: 16px;
+      margin-top: 12px;
+      font-family: 'JetBrains Mono', 'Courier New', monospace;
+      font-size: 12px;
+      line-height: 1.4;
+      color: var(--gray-700);
+      max-height: 400px;
+      overflow-y: auto;
+      white-space: pre-wrap;
+      word-wrap: break-word;
+    }
+
+    .preview-box.hidden {
+      display: none;
+    }
+
     .roi-result {
       background: var(--blue-900);
       color: #fff;
@@ -738,7 +782,6 @@
     <!-- HEADER -->
     <header class="no-print">
       <div class="logo-text">Propuesta de Motor de Generación de Clientes para Contratistas</div>
-      <button class="print-btn no-print" onclick="window.print()">📥 Guardar PDF</button>
     </header>
 
     <!-- SECTION 01: HERO -->
@@ -1313,6 +1356,14 @@
           <div style="background: var(--gray-50); border: 1px solid var(--gray-200); border-radius: 24px; padding: 32px; position: sticky; top: 120px;">
             <div style="font-size: 11px; font-weight: 700; color: var(--gray-500); text-transform: uppercase; margin-bottom: 16px;">Resumen de Orden</div>
             
+            <div class="tree-toggle-box">
+              <button class="toggle-link" id="treeToggle">
+                <span id="treeArrow">▶</span>
+                <span>Ver árbol de archivos</span>
+              </button>
+              <div id="treePreview" class="preview-box hidden"></div>
+            </div>
+
             <div style="margin-bottom: 24px; padding-bottom: 24px; border-bottom: 1px solid var(--gray-200);">
               <div style="font-size: 11px; font-weight: 700; color: var(--gray-500); text-transform: uppercase; margin-bottom: 4px;">Selección</div>
               <h2 id="sumName" style="font-size: 24px; font-weight: 700; color: var(--gray-900); margin: 0;">Máximo Impacto</h2>
@@ -1509,8 +1560,173 @@
 
       updateROI();
 
+      // Package Data with File Trees
+      const data = {
+        A: {
+          name: 'Base Local',
+          price: '$3,000',
+          bullets: ['Autoridad local central (3 ciudades)', '5 servicios principales', 'Estructura optimizada para SEO'],
+          tree: `/
+├── index.astro
+│   └── Página de inicio del contratista
+├── about/
+│   └── index.astro (Acerca de / Experiencia)
+├── services/
+│   ├── index.astro (Servicios principales)
+│   ├── electrician/
+│   │   └── index.astro
+│   ├── plumbing/
+│   │   └── index.astro
+│   ├── hvac/
+│   │   └── index.astro
+│   ├── roofing/
+│   │   └── index.astro
+│   └── painting/
+│       └── index.astro
+├── cities/
+│   ├── denver/
+│   │   ├── index.astro (Hub de Denver)
+│   │   ├── services/
+│   │   │   ├── electrician/
+│   │   │   ├── plumbing/
+│   │   │   ├── hvac/
+│   │   │   ├── roofing/
+│   │   │   └── painting/
+│   │   └── contractors/ (Directorio local)
+│   ├── austin/
+│   │   ├── index.astro (Hub de Austin)
+│   │   ├── services/
+│   │   │   ├── electrician/
+│   │   │   ├── plumbing/
+│   │   │   ├── hvac/
+│   │   │   ├── roofing/
+│   │   │   └── painting/
+│   │   └── contractors/
+│   └── houston/
+│       ├── index.astro (Hub de Houston)
+│       ├── services/
+│       │   ├── electrician/
+│       │   ├── plumbing/
+│       │   ├── hvac/
+│       │   ├── roofing/
+│       │   └── painting/
+│       └── contractors/
+├── contact/
+│   └── index.astro (Formulario de contacto)
+├── sitemap.xml
+├── robots.txt
+└── _redirects (Enrutamiento limpio)`
+        },
+        B: {
+          name: 'Máximo Impacto',
+          price: '$5,000',
+          bullets: ['Dominio multi-ciudad (13 total)', 'Hasta 10 servicios', 'Hub de estudios de casos + Páginas de autoridad'],
+          tree: `/
+├── index.astro
+│   └── Página de inicio del contratista
+├── about/
+│   └── index.astro (Acerca de / Experiencia)
+├── services/ (10 servicios principales)
+│   ├── index.astro
+│   ├── electrician/index.astro
+│   ├── plumbing/index.astro
+│   ├── hvac/index.astro
+│   ├── roofing/index.astro
+│   ├── painting/index.astro
+│   ├── carpentry/index.astro
+│   ├── landscaping/index.astro
+│   ├── concrete/index.astro
+│   └── inspection/index.astro
+├── cities/ (13 ciudades × 10 servicios = 130 páginas de ubicación)
+│   ├── denver/
+│   │   ├── index.astro (Hub regional)
+│   │   ├── services/ (10 servicios)
+│   │   │   ├── electrician/
+│   │   │   ├── plumbing/
+│   │   │   ├── hvac/
+│   │   │   ├── roofing/
+│   │   │   ├── painting/
+│   │   │   ├── carpentry/
+│   │   │   ├── landscaping/
+│   │   │   ├── concrete/
+│   │   │   └── inspection/
+│   │   └── contractors/ (Directorio local)
+│   ├── austin/
+│   │   ├── index.astro
+│   │   ├── services/
+│   │   └── contractors/
+│   ├── houston/
+│   │   ├── index.astro
+│   │   ├── services/
+│   │   └── contractors/
+│   ├── dallas/
+│   │   ├── index.astro
+│   │   ├── services/
+│   │   └── contractors/
+│   ├── phoenix/
+│   │   ├── index.astro
+│   │   ├── services/
+│   │   └── contractors/
+│   ├── los-angeles/
+│   │   ├── index.astro
+│   │   ├── services/
+│   │   └── contractors/
+│   ├── chicago/
+│   │   ├── index.astro
+│   │   ├── services/
+│   │   └── contractors/
+│   ├── new-york/
+│   │   ├── index.astro
+│   │   ├── services/
+│   │   └── contractors/
+│   ├── seattle/
+│   │   ├── index.astro
+│   │   ├── services/
+│   │   └── contractors/
+│   ├── portland/
+│   │   ├── index.astro
+│   │   ├── services/
+│   │   └── contractors/
+│   ├── orlando/
+│   │   ├── index.astro
+│   │   ├── services/
+│   │   └── contractors/
+│   ├── san-diego/
+│   │   ├── index.astro
+│   │   ├── services/
+│   │   └── contractors/
+│   └── miami/
+│       ├── index.astro
+│       ├── services/
+│       └── contractors/
+├── case-studies/
+│   ├── index.astro (Hub de casos)
+│   ├── case-study-1/index.astro
+│   ├── case-study-2/index.astro
+│   └── case-study-3/index.astro
+├── authority-pages/
+│   ├── index.astro (Hub de autoridad)
+│   ├── contractor-licenses/
+│   ├── insurance-requirements/
+│   ├── industry-standards/
+│   ├── best-practices/
+│   └── market-trends/
+├── contact/
+│   └── index.astro (Formulario principal de contacto)
+├── sitemap.xml (Auto-generado)
+├── robots.txt (Optimizado para rastreo)
+└── _redirects (Enrutamiento inteligente)`
+        }
+      };
+
+      let current = 'B';
+      let treeVisible = false;
+
       // Package Selection & Checkout
       function selectPackage(pkg) {
+        current = pkg;
+        const d = data[pkg];
+
         document.getElementById('cardA').style.background = pkg === 'A' ? '#f8fbff' : '#fdfdfd';
         document.getElementById('cardA').style.borderColor = pkg === 'A' ? '#2563eb' : 'var(--gray-100)';
         document.getElementById('cardA').style.borderWidth = pkg === 'A' ? '2px' : '1px';
@@ -1519,30 +1735,44 @@
         document.getElementById('cardB').style.borderColor = pkg === 'B' ? '#2563eb' : 'var(--gray-100)';
         document.getElementById('cardB').style.borderWidth = pkg === 'B' ? '2px' : '1px';
 
-        if (pkg === 'A') {
-          document.getElementById('sumName').textContent = 'Base Local';
-          document.getElementById('sumPrice').textContent = '$3,000';
-          document.getElementById('sumBullets').innerHTML = '<li style="margin-bottom: 8px;">• Autoridad local central (3 ciudades)</li><li style="margin-bottom: 8px;">• 5 servicios principales</li><li>• Estructura optimizada para SEO</li>';
-        } else {
-          document.getElementById('sumName').textContent = 'Máximo Impacto';
-          document.getElementById('sumPrice').textContent = '$5,000';
-          document.getElementById('sumBullets').innerHTML = '<li style="margin-bottom: 8px;">• Dominio multi-ciudad (13 total)</li><li style="margin-bottom: 8px;">• Hasta 10 servicios</li><li>• Hub de estudios de casos + Páginas de autoridad</li>';
+        document.getElementById('sumName').textContent = d.name;
+        document.getElementById('sumPrice').textContent = d.price;
+        document.getElementById('sumBullets').innerHTML = d.bullets.map(b => `<li style="margin-bottom: 8px;">• ${b}</li>`).join('');
+        
+        if (treeVisible) {
+          document.getElementById('treePreview').textContent = d.tree;
         }
       }
 
+      // Tree Toggle
+      const treeToggle = document.getElementById('treeToggle');
+      const treeBox = document.getElementById('treePreview');
+      const treeArrow = document.getElementById('treeArrow');
+
+      treeToggle.onclick = function(e) {
+        e.preventDefault();
+        treeVisible = !treeVisible;
+        treeBox.classList.toggle('hidden', !treeVisible);
+        treeArrow.textContent = treeVisible ? '▼' : '▶';
+        if (treeVisible) {
+          treeBox.textContent = data[current].tree;
+        }
+      };
+
       function generateOrder() {
         const company = document.getElementById('companyInput').value || 'Negocio de Contratación';
-        const pkgA = document.getElementById('cardA').style.borderColor.includes('2563eb');
-        const pkgName = pkgA ? 'Base Local' : 'Máximo Impacto';
-        const pkgPrice = pkgA ? '$3,000' : '$5,000';
+        const d = data[current];
         
         document.getElementById('pCompany').textContent = company;
-        document.getElementById('pPkgName').textContent = pkgName;
-        document.getElementById('pPrice').textContent = pkgPrice;
+        document.getElementById('pPkgName').textContent = d.name;
+        document.getElementById('pPrice').textContent = d.price;
         document.getElementById('pDate').textContent = new Date().toLocaleDateString();
+        document.getElementById('pBullets').innerHTML = d.bullets.map(b => `<li>${b}</li>`).join('');
+        document.getElementById('pTree').textContent = d.tree;
         
         window.print();
       }
+    </script>
 
       // Set today's date on print template
       document.getElementById('pDate').textContent = new Date().toLocaleDateString();
