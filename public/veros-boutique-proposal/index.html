@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- Updated: Payment workflow and instructions added -->
     <title>Vero's Boutique - Propuesta Estratégica</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -45,7 +46,11 @@
         justify-content: center;
         align-items: center;
         z-index: 1000;
-        transition: opacity 0.3s ease-in-out;
+        transition: opacity 0.3s ease-in-out, pointer-events 0.3s ease-in-out;
+        pointer-events: auto;
+      }
+      #password-overlay.hidden {
+        pointer-events: none;
       }
       #password-box {
         background-color: white;
@@ -103,7 +108,8 @@
         .print-break-before {
             page-break-before: always;
         }
-        #summary-form-inputs input {
+        #summary-form-inputs input,
+        #summary-form-inputs textarea {
             border: 1px solid #ccc !important;
             background-color: #f9fafb !important;
         }
@@ -111,6 +117,168 @@
             color: black;
             text-decoration: none;
         }
+        .pkg-card { 
+          box-shadow: none;
+          page-break-inside: avoid;
+        }
+        .summary-panel {
+          display: none !important;
+        }
+      }
+
+      /* Professional Summary Panel Styles (NG Healthcare Pattern) */
+      .pricing-layout { 
+        display: grid; 
+        grid-template-columns: 1fr 440px; 
+        gap: 40px; 
+        margin-top: 60px; 
+        align-items: start; 
+      }
+
+      .pkg-card { 
+        background: #fff; 
+        border: 2px solid var(--gray-100); 
+        border-radius: 24px; 
+        padding: 32px; 
+        cursor: pointer; 
+        transition: all 0.2s ease; 
+        position: relative; 
+      }
+
+      .pkg-card.active { 
+        border-color: #2563eb; 
+        background: #f9fcff; 
+        box-shadow: 0 10px 30px rgba(37, 99, 235, 0.05); 
+        transform: scale(1.01); 
+      }
+
+      .summary-panel { 
+        background: #fff; 
+        border: 1px solid #e5e7eb; 
+        border-radius: 32px; 
+        padding: 40px; 
+        box-shadow: 0 30px 60px rgba(0,0,0,0.08); 
+        position: sticky; 
+        top: 140px; 
+      }
+
+      .sum-label { 
+        font-size: 11px; 
+        font-weight: 700; 
+        color: #9ca3af; 
+        text-transform: uppercase; 
+        letter-spacing: 0.15em; 
+        display: block; 
+        margin-bottom: 24px; 
+      }
+
+      .sum-head { 
+        display: flex; 
+        justify-content: space-between; 
+        align-items: flex-end; 
+        margin-bottom: 32px; 
+        border-bottom: 1px solid #f3f4f6; 
+        padding-bottom: 32px; 
+      }
+
+      .sum-head h2 { 
+        font-size: 28px; 
+        font-weight: 700; 
+        color: #1e3a8a; 
+        margin: 0; 
+      }
+
+      .sum-head .total { 
+        font-size: 32px; 
+        font-weight: 700; 
+        color: #1e3a8a; 
+      }
+
+      .sum-bullets { 
+        padding: 0; 
+        list-style: none; 
+        margin: 0 0 32px; 
+        font-size: 15px; 
+        color: #374151; 
+      }
+
+      .sum-bullets li { 
+        margin-bottom: 12px; 
+        display: flex; 
+        align-items: start; 
+        gap: 10px; 
+      }
+
+      .sum-bullets li::before { 
+        content: ""; 
+        width: 6px; 
+        height: 6px; 
+        background: #2563eb; 
+        border-radius: 50%; 
+        margin-top: 8px; 
+        flex-shrink: 0; 
+      }
+
+      .field-box { 
+        margin-bottom: 24px; 
+      }
+
+      .field-box label { 
+        font-size: 11px; 
+        font-weight: 700; 
+        color: #9ca3af; 
+        text-transform: uppercase; 
+        display: block; 
+        margin-bottom: 8px; 
+      }
+
+      .field-box input,
+      .field-box textarea { 
+        width: 100%; 
+        padding: 14px; 
+        background: #f9fafb; 
+        border: 1px solid #e5e7eb; 
+        border-radius: 12px; 
+        font-size: 16px; 
+        font-weight: 600; 
+        color: #1e3a8a; 
+        outline: none; 
+        font-family: 'Roboto', sans-serif;
+      }
+
+      .cta-btn { 
+        width: 100%; 
+        background: #2563eb; 
+        color: #fff; 
+        border: none; 
+        padding: 22px; 
+        border-radius: 20px; 
+        font-size: 18px; 
+        font-weight: 700; 
+        cursor: pointer; 
+        box-shadow: 0 10px 30px rgba(37, 99, 235, 0.2); 
+        transition: background 0.3s ease;
+      }
+
+      .cta-btn:hover {
+        background: #1d4ed8;
+      }
+
+      .tree-pre { 
+        font-family: 'JetBrains Mono', 'Courier New', monospace; 
+        font-size: 12px; 
+        line-height: 1.5; 
+        color: #4b5563; 
+        background: #f9fafb; 
+        padding: 24px; 
+        border-radius: 12px; 
+        border: 1px solid #e5e7eb;
+        overflow-x: auto; 
+        overflow-y: auto; 
+        max-width: 100%; 
+        max-height: 400px;
+        white-space: pre-wrap;
+        word-wrap: break-word;
       }
     </style>
 </head>
@@ -199,90 +367,180 @@
                 </p>
             </header>
             
-            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
-                <!-- Option 1: Strong Local Launch -->
-                <div class="p-8 border-2 border-gray-200 rounded-lg cursor-pointer transition-all hover:border-blue-500 hover:bg-blue-50" onclick="selectPackage('local', 'Strong Local Launch', '$3,000')">
-                    <header class="text-center mb-8 border-b pb-8">
-                        <h2 class="text-3xl font-bold text-gray-800 tracking-tight">Strong Local Launch</h2>
-                        <p class="text-md text-gray-500 mt-2">Dominar su Mercado Local desde el Día Uno.</p>
-                    </header>
-                    <div class="space-y-8">
-                        <div>
-                            <div class="flex items-center mb-4">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-blue-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path></svg>
-                                <h3 class="ml-3 text-2xl font-semibold text-gray-700">SEO + AEO Foundation</h3>
+            <div class="pricing-layout">
+                <!-- Left Column: Strategy Options -->
+                <div class="space-y-6">
+                    <!-- Option 1: Strong Local Launch -->
+                    <div id="card-local" class="pkg-card cursor-pointer transition-all" onclick="selectStrategy('local')">
+                        <div class="mb-6">
+                            <h2 class="text-3xl font-bold text-gray-800">OPTION 1 — $3,000</h2>
+                            <h3 class="text-xl font-semibold text-blue-600 mt-2">"Richmond Local Dominance"</h3>
+                            <p class="text-sm text-gray-500 mt-1">(Foundation Build)</p>
+                        </div>
+                        
+                        <div class="space-y-6">
+                            <div>
+                                <h4 class="font-semibold text-gray-800 mb-2">Goal:</h4>
+                                <p class="text-gray-600">Own Richmond, KY boutique search results and drive immediate local foot traffic.</p>
                             </div>
-                            <ul class="space-y-3 pl-4">
-                                <li class="flex items-start"><svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-green-500 mt-1 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="3"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"></path></svg><span class="ml-3 text-gray-600">LocalBusiness schema</span></li>
-                                <li class="flex items-start"><svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-green-500 mt-1 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="3"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"></path></svg><span class="ml-3 text-gray-600">Product & Service schema</span></li>
-                                <li class="flex items-start"><svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-green-500 mt-1 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="3"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"></path></svg><span class="ml-3 text-gray-600">FAQPage schema</span></li>
-                                <li class="flex items-start"><svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-green-500 mt-1 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="3"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"></path></svg><span class="ml-3 text-gray-600">Copy optimizado geográficamente</span></li>
-                                <li class="flex items-start"><svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-green-500 mt-1 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="3"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"></path></svg><span class="ml-3 text-gray-600">Estructura amigable para Google</span></li>
-                            </ul>
+                            
+                            <div>
+                                <h4 class="font-semibold text-gray-800 mb-2">Strategy:</h4>
+                                <p class="text-gray-600">High-intent pages only. No fluff. Built to launch fast and win locally.</p>
+                            </div>
+
+                            <div>
+                                <h4 class="font-semibold text-gray-800 mb-3">🗂️ Full File Tree:</h4>
+                                <pre class="tree-pre">Vero's Boutique Website (Astro)
+├── /                               
+│   (Homepage – Richmond Authority Hub)
+│
+├── /visit-the-boutique             
+│   (Foot Traffic Conversion Page)
+├── /book-an-appointment            
+│   (Bridal, Formal, Quinceañera Consults)
+├── /contact
+│
+├── /formal-gowns-richmond-ky        
+│   (PRIMARY Traffic Driver)
+├── /wedding-dresses-richmond-ky     
+│   (High-Intent Bridal Page)
+├── /quinceanera-dresses-richmond-ky 
+│   (Niche Capture Page)
+│
+├── /event-planning-richmond-ky      
+│   (Service Authority)
+├── /event-decor-florals-richmond-ky 
+│   (Décor + Floral Services)
+│
+├── /gallery                        
+│   (Visual Proof & Trust)
+├── /faq                            
+│   (AEO / AI Answer Page)
+├── /about-veros-boutique            
+│   (Brand Trust)
+│
+├── /privacy-policy
+└── /terms</pre>
+                            </div>
                         </div>
                     </div>
-                    <footer class="mt-16 pt-8 border-t text-center">
-                        <div class="bg-blue-600 text-white p-6 rounded-lg text-center">
-                            <p class="font-semibold text-xl tracking-wide">Inversión Única</p>
-                            <p class="text-4xl font-bold my-1">$3,000</p>
-                            <p class="text-blue-100 text-sm">Sin suscripciones</p>
+
+                    <!-- Option 2: Destination Boutique -->
+                    <div id="card-destination" class="pkg-card cursor-pointer transition-all" onclick="selectStrategy('destination')">
+                        <div class="mb-6">
+                            <h2 class="text-3xl font-bold text-gray-800">OPTION 2 — $4,000</h2>
+                            <h3 class="text-xl font-semibold text-purple-600 mt-2">"Destination Boutique Strategy"</h3>
+                            <p class="text-sm text-gray-500 mt-1">(Regional Expansion Build)</p>
                         </div>
-                    </footer>
+                        
+                        <div class="space-y-6">
+                            <div>
+                                <h4 class="font-semibold text-gray-800 mb-2">Goal:</h4>
+                                <p class="text-gray-600">Dominate Richmond and pull shoppers from Lexington & Central Kentucky.</p>
+                            </div>
+                            
+                            <div>
+                                <h4 class="font-semibold text-gray-800 mb-2">Strategy:</h4>
+                                <p class="text-gray-600">Everything in Option 1 + regional gravity pages that justify the drive.</p>
+                            </div>
+
+                            <div>
+                                <h4 class="font-semibold text-gray-800 mb-3">🗂️ Full File Tree:</h4>
+                                <pre class="tree-pre">Vero's Boutique Website (Astro)
+├── /                               
+│   (Homepage – Regional Authority Hub)
+│
+├── /visit-the-boutique             
+│   (Foot Traffic Conversion Page)
+├── /book-an-appointment            
+│   (Bridal, Formal, Quinceañera, Event Consults)
+├── /contact
+│
+├── /formal-gowns-richmond-ky        
+│   (PRIMARY Traffic Driver)
+├── /wedding-dresses-richmond-ky     
+│   (High-Intent Bridal Page)
+├── /quinceanera-dresses-richmond-ky 
+│   (Niche Capture Page)
+│
+├── /formal-gowns-near-lexington-ky  
+│   (Regional Pull Page)
+├── /destination-boutique-kentucky   
+│   (Brand Gravity Page)
+│
+├── /event-planning-richmond-ky      
+│   (Service Authority)
+├── /event-decor-florals-richmond-ky 
+│   (Décor + Floral Services)
+│
+├── /gallery                        
+│   (Share-Optimized Visual Proof)
+├── /faq                            
+│   (Advanced AEO / AI Capture)
+├── /about-veros-boutique            
+│   (Destination Brand Story)
+│
+├── /privacy-policy
+└── /terms</pre>
+                            </div>
+                        </div>
+                    </div>
                 </div>
 
-                <!-- Option 2: Destination Boutique -->
-                <div class="p-8 border-2 border-purple-500 rounded-lg bg-purple-50/20 cursor-pointer transition-all hover:border-purple-700" onclick="selectPackage('destination', 'Destination Boutique Strategy', '$4,000')">
-                    <header class="text-center mb-8 border-b pb-8">
-                        <h2 class="text-3xl font-bold text-gray-800 tracking-tight">Destination Boutique Strategy</h2>
-                        <p class="text-md text-gray-500 mt-2">Convierta su Boutique en un Destino Regional.</p>
-                    </header>
-                    <div class="space-y-6">
+                <!-- Right Column: Order Summary Panel -->
+                <div class="summary-panel">
+                    <span class="sum-label">Resumen de Selección</span>
+                    <div class="sum-head">
                         <div>
-                             <div class="flex items-center mb-4">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-purple-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l5.447 2.724A1 1 0 0021 16.382V5.618a1 1 0 00-1.447-.894L15 7m-6 3l6-3"></path></svg>
-                                <h3 class="ml-3 text-2xl font-semibold text-gray-700">Advanced Local Strategy</h3>
-                            </div>
-                            <ul class="space-y-3 pl-4">
-                                <li class="flex items-start"><svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-green-500 mt-1 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="3"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"></path></svg><span class="ml-3 text-gray-600">Targeting de palabras clave entre ciudades</span></li>
-                                <li class="flex items-start"><svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-green-500 mt-1 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="3"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"></path></svg><span class="ml-3 text-gray-600">Mensajes de autoridad regional</span></li>
-                                <li class="flex items-start"><svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-green-500 mt-1 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="3"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"></path></svg><span class="ml-3 text-gray-600">Lenguaje de marca que justifica el viaje</span></li>
-                            </ul>
+                            <span class="sum-label" style="font-size: 10px; margin:0;">Paquete Seleccionado</span>
+                            <h2 id="sumName">Seleccione una opción</h2>
                         </div>
+                        <div class="total" id="sumPrice">-</div>
                     </div>
-                    <footer class="mt-16 pt-8 border-t text-center">
-                         <div class="bg-purple-600 text-white p-6 rounded-lg text-center">
-                            <p class="font-semibold text-xl tracking-wide">Inversión Única</p>
-                            <p class="text-4xl font-bold my-1">$4,000</p>
-                            <p class="text-purple-100 text-sm">Sin suscripciones</p>
-                        </div>
-                    </footer>
+
+                    <ul class="sum-bullets" id="sumBullets">
+                        <li>Seleccione una opción para ver detalles</li>
+                    </ul>
+
+                    <div class="field-box">
+                        <label>Nombre del Negocio</label>
+                        <input type="text" id="businessName" placeholder="Nombre del negocio" value="Vero's Boutique">
+                    </div>
+
+                    <div class="field-box">
+                        <label>Nombre del Propietario</label>
+                        <input type="text" id="ownerName" placeholder="Nombre del propietario">
+                    </div>
+
+                    <div class="field-box">
+                        <label>Correo Electrónico</label>
+                        <input type="email" id="email" placeholder="Correo electrónico">
+                    </div>
+
+                    <div class="field-box">
+                        <label>Términos de Pago Preferido</label>
+                        <textarea id="paymentTerms" placeholder="Ej: 40% depósito, $400/mes | Pago completo antes del lanzamiento" rows="2"></textarea>
+                    </div>
+
+                    <div class="field-box">
+                        <label>Fecha</label>
+                        <input type="text" id="date" placeholder="Fecha" readonly>
+                    </div>
+
+                    <button class="cta-btn" id="download-pdf">📥 Descargar Resumen en PDF</button>
                 </div>
             </div>
 
-            <!-- Comparison Table -->
-            <div class="mt-12">
-                <header class="text-center mb-8">
-                    <h2 class="text-3xl font-bold text-gray-800 tracking-tight">Comparación Directa</h2>
-                </header>
-                <div class="max-w-4xl mx-auto bg-white rounded-lg shadow-lg border overflow-hidden">
-                    <table class="w-full text-sm sm:text-base text-gray-600">
-                        <thead>
-                            <tr class="bg-gray-50">
-                                <th class="py-3 px-4 text-left font-semibold text-gray-600">Característica</th>
-                                <th class="py-3 px-4 text-center font-semibold text-gray-600">Strong Local Launch</th>
-                                <th class="py-3 px-4 text-center font-semibold text-gray-600">Destination Boutique</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr class="border-b"><td class="py-4 px-4 font-semibold text-gray-700">Alcance Geográfico</td><td class="py-4 px-4 text-center">Richmond</td><td class="py-4 px-4 text-center">Regional (Lexington + Central KY)</td></tr>
-                            <tr class="border-b"><td class="py-4 px-4 font-semibold text-gray-700">Tipo de Tráfico</td><td class="py-4 px-4 text-center">Local (dentro de la ciudad)</td><td class="py-4 px-4 text-center">Local + Viajeros (desde otras ciudades)</td></tr>
-                            <tr class="border-b"><td class="py-4 px-4 font-semibold text-gray-700">Posicionamiento</td><td class="py-4 px-4 text-center">Mejor opción en Richmond</td><td class="py-4 px-4 text-center">Boutique destino "worth the drive"</td></tr>
-                            <tr class="border-b"><td class="py-4 px-4 font-semibold text-gray-700">Autoridad de Marca</td><td class="py-4 px-4 text-center"><svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-green-500 mx-auto" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="3"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"></path></svg></td><td class="py-4 px-4 text-center"><span class="font-bold">Avanzada</span></td></tr>
-                            <tr class="border-b"><td class="py-4 px-4 font-semibold text-gray-700">Señales AI/Search</td><td class="py-4 px-4 text-center">Fundamentales</td><td class="py-4 px-4 text-center"><span class="font-bold">Avanzadas</span></td></tr>
-                            <tr><td class="py-4 px-4 font-semibold text-gray-700">Inversión</td><td class="py-4 px-4 text-center"><span class="font-bold text-lg text-blue-600">$3,000</span></td><td class="py-4 px-4 text-center"><span class="font-bold text-lg text-purple-600">$4,000</span></td></tr>
-                        </tbody>
-                    </table>
-                </div>
+            <!-- Instructions Panel -->
+            <div class="bg-yellow-50 border-l-4 border-yellow-400 p-4 mt-8 no-print rounded">
+                <h3 class="font-semibold text-yellow-900 mb-3">PRÓXIMOS PASOS OBLIGATORIOS:</h3>
+                <ol class="space-y-2 text-yellow-800 text-sm list-decimal list-inside">
+                    <li><strong>Seleccione un paquete</strong> haciendo clic en una opción arriba</li>
+                    <li><strong>Complete TODOS los campos</strong> de información en el panel de la derecha</li>
+                    <li><strong>Haga clic en "Descargar Resumen en PDF"</strong> para generar el documento</li>
+                    <li><strong>Haga clic en "Enviar Selecciones por Correo"</strong> y cargue manualmente el PDF generado</li>
+                </ol>
             </div>
         </section>
 
@@ -457,54 +715,60 @@
                          </ul>
                     </section>
                 </div>
-                 <section class="pt-6 border-t">
-                     <h2 class="text-2xl font-bold text-gray-700 mb-4">Resumen de Selección</h2>
-                     <div id="selection-summary" class="bg-gray-50 border-2 border-gray-300 p-6 rounded-lg mb-8">
-                         <div id="summary-content" class="text-gray-600 italic">Haga clic en una opción arriba para ver el resumen aquí.</div>
-                     </div>
-                     
-                     <h2 class="text-2xl font-bold text-gray-700 mb-4">SECCIÓN 5 — Confirmación y Siguientes Pasos</h2>
-                     <div id="summary-form-inputs" class="bg-blue-50 border border-blue-200 p-6 rounded-lg">
-                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 items-start">
-                            <div>
-                                <h3 class="font-semibold text-lg text-blue-800">Al confirmar estas selecciones:</h3>
-                                <ul class="list-disc list-inside text-blue-700 mt-2">
-                                    <li>Se generará un resumen de pedido.</li>
-                                    <li>Se preparará el contrato correspondiente.</li>
-                                </ul>
-                            </div>
-                             <div class="space-y-3">
-                                <input type="text" id="businessName" placeholder="Nombre del negocio" value="Vero's Boutique" class="w-full p-2 border rounded">
-                                <input type="text" id="ownerName" placeholder="Nombre del propietario" class="w-full p-2 border rounded">
-                                <input type="email" id="email" placeholder="Correo electrónico" class="w-full p-2 border rounded">
-                                <textarea id="paymentTerms" placeholder="Terminos de pago preferido: pago en full antes de feb 10 o 40% deposito y $000/mes" class="w-full p-2 border rounded" rows="2"></textarea>
-                                <input type="text" id="date" value="" class="w-full p-2 border rounded">
-                            </div>
-                        </div>
-                        <div class="bg-yellow-50 border-l-4 border-yellow-400 p-4 mt-6 mb-6 no-print">
-                            <h3 class="font-semibold text-yellow-900 mb-3">PRÓXIMOS PASOS OBLIGATORIOS:</h3>
-                            <ol class="space-y-2 text-yellow-800 text-sm list-decimal list-inside">
-                                <li><strong>Seleccione un paquete</strong> haciendo clic en una opción arriba</li>
-                                <li><strong>Complete TODOS los campos</strong> de información (nombre negocio, propietario, correo, términos de pago)</li>
-                                <li><strong>Haga clic en "Descargar Resumen en PDF"</strong> para generar el documento</li>
-                                <li><strong>Haga clic en "Enviar Selecciones por Correo"</strong> y cargue manualmente el PDF generado</li>
-                            </ol>
-                        </div>
-                        <div class="flex flex-col sm:flex-row gap-4 mt-6 pt-6 border-t border-blue-200 no-print">
-                            <button id="download-pdf" class="flex-1 flex items-center justify-center p-3 bg-gray-600 text-white rounded-md hover:bg-gray-700 transition-colors font-semibold">
-                                1. Descargar Resumen en PDF
-                            </button>
-                             <button id="send-email" class="flex-1 flex items-center justify-center p-3 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition-colors font-semibold">
-                                2. Enviar Selecciones por Correo
-                            </button>
-                        </div>
-                     </div>
-                </section>
             </div>
         </section>
         <footer class="text-center py-6 text-xs text-gray-400 border-t border-gray-200 mt-10">
             Prepared by <strong>NOZA LLC</strong> | <a href="https://www.nozallc.us" class="hover:text-gray-600 transition-colors">www.nozallc.us</a>
         </footer>
+
+        <!-- PRINT TEMPLATE -->
+        <div id="print-order" style="display: none;">
+            <div style="border-bottom: 3px solid #1e3a8a; padding-bottom: 24px; margin-bottom: 40px;">
+                <h1 style="font-size: 28px; margin: 0; color: #1e3a8a;">Resumen de Orden — Vero's Boutique</h1>
+            </div>
+
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 40px; margin-bottom: 40px;">
+                <div>
+                    <div style="font-size: 10px; text-transform: uppercase; color: #666; font-weight: 800; margin-bottom: 4px;">Cliente</div>
+                    <div style="font-size: 18px; font-weight: 700;" id="pCompany">Negocio</div>
+                    <div style="color:#666; font-size:12px; margin-top:2px;">Propuesta Estratégica Digital</div>
+                </div>
+                <div style="text-align:right">
+                    <div style="font-size: 10px; text-transform: uppercase; color: #666; font-weight: 800; margin-bottom: 4px;">Fecha de Propuesta</div>
+                    <div style="font-size: 18px; font-weight: 700;" id="pDate">00/00/0000</div>
+                </div>
+            </div>
+
+            <div style="background: #f8fbff; border: 1px solid #dbeafe; border-radius: 12px; padding: 32px; margin-bottom: 40px;">
+                <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom: 24px;">
+                    <div>
+                        <div style="font-size: 10px; text-transform: uppercase; color: #666; font-weight: 800; margin-bottom: 4px;">Paquete</div>
+                        <h2 style="font-size: 24px; margin: 0; color: #1e3a8a;" id="pPkgName">-</h2>
+                    </div>
+                    <div style="font-size: 32px; font-weight: 800; color: #1e3a8a;" id="pPrice">-</div>
+                </div>
+                
+                <div>
+                    <div style="font-size: 10px; text-transform: uppercase; color: #666; font-weight: 800; margin-bottom: 8px;">Detalles</div>
+                    <ul id="pBullets" style="font-size: 14px; margin: 10px 0; padding-left: 20px;"></ul>
+                </div>
+            </div>
+
+            <div style="margin-bottom: 40px;">
+                <div style="font-size: 10px; text-transform: uppercase; color: #666; font-weight: 800; margin-bottom: 12px;">Arquitectura del Sitio</div>
+                <pre id="pTree" style="font-family: 'Courier New', monospace; font-size: 11px; white-space: pre; background: #fff; border: 1px solid #eee; padding: 20px; line-height: 1.4;"></pre>
+            </div>
+
+            <div style="border-left: 4px solid #2563eb; padding-left: 24px; margin-bottom: 60px;">
+                <div style="font-size: 10px; text-transform: uppercase; color: #666; font-weight: 800; margin-bottom: 8px;">Términos de Pago</div>
+                <p style="font-size: 13px; color: #444; margin: 4px 0;" id="pPaymentTerms">-</p>
+            </div>
+
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 60px; margin-top: 80px;">
+                <div style="border-top: 1px solid #000; padding-top: 12px; font-size: 11px; font-weight: 700; text-transform: uppercase;">Firma del Cliente</div>
+                <div style="border-top: 1px solid #000; padding-top: 12px; font-size: 11px; font-weight: 700; text-transform: uppercase;">Representante de NOZA LLC</div>
+            </div>
+        </div>
     </main>
     
     <script>
@@ -512,7 +776,6 @@
         document.getElementById('password-form').addEventListener('submit', function(e) {
             e.preventDefault();
             const password = document.getElementById('password-input').value;
-            // IMPORTANT: Replace 'YOUR_PASSWORD_HERE' with the actual password
             if (password.trim() === 'Veronicas2026') {
                 document.getElementById('password-overlay').style.opacity = '0';
                 setTimeout(() => {
@@ -524,186 +787,185 @@
             }
         });
 
-        // Global selection state
-        let selectedPackage = null;
-        let selectedPackageName = null;
-        let selectedPackagePrice = null;
-
-        // Function to select a package
-        function selectPackage(pkg, name, price) {
-            selectedPackage = pkg;
-            selectedPackageName = name;
-            selectedPackagePrice = price;
-
-            // Update visual selection on cards
-            const cards = document.querySelectorAll('[onclick*="selectPackage"]');
-            cards.forEach(card => {
-                const parent = card.closest('.rounded-lg');
-                if (parent) {
-                    if (pkg === 'local' && card.getAttribute('onclick').includes("'local'")) {
-                        parent.classList.add('border-blue-500', 'bg-blue-50');
-                        parent.classList.remove('border-gray-200');
-                    } else if (pkg === 'destination' && card.getAttribute('onclick').includes("'destination'")) {
-                        parent.classList.add('border-purple-700');
-                    } else {
-                        parent.classList.remove('border-blue-500', 'bg-blue-50');
-                        parent.classList.add('border-gray-200');
-                    }
-                }
-            });
-
-            // Update summary display
-            const summaryContent = document.getElementById('summary-content');
-            if (summaryContent) {
-                summaryContent.innerHTML = `
-                    <div class="font-semibold text-lg text-gray-800 mb-3">✓ ${name}</div>
-                    <div class="text-gray-700 mb-2"><strong>Inversión:</strong> ${price}</div>
-                    <div class="text-sm text-gray-600">Seleccionado. Complete sus datos a continuación y descargue el PDF.</div>
-                `;
+        // Strategy Data with File Trees
+        const strategies = {
+            local: {
+                name: 'Richmond Local Dominance',
+                price: '$3,000',
+                bullets: ['Own Richmond, KY boutique search results', 'Immediate local foot traffic', 'High-intent pages only'],
+                tree: `Vero's Boutique Website (Astro)
+├── /                               
+│   (Homepage – Richmond Authority Hub)
+│
+├── /visit-the-boutique             
+│   (Foot Traffic Conversion Page)
+├── /book-an-appointment            
+│   (Bridal, Formal, Quinceañera Consults)
+├── /contact
+│
+├── /formal-gowns-richmond-ky        
+│   (PRIMARY Traffic Driver)
+├── /wedding-dresses-richmond-ky     
+│   (High-Intent Bridal Page)
+├── /quinceanera-dresses-richmond-ky 
+│   (Niche Capture Page)
+│
+├── /event-planning-richmond-ky      
+│   (Service Authority)
+├── /event-decor-florals-richmond-ky 
+│   (Décor + Floral Services)
+│
+├── /gallery                        
+│   (Visual Proof & Trust)
+├── /faq                            
+│   (AEO / AI Answer Page)
+├── /about-veros-boutique            
+│   (Brand Trust)
+│
+├── /privacy-policy
+└── /terms`
+            },
+            destination: {
+                name: 'Destination Boutique Strategy',
+                price: '$4,000',
+                bullets: ['Dominate Richmond and regional areas', 'Pull shoppers from Lexington & Central KY', 'Everything in Option 1 + regional pages'],
+                tree: `Vero's Boutique Website (Astro)
+├── /                               
+│   (Homepage – Regional Authority Hub)
+│
+├── /visit-the-boutique             
+│   (Foot Traffic Conversion Page)
+├── /book-an-appointment            
+│   (Bridal, Formal, Quinceañera, Event Consults)
+├── /contact
+│
+├── /formal-gowns-richmond-ky        
+│   (PRIMARY Traffic Driver)
+├── /wedding-dresses-richmond-ky     
+│   (High-Intent Bridal Page)
+├── /quinceanera-dresses-richmond-ky 
+│   (Niche Capture Page)
+│
+├── /formal-gowns-near-lexington-ky  
+│   (Regional Pull Page)
+├── /destination-boutique-kentucky   
+│   (Brand Gravity Page)
+│
+├── /event-planning-richmond-ky      
+│   (Service Authority)
+├── /event-decor-florals-richmond-ky 
+│   (Décor + Floral Services)
+│
+├── /gallery                        
+│   (Share-Optimized Visual Proof)
+├── /faq                            
+│   (Advanced AEO / AI Capture)
+├── /about-veros-boutique            
+│   (Destination Brand Story)
+│
+├── /privacy-policy
+└── /terms`
             }
+        };
+
+        let selectedStrategy = null;
+
+        // Function to select strategy
+        function selectStrategy(strategy) {
+            selectedStrategy = strategy;
+            const data = strategies[strategy];
+            
+            // Update visual selection
+            document.getElementById('card-local').classList.toggle('active', strategy === 'local');
+            document.getElementById('card-destination').classList.toggle('active', strategy === 'destination');
+
+            // Update summary panel
+            document.getElementById('sumName').textContent = data.name;
+            document.getElementById('sumPrice').textContent = data.price;
+            document.getElementById('sumBullets').innerHTML = data.bullets.map(b => `<li>${b}</li>`).join('');
+            
+            // Store for PDF generation
+            window.currentStrategy = data;
         }
 
-        // Interactive Summary Logic
-        document.addEventListener('DOMContentLoaded', () => {
-            const STRATEGY_PRICES = { local: 3000, destination: 4000 };
-            const SETUP_PRICES = { phase1: 1000, phase2: 1500 };
+        // Set date field
+        document.getElementById('date').value = new Date().toLocaleDateString('es-ES');
 
-            let selectedStrategy = null;
-            let selectedSetup = null;
-
-            const strategyRadios = document.querySelectorAll('input[name="strategy"]');
-            const setupCheckboxes = document.querySelectorAll('input[name="setup"]');
-
-            const summaryStrategyEl = document.getElementById('summary-strategy');
-            const summarySetupEl = document.getElementById('summary-setup');
-            const summaryTotalEl = document.getElementById('summary-total');
-            
-            // Set date field
-            document.getElementById('date').value = new Date().toLocaleDateString('es-US');
-
-            function formatCurrency(num) {
-                return '$' + num.toLocaleString('es-US');
+        // Download PDF functionality
+        document.getElementById('download-pdf').addEventListener('click', () => {
+            if (!selectedStrategy) {
+                alert('Por favor, seleccione un paquete primero.');
+                return;
             }
 
-            function updateSummary() {
-                const strategyCost = selectedStrategy ? STRATEGY_PRICES[selectedStrategy] : 0;
-                const setupCost = selectedSetup ? SETUP_PRICES[selectedSetup] : 0;
-                const total = strategyCost + setupCost;
+            const businessName = document.getElementById('businessName').value || 'Vero\'s Boutique';
+            const ownerName = document.getElementById('ownerName').value;
+            const email = document.getElementById('email').value;
+            const paymentTerms = document.getElementById('paymentTerms').value;
 
-                summaryStrategyEl.textContent = formatCurrency(strategyCost);
-                summarySetupEl.textContent = formatCurrency(setupCost);
-                summaryTotalEl.textContent = formatCurrency(total);
-                
-                // Update label styles
-                document.getElementById('label-strategy-local').className = `block p-4 rounded-lg border-2 cursor-pointer ${selectedStrategy === 'local' ? 'border-blue-500 bg-blue-50' : 'border-gray-200 hover:border-gray-400'}`;
-                document.getElementById('label-strategy-destination').className = `block p-4 rounded-lg border-2 cursor-pointer ${selectedStrategy === 'destination' ? 'border-purple-500 bg-purple-50' : 'border-gray-200 hover:border-gray-400'}`;
-                document.getElementById('label-setup-phase1').className = `block p-4 rounded-lg border-2 cursor-pointer ${selectedSetup === 'phase1' ? 'border-blue-500 bg-blue-50' : 'border-gray-200 hover:border-gray-400'}`;
-                document.getElementById('label-setup-phase2').className = `block p-4 rounded-lg border-2 cursor-pointer relative ${selectedSetup === 'phase2' ? 'border-purple-500 bg-purple-50' : 'border-gray-200 hover:border-gray-400'}`;
+            if (!ownerName || !email || !paymentTerms) {
+                alert('Por favor, complete todos los campos incluyendo términos de pago.');
+                return;
             }
 
-            strategyRadios.forEach(radio => {
-                radio.addEventListener('change', (e) => {
-                    selectedStrategy = e.target.value;
-                    updateSummary();
-                });
-            });
+            // Populate print template
+            document.getElementById('pCompany').textContent = businessName;
+            document.getElementById('pDate').textContent = new Date().toLocaleDateString('es-ES');
+            document.getElementById('pPkgName').textContent = window.currentStrategy.name;
+            document.getElementById('pPrice').textContent = window.currentStrategy.price;
+            document.getElementById('pBullets').innerHTML = window.currentStrategy.bullets.map(b => `<li>${b}</li>`).join('');
+            document.getElementById('pTree').textContent = window.currentStrategy.tree;
+            document.getElementById('pPaymentTerms').textContent = paymentTerms;
 
-            setupCheckboxes.forEach(checkbox => {
-                checkbox.addEventListener('change', (e) => {
-                    if (e.target.checked) {
-                        // Uncheck other setup checkboxes
-                        setupCheckboxes.forEach(cb => {
-                            if (cb !== e.target) cb.checked = false;
-                        });
-                        selectedSetup = e.target.value;
-                    } else {
-                        selectedSetup = null;
-                    }
-                    updateSummary();
-                });
-            });
+            // Trigger print
+            window.print();
+        });
 
-            document.getElementById('download-pdf').addEventListener('click', () => {
-                window.print();
-            });
+        // Email functionality
+        document.getElementById('send-email').addEventListener('click', () => {
+            if (!selectedStrategy) {
+                alert('Por favor, seleccione un paquete primero.');
+                return;
+            }
 
-            document.getElementById('send-email').addEventListener('click', () => {
-                const businessName = document.getElementById('businessName').value;
-                const ownerName = document.getElementById('ownerName').value;
-                const email = document.getElementById('email').value;
-                const paymentTerms = document.getElementById('paymentTerms').value;
-                const date = document.getElementById('date').value;
+            const businessName = document.getElementById('businessName').value || 'Vero\'s Boutique';
+            const ownerName = document.getElementById('ownerName').value;
+            const email = document.getElementById('email').value;
+            const paymentTerms = document.getElementById('paymentTerms').value;
+            const data = strategies[selectedStrategy];
 
-                // Check if a service package was selected
-                if (!selectedPackage) {
-                    alert('Por favor, seleccione un paquete de servicio haciendo clic en una opción.');
-                    return;
-                }
+            if (!ownerName || !email || !paymentTerms) {
+                alert('Por favor, complete todos los campos incluyendo términos de pago.');
+                return;
+            }
 
-                if (!selectedStrategy) {
-                    alert('Por favor, seleccione una estrategia de sitio web.');
-                    return;
-                }
-                 if (!ownerName || !email || !paymentTerms) {
-                    alert('Por favor, complete todos los campos incluyendo términos de pago preferido.');
-                    alert('Por favor, complete el nombre del propietario y el correo electrónico.');
-                    return;
-                }
-
-                const strategyText = selectedStrategy === 'local' 
-                    ? `[X] Strong Local Launch — ${formatCurrency(STRATEGY_PRICES.local)}`
-                    : `[ ] Strong Local Launch`;
-                const destinationText = selectedStrategy === 'destination'
-                    ? `[X] Destination Boutique Strategy — ${formatCurrency(STRATEGY_PRICES.destination)}`
-                    : `[ ] Destination Boutique Strategy`;
-
-                const setup1Text = selectedSetup === 'phase1'
-                    ? `[X] Opción A — Shopify Phase 1 Setup — ${formatCurrency(SETUP_PRICES.phase1)}`
-                    : `[ ] Opción A — Shopify Phase 1 Setup`;
-                const setup2Text = selectedSetup === 'phase2'
-                    ? `[X] Opción B — Shopify + Integración — ${formatCurrency(SETUP_PRICES.phase2)}`
-                    : `[ ] Opción B — Shopify + Integración`;
-
-                const total = (selectedStrategy ? STRATEGY_PRICES[selectedStrategy] : 0) + (selectedSetup ? SETUP_PRICES[selectedSetup] : 0);
-
-                const body = `
+            const body = `
 Hola,
 
-Aquí está el resumen de las selecciones para ${businessName}:
+Aquí está el resumen de la propuesta para ${businessName}:
 
-SERVICIO SELECCIONADO:
-${selectedPackageName} — ${selectedPackagePrice}
+PAQUETE SELECCIONADO:
+${data.name} — ${data.price}
+
+DETALLES:
+${data.bullets.map(b => `• ${b}`).join('\n')}
 
 TÉRMINOS DE PAGO PREFERIDO:
 ${paymentTerms}
 
-SECCIÓN 1 — Estrategia de Sitio Web:
-${strategyText}
-${destinationText}
-
-SECCIÓN 2 — Configuración Shopify:
-${setup1Text}
-${setup2Text}
-
-RESUMEN DE INVERSIÓN:
-Estrategia: ${formatCurrency(selectedStrategy ? STRATEGY_PRICES[selectedStrategy] : 0)}
-Configuración: ${formatCurrency(selectedSetup ? SETUP_PRICES[selectedSetup] : 0)}
-Total: ${formatCurrency(total)}
-
-DETALLES DE CONFIRMACIÓN:
+INFORMACIÓN DE CONTACTO:
 Nombre del Negocio: ${businessName}
-Nombre del Propietario: ${ownerName}
-Correo Electrónico: ${email}
-Fecha: ${date}
+Propietario: ${ownerName}
+Email: ${email}
+Fecha: ${new Date().toLocaleDateString('es-ES')}
+
+Por favor, cargue manualmente el PDF generado.
 
 Gracias.
-                `.trim().replace(/^\s+/gm, '');
-                
-                const subject = `Selección de Propuesta para ${businessName}`;
-                window.location.href = `mailto:hello@nozallc.us?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
-            });
+            `.trim();
 
-            updateSummary(); // Initial call
+            const subject = `Propuesta Vero's Boutique - ${businessName}`;
+            window.location.href = `mailto:hello@nozallc.us?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
         });
     </script>
 </body>

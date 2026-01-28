@@ -499,6 +499,50 @@
       margin-bottom: 8px;
     }
 
+    /* FILE TREE TOGGLE */
+    .tree-toggle-box {
+      margin-bottom: 24px;
+      border-bottom: 1px solid var(--gray-200);
+      padding-bottom: 24px;
+    }
+
+    .toggle-link {
+      background: none;
+      border: none;
+      color: var(--blue-600);
+      font-size: 14px;
+      font-weight: 600;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 0;
+    }
+
+    .toggle-link:hover {
+      text-decoration: underline;
+    }
+
+    .preview-box {
+      background: var(--gray-50);
+      border: 1px solid var(--gray-200);
+      border-radius: 12px;
+      padding: 16px;
+      margin-top: 12px;
+      font-family: 'JetBrains Mono', 'Courier New', monospace;
+      font-size: 12px;
+      line-height: 1.4;
+      color: var(--gray-700);
+      max-height: 400px;
+      overflow-y: auto;
+      white-space: pre-wrap;
+      word-wrap: break-word;
+    }
+
+    .preview-box.hidden {
+      display: none;
+    }
+
     .roi-result {
       background: var(--blue-900);
       color: #fff;
@@ -595,9 +639,16 @@
         display: none !important;
       }
       .slide-block {
-        page-break-inside: avoid;
-        border: none;
-        padding: 40px 0;
+        display: none !important;
+      }
+      #print-template {
+        display: block !important;
+      }
+      #content-wrap {
+        background: white !important;
+      }
+      .hidden-print {
+        display: block !important;
       }
       .p-header {
         page-break-after: avoid;
@@ -738,7 +789,6 @@
     <!-- HEADER -->
     <header class="no-print">
       <div class="logo-text">Propuesta de Motor de Generación de Clientes para Contratistas</div>
-      <button class="print-btn no-print" onclick="window.print()">📥 Guardar PDF</button>
     </header>
 
     <!-- SECTION 01: HERO -->
@@ -1259,61 +1309,87 @@
       </section>
     </main>
 
-    <!-- SECTION 08: PRICING -->
+    <!-- SECTION 08: PRICING & CHECKOUT -->
     <div class="section-label">Sección 08 — Paquetes y Precios</div>
     <main class="main-container">
       <section class="slide-block">
         <h1 class="slide-title">Su Compromiso</h1>
 
-        <div class="scope-grid">
-          <div class="scope-card">
-            <h2>Base Local</h2>
-            <p>Construcción de presencia profesional para dominio local.</p>
-            
-            <div style="background: var(--blue-50); border: 1px solid #dbeafe; border-radius: 16px; padding: 16px; margin-bottom: 24px;">
-              <div style="font-size: 12px; font-weight: 700; color: var(--gray-600); text-transform: uppercase; margin-bottom: 8px;">Incluye</div>
+        <div style="display: grid; grid-template-columns: 1fr 440px; gap: 40px; margin-top: 60px; align-items: start;">
+          <!-- Pricing Cards (Left) -->
+          <div style="display: flex; flex-direction: column; gap: 24px;">
+            <!-- Local Foundation Card -->
+            <div class="pkg-card" id="cardA" onclick="selectPackage('A')" style="background: #fdfdfd; border: 1px solid var(--gray-100); border-radius: 24px; padding: 24px; cursor: pointer; transition: all 0.3s; position: relative;">
+              <div style="display: inline-block; background: var(--blue-50); border: 1px solid #dbeafe; border-radius: 8px; padding: 6px 12px; font-size: 11px; font-weight: 700; color: var(--blue-600); text-transform: uppercase; margin-bottom: 16px;">Valor Excepcional</div>
+              <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 16px;">
+                <div>
+                  <div style="font-size: 11px; font-weight: 700; color: var(--gray-500); text-transform: uppercase; margin-bottom: 4px;">Opción A</div>
+                  <h2 style="font-size: 22px; font-weight: 700; color: var(--gray-900); margin: 0;">Base Local</h2>
+                </div>
+                <div style="font-size: 28px; font-weight: 800; color: var(--blue-600);">$3,000</div>
+              </div>
+              <p style="font-size: 15px; color: var(--gray-600); margin-bottom: 16px;">Construcción de presencia profesional para dominio local.</p>
               <ul style="list-style: none; padding: 0; margin: 0; font-size: 14px; color: var(--gray-700);">
-                <li style="margin-bottom: 6px;">• Autoridad local básica (3 ciudades)</li>
+                <li style="margin-bottom: 6px;">• Autoridad local central (3 ciudades)</li>
                 <li style="margin-bottom: 6px;">• 5 servicios principales</li>
-                <li style="margin-bottom: 6px;">• Estructura optimizada para SEO</li>
-                <li style="margin-bottom: 6px;">• Botones de llamada + formularios de cotización</li>
-                <li style="margin-bottom: 6px;">• Rendimiento rápido (Astro + Cloudflare)</li>
-                <li>• Activo de su propiedad (sin cuotas recurrentes)</li>
+                <li>• Estructura optimizada para SEO</li>
               </ul>
             </div>
 
-            <div class="scope-price-container">
-              <div class="scope-price-btn">$3,000</div>
-              <span class="scope-price-label">Valor Excepcional</span>
-            </div>
-          </div>
-
-          <div class="scope-card accent">
-            <h2>Expansión de Máximo Impacto</h2>
-            <p>Construcción de visibilidad profunda para adquisición agresiva de clientes.</p>
-            
-            <div style="background: #f8fbff; border: 1px solid #dbeafe; border-radius: 16px; padding: 16px; margin-bottom: 24px;">
-              <div style="font-size: 12px; font-weight: 700; color: var(--gray-600); text-transform: uppercase; margin-bottom: 8px;">Incluye</div>
+            <!-- Maximum Impact Card (pre-selected) -->
+            <div class="pkg-card active" id="cardB" onclick="selectPackage('B')" style="background: #f8fbff; border: 2px solid #2563eb; border-radius: 24px; padding: 24px; cursor: pointer; transition: all 0.3s; position: relative;">
+              <div style="display: inline-block; background: var(--blue-50); border: 1px solid #2563eb; border-radius: 8px; padding: 6px 12px; font-size: 11px; font-weight: 700; color: var(--blue-600); text-transform: uppercase; margin-bottom: 16px;">Máximo Impacto</div>
+              <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 16px;">
+                <div>
+                  <div style="font-size: 11px; font-weight: 700; color: var(--gray-500); text-transform: uppercase; margin-bottom: 4px;">Opción B</div>
+                  <h2 style="font-size: 22px; font-weight: 700; color: var(--gray-900); margin: 0;">Máximo Impacto</h2>
+                </div>
+                <div style="font-size: 28px; font-weight: 800; color: var(--blue-600);">$5,000</div>
+              </div>
+              <p style="font-size: 15px; color: var(--gray-600); margin-bottom: 16px;">Construcción de visibilidad profunda para adquisición agresiva de clientes.</p>
               <ul style="list-style: none; padding: 0; margin: 0; font-size: 14px; color: var(--gray-700);">
                 <li style="margin-bottom: 6px;">• Dominio multi-ciudad (13 total)</li>
                 <li style="margin-bottom: 6px;">• Hasta 10 servicios</li>
-                <li style="margin-bottom: 6px;">• Hub de estudios de casos</li>
-                <li style="margin-bottom: 6px;">• Páginas de contenido de confianza</li>
-                <li style="margin-bottom: 6px;">• Schema avanzado + listo para IA</li>
-                <li>• Completamente escalable para crecimiento futuro</li>
+                <li>• Hub de estudios de casos + Páginas de autoridad</li>
               </ul>
             </div>
 
-            <div class="scope-price-container">
-              <div class="scope-price-btn">$5,000</div>
-              <span class="scope-price-label">Máximo Impacto</span>
+            <div style="background: var(--gray-50); border: 1px solid var(--gray-200); border-radius: 16px; padding: 20px; font-size: 13px; color: var(--gray-600);">
+              <strong>Planes de Instalación Disponibles</strong> — Comenzando con el 40% por adelantado. El saldo puede dividirse según su flujo de caja mensual.
             </div>
           </div>
-        </div>
 
-        <div style="background: var(--gray-50); border: 1px solid var(--gray-200); border-radius: 24px; padding: 32px; text-align: center; margin-top: 60px; max-width: 600px; margin-left: auto; margin-right: auto;">
-          <p style="margin: 0; font-size: 16px; font-weight: 700; color: var(--gray-900); margin-bottom: 8px;">Opciones de Pago Flexible</p>
-          <p style="margin: 0; font-size: 14px; color: var(--gray-600);">Planes de instalación disponibles comenzando con el 40% por adelantado. El saldo se puede dividir según su flujo de caja mensual.</p>
+          <!-- Order Summary Panel (Right) -->
+          <div style="background: var(--gray-50); border: 1px solid var(--gray-200); border-radius: 24px; padding: 32px; position: sticky; top: 120px;">
+            <div style="font-size: 11px; font-weight: 700; color: var(--gray-500); text-transform: uppercase; margin-bottom: 16px;">Resumen de Orden</div>
+            
+            <div class="tree-toggle-box">
+              <button class="toggle-link" id="treeToggle">
+                <span id="treeArrow">▶</span>
+                <span>Ver árbol de archivos</span>
+              </button>
+              <div id="treePreview" class="preview-box hidden"></div>
+            </div>
+
+            <div style="margin-bottom: 24px; padding-bottom: 24px; border-bottom: 1px solid var(--gray-200);">
+              <div style="font-size: 11px; font-weight: 700; color: var(--gray-500); text-transform: uppercase; margin-bottom: 4px;">Selección</div>
+              <h2 id="sumName" style="font-size: 24px; font-weight: 700; color: var(--gray-900); margin: 0;">Máximo Impacto</h2>
+              <div id="sumPrice" style="font-size: 32px; font-weight: 800; color: var(--blue-600); margin-top: 8px;">$5,000</div>
+            </div>
+
+            <ul id="sumBullets" style="list-style: none; padding: 0; margin: 0 0 24px 0; font-size: 14px; color: var(--gray-700);">
+              <li style="margin-bottom: 8px;">• Dominio multi-ciudad (13 total)</li>
+              <li style="margin-bottom: 8px;">• Hasta 10 servicios</li>
+              <li>• Hub de estudios de casos + Páginas de autoridad</li>
+            </ul>
+
+            <div style="margin-bottom: 24px; padding-bottom: 24px; border-bottom: 1px solid var(--gray-200);">
+              <label style="display: block; font-size: 11px; font-weight: 700; color: var(--gray-600); text-transform: uppercase; margin-bottom: 8px;">Nombre de la Empresa</label>
+              <input type="text" id="companyInput" placeholder="Su Negocio de Contratación" style="width: 100%; padding: 12px; background: #fff; border: 1px solid var(--gray-200); border-radius: 8px; font-size: 14px; outline: none;">
+            </div>
+
+            <button onclick="generateOrder()" style="width: 100%; background: var(--blue-600); color: #fff; border: none; padding: 16px; border-radius: 12px; font-weight: 700; font-size: 16px; cursor: pointer; transition: background 0.3s;">📥 Generar Orden (PDF)</button>
+          </div>
         </div>
       </section>
     </main>
@@ -1380,7 +1456,7 @@
     <div class="p-grid">
       <div>
         <div class="p-label">Cliente</div>
-        <div class="p-val" id="pClient">Contratista</div>
+        <div class="p-val" id="pCompany">Contratista</div>
         <div style="color:#666; font-size:12px; margin-top:2px;">Estrategia de Construcción de Generación de Clientes</div>
       </div>
       <div style="text-align:right">
@@ -1393,7 +1469,7 @@
       <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom: 24px;">
         <div>
           <div class="p-label">Paquete</div>
-          <h2 style="font-size: 24px; margin: 0; color: var(--blue-900);" id="pName">Base Local</h2>
+          <h2 style="font-size: 24px; margin: 0; color: var(--blue-900);" id="pPkgName">Base Local</h2>
         </div>
         <div class="p-price" id="pPrice">$3,000</div>
       </div>
@@ -1490,6 +1566,220 @@
       roiMargin.addEventListener('input', updateROI);
 
       updateROI();
+
+      // Package Data with File Trees
+      const data = {
+        A: {
+          name: 'Base Local',
+          price: '$3,000',
+          bullets: ['Autoridad local central (3 ciudades)', '5 servicios principales', 'Estructura optimizada para SEO'],
+          tree: `/
+├── index.astro
+│   └── Página de inicio del contratista
+├── about/
+│   └── index.astro (Acerca de / Experiencia)
+├── services/
+│   ├── index.astro (Servicios principales)
+│   ├── electrician/
+│   │   └── index.astro
+│   ├── plumbing/
+│   │   └── index.astro
+│   ├── hvac/
+│   │   └── index.astro
+│   ├── roofing/
+│   │   └── index.astro
+│   └── painting/
+│       └── index.astro
+├── cities/
+│   ├── denver/
+│   │   ├── index.astro (Hub de Denver)
+│   │   ├── services/
+│   │   │   ├── electrician/
+│   │   │   ├── plumbing/
+│   │   │   ├── hvac/
+│   │   │   ├── roofing/
+│   │   │   └── painting/
+│   │   └── contractors/ (Directorio local)
+│   ├── austin/
+│   │   ├── index.astro (Hub de Austin)
+│   │   ├── services/
+│   │   │   ├── electrician/
+│   │   │   ├── plumbing/
+│   │   │   ├── hvac/
+│   │   │   ├── roofing/
+│   │   │   └── painting/
+│   │   └── contractors/
+│   └── houston/
+│       ├── index.astro (Hub de Houston)
+│       ├── services/
+│       │   ├── electrician/
+│       │   ├── plumbing/
+│       │   ├── hvac/
+│       │   ├── roofing/
+│       │   └── painting/
+│       └── contractors/
+├── contact/
+│   └── index.astro (Formulario de contacto)
+├── sitemap.xml
+├── robots.txt
+└── _redirects (Enrutamiento limpio)`
+        },
+        B: {
+          name: 'Máximo Impacto',
+          price: '$5,000',
+          bullets: ['Dominio multi-ciudad (13 total)', 'Hasta 10 servicios', 'Hub de estudios de casos + Páginas de autoridad'],
+          tree: `/
+├── index.astro
+│   └── Página de inicio del contratista
+├── about/
+│   └── index.astro (Acerca de / Experiencia)
+├── services/ (10 servicios principales)
+│   ├── index.astro
+│   ├── electrician/index.astro
+│   ├── plumbing/index.astro
+│   ├── hvac/index.astro
+│   ├── roofing/index.astro
+│   ├── painting/index.astro
+│   ├── carpentry/index.astro
+│   ├── landscaping/index.astro
+│   ├── concrete/index.astro
+│   └── inspection/index.astro
+├── cities/ (13 ciudades × 10 servicios = 130 páginas de ubicación)
+│   ├── denver/
+│   │   ├── index.astro (Hub regional)
+│   │   ├── services/ (10 servicios)
+│   │   │   ├── electrician/
+│   │   │   ├── plumbing/
+│   │   │   ├── hvac/
+│   │   │   ├── roofing/
+│   │   │   ├── painting/
+│   │   │   ├── carpentry/
+│   │   │   ├── landscaping/
+│   │   │   ├── concrete/
+│   │   │   └── inspection/
+│   │   └── contractors/ (Directorio local)
+│   ├── austin/
+│   │   ├── index.astro
+│   │   ├── services/
+│   │   └── contractors/
+│   ├── houston/
+│   │   ├── index.astro
+│   │   ├── services/
+│   │   └── contractors/
+│   ├── dallas/
+│   │   ├── index.astro
+│   │   ├── services/
+│   │   └── contractors/
+│   ├── phoenix/
+│   │   ├── index.astro
+│   │   ├── services/
+│   │   └── contractors/
+│   ├── los-angeles/
+│   │   ├── index.astro
+│   │   ├── services/
+│   │   └── contractors/
+│   ├── chicago/
+│   │   ├── index.astro
+│   │   ├── services/
+│   │   └── contractors/
+│   ├── new-york/
+│   │   ├── index.astro
+│   │   ├── services/
+│   │   └── contractors/
+│   ├── seattle/
+│   │   ├── index.astro
+│   │   ├── services/
+│   │   └── contractors/
+│   ├── portland/
+│   │   ├── index.astro
+│   │   ├── services/
+│   │   └── contractors/
+│   ├── orlando/
+│   │   ├── index.astro
+│   │   ├── services/
+│   │   └── contractors/
+│   ├── san-diego/
+│   │   ├── index.astro
+│   │   ├── services/
+│   │   └── contractors/
+│   └── miami/
+│       ├── index.astro
+│       ├── services/
+│       └── contractors/
+├── case-studies/
+│   ├── index.astro (Hub de casos)
+│   ├── case-study-1/index.astro
+│   ├── case-study-2/index.astro
+│   └── case-study-3/index.astro
+├── authority-pages/
+│   ├── index.astro (Hub de autoridad)
+│   ├── contractor-licenses/
+│   ├── insurance-requirements/
+│   ├── industry-standards/
+│   ├── best-practices/
+│   └── market-trends/
+├── contact/
+│   └── index.astro (Formulario principal de contacto)
+├── sitemap.xml (Auto-generado)
+├── robots.txt (Optimizado para rastreo)
+└── _redirects (Enrutamiento inteligente)`
+        }
+      };
+
+      let current = 'B';
+      let treeVisible = false;
+
+      // Package Selection & Checkout
+      function selectPackage(pkg) {
+        current = pkg;
+        const d = data[pkg];
+
+        document.getElementById('cardA').style.background = pkg === 'A' ? '#f8fbff' : '#fdfdfd';
+        document.getElementById('cardA').style.borderColor = pkg === 'A' ? '#2563eb' : 'var(--gray-100)';
+        document.getElementById('cardA').style.borderWidth = pkg === 'A' ? '2px' : '1px';
+        
+        document.getElementById('cardB').style.background = pkg === 'B' ? '#f8fbff' : '#fdfdfd';
+        document.getElementById('cardB').style.borderColor = pkg === 'B' ? '#2563eb' : 'var(--gray-100)';
+        document.getElementById('cardB').style.borderWidth = pkg === 'B' ? '2px' : '1px';
+
+        document.getElementById('sumName').textContent = d.name;
+        document.getElementById('sumPrice').textContent = d.price;
+        document.getElementById('sumBullets').innerHTML = d.bullets.map(b => `<li style="margin-bottom: 8px;">• ${b}</li>`).join('');
+        
+        if (treeVisible) {
+          document.getElementById('treePreview').textContent = d.tree;
+        }
+      }
+
+      // Tree Toggle
+      const treeToggle = document.getElementById('treeToggle');
+      const treeBox = document.getElementById('treePreview');
+      const treeArrow = document.getElementById('treeArrow');
+
+      treeToggle.onclick = function(e) {
+        e.preventDefault();
+        treeVisible = !treeVisible;
+        treeBox.classList.toggle('hidden', !treeVisible);
+        treeArrow.textContent = treeVisible ? '▼' : '▶';
+        if (treeVisible) {
+          treeBox.textContent = data[current].tree;
+        }
+      };
+
+      function generateOrder() {
+        const company = document.getElementById('companyInput').value || 'Negocio de Contratación';
+        const d = data[current];
+        
+        document.getElementById('pCompany').textContent = company;
+        document.getElementById('pPkgName').textContent = d.name;
+        document.getElementById('pPrice').textContent = d.price;
+        document.getElementById('pDate').textContent = new Date().toLocaleDateString();
+        document.getElementById('pBullets').innerHTML = d.bullets.map(b => `<li>${b}</li>`).join('');
+        document.getElementById('pTree').textContent = d.tree;
+        
+        window.print();
+      }
+    </script>
 
       // Set today's date on print template
       document.getElementById('pDate').textContent = new Date().toLocaleDateString();
