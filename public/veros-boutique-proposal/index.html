@@ -201,7 +201,7 @@
             
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
                 <!-- Option 1: Strong Local Launch -->
-                <div class="p-8 border border-gray-200 rounded-lg">
+                <div class="p-8 border-2 border-gray-200 rounded-lg cursor-pointer transition-all hover:border-blue-500 hover:bg-blue-50" onclick="selectPackage('local', 'Strong Local Launch', '$3,000')">
                     <header class="text-center mb-8 border-b pb-8">
                         <h2 class="text-3xl font-bold text-gray-800 tracking-tight">Strong Local Launch</h2>
                         <p class="text-md text-gray-500 mt-2">Dominar su Mercado Local desde el Día Uno.</p>
@@ -231,7 +231,7 @@
                 </div>
 
                 <!-- Option 2: Destination Boutique -->
-                <div class="p-8 border-2 border-purple-500 rounded-lg bg-purple-50/20">
+                <div class="p-8 border-2 border-purple-500 rounded-lg bg-purple-50/20 cursor-pointer transition-all hover:border-purple-700" onclick="selectPackage('destination', 'Destination Boutique Strategy', '$4,000')">
                     <header class="text-center mb-8 border-b pb-8">
                         <h2 class="text-3xl font-bold text-gray-800 tracking-tight">Destination Boutique Strategy</h2>
                         <p class="text-md text-gray-500 mt-2">Convierta su Boutique en un Destino Regional.</p>
@@ -458,6 +458,11 @@
                     </section>
                 </div>
                  <section class="pt-6 border-t">
+                     <h2 class="text-2xl font-bold text-gray-700 mb-4">Resumen de Selección</h2>
+                     <div id="selection-summary" class="bg-gray-50 border-2 border-gray-300 p-6 rounded-lg mb-8">
+                         <div id="summary-content" class="text-gray-600 italic">Haga clic en una opción arriba para ver el resumen aquí.</div>
+                     </div>
+                     
                      <h2 class="text-2xl font-bold text-gray-700 mb-4">SECCIÓN 5 — Confirmación y Siguientes Pasos</h2>
                      <div id="summary-form-inputs" class="bg-blue-50 border border-blue-200 p-6 rounded-lg">
                         <div class="grid grid-cols-1 md:grid-cols-2 gap-6 items-start">
@@ -472,8 +477,18 @@
                                 <input type="text" id="businessName" placeholder="Nombre del negocio" value="Vero's Boutique" class="w-full p-2 border rounded">
                                 <input type="text" id="ownerName" placeholder="Nombre del propietario" class="w-full p-2 border rounded">
                                 <input type="email" id="email" placeholder="Correo electrónico" class="w-full p-2 border rounded">
+                                <textarea id="paymentTerms" placeholder="Terminos de pago preferido: pago en full antes de feb 10 o 40% deposito y $000/mes" class="w-full p-2 border rounded" rows="2"></textarea>
                                 <input type="text" id="date" value="" class="w-full p-2 border rounded">
                             </div>
+                        </div>
+                        <div class="bg-yellow-50 border-l-4 border-yellow-400 p-4 mt-6 mb-6 no-print">
+                            <h3 class="font-semibold text-yellow-900 mb-3">PRÓXIMOS PASOS OBLIGATORIOS:</h3>
+                            <ol class="space-y-2 text-yellow-800 text-sm list-decimal list-inside">
+                                <li><strong>Seleccione un paquete</strong> haciendo clic en una opción arriba</li>
+                                <li><strong>Complete TODOS los campos</strong> de información (nombre negocio, propietario, correo, términos de pago)</li>
+                                <li><strong>Haga clic en "Descargar Resumen en PDF"</strong> para generar el documento</li>
+                                <li><strong>Haga clic en "Enviar Selecciones por Correo"</strong> y cargue manualmente el PDF generado</li>
+                            </ol>
                         </div>
                         <div class="flex flex-col sm:flex-row gap-4 mt-6 pt-6 border-t border-blue-200 no-print">
                             <button id="download-pdf" class="flex-1 flex items-center justify-center p-3 bg-gray-600 text-white rounded-md hover:bg-gray-700 transition-colors font-semibold">
@@ -508,6 +523,45 @@
                 alert('Contraseña incorrecta.');
             }
         });
+
+        // Global selection state
+        let selectedPackage = null;
+        let selectedPackageName = null;
+        let selectedPackagePrice = null;
+
+        // Function to select a package
+        function selectPackage(pkg, name, price) {
+            selectedPackage = pkg;
+            selectedPackageName = name;
+            selectedPackagePrice = price;
+
+            // Update visual selection on cards
+            const cards = document.querySelectorAll('[onclick*="selectPackage"]');
+            cards.forEach(card => {
+                const parent = card.closest('.rounded-lg');
+                if (parent) {
+                    if (pkg === 'local' && card.getAttribute('onclick').includes("'local'")) {
+                        parent.classList.add('border-blue-500', 'bg-blue-50');
+                        parent.classList.remove('border-gray-200');
+                    } else if (pkg === 'destination' && card.getAttribute('onclick').includes("'destination'")) {
+                        parent.classList.add('border-purple-700');
+                    } else {
+                        parent.classList.remove('border-blue-500', 'bg-blue-50');
+                        parent.classList.add('border-gray-200');
+                    }
+                }
+            });
+
+            // Update summary display
+            const summaryContent = document.getElementById('summary-content');
+            if (summaryContent) {
+                summaryContent.innerHTML = `
+                    <div class="font-semibold text-lg text-gray-800 mb-3">✓ ${name}</div>
+                    <div class="text-gray-700 mb-2"><strong>Inversión:</strong> ${price}</div>
+                    <div class="text-sm text-gray-600">Seleccionado. Complete sus datos a continuación y descargue el PDF.</div>
+                `;
+            }
+        }
 
         // Interactive Summary Logic
         document.addEventListener('DOMContentLoaded', () => {
@@ -577,13 +631,21 @@
                 const businessName = document.getElementById('businessName').value;
                 const ownerName = document.getElementById('ownerName').value;
                 const email = document.getElementById('email').value;
+                const paymentTerms = document.getElementById('paymentTerms').value;
                 const date = document.getElementById('date').value;
+
+                // Check if a service package was selected
+                if (!selectedPackage) {
+                    alert('Por favor, seleccione un paquete de servicio haciendo clic en una opción.');
+                    return;
+                }
 
                 if (!selectedStrategy) {
                     alert('Por favor, seleccione una estrategia de sitio web.');
                     return;
                 }
-                 if (!ownerName || !email) {
+                 if (!ownerName || !email || !paymentTerms) {
+                    alert('Por favor, complete todos los campos incluyendo términos de pago preferido.');
                     alert('Por favor, complete el nombre del propietario y el correo electrónico.');
                     return;
                 }
@@ -608,6 +670,12 @@
 Hola,
 
 Aquí está el resumen de las selecciones para ${businessName}:
+
+SERVICIO SELECCIONADO:
+${selectedPackageName} — ${selectedPackagePrice}
+
+TÉRMINOS DE PAGO PREFERIDO:
+${paymentTerms}
 
 SECCIÓN 1 — Estrategia de Sitio Web:
 ${strategyText}
