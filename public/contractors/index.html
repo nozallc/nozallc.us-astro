@@ -1259,61 +1259,79 @@
       </section>
     </main>
 
-    <!-- SECTION 08: PRICING -->
+    <!-- SECTION 08: PRICING & CHECKOUT -->
     <div class="section-label">Section 08 — Packages & Pricing</div>
     <main class="main-container">
       <section class="slide-block">
         <h1 class="slide-title">Your Commitment</h1>
 
-        <div class="scope-grid">
-          <div class="scope-card">
-            <h2>Local Foundation</h2>
-            <p>Professional presence build for local domination.</p>
-            
-            <div style="background: var(--blue-50); border: 1px solid #dbeafe; border-radius: 16px; padding: 16px; margin-bottom: 24px;">
-              <div style="font-size: 12px; font-weight: 700; color: var(--gray-600); text-transform: uppercase; margin-bottom: 8px;">Includes</div>
+        <div style="display: grid; grid-template-columns: 1fr 440px; gap: 40px; margin-top: 60px; align-items: start;">
+          <!-- Pricing Cards (Left) -->
+          <div style="display: flex; flex-direction: column; gap: 24px;">
+            <!-- Local Foundation Card -->
+            <div class="pkg-card" id="cardA" onclick="selectPackage('A')" style="background: #fdfdfd; border: 1px solid var(--gray-100); border-radius: 24px; padding: 24px; cursor: pointer; transition: all 0.3s; position: relative;">
+              <div style="display: inline-block; background: var(--blue-50); border: 1px solid #dbeafe; border-radius: 8px; padding: 6px 12px; font-size: 11px; font-weight: 700; color: var(--blue-600); text-transform: uppercase; margin-bottom: 16px;">Exceptional Value</div>
+              <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 16px;">
+                <div>
+                  <div style="font-size: 11px; font-weight: 700; color: var(--gray-500); text-transform: uppercase; margin-bottom: 4px;">Option A</div>
+                  <h2 style="font-size: 22px; font-weight: 700; color: var(--gray-900); margin: 0;">Local Foundation</h2>
+                </div>
+                <div style="font-size: 28px; font-weight: 800; color: var(--blue-600);">$3,000</div>
+              </div>
+              <p style="font-size: 15px; color: var(--gray-600); margin-bottom: 16px;">Professional presence build for local domination.</p>
               <ul style="list-style: none; padding: 0; margin: 0; font-size: 14px; color: var(--gray-700);">
                 <li style="margin-bottom: 6px;">• Core local authority (3 cities)</li>
                 <li style="margin-bottom: 6px;">• 5 core services</li>
-                <li style="margin-bottom: 6px;">• SEO-optimized structure</li>
-                <li style="margin-bottom: 6px;">• Click-to-call + quote forms</li>
-                <li style="margin-bottom: 6px;">• Fast performance (Astro + Cloudflare)</li>
-                <li>• Owned asset (no recurring fees)</li>
+                <li>• SEO-optimized structure</li>
               </ul>
             </div>
 
-            <div class="scope-price-container">
-              <div class="scope-price-btn">$3,000</div>
-              <span class="scope-price-label">Exceptional Value</span>
-            </div>
-          </div>
-
-          <div class="scope-card accent">
-            <h2>Maximum Impact Expansion</h2>
-            <p>Deep visibility build for aggressive lead acquisition.</p>
-            
-            <div style="background: #f8fbff; border: 1px solid #dbeafe; border-radius: 16px; padding: 16px; margin-bottom: 24px;">
-              <div style="font-size: 12px; font-weight: 700; color: var(--gray-600); text-transform: uppercase; margin-bottom: 8px;">Includes</div>
+            <!-- Maximum Impact Card (pre-selected) -->
+            <div class="pkg-card active" id="cardB" onclick="selectPackage('B')" style="background: #f8fbff; border: 2px solid #2563eb; border-radius: 24px; padding: 24px; cursor: pointer; transition: all 0.3s; position: relative;">
+              <div style="display: inline-block; background: var(--blue-50); border: 1px solid #2563eb; border-radius: 8px; padding: 6px 12px; font-size: 11px; font-weight: 700; color: var(--blue-600); text-transform: uppercase; margin-bottom: 16px;">Maximum Impact</div>
+              <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 16px;">
+                <div>
+                  <div style="font-size: 11px; font-weight: 700; color: var(--gray-500); text-transform: uppercase; margin-bottom: 4px;">Option B</div>
+                  <h2 style="font-size: 22px; font-weight: 700; color: var(--gray-900); margin: 0;">Maximum Impact</h2>
+                </div>
+                <div style="font-size: 28px; font-weight: 800; color: var(--blue-600);">$5,000</div>
+              </div>
+              <p style="font-size: 15px; color: var(--gray-600); margin-bottom: 16px;">Deep visibility build for aggressive lead acquisition.</p>
               <ul style="list-style: none; padding: 0; margin: 0; font-size: 14px; color: var(--gray-700);">
                 <li style="margin-bottom: 6px;">• Multi-city domination (13 total)</li>
                 <li style="margin-bottom: 6px;">• Up to 10 services</li>
-                <li style="margin-bottom: 6px;">• Case studies hub</li>
-                <li style="margin-bottom: 6px;">• Trust content pages</li>
-                <li style="margin-bottom: 6px;">• Advanced schema + AI-ready</li>
-                <li>• Fully scalable for future growth</li>
+                <li>• Case studies hub + Authority pages</li>
               </ul>
             </div>
 
-            <div class="scope-price-container">
-              <div class="scope-price-btn">$5,000</div>
-              <span class="scope-price-label">Maximum Impact</span>
+            <div style="background: var(--gray-50); border: 1px solid var(--gray-200); border-radius: 16px; padding: 20px; font-size: 13px; color: var(--gray-600);">
+              <strong>Installment Plans Available</strong> — Starting at 40% upfront. Balance can be split based on your monthly cash flow.
             </div>
           </div>
-        </div>
 
-        <div style="background: var(--gray-50); border: 1px solid var(--gray-200); border-radius: 24px; padding: 32px; text-align: center; margin-top: 60px; max-width: 600px; margin-left: auto; margin-right: auto;">
-          <p style="margin: 0; font-size: 16px; font-weight: 700; color: var(--gray-900); margin-bottom: 8px;">Flexible Payment Options</p>
-          <p style="margin: 0; font-size: 14px; color: var(--gray-600);">Installment plans available starting at 40% upfront. Balance can be split based on your monthly cash flow.</p>
+          <!-- Order Summary Panel (Right) -->
+          <div style="background: var(--gray-50); border: 1px solid var(--gray-200); border-radius: 24px; padding: 32px; position: sticky; top: 120px;">
+            <div style="font-size: 11px; font-weight: 700; color: var(--gray-500); text-transform: uppercase; margin-bottom: 16px;">Order Summary</div>
+            
+            <div style="margin-bottom: 24px; padding-bottom: 24px; border-bottom: 1px solid var(--gray-200);">
+              <div style="font-size: 11px; font-weight: 700; color: var(--gray-500); text-transform: uppercase; margin-bottom: 4px;">Selection</div>
+              <h2 id="sumName" style="font-size: 24px; font-weight: 700; color: var(--gray-900); margin: 0;">Maximum Impact</h2>
+              <div id="sumPrice" style="font-size: 32px; font-weight: 800; color: var(--blue-600); margin-top: 8px;">$5,000</div>
+            </div>
+
+            <ul id="sumBullets" style="list-style: none; padding: 0; margin: 0 0 24px 0; font-size: 14px; color: var(--gray-700);">
+              <li style="margin-bottom: 8px;">• Multi-city domination (13 total)</li>
+              <li style="margin-bottom: 8px;">• Up to 10 services</li>
+              <li>• Case studies hub + Authority pages</li>
+            </ul>
+
+            <div style="margin-bottom: 24px; padding-bottom: 24px; border-bottom: 1px solid var(--gray-200);">
+              <label style="display: block; font-size: 11px; font-weight: 700; color: var(--gray-600); text-transform: uppercase; margin-bottom: 8px;">Company Name</label>
+              <input type="text" id="companyInput" placeholder="Your Contracting Business" style="width: 100%; padding: 12px; background: #fff; border: 1px solid var(--gray-200); border-radius: 8px; font-size: 14px; outline: none;">
+            </div>
+
+            <button onclick="generateOrder()" style="width: 100%; background: var(--blue-600); color: #fff; border: none; padding: 16px; border-radius: 12px; font-weight: 700; font-size: 16px; cursor: pointer; transition: background 0.3s;">📥 Generate Order (PDF)</button>
+          </div>
         </div>
       </section>
     </main>
@@ -1380,7 +1398,7 @@
     <div class="p-grid">
       <div>
         <div class="p-label">Client</div>
-        <div class="p-val" id="pClient">Contractor</div>
+        <div class="p-val" id="pCompany">Contractor</div>
         <div style="color:#666; font-size:12px; margin-top:2px;">Lead Generation Build Strategy</div>
       </div>
       <div style="text-align:right">
@@ -1393,7 +1411,7 @@
       <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom: 24px;">
         <div>
           <div class="p-label">Package</div>
-          <h2 style="font-size: 24px; margin: 0; color: var(--blue-900);" id="pName">Local Foundation</h2>
+          <h2 style="font-size: 24px; margin: 0; color: var(--blue-900);" id="pPkgName">Local Foundation</h2>
         </div>
         <div class="p-price" id="pPrice">$3,000</div>
       </div>
@@ -1490,6 +1508,41 @@
       roiMargin.addEventListener('input', updateROI);
 
       updateROI();
+
+      // Package Selection & Checkout
+      function selectPackage(pkg) {
+        document.getElementById('cardA').style.background = pkg === 'A' ? '#f8fbff' : '#fdfdfd';
+        document.getElementById('cardA').style.borderColor = pkg === 'A' ? '#2563eb' : 'var(--gray-100)';
+        document.getElementById('cardA').style.borderWidth = pkg === 'A' ? '2px' : '1px';
+        
+        document.getElementById('cardB').style.background = pkg === 'B' ? '#f8fbff' : '#fdfdfd';
+        document.getElementById('cardB').style.borderColor = pkg === 'B' ? '#2563eb' : 'var(--gray-100)';
+        document.getElementById('cardB').style.borderWidth = pkg === 'B' ? '2px' : '1px';
+
+        if (pkg === 'A') {
+          document.getElementById('sumName').textContent = 'Local Foundation';
+          document.getElementById('sumPrice').textContent = '$3,000';
+          document.getElementById('sumBullets').innerHTML = '<li style="margin-bottom: 8px;">• Core local authority (3 cities)</li><li style="margin-bottom: 8px;">• 5 core services</li><li>• SEO-optimized structure</li>';
+        } else {
+          document.getElementById('sumName').textContent = 'Maximum Impact';
+          document.getElementById('sumPrice').textContent = '$5,000';
+          document.getElementById('sumBullets').innerHTML = '<li style="margin-bottom: 8px;">• Multi-city domination (13 total)</li><li style="margin-bottom: 8px;">• Up to 10 services</li><li>• Case studies hub + Authority pages</li>';
+        }
+      }
+
+      function generateOrder() {
+        const company = document.getElementById('companyInput').value || 'Contractor Business';
+        const pkgA = document.getElementById('cardA').style.borderColor.includes('2563eb');
+        const pkgName = pkgA ? 'Local Foundation' : 'Maximum Impact';
+        const pkgPrice = pkgA ? '$3,000' : '$5,000';
+        
+        document.getElementById('pCompany').textContent = company;
+        document.getElementById('pPkgName').textContent = pkgName;
+        document.getElementById('pPrice').textContent = pkgPrice;
+        document.getElementById('pDate').textContent = new Date().toLocaleDateString();
+        
+        window.print();
+      }
 
       // Set today's date on print template
       document.getElementById('pDate').textContent = new Date().toLocaleDateString();
