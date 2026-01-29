@@ -184,10 +184,16 @@
       /* Professional Summary Panel Styles (NG Healthcare Pattern) */
       .pricing-layout { 
         display: grid; 
-        grid-template-columns: 1fr 440px; 
+        grid-template-columns: 1fr;
         gap: 40px; 
         margin-top: 60px; 
         align-items: start; 
+      }
+      
+      @media (min-width: 1024px) {
+        .pricing-layout {
+          grid-template-columns: 1fr 440px;
+        }
       }
 
       .pkg-card { 
@@ -213,8 +219,15 @@
         border-radius: 32px; 
         padding: 40px; 
         box-shadow: 0 30px 60px rgba(0,0,0,0.08); 
-        position: sticky; 
-        top: 140px; 
+        position: static;
+        top: auto;
+      }
+      
+      @media (min-width: 1024px) {
+        .summary-panel {
+          position: sticky;
+          top: 140px;
+        }
       }
 
       .sum-label { 
@@ -294,7 +307,8 @@
         background: #f9fafb; 
         border: 1px solid #e5e7eb; 
         border-radius: 12px; 
-        font-size: 16px; 
+        font-size: 16px;
+        min-height: 44px;
         font-weight: 600; 
         color: #1e3a8a; 
         outline: none; 
@@ -306,9 +320,10 @@
         background: #2563eb; 
         color: #fff; 
         border: none; 
-        padding: 22px; 
+        padding: 16px 22px;
+        min-height: 48px;
         border-radius: 20px; 
-        font-size: 18px; 
+        font-size: 16px;
         font-weight: 700; 
         cursor: pointer; 
         box-shadow: 0 10px 30px rgba(37, 99, 235, 0.2); 
