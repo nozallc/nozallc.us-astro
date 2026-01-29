@@ -92,40 +92,62 @@
         }
         
         body {
-            background-color: white;
-            color: black;
+            background-color: white !important;
+            color: black !important;
             font-size: 10pt;
-            margin: 0;
-            padding: 0;
+            margin: 0 !important;
+            padding: 0 !important;
         }
         
-        /* Hide everything except print template */
-        main, header, footer, nav, .no-print, section, .card {
+        /* Hide EVERYTHING except print-order */
+        main {
             display: none !important;
         }
         
-        #password-overlay {
+        header, footer, nav, .no-print, .password-overlay, #password-overlay {
             display: none !important;
         }
         
-        /* Show ONLY the print template */
+        section, .card, .summary-panel, .pkg-card {
+            display: none !important;
+        }
+        
+        /* Force print template to be visible */
         #print-order {
             display: block !important;
-            position: relative !important;
+            visibility: visible !important;
+            opacity: 1 !important;
+            position: static !important;
             width: 100% !important;
+            height: auto !important;
             margin: 0 !important;
             padding: 40px !important;
             background: white !important;
             color: black !important;
-            height: auto !important;
-            visibility: visible !important;
+            border: none !important;
+            box-shadow: none !important;
+            page-break-before: avoid;
         }
         
         #print-order * {
+            visibility: visible !important;
+            opacity: 1 !important;
+            display: auto !important;
             background: transparent !important;
             color: black !important;
             border-color: #333 !important;
+        }
+        
+        /* Print-specific text formatting */
+        #print-order div, #print-order p, #print-order h1, #print-order h2, #print-order h3 {
+            display: block !important;
             visibility: visible !important;
+        }
+        
+        #print-order pre {
+            display: block !important;
+            visibility: visible !important;
+            font-family: 'Courier New', monospace !important;
         }
         
         .card {
