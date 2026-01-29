@@ -1040,8 +1040,8 @@
             selectStrategy('destination');
         });
 
-        // CANONICAL: Build order summary (shared by PDF and email)
-        function buildOrderSummary(strategy, phase1Checked, phase2Checked, businessName, ownerName, email, paymentTerms) {
+        // CANONICAL: Build shared order state object (single source of truth)
+        function buildOrderState(strategy, phase1Checked, phase2Checked, businessName, ownerName, email, paymentTerms) {
             if (!strategy || !strategies[strategy]) {
                 return null;
             }
@@ -1055,64 +1055,153 @@
             
             const totalPrice = strategyPrice + setupPrice;
             const optionLabel = strategy === 'local' ? 'OPTION 1 — $3,000' : 'OPTION 2 — $4,000';
+            const dateStr = new Date().toLocaleDateString('es-ES');
 
-            // Email body: plain text with all details
-            const emailBody = `VERO'S BOUTIQUE LLC - ORDER CONFIRMATION
+            // Shared order state: data only, no formatting
+            return {
+                // Customer info
+                businessName,
+                ownerName,
+                email,
+                date: dateStr,
+                paymentTerms,
+                
+                // Strategy selection
+                strategy,
+                optionLabel,
+                strategyData,
+                strategyPrice,
+                setupPrice,
+                totalPrice,
+                
+                // Setup options
+                phase1Checked,
+                phase2Checked,
+                
+                // Computed for display
+                strategyPriceStr: '$' + strategyPrice.toLocaleString(),
+                setupPriceStr: setupPrice > 0 ? '$' + setupPrice.toLocaleString() : null,
+                totalPriceStr: '$' + totalPrice.toLocaleString()
+            };
+        }
 
-═══════════════════════════════════════════════
+        // Format order state for email (essential info first, short)
+        function buildEmailEssentialText(orderState) {
+            if (!orderState) return '';
+            
+            const {
+                businessName, ownerName, email, date, paymentTerms,
+                optionLabel, strategyData, strategyPriceStr, setupPriceStr, totalPriceStr
+            } = orderState;
 
-CLIENTE:
-Empresa: ${businessName}
-Propietario: ${ownerName}
-Email: ${email}
-Fecha: ${new Date().toLocaleDateString('es-ES')}
+            // PRIORITY 1: Customer info (vital for response)
+            let body = `INFORMACIÓN DEL CLIENTE:\r\n`;
+            body += `Empresa: ${businessName}\r\n`;
+            body += `Propietario: ${ownerName}\r\n`;
+            body += `Email: ${email}\r\n`;
+            body += `Fecha: ${date}\r\n\r\n`;
 
-═══════════════════════════════════════════════
+            // PRIORITY 2: Cost summary (vital for decision)
+            body += `RESUMEN DE COSTO:\r\n`;
+            body += `Estrategia: ${strategyPriceStr}\r\n`;
+            if (setupPriceStr) {
+                body += `Configuración Shopify: ${setupPriceStr}\r\n`;
+            }
+            body += `TOTAL: ${totalPriceStr}\r\n\r\n`;
 
-PAQUETE SELECCIONADO:
-${optionLabel}
-${strategyData.name} (${strategyData.subtitle})
+            // PRIORITY 3: Selected strategy (vital to confirm selection)
+            body += `PAQUETE SELECCIONADO:\r\n`;
+            body += `${optionLabel}\r\n`;
+            body += `${strategyData.name}\r\n`;
+            body += `${strategyData.subtitle}\r\n\r\n`;
 
-OBJETIVO:
-${strategyData.goal}
+            // PRIORITY 4: Brief selection summary (helpful but can truncate)
+            body += `SELECCIONES:\r\n`;
+            strategyData.bullets.forEach(bullet => {
+                body += `• ${bullet}\r\n`;
+            });
 
-ESTRATEGIA:
-${strategyData.strategy}
+            body += `\r\nTÉRMINOS DE PAGO:\r\n${paymentTerms}\r\n`;
+            body += `\r\nPara detalles completos (incluido árbol de archivos), consulta el portapapeles o descarga el PDF.\r\n`;
 
-DETALLES DEL PAQUETE:
-${strategyData.bullets.map(b => `• ${b}`).join('\n')}
+            return body;
+        }
 
-═══════════════════════════════════════════════
+        // Format order state for clipboard (full details)
+        function buildClipboardFullText(orderState) {
+            if (!orderState) return '';
 
-ESTRUCTURA DEL SITIO WEB:
+            const {
+                businessName, ownerName, email, date, paymentTerms,
+                optionLabel, strategyData, strategyPriceStr, setupPriceStr, totalPriceStr
+            } = orderState;
 
-${strategyData.tree}
+            let body = `VERO'S BOUTIQUE LLC - ORDER CONFIRMATION\r\n`;
+            body += `═══════════════════════════════════════════════\r\n\r\n`;
 
-═══════════════════════════════════════════════
+            body += `CLIENTE:\r\n`;
+            body += `Empresa: ${businessName}\r\n`;
+            body += `Propietario: ${ownerName}\r\n`;
+            body += `Email: ${email}\r\n`;
+            body += `Fecha: ${date}\r\n\r\n`;
 
-RESUMEN DE INVERSIÓN:
-Estrategia de Sitio Web: $${strategyPrice.toLocaleString()}
-${setupPrice > 0 ? `Configuración Shopify: $${setupPrice.toLocaleString()}\n` : ''}Inversión Total: $${totalPrice.toLocaleString()}
+            body += `═══════════════════════════════════════════════\r\n\r\n`;
 
-═══════════════════════════════════════════════
+            body += `PAQUETE SELECCIONADO:\r\n`;
+            body += `${optionLabel}\r\n`;
+            body += `${strategyData.name} ${strategyData.subtitle}\r\n\r\n`;
 
-TÉRMINOS DE PAGO:
-${paymentTerms}
+            body += `OBJETIVO:\r\n${strategyData.goal}\r\n\r\n`;
 
-═══════════════════════════════════════════════
+            body += `ESTRATEGIA:\r\n${strategyData.strategy}\r\n\r\n`;
 
-Por favor, confirme esta propuesta respondiendo a este correo.
+            body += `DETALLES DEL PAQUETE:\r\n`;
+            strategyData.bullets.forEach(bullet => {
+                body += `• ${bullet}\r\n`;
+            });
+            body += `\r\n`;
 
-Gracias,
-NOZA LLC
-www.nozallc.us`;
+            body += `═══════════════════════════════════════════════\r\n\r\n`;
+            body += `ESTRUCTURA DEL SITIO WEB:\r\n\r\n`;
+            body += `${strategyData.tree}\r\n\r\n`;
 
-            // PDF template data object
-            const pdfData = {
+            body += `═══════════════════════════════════════════════\r\n\r\n`;
+
+            body += `RESUMEN DE INVERSIÓN:\r\n`;
+            body += `Estrategia de Sitio Web: ${strategyPriceStr}\r\n`;
+            if (setupPriceStr) {
+                body += `Configuración Shopify: ${setupPriceStr}\r\n`;
+            }
+            body += `Inversión Total: ${totalPriceStr}\r\n\r\n`;
+
+            body += `═══════════════════════════════════════════════\r\n\r\n`;
+
+            body += `TÉRMINOS DE PAGO:\r\n${paymentTerms}\r\n\r\n`;
+
+            body += `═══════════════════════════════════════════════\r\n\r\n`;
+
+            body += `Por favor, confirme esta propuesta respondiendo a este correo.\r\n\r\n`;
+            body += `Gracias,\r\n`;
+            body += `NOZA LLC\r\nwww.nozallc.us`;
+
+            return body;
+        }
+
+        // Build PDF data from order state
+        function buildPdfData(orderState) {
+            if (!orderState) return null;
+
+            const {
+                businessName, ownerName, email, date,
+                optionLabel, strategyData, strategyPriceStr, setupPriceStr, totalPriceStr,
+                phase1Checked, phase2Checked, paymentTerms
+            } = orderState;
+
+            return {
                 pCompany: businessName,
                 pOwner: ownerName,
                 pEmail: email,
-                pDate: new Date().toLocaleDateString('es-ES'),
+                pDate: date,
                 pOptionLabel: optionLabel,
                 pPkgName: strategyData.name,
                 pPkgSubtitle: strategyData.subtitle,
@@ -1121,17 +1210,24 @@ www.nozallc.us`;
                 pStrategy: strategyData.strategy,
                 pTree: strategyData.tree,
                 pPaymentTerms: paymentTerms,
-                pSummaryStrategy: '$' + strategyPrice.toLocaleString(),
-                pSummarySetup: setupPrice > 0 ? '$' + setupPrice.toLocaleString() : null,
-                pSummaryTotal: '$' + totalPrice.toLocaleString(),
-                showShopifyRow: setupPrice > 0
+                pSummaryStrategy: strategyPriceStr,
+                pSummarySetup: setupPriceStr,
+                pSummaryTotal: totalPriceStr,
+                showShopifyRow: setupPriceStr !== null
             };
+        }
+
+        // Legacy compatibility: buildOrderSummary for existing calls
+        function buildOrderSummary(strategy, phase1Checked, phase2Checked, businessName, ownerName, email, paymentTerms) {
+            const orderState = buildOrderState(strategy, phase1Checked, phase2Checked, businessName, ownerName, email, paymentTerms);
+            if (!orderState) return null;
 
             return {
-                emailBody,
-                pdfData,
-                totalPrice,
-                setupPrice
+                emailBody: buildClipboardFullText(orderState), // Use full text as legacy emailBody
+                pdfData: buildPdfData(orderState),
+                orderState: orderState,
+                totalPrice: orderState.totalPrice,
+                setupPrice: orderState.setupPrice
             };
         }
 
@@ -1261,7 +1357,7 @@ www.nozallc.us`;
             window.print();
         });
 
-        // Email functionality
+        // Email functionality - Essential first, clipboard fallback
         document.getElementById('send-email').addEventListener('click', (e) => {
             e.preventDefault();
             
@@ -1284,53 +1380,48 @@ www.nozallc.us`;
             const phase1Checked = document.querySelector('input[name="setup"][value="phase1"]').checked;
             const phase2Checked = document.querySelector('input[name="setup"][value="phase2"]').checked;
 
-            // Use shared order summary generator
-            const orderSummary = buildOrderSummary(selectedStrategy, phase1Checked, phase2Checked, businessName, ownerName, email, paymentTerms);
+            // Build single order state
+            const orderState = buildOrderState(selectedStrategy, phase1Checked, phase2Checked, businessName, ownerName, email, paymentTerms);
             
-            if (!orderSummary) {
+            if (!orderState) {
                 alert('Error generating order summary.');
                 return;
             }
 
-            const fullBody = orderSummary.emailBody;
+            // Generate both email versions
+            const essentialEmailBody = buildEmailEssentialText(orderState);
+            const fullClipboardBody = buildClipboardFullText(orderState);
+            
             const subject = `Vero's Boutique Website Order Confirmation - ${businessName}`;
             
-            // Check if email body is too long for mailto: (practical limit ~2000 chars for mobile compatibility)
-            const maxMailtoLength = 2000;
-            const encodedBody = encodeURIComponent(fullBody);
-            const mailtoUrl = `mailto:hello@nozallc.us?subject=${encodeURIComponent(subject)}&body=${encodedBody}`;
-            
-            if (mailtoUrl.length > 3000) {
-                // Fallback: Copy full body to clipboard + open email with shorter message
-                const shortBody = `Hola,
+            // Construct mailto URL with ESSENTIAL body (short, vital info only)
+            const encodedEssentialBody = encodeURIComponent(essentialEmailBody);
+            const mailtoUrl = `mailto:hello@nozallc.us?subject=${encodeURIComponent(subject)}&body=${encodedEssentialBody}`;
 
-Aquí está el resumen de la propuesta para ${businessName}:
-
-PAQUETE: ${selectedStrategy === 'local' ? 'OPTION 1 — $3,000' : 'OPTION 2 — $4,000'}
-${orderSummary.pdfData.pPkgName}
-
-INVERSIÓN TOTAL: ${orderSummary.pdfData.pSummaryTotal}
-
-✓ Detalles completos han sido copiados a tu portapapeles.
-  Pega el contenido en el cuerpo del email o descarga el PDF para más información.
-
-Gracias,
-NOZA LLC`;
-
-                // Copy full body to clipboard
-                navigator.clipboard.writeText(fullBody).then(() => {
-                    alert('✓ Detalles completos copiados al portapapeles. Abriendo email...');
-                    // Open email with short body
-                    window.location.href = `mailto:hello@nozallc.us?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(shortBody)}`;
-                }).catch(err => {
-                    // Fallback if clipboard fails: just open email with full body (may be truncated)
-                    console.error('Clipboard failed:', err);
-                    window.location.href = mailtoUrl;
-                });
-            } else {
-                // Email body fits in mailto: - open directly with full details
+            // ALWAYS attempt to copy FULL details to clipboard first
+            navigator.clipboard.writeText(fullClipboardBody).then(() => {
+                // Clipboard success: show confirmation message and open email with essential body
+                console.log('✓ Full order details copied to clipboard');
+                
+                // Open email app with essential body (short, vital info only)
                 window.location.href = mailtoUrl;
-            }
+                
+                // Show user that clipboard was populated (non-blocking)
+                setTimeout(() => {
+                    alert('✓ Detalles completos copiados al portapapeles. Puedes pegarlos en el email si necesitas más información.');
+                }, 500);
+            }).catch(err => {
+                // Clipboard failed: still open email with essential body
+                console.error('Clipboard failed:', err);
+                
+                // Open email with essential info (this will work on all devices)
+                window.location.href = mailtoUrl;
+                
+                // Inform user clipboard didn't work but email has essentials
+                setTimeout(() => {
+                    alert('El email incluye información esencial. Para detalles completos, descarga el PDF.');
+                }, 500);
+            });
         });
     </script>
 </body>
