@@ -587,9 +587,7 @@
                 <p class="text-lg text-gray-500 mt-3 max-w-3xl mx-auto">Servicios opcionales — A discutir después de la aprobación de la estrategia.</p>
             </header>
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
-
-                        <div class="border border-blue-200 rounded-lg p-6 bg-blue-50">
-                            <h3 class="text-lg font-semibold text-blue-900 mb-2">Opción A — Configuración Fase 1</h3>
+                <!-- Opción A -->
                 <div class="border-2 border-blue-500 rounded-lg p-6 flex flex-col">
                     <h3 class="text-2xl font-semibold text-blue-800">Opción A — Configuración Fase 1</h3>
                     <p class="font-semibold text-blue-700 mb-4">(Inventario + POS)</p>
@@ -603,7 +601,10 @@
                         <p class="font-semibold text-lg tracking-wide text-gray-600">Inversión Única</p>
                         <p class="text-4xl font-bold text-blue-600 my-1">$1,000</p>
                     </div>
-            <div class="absolute top-0 right-0 -mt-4 mr-4 bg-yellow-400 text-yellow-900 font-bold text-sm px-3 py-1 rounded-full shadow-lg">AHORRO DE $500</div>
+                </div>
+                <!-- Opción B -->
+                <div class="border-2 border-purple-500 rounded-lg p-6 flex flex-col relative">
+                    <div class="absolute top-0 right-0 -mt-4 mr-4 bg-yellow-400 text-yellow-900 font-bold text-sm px-3 py-1 rounded-full shadow-lg">AHORRO DE $500</div>
                     <h3 class="text-2xl font-semibold text-purple-800">Opción B — Integración Completa</h3>
                     <p class="font-semibold text-purple-700 mb-4">(Shopify + Sitio Web)</p>
                     <ul class="space-y-3 flex-grow">
@@ -750,51 +751,89 @@
         </footer>
 
         <!-- PRINT TEMPLATE -->
-        <div id="print-order" style="display: none;">
+        <div id="print-order" style="display: none; padding: 40px; font-family: 'Inter', sans-serif; color: #000;">
             <div style="border-bottom: 3px solid #1e3a8a; padding-bottom: 24px; margin-bottom: 40px;">
-                <h1 style="font-size: 28px; margin: 0; color: #1e3a8a;">Resumen de Orden — Vero's Boutique</h1>
+                <div style="display: flex; justify-content: space-between; align-items: flex-start;">
+                    <div>
+                        <h1 style="font-size: 28px; margin: 0; color: #1e3a8a;">Order Summary — Vero's Boutique</h1>
+                        <p style="color:#666; margin-top:4px; font-size: 14px;">Digital Strategy & Shopify Implementation</p>
+                    </div>
+                    <div style="text-align: right;">
+                        <div style="font-size: 20px; font-weight: 800; color: #1e3a8a;">NOZA LLC</div>
+                        <div style="color: #999; font-size: 12px;">www.nozallc.us</div>
+                    </div>
+                </div>
             </div>
 
+            <!-- Client Info & Date -->
             <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 40px; margin-bottom: 40px;">
                 <div>
-                    <div style="font-size: 10px; text-transform: uppercase; color: #666; font-weight: 800; margin-bottom: 4px;">Cliente</div>
-                    <div style="font-size: 18px; font-weight: 700;" id="pCompany">Negocio</div>
-                    <div style="color:#666; font-size:12px; margin-top:2px;">Propuesta Estratégica Digital</div>
+                    <div style="font-size: 10px; text-transform: uppercase; color: #666; font-weight: 800; margin-bottom: 4px;">Business Name</div>
+                    <div style="font-size: 18px; font-weight: 700;" id="pCompany">-</div>
+                    <div style="color: #666; font-size: 12px; margin-top: 2px;">Boutique Strategy Build</div>
                 </div>
-                <div style="text-align:right">
-                    <div style="font-size: 10px; text-transform: uppercase; color: #666; font-weight: 800; margin-bottom: 4px;">Fecha de Propuesta</div>
+                <div style="text-align: right;">
+                    <div style="font-size: 10px; text-transform: uppercase; color: #666; font-weight: 800; margin-bottom: 4px;">Proposal Date</div>
                     <div style="font-size: 18px; font-weight: 700;" id="pDate">00/00/0000</div>
                 </div>
             </div>
 
+            <!-- STRATEGY SECTION -->
             <div style="background: #f8fbff; border: 1px solid #dbeafe; border-radius: 12px; padding: 32px; margin-bottom: 40px;">
-                <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom: 24px;">
+                <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 24px;">
                     <div>
-                        <div style="font-size: 10px; text-transform: uppercase; color: #666; font-weight: 800; margin-bottom: 4px;">Paquete</div>
-                        <h2 style="font-size: 24px; margin: 0; color: #1e3a8a;" id="pPkgName">-</h2>
+                        <div style="font-size: 10px; text-transform: uppercase; color: #666; font-weight: 800; margin-bottom: 4px;">Web Strategy Package</div>
+                        <h2 style="font-size: 24px; margin: 0; color: #1e3a8a; margin-bottom: 8px;" id="pPkgName">-</h2>
+                        <p style="font-size: 13px; color: #666; margin: 0; margin-bottom: 12px;" id="pPkgSubtitle">-</p>
                     </div>
-                    <div style="font-size: 32px; font-weight: 800; color: #1e3a8a;" id="pPrice">-</div>
+                    <div style="font-size: 32px; font-weight: 800; color: #1e3a8a; text-align: right;" id="pPrice">-</div>
                 </div>
                 
-                <div>
-                    <div style="font-size: 10px; text-transform: uppercase; color: #666; font-weight: 800; margin-bottom: 8px;">Detalles</div>
-                    <ul id="pBullets" style="font-size: 14px; margin: 10px 0; padding-left: 20px;"></ul>
+                <div style="margin-top: 20px; padding-top: 20px; border-top: 1px solid #dbeafe;">
+                    <div style="margin-bottom: 16px;">
+                        <div style="font-size: 11px; text-transform: uppercase; color: #1e3a8a; font-weight: 800; margin-bottom: 6px;">Goal</div>
+                        <p style="font-size: 13px; color: #444; margin: 0;" id="pGoal">-</p>
+                    </div>
+                    <div style="margin-bottom: 16px;">
+                        <div style="font-size: 11px; text-transform: uppercase; color: #1e3a8a; font-weight: 800; margin-bottom: 6px;">Strategy</div>
+                        <p style="font-size: 13px; color: #444; margin: 0;" id="pStrategy">-</p>
+                    </div>
+                    <div>
+                        <div style="font-size: 11px; text-transform: uppercase; color: #1e3a8a; font-weight: 800; margin-bottom: 6px;">Key Features</div>
+                        <ul id="pBullets" style="font-size: 13px; margin: 0; padding-left: 20px; color: #444;"></ul>
+                    </div>
                 </div>
             </div>
 
-            <div style="margin-bottom: 40px;">
-                <div style="font-size: 10px; text-transform: uppercase; color: #666; font-weight: 800; margin-bottom: 12px;">Arquitectura del Sitio</div>
-                <pre id="pTree" style="font-family: 'Courier New', monospace; font-size: 11px; white-space: pre; background: #fff; border: 1px solid #eee; padding: 20px; line-height: 1.4;"></pre>
+            <!-- SHOPIFY OPTIONS SELECTED -->
+            <div id="pShopifySection" style="margin-bottom: 40px; display: none;">
+                <div style="font-size: 10px; text-transform: uppercase; color: #666; font-weight: 800; margin-bottom: 16px;">Shopify Configuration</div>
+                <div id="pShopifyItems" style="display: flex; flex-direction: column; gap: 12px;"></div>
             </div>
 
+            <!-- SITE ARCHITECTURE -->
+            <div style="margin-bottom: 40px;">
+                <div style="font-size: 10px; text-transform: uppercase; color: #666; font-weight: 800; margin-bottom: 12px;">Site Architecture</div>
+                <pre id="pTree" style="font-family: 'Courier New', monospace; font-size: 11px; background: #f9fafb; border: 1px solid #eee; padding: 20px; line-height: 1.4; margin: 0; border-radius: 8px;"></pre>
+            </div>
+
+            <!-- TERMS -->
             <div style="border-left: 4px solid #2563eb; padding-left: 24px; margin-bottom: 60px;">
-                <div style="font-size: 10px; text-transform: uppercase; color: #666; font-weight: 800; margin-bottom: 8px;">Términos de Pago</div>
+                <div style="font-size: 10px; text-transform: uppercase; color: #666; font-weight: 800; margin-bottom: 8px;">Payment Terms</div>
                 <p style="font-size: 13px; color: #444; margin: 4px 0;" id="pPaymentTerms">-</p>
             </div>
 
+            <!-- OWNER & CONTACT -->
+            <div style="margin-bottom: 60px; padding: 20px; background: #f9fafb; border-radius: 8px;">
+                <div style="font-size: 10px; text-transform: uppercase; color: #666; font-weight: 800; margin-bottom: 8px;">Owner Information</div>
+                <p style="font-size: 13px; color: #444; margin: 4px 0;"><strong>Name:</strong> <span id="pOwner">-</span></p>
+                <p style="font-size: 13px; color: #444; margin: 4px 0;"><strong>Email:</strong> <span id="pEmail">-</span></p>
+            </div>
+
+            <!-- SIGNATURES -->
             <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 60px; margin-top: 80px;">
-                <div style="border-top: 1px solid #000; padding-top: 12px; font-size: 11px; font-weight: 700; text-transform: uppercase;">Firma del Cliente</div>
-                <div style="border-top: 1px solid #000; padding-top: 12px; font-size: 11px; font-weight: 700; text-transform: uppercase;">Representante de NOZA LLC</div>
+                <div style="border-top: 1px solid #000; padding-top: 12px; font-size: 11px; font-weight: 700; text-transform: uppercase;">Owner Signature</div>
+                <div style="border-top: 1px solid #000; padding-top: 12px; font-size: 11px; font-weight: 700; text-transform: uppercase;">NOZA LLC Representative</div>
             </div>
         </div>
     </main>
@@ -815,11 +854,14 @@
             }
         });
 
-        // Strategy Data with File Trees
+        // Strategy Data with File Trees - UPDATED WITH GOAL & STRATEGY
         const strategies = {
             local: {
                 name: 'Richmond Local Dominance',
+                subtitle: '(Foundation Build)',
                 price: '$3,000',
+                goal: 'Own Richmond, KY boutique search results and drive immediate local foot traffic.',
+                strategy: 'High-intent pages only. No fluff. Built to launch fast and win locally.',
                 bullets: ['Own Richmond, KY boutique search results', 'Immediate local foot traffic', 'High-intent pages only'],
                 tree: `Vero's Boutique Website (Astro)
 ├── /                               
@@ -855,7 +897,10 @@
             },
             destination: {
                 name: 'Destination Boutique Strategy',
+                subtitle: '(Regional Expansion Build)',
                 price: '$4,000',
+                goal: 'Dominate Richmond and pull shoppers from Lexington & Central Kentucky.',
+                strategy: 'Everything in Option 1 + regional gravity pages that justify the drive.',
                 bullets: ['Dominate Richmond and regional areas', 'Pull shoppers from Lexington & Central KY', 'Everything in Option 1 + regional pages'],
                 tree: `Vero's Boutique Website (Astro)
 ├── /                               
@@ -914,10 +959,56 @@
             
             // Store for PDF generation
             window.currentStrategy = data;
+            
+            // Update SECCIÓN 3 summary
+            updateInvestmentSummary();
+        }
+
+        // Function to update investment summary in SECCIÓN 3
+        function updateInvestmentSummary() {
+            let strategyPrice = 0;
+            let setupPrice = 0;
+
+            // Get selected strategy price
+            if (selectedStrategy === 'local') {
+                strategyPrice = 3000;
+            } else if (selectedStrategy === 'destination') {
+                strategyPrice = 4000;
+            }
+
+            // Get selected setup options
+            const phase1Checked = document.querySelector('input[name="setup"][value="phase1"]').checked;
+            const phase2Checked = document.querySelector('input[name="setup"][value="phase2"]').checked;
+
+            if (phase1Checked) {
+                setupPrice += 1000;
+            }
+            if (phase2Checked) {
+                setupPrice += 1500;
+            }
+
+            // Update SECCIÓN 3 display
+            document.getElementById('summary-strategy').textContent = strategyPrice > 0 ? '$' + strategyPrice.toLocaleString() : '$0';
+            document.getElementById('summary-setup').textContent = setupPrice > 0 ? '$' + setupPrice.toLocaleString() : '$0';
+            
+            const totalPrice = strategyPrice + setupPrice;
+            document.getElementById('summary-total').textContent = '$' + totalPrice.toLocaleString();
         }
 
         // Set date field
         document.getElementById('date').value = new Date().toLocaleDateString('es-ES');
+
+        // Add event listeners for strategy selection
+        document.querySelectorAll('input[name="strategy"]').forEach(input => {
+            input.addEventListener('change', (e) => {
+                selectStrategy(e.target.value);
+            });
+        });
+
+        // Add event listeners for setup selection
+        document.querySelectorAll('input[name="setup"]').forEach(input => {
+            input.addEventListener('change', updateInvestmentSummary);
+        });
 
         // Download PDF functionality
         document.getElementById('download-pdf').addEventListener('click', () => {
@@ -936,14 +1027,47 @@
                 return;
             }
 
-            // Populate print template
+            const strategyData = strategies[selectedStrategy];
+            
+            // Get selected Shopify options
+            const phase1Checked = document.querySelector('input[name="setup"][value="phase1"]').checked;
+            const phase2Checked = document.querySelector('input[name="setup"][value="phase2"]').checked;
+
+            // Populate print template - Header
             document.getElementById('pCompany').textContent = businessName;
             document.getElementById('pDate').textContent = new Date().toLocaleDateString('es-ES');
-            document.getElementById('pPkgName').textContent = window.currentStrategy.name;
-            document.getElementById('pPrice').textContent = window.currentStrategy.price;
-            document.getElementById('pBullets').innerHTML = window.currentStrategy.bullets.map(b => `<li>${b}</li>`).join('');
-            document.getElementById('pTree').textContent = window.currentStrategy.tree;
+            document.getElementById('pOwner').textContent = ownerName;
+            document.getElementById('pEmail').textContent = email;
+            
+            // Populate Strategy section
+            document.getElementById('pPkgName').textContent = strategyData.name;
+            document.getElementById('pPkgSubtitle').textContent = strategyData.subtitle;
+            document.getElementById('pPrice').textContent = strategyData.price;
+            document.getElementById('pGoal').textContent = strategyData.goal;
+            document.getElementById('pStrategy').textContent = strategyData.strategy;
+            document.getElementById('pBullets').innerHTML = strategyData.bullets.map(b => `<li>${b}</li>`).join('');
+            document.getElementById('pTree').textContent = strategyData.tree;
             document.getElementById('pPaymentTerms').textContent = paymentTerms;
+
+            // Populate Shopify section if any selected
+            const shopifySection = document.getElementById('pShopifySection');
+            const shopifyItems = document.getElementById('pShopifyItems');
+            
+            if (phase1Checked || phase2Checked) {
+                shopifySection.style.display = 'block';
+                let shopifyHTML = '';
+                
+                if (phase1Checked) {
+                    shopifyHTML += '<div style="background: #f0f9ff; border-left: 4px solid #3b82f6; padding: 12px 16px; border-radius: 4px;"><strong>Opción A — Shopify Phase 1 Setup</strong><br><span style="font-size: 12px; color: #666;">Inventario + POS Configuration — $1,000</span></div>';
+                }
+                if (phase2Checked) {
+                    shopifyHTML += '<div style="background: #f3e8ff; border-left: 4px solid #a855f7; padding: 12px 16px; border-radius: 4px;"><strong>Opción B — Shopify + Integración</strong><br><span style="font-size: 12px; color: #666;">Website Integration — $1,500</span></div>';
+                }
+                
+                shopifyItems.innerHTML = shopifyHTML;
+            } else {
+                shopifySection.style.display = 'none';
+            }
 
             // Trigger print
             window.print();
