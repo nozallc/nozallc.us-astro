@@ -99,16 +99,8 @@
             padding: 0;
         }
         
-        /* Hide everything by default */
-        body > * {
-            display: none !important;
-        }
-        
-        main {
-            display: none !important;
-        }
-        
-        header, footer, nav, .no-print {
+        /* Hide everything */
+        main, header, footer, nav, .no-print {
             display: none !important;
         }
         
@@ -783,9 +775,10 @@
         <footer class="text-center py-6 text-xs text-gray-400 border-t border-gray-200 mt-10">
             Prepared by <strong>NOZA LLC</strong> | <a href="https://www.nozallc.us" class="hover:text-gray-600 transition-colors">www.nozallc.us</a>
         </footer>
+    </main>
 
-        <!-- PRINT TEMPLATE - SIMPLIFIED ORDER CONFIRMATION -->
-        <div id="print-order" style="display: none; padding: 40px; font-family: 'Inter', sans-serif; color: #000;">
+    <!-- PRINT TEMPLATE - SIMPLIFIED ORDER CONFIRMATION (OUTSIDE MAIN) -->
+    <div id="print-order" style="display: none; padding: 40px; font-family: 'Inter', sans-serif; color: #000;">
             <!-- HEADER -->
             <div style="border-bottom: 3px solid #1e3a8a; padding-bottom: 24px; margin-bottom: 40px;">
                 <h1 style="font-size: 32px; margin: 0; color: #1e3a8a; font-weight: 800;">VERO'S BOUTIQUE LLC</h1>
@@ -886,7 +879,7 @@
                 <p style="margin: 0;">Prepared by NOZA LLC | www.nozallc.us | hello@nozallc.us</p>
             </div>
         </div>
-    </main>
+    </div>
     
     <script>
         // Password Protection
