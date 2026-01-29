@@ -99,8 +99,12 @@
             padding: 0;
         }
         
-        /* Hide everything */
-        main, header, footer, nav, .no-print {
+        /* Hide everything except print template */
+        main, header, footer, nav, .no-print, section, .card {
+            display: none !important;
+        }
+        
+        #password-overlay {
             display: none !important;
         }
         
@@ -113,12 +117,15 @@
             padding: 40px !important;
             background: white !important;
             color: black !important;
+            height: auto !important;
+            visibility: visible !important;
         }
         
         #print-order * {
             background: transparent !important;
             color: black !important;
             border-color: #333 !important;
+            visibility: visible !important;
         }
         
         .card {
@@ -756,7 +763,7 @@
                     </div>
 
                     <button class="cta-btn" id="download-pdf">📥 Descargar Resumen en PDF</button>
-                    <a href="mailto:hello@nozallc.us?subject=Order%20Confirmation%20Vero%27s%20Boutique%20LLC" class="cta-btn" style="display: block; text-align: center; text-decoration: none; margin-top: 12px;">📧 Enviar a hello@nozallc.us</a>
+                    <a href="mailto:hello@nozallc.us?subject=Order%20Confirmation%20Vero%27s%20Boutique%20LLC" id="send-email" class="cta-btn" style="display: block; text-align: center; text-decoration: none; margin-top: 12px;">📧 Enviar a hello@nozallc.us</a>
                 </div>
             </div>
 
@@ -879,7 +886,6 @@
                 <p style="margin: 0;">Prepared by NOZA LLC | www.nozallc.us | hello@nozallc.us</p>
             </div>
         </div>
-    </div>
     
     <script>
         // Password Protection
