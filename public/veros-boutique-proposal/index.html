@@ -1091,7 +1091,8 @@
             
             const {
                 businessName, ownerName, email, date, paymentTerms,
-                optionLabel, strategyData, strategyPriceStr, setupPriceStr, totalPriceStr
+                optionLabel, strategyData, strategyPrice, setupPrice, 
+                strategyPriceStr, setupPriceStr, totalPriceStr
             } = orderState;
 
             // PRIORITY 1: Customer info (vital for response)
@@ -1104,8 +1105,9 @@
             // PRIORITY 2: Cost summary (vital for decision)
             body += `RESUMEN DE COSTO:\r\n`;
             body += `Estrategia: ${strategyPriceStr}\r\n`;
-            if (setupPriceStr) {
-                body += `Configuración Shopify: ${setupPriceStr}\r\n`;
+            // SAFEGUARD: Include Shopify if setupPrice > 0 OR if setupPriceStr is set
+            if (setupPrice > 0 || setupPriceStr) {
+                body += `Configuración Shopify: ${setupPriceStr || ('$' + setupPrice.toLocaleString())}\r\n`;
             }
             body += `TOTAL: ${totalPriceStr}\r\n\r\n`;
 
@@ -1133,7 +1135,8 @@
 
             const {
                 businessName, ownerName, email, date, paymentTerms,
-                optionLabel, strategyData, strategyPriceStr, setupPriceStr, totalPriceStr
+                optionLabel, strategyData, strategyPrice, setupPrice,
+                strategyPriceStr, setupPriceStr, totalPriceStr
             } = orderState;
 
             let body = `VERO'S BOUTIQUE LLC - ORDER CONFIRMATION\r\n`;
@@ -1169,8 +1172,9 @@
 
             body += `RESUMEN DE INVERSIÓN:\r\n`;
             body += `Estrategia de Sitio Web: ${strategyPriceStr}\r\n`;
-            if (setupPriceStr) {
-                body += `Configuración Shopify: ${setupPriceStr}\r\n`;
+            // SAFEGUARD: Include Shopify if setupPrice > 0 OR if setupPriceStr is set
+            if (setupPrice > 0 || setupPriceStr) {
+                body += `Configuración Shopify: ${setupPriceStr || ('$' + setupPrice.toLocaleString())}\r\n`;
             }
             body += `Inversión Total: ${totalPriceStr}\r\n\r\n`;
 
@@ -1387,6 +1391,10 @@
                 alert('Error generating order summary.');
                 return;
             }
+
+            // DEBUG: Log Shopify selection
+            console.log('Phase1 checked:', phase1Checked, 'Phase2 checked:', phase2Checked);
+            console.log('Setup price:', orderState.setupPrice, 'Setup price str:', orderState.setupPriceStr);
 
             // Generate both email versions
             const essentialEmailBody = buildEmailEssentialText(orderState);
