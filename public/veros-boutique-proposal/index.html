@@ -750,90 +750,106 @@
             Prepared by <strong>NOZA LLC</strong> | <a href="https://www.nozallc.us" class="hover:text-gray-600 transition-colors">www.nozallc.us</a>
         </footer>
 
-        <!-- PRINT TEMPLATE -->
+        <!-- PRINT TEMPLATE - SIMPLIFIED ORDER CONFIRMATION -->
         <div id="print-order" style="display: none; padding: 40px; font-family: 'Inter', sans-serif; color: #000;">
+            <!-- HEADER -->
             <div style="border-bottom: 3px solid #1e3a8a; padding-bottom: 24px; margin-bottom: 40px;">
-                <div style="display: flex; justify-content: space-between; align-items: flex-start;">
-                    <div>
-                        <h1 style="font-size: 28px; margin: 0; color: #1e3a8a;">Order Summary — Vero's Boutique</h1>
-                        <p style="color:#666; margin-top:4px; font-size: 14px;">Digital Strategy & Shopify Implementation</p>
-                    </div>
-                    <div style="text-align: right;">
-                        <div style="font-size: 20px; font-weight: 800; color: #1e3a8a;">NOZA LLC</div>
-                        <div style="color: #999; font-size: 12px;">www.nozallc.us</div>
-                    </div>
-                </div>
+                <h1 style="font-size: 32px; margin: 0; color: #1e3a8a; font-weight: 800;">VERO'S BOUTIQUE LLC</h1>
+                <h2 style="font-size: 24px; margin: 8px 0 0 0; color: #2563eb;">ORDER CONFIRMATION</h2>
+                <p style="color: #666; margin-top: 12px; font-size: 14px;">Subject: Astro JS Performance Website</p>
             </div>
 
-            <!-- Client Info & Date -->
-            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 40px; margin-bottom: 40px;">
+            <!-- CLIENT INFO -->
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 40px; margin-bottom: 40px; padding: 20px; background: #f9fafb; border-radius: 8px;">
                 <div>
-                    <div style="font-size: 10px; text-transform: uppercase; color: #666; font-weight: 800; margin-bottom: 4px;">Business Name</div>
-                    <div style="font-size: 18px; font-weight: 700;" id="pCompany">-</div>
-                    <div style="color: #666; font-size: 12px; margin-top: 2px;">Boutique Strategy Build</div>
+                    <div style="font-size: 11px; text-transform: uppercase; color: #999; font-weight: 800; margin-bottom: 4px;">Business Name</div>
+                    <div style="font-size: 16px; font-weight: 700; color: #1e3a8a;" id="pCompany">-</div>
                 </div>
-                <div style="text-align: right;">
-                    <div style="font-size: 10px; text-transform: uppercase; color: #666; font-weight: 800; margin-bottom: 4px;">Proposal Date</div>
-                    <div style="font-size: 18px; font-weight: 700;" id="pDate">00/00/0000</div>
+                <div>
+                    <div style="font-size: 11px; text-transform: uppercase; color: #999; font-weight: 800; margin-bottom: 4px;">Owner</div>
+                    <div style="font-size: 16px; font-weight: 700; color: #1e3a8a;" id="pOwner">-</div>
                 </div>
-            </div>
-
-            <!-- STRATEGY SECTION -->
-            <div style="background: #f8fbff; border: 1px solid #dbeafe; border-radius: 12px; padding: 32px; margin-bottom: 40px;">
-                <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 24px;">
-                    <div>
-                        <div style="font-size: 10px; text-transform: uppercase; color: #666; font-weight: 800; margin-bottom: 4px;">Web Strategy Package</div>
-                        <h2 style="font-size: 24px; margin: 0; color: #1e3a8a; margin-bottom: 8px;" id="pPkgName">-</h2>
-                        <p style="font-size: 13px; color: #666; margin: 0; margin-bottom: 12px;" id="pPkgSubtitle">-</p>
-                    </div>
-                    <div style="font-size: 32px; font-weight: 800; color: #1e3a8a; text-align: right;" id="pPrice">-</div>
+                <div>
+                    <div style="font-size: 11px; text-transform: uppercase; color: #999; font-weight: 800; margin-bottom: 4px;">Email</div>
+                    <div style="font-size: 14px; color: #444;" id="pEmail">-</div>
                 </div>
-                
-                <div style="margin-top: 20px; padding-top: 20px; border-top: 1px solid #dbeafe;">
-                    <div style="margin-bottom: 16px;">
-                        <div style="font-size: 11px; text-transform: uppercase; color: #1e3a8a; font-weight: 800; margin-bottom: 6px;">Goal</div>
-                        <p style="font-size: 13px; color: #444; margin: 0;" id="pGoal">-</p>
-                    </div>
-                    <div style="margin-bottom: 16px;">
-                        <div style="font-size: 11px; text-transform: uppercase; color: #1e3a8a; font-weight: 800; margin-bottom: 6px;">Strategy</div>
-                        <p style="font-size: 13px; color: #444; margin: 0;" id="pStrategy">-</p>
-                    </div>
-                    <div>
-                        <div style="font-size: 11px; text-transform: uppercase; color: #1e3a8a; font-weight: 800; margin-bottom: 6px;">Key Features</div>
-                        <ul id="pBullets" style="font-size: 13px; margin: 0; padding-left: 20px; color: #444;"></ul>
-                    </div>
+                <div>
+                    <div style="font-size: 11px; text-transform: uppercase; color: #999; font-weight: 800; margin-bottom: 4px;">Date</div>
+                    <div style="font-size: 16px; font-weight: 700; color: #1e3a8a;" id="pDate">-</div>
                 </div>
             </div>
 
-            <!-- SHOPIFY OPTIONS SELECTED -->
-            <div id="pShopifySection" style="margin-bottom: 40px; display: none;">
-                <div style="font-size: 10px; text-transform: uppercase; color: #666; font-weight: 800; margin-bottom: 16px;">Shopify Configuration</div>
-                <div id="pShopifyItems" style="display: flex; flex-direction: column; gap: 12px;"></div>
-            </div>
-
-            <!-- SITE ARCHITECTURE -->
+            <!-- STRATEGY SELECTION -->
             <div style="margin-bottom: 40px;">
-                <div style="font-size: 10px; text-transform: uppercase; color: #666; font-weight: 800; margin-bottom: 12px;">Site Architecture</div>
-                <pre id="pTree" style="font-family: 'Courier New', monospace; font-size: 11px; background: #f9fafb; border: 1px solid #eee; padding: 20px; line-height: 1.4; margin: 0; border-radius: 8px;"></pre>
+                <h3 style="font-size: 18px; color: #1e3a8a; margin: 0 0 20px 0; font-weight: 800;">Opciones de Estrategia</h3>
+                <p style="color: #666; font-size: 13px; margin-bottom: 24px;">Dos niveles de alcance para lograr sus objetivos. Ambas opciones construyen un activo digital que usted posee.</p>
+                
+                <!-- SELECTED OPTION -->
+                <div style="background: #f0f9ff; border: 2px solid #2563eb; border-radius: 12px; padding: 28px;">
+                    <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 20px;">
+                        <div>
+                            <div style="font-size: 13px; text-transform: uppercase; color: #2563eb; font-weight: 800; margin-bottom: 4px;" id="pOptionLabel">Option</div>
+                            <h2 style="font-size: 22px; margin: 0; color: #1e3a8a; font-weight: 800;" id="pPkgName">-</h2>
+                            <p style="font-size: 13px; color: #666; margin: 6px 0 0 0;" id="pPkgSubtitle">-</p>
+                        </div>
+                        <div style="font-size: 36px; font-weight: 800; color: #2563eb; text-align: right;" id="pPrice">-</div>
+                    </div>
+
+                    <div style="border-top: 1px solid #dbeafe; padding-top: 20px;">
+                        <div style="margin-bottom: 16px;">
+                            <div style="font-size: 11px; text-transform: uppercase; color: #2563eb; font-weight: 800; margin-bottom: 6px;">Goal</div>
+                            <p style="font-size: 13px; color: #444; margin: 0;" id="pGoal">-</p>
+                        </div>
+                        <div style="margin-bottom: 16px;">
+                            <div style="font-size: 11px; text-transform: uppercase; color: #2563eb; font-weight: 800; margin-bottom: 6px;">Strategy</div>
+                            <p style="font-size: 13px; color: #444; margin: 0;" id="pStrategy">-</p>
+                        </div>
+                        <div>
+                            <div style="font-size: 11px; text-transform: uppercase; color: #2563eb; font-weight: 800; margin-bottom: 8px;">🗂️ Full File Tree</div>
+                            <pre id="pTree" style="font-family: 'Courier New', monospace; font-size: 11px; background: #fff; border: 1px solid #dbeafe; padding: 16px; line-height: 1.5; margin: 0; border-radius: 6px; color: #444;"></pre>
+                        </div>
+                    </div>
+                </div>
             </div>
 
-            <!-- TERMS -->
-            <div style="border-left: 4px solid #2563eb; padding-left: 24px; margin-bottom: 60px;">
-                <div style="font-size: 10px; text-transform: uppercase; color: #666; font-weight: 800; margin-bottom: 8px;">Payment Terms</div>
-                <p style="font-size: 13px; color: #444; margin: 4px 0;" id="pPaymentTerms">-</p>
+            <!-- INVESTMENT SUMMARY -->
+            <div style="margin-bottom: 40px;">
+                <h3 style="font-size: 18px; color: #1e3a8a; margin: 0 0 20px 0; font-weight: 800;">Resumen de Inversión</h3>
+                <div style="background: #f9fafb; border: 1px solid #e5e7eb; border-radius: 8px; padding: 24px;">
+                    <div style="display: flex; justify-content: space-between; align-items: center; padding: 12px 0; border-bottom: 1px solid #e5e7eb;">
+                        <span style="font-size: 13px; color: #666;">Estrategia de Sitio Web:</span>
+                        <span style="font-size: 15px; font-weight: 700; color: #1e3a8a;" id="pSummaryStrategy">-</span>
+                    </div>
+                    <div id="pShopifyRow" style="display: none; padding: 12px 0; border-bottom: 1px solid #e5e7eb;">
+                        <span style="font-size: 13px; color: #666;">Configuración Shopify:</span>
+                        <span style="font-size: 15px; font-weight: 700; color: #1e3a8a;" id="pSummarySetup">-</span>
+                    </div>
+                    <div style="display: flex; justify-content: space-between; align-items: center; padding: 16px 0; margin-top: 12px;">
+                        <span style="font-size: 15px; font-weight: 800; color: #1e3a8a;">Inversión Total:</span>
+                        <span style="font-size: 28px; font-weight: 800; color: #16a34a;" id="pSummaryTotal">-</span>
+                    </div>
+                </div>
             </div>
 
-            <!-- OWNER & CONTACT -->
-            <div style="margin-bottom: 60px; padding: 20px; background: #f9fafb; border-radius: 8px;">
-                <div style="font-size: 10px; text-transform: uppercase; color: #666; font-weight: 800; margin-bottom: 8px;">Owner Information</div>
-                <p style="font-size: 13px; color: #444; margin: 4px 0;"><strong>Name:</strong> <span id="pOwner">-</span></p>
-                <p style="font-size: 13px; color: #444; margin: 4px 0;"><strong>Email:</strong> <span id="pEmail">-</span></p>
+            <!-- PAYMENT TERMS -->
+            <div style="border-left: 4px solid #2563eb; padding-left: 24px; margin-bottom: 40px;">
+                <div style="font-size: 11px; text-transform: uppercase; color: #666; font-weight: 800; margin-bottom: 8px;">Términos de Pago</div>
+                <p style="font-size: 13px; color: #444; margin: 0;" id="pPaymentTerms">-</p>
             </div>
 
             <!-- SIGNATURES -->
             <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 60px; margin-top: 80px;">
-                <div style="border-top: 1px solid #000; padding-top: 12px; font-size: 11px; font-weight: 700; text-transform: uppercase;">Owner Signature</div>
-                <div style="border-top: 1px solid #000; padding-top: 12px; font-size: 11px; font-weight: 700; text-transform: uppercase;">NOZA LLC Representative</div>
+                <div>
+                    <div style="border-top: 2px solid #000; padding-top: 12px; font-size: 11px; font-weight: 700; text-transform: uppercase; color: #1e3a8a;">Firma del Cliente</div>
+                </div>
+                <div>
+                    <div style="border-top: 2px solid #000; padding-top: 12px; font-size: 11px; font-weight: 700; text-transform: uppercase; color: #1e3a8a;">Representante de NOZA LLC</div>
+                </div>
+            </div>
+
+            <!-- FOOTER -->
+            <div style="margin-top: 60px; padding-top: 20px; border-top: 1px solid #e5e7eb; text-align: center; font-size: 11px; color: #999;">
+                <p style="margin: 0;">Prepared by NOZA LLC | www.nozallc.us | hello@nozallc.us</p>
             </div>
         </div>
     </main>
@@ -1040,33 +1056,34 @@
             document.getElementById('pEmail').textContent = email;
             
             // Populate Strategy section
+            document.getElementById('pOptionLabel').textContent = selectedStrategy === 'local' ? 'OPTION 1 — $3,000' : 'OPTION 2 — $4,000';
             document.getElementById('pPkgName').textContent = strategyData.name;
             document.getElementById('pPkgSubtitle').textContent = strategyData.subtitle;
             document.getElementById('pPrice').textContent = strategyData.price;
             document.getElementById('pGoal').textContent = strategyData.goal;
             document.getElementById('pStrategy').textContent = strategyData.strategy;
-            document.getElementById('pBullets').innerHTML = strategyData.bullets.map(b => `<li>${b}</li>`).join('');
             document.getElementById('pTree').textContent = strategyData.tree;
             document.getElementById('pPaymentTerms').textContent = paymentTerms;
 
-            // Populate Shopify section if any selected
-            const shopifySection = document.getElementById('pShopifySection');
-            const shopifyItems = document.getElementById('pShopifyItems');
+            // Calculate investment summary
+            let strategyPrice = selectedStrategy === 'local' ? 3000 : 4000;
+            let setupPrice = 0;
             
-            if (phase1Checked || phase2Checked) {
-                shopifySection.style.display = 'block';
-                let shopifyHTML = '';
-                
-                if (phase1Checked) {
-                    shopifyHTML += '<div style="background: #f0f9ff; border-left: 4px solid #3b82f6; padding: 12px 16px; border-radius: 4px;"><strong>Opción A — Shopify Phase 1 Setup</strong><br><span style="font-size: 12px; color: #666;">Inventario + POS Configuration — $1,000</span></div>';
-                }
-                if (phase2Checked) {
-                    shopifyHTML += '<div style="background: #f3e8ff; border-left: 4px solid #a855f7; padding: 12px 16px; border-radius: 4px;"><strong>Opción B — Shopify + Integración</strong><br><span style="font-size: 12px; color: #666;">Website Integration — $1,500</span></div>';
-                }
-                
-                shopifyItems.innerHTML = shopifyHTML;
+            if (phase1Checked) setupPrice += 1000;
+            if (phase2Checked) setupPrice += 1500;
+            
+            // Populate investment summary
+            document.getElementById('pSummaryStrategy').textContent = '$' + strategyPrice.toLocaleString();
+            const totalPrice = strategyPrice + setupPrice;
+            document.getElementById('pSummaryTotal').textContent = '$' + totalPrice.toLocaleString();
+            
+            // Show/hide Shopify row in summary
+            const shopifyRow = document.getElementById('pShopifyRow');
+            if (setupPrice > 0) {
+                shopifyRow.style.display = 'block';
+                document.getElementById('pSummarySetup').textContent = '$' + setupPrice.toLocaleString();
             } else {
-                shopifySection.style.display = 'none';
+                shopifyRow.style.display = 'none';
             }
 
             // Trigger print
