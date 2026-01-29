@@ -440,7 +440,7 @@
             <!-- Side-by-Side Strategy Options -->
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
                 <!-- Option 1: Strong Local Launch -->
-                <div id="card-local" class="pkg-card cursor-pointer transition-all" onclick="selectStrategy('local')">
+                <button id="card-local" class="pkg-card cursor-pointer transition-all" style="background: none; border: none; padding: 0; text-align: left; width: 100%;">
                     <div class="mb-6">
                         <h2 class="text-3xl font-bold text-gray-800">OPTION 1 — $3,000</h2>
                         <h3 class="text-xl font-semibold text-blue-600 mt-2">"Richmond Local Dominance"</h3>
@@ -493,10 +493,10 @@
 └── /terms</pre>
                         </div>
                     </div>
-                </div>
+                </button>
 
                 <!-- Option 2: Destination Boutique -->
-                <div id="card-destination" class="pkg-card cursor-pointer transition-all" onclick="selectStrategy('destination')">
+                <button id="card-destination" class="pkg-card cursor-pointer transition-all" style="background: none; border: none; padding: 0; text-align: left; width: 100%;">
                     <div class="mb-6">
                         <h2 class="text-3xl font-bold text-gray-800">OPTION 2 — $4,000</h2>
                         <h3 class="text-xl font-semibold text-purple-600 mt-2">"Destination Boutique Strategy"</h3>
@@ -554,7 +554,7 @@
 └── /terms</pre>
                         </div>
                     </div>
-                </div>
+                </button>
             </div>
         </section>
 
@@ -1029,6 +1029,112 @@
 
         let selectedStrategy = null;
 
+        // Add event listeners for strategy card buttons
+        document.getElementById('card-local').addEventListener('click', (e) => {
+            e.preventDefault();
+            selectStrategy('local');
+        });
+        
+        document.getElementById('card-destination').addEventListener('click', (e) => {
+            e.preventDefault();
+            selectStrategy('destination');
+        });
+
+        // CANONICAL: Build order summary (shared by PDF and email)
+        function buildOrderSummary(strategy, phase1Checked, phase2Checked, businessName, ownerName, email, paymentTerms) {
+            if (!strategy || !strategies[strategy]) {
+                return null;
+            }
+
+            const strategyData = strategies[strategy];
+            let strategyPrice = strategy === 'local' ? 3000 : 4000;
+            let setupPrice = 0;
+            
+            if (phase1Checked) setupPrice += 1000;
+            if (phase2Checked) setupPrice += 1500;
+            
+            const totalPrice = strategyPrice + setupPrice;
+            const optionLabel = strategy === 'local' ? 'OPTION 1 — $3,000' : 'OPTION 2 — $4,000';
+
+            // Email body: plain text with all details
+            const emailBody = `VERO'S BOUTIQUE LLC - ORDER CONFIRMATION
+
+═══════════════════════════════════════════════
+
+CLIENTE:
+Empresa: ${businessName}
+Propietario: ${ownerName}
+Email: ${email}
+Fecha: ${new Date().toLocaleDateString('es-ES')}
+
+═══════════════════════════════════════════════
+
+PAQUETE SELECCIONADO:
+${optionLabel}
+${strategyData.name} (${strategyData.subtitle})
+
+OBJETIVO:
+${strategyData.goal}
+
+ESTRATEGIA:
+${strategyData.strategy}
+
+DETALLES DEL PAQUETE:
+${strategyData.bullets.map(b => `• ${b}`).join('\n')}
+
+═══════════════════════════════════════════════
+
+ESTRUCTURA DEL SITIO WEB:
+
+${strategyData.tree}
+
+═══════════════════════════════════════════════
+
+RESUMEN DE INVERSIÓN:
+Estrategia de Sitio Web: $${strategyPrice.toLocaleString()}
+${setupPrice > 0 ? `Configuración Shopify: $${setupPrice.toLocaleString()}\n` : ''}Inversión Total: $${totalPrice.toLocaleString()}
+
+═══════════════════════════════════════════════
+
+TÉRMINOS DE PAGO:
+${paymentTerms}
+
+═══════════════════════════════════════════════
+
+Por favor, confirme esta propuesta respondiendo a este correo.
+
+Gracias,
+NOZA LLC
+www.nozallc.us`;
+
+            // PDF template data object
+            const pdfData = {
+                pCompany: businessName,
+                pOwner: ownerName,
+                pEmail: email,
+                pDate: new Date().toLocaleDateString('es-ES'),
+                pOptionLabel: optionLabel,
+                pPkgName: strategyData.name,
+                pPkgSubtitle: strategyData.subtitle,
+                pPrice: strategyData.price,
+                pGoal: strategyData.goal,
+                pStrategy: strategyData.strategy,
+                pTree: strategyData.tree,
+                pPaymentTerms: paymentTerms,
+                pSummaryStrategy: '$' + strategyPrice.toLocaleString(),
+                pSummarySetup: setupPrice > 0 ? '$' + setupPrice.toLocaleString() : null,
+                pSummaryTotal: '$' + totalPrice.toLocaleString(),
+                showShopifyRow: setupPrice > 0
+            };
+
+            return {
+                emailBody,
+                pdfData,
+                totalPrice,
+                setupPrice
+            };
+        }
+
         // Function to select strategy
         function selectStrategy(strategy) {
             selectedStrategy = strategy;
@@ -1113,45 +1219,40 @@
                 return;
             }
 
-            const strategyData = strategies[selectedStrategy];
-            
             // Get selected Shopify options
             const phase1Checked = document.querySelector('input[name="setup"][value="phase1"]').checked;
             const phase2Checked = document.querySelector('input[name="setup"][value="phase2"]').checked;
 
-            // Populate print template - Header
-            document.getElementById('pCompany').textContent = businessName;
-            document.getElementById('pDate').textContent = new Date().toLocaleDateString('es-ES');
-            document.getElementById('pOwner').textContent = ownerName;
-            document.getElementById('pEmail').textContent = email;
+            // Use shared order summary generator
+            const orderSummary = buildOrderSummary(selectedStrategy, phase1Checked, phase2Checked, businessName, ownerName, email, paymentTerms);
             
-            // Populate Strategy section
-            document.getElementById('pOptionLabel').textContent = selectedStrategy === 'local' ? 'OPTION 1 — $3,000' : 'OPTION 2 — $4,000';
-            document.getElementById('pPkgName').textContent = strategyData.name;
-            document.getElementById('pPkgSubtitle').textContent = strategyData.subtitle;
-            document.getElementById('pPrice').textContent = strategyData.price;
-            document.getElementById('pGoal').textContent = strategyData.goal;
-            document.getElementById('pStrategy').textContent = strategyData.strategy;
-            document.getElementById('pTree').textContent = strategyData.tree;
-            document.getElementById('pPaymentTerms').textContent = paymentTerms;
+            if (!orderSummary) {
+                alert('Error generating order summary.');
+                return;
+            }
 
-            // Calculate investment summary
-            let strategyPrice = selectedStrategy === 'local' ? 3000 : 4000;
-            let setupPrice = 0;
-            
-            if (phase1Checked) setupPrice += 1000;
-            if (phase2Checked) setupPrice += 1500;
-            
-            // Populate investment summary
-            document.getElementById('pSummaryStrategy').textContent = '$' + strategyPrice.toLocaleString();
-            const totalPrice = strategyPrice + setupPrice;
-            document.getElementById('pSummaryTotal').textContent = '$' + totalPrice.toLocaleString();
+            // Populate print template using shared data
+            const pdfData = orderSummary.pdfData;
+            document.getElementById('pCompany').textContent = pdfData.pCompany;
+            document.getElementById('pDate').textContent = pdfData.pDate;
+            document.getElementById('pOwner').textContent = pdfData.pOwner;
+            document.getElementById('pEmail').textContent = pdfData.pEmail;
+            document.getElementById('pOptionLabel').textContent = pdfData.pOptionLabel;
+            document.getElementById('pPkgName').textContent = pdfData.pPkgName;
+            document.getElementById('pPkgSubtitle').textContent = pdfData.pPkgSubtitle;
+            document.getElementById('pPrice').textContent = pdfData.pPrice;
+            document.getElementById('pGoal').textContent = pdfData.pGoal;
+            document.getElementById('pStrategy').textContent = pdfData.pStrategy;
+            document.getElementById('pTree').textContent = pdfData.pTree;
+            document.getElementById('pPaymentTerms').textContent = pdfData.pPaymentTerms;
+            document.getElementById('pSummaryStrategy').textContent = pdfData.pSummaryStrategy;
+            document.getElementById('pSummaryTotal').textContent = pdfData.pSummaryTotal;
             
             // Show/hide Shopify row in summary
             const shopifyRow = document.getElementById('pShopifyRow');
-            if (setupPrice > 0) {
+            if (pdfData.showShopifyRow) {
                 shopifyRow.style.display = 'block';
-                document.getElementById('pSummarySetup').textContent = '$' + setupPrice.toLocaleString();
+                document.getElementById('pSummarySetup').textContent = pdfData.pSummarySetup;
             } else {
                 shopifyRow.style.display = 'none';
             }
@@ -1173,40 +1274,63 @@
             const ownerName = document.getElementById('ownerName').value;
             const email = document.getElementById('email').value;
             const paymentTerms = document.getElementById('paymentTerms').value;
-            const data = strategies[selectedStrategy];
 
             if (!ownerName || !email || !paymentTerms) {
                 alert('Por favor, complete todos los campos incluyendo términos de pago.');
                 return;
             }
 
-            const body = `
-Hola,
+            // Get selected Shopify options
+            const phase1Checked = document.querySelector('input[name="setup"][value="phase1"]').checked;
+            const phase2Checked = document.querySelector('input[name="setup"][value="phase2"]').checked;
+
+            // Use shared order summary generator
+            const orderSummary = buildOrderSummary(selectedStrategy, phase1Checked, phase2Checked, businessName, ownerName, email, paymentTerms);
+            
+            if (!orderSummary) {
+                alert('Error generating order summary.');
+                return;
+            }
+
+            const fullBody = orderSummary.emailBody;
+            const subject = `Vero's Boutique Website Order Confirmation - ${businessName}`;
+            
+            // Check if email body is too long for mailto: (practical limit ~2000 chars for mobile compatibility)
+            const maxMailtoLength = 2000;
+            const encodedBody = encodeURIComponent(fullBody);
+            const mailtoUrl = `mailto:hello@nozallc.us?subject=${encodeURIComponent(subject)}&body=${encodedBody}`;
+            
+            if (mailtoUrl.length > 3000) {
+                // Fallback: Copy full body to clipboard + open email with shorter message
+                const shortBody = `Hola,
 
 Aquí está el resumen de la propuesta para ${businessName}:
 
-PAQUETE SELECCIONADO:
-${data.name} — ${data.price}
+PAQUETE: ${selectedStrategy === 'local' ? 'OPTION 1 — $3,000' : 'OPTION 2 — $4,000'}
+${orderSummary.pdfData.pPkgName}
 
-DETALLES:
-${data.bullets.map(b => `• ${b}`).join('\n')}
+INVERSIÓN TOTAL: ${orderSummary.pdfData.pSummaryTotal}
 
-TÉRMINOS DE PAGO PREFERIDO:
-${paymentTerms}
+✓ Detalles completos han sido copiados a tu portapapeles.
+  Pega el contenido en el cuerpo del email o descarga el PDF para más información.
 
-INFORMACIÓN DE CONTACTO:
-Nombre del Negocio: ${businessName}
-Propietario: ${ownerName}
-Email: ${email}
-Fecha: ${new Date().toLocaleDateString('es-ES')}
+Gracias,
+NOZA LLC`;
 
-Por favor, cargue manualmente el PDF generado.
-
-Gracias.
-            `.trim();
-
-            const subject = `Propuesta Vero's Boutique - ${businessName}`;
-            window.location.href = `mailto:hello@nozallc.us?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+                // Copy full body to clipboard
+                navigator.clipboard.writeText(fullBody).then(() => {
+                    alert('✓ Detalles completos copiados al portapapeles. Abriendo email...');
+                    // Open email with short body
+                    window.location.href = `mailto:hello@nozallc.us?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(shortBody)}`;
+                }).catch(err => {
+                    // Fallback if clipboard fails: just open email with full body (may be truncated)
+                    console.error('Clipboard failed:', err);
+                    window.location.href = mailtoUrl;
+                });
+            } else {
+                // Email body fits in mailto: - open directly with full details
+                window.location.href = mailtoUrl;
+            }
         });
     </script>
 </body>
