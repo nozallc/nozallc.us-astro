@@ -89,7 +89,6 @@
       @media print {
         * {
             box-shadow: none !important;
-            background: white !important;
         }
         
         body {
@@ -100,23 +99,34 @@
             padding: 0;
         }
         
-        /* Hide everything except print template */
-        header, footer, nav, .no-print, #password-overlay, #main-content > * {
+        /* Hide everything by default */
+        body > * {
             display: none !important;
-        }
-        
-        /* Show only the print template */
-        #print-order {
-            display: block !important;
-            position: static !important;
-            width: 100% !important;
-            margin: 0 !important;
-            padding: 0 !important;
-            background: white !important;
         }
         
         main {
             display: none !important;
+        }
+        
+        header, footer, nav, .no-print {
+            display: none !important;
+        }
+        
+        /* Show ONLY the print template */
+        #print-order {
+            display: block !important;
+            position: relative !important;
+            width: 100% !important;
+            margin: 0 !important;
+            padding: 40px !important;
+            background: white !important;
+            color: black !important;
+        }
+        
+        #print-order * {
+            background: transparent !important;
+            color: black !important;
+            border-color: #333 !important;
         }
         
         .card {
