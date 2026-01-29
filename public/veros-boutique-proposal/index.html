@@ -763,7 +763,7 @@
                     </div>
 
                     <button class="cta-btn" id="download-pdf">📥 Descargar Resumen en PDF</button>
-                    <a href="mailto:hello@nozallc.us?subject=Order%20Confirmation%20Vero%27s%20Boutique%20LLC" id="send-email" class="cta-btn" style="display: block; text-align: center; text-decoration: none; margin-top: 12px;">📧 Enviar a hello@nozallc.us</a>
+                    <button id="send-email" class="cta-btn" style="margin-top: 12px;">📧 Enviar a hello@nozallc.us</button>
                 </div>
             </div>
 
@@ -1124,7 +1124,9 @@
         });
 
         // Email functionality
-        document.getElementById('send-email').addEventListener('click', () => {
+        document.getElementById('send-email').addEventListener('click', (e) => {
+            e.preventDefault();
+            
             if (!selectedStrategy) {
                 alert('Por favor, seleccione un paquete primero.');
                 return;
