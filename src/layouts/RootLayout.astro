@@ -30,18 +30,18 @@ const alternateFullUrl = alternateUrl ? `${productionDomain}${alternateUrl}` : u
 		<title>{title}</title>
 		<meta name="description" content={description} />
 		
-		<!-- Open Graph Meta Tags -->
-		<meta property="og:title" content="NOZA LLC - Digital Marketing & Web Design in Lexington, KY" />
-		<meta property="og:description" content="Launch your business into the future with cutting-edge digital marketing, branding, and web design services in Lexington, Kentucky." />
+		<!-- Open Graph Meta Tags (Dynamic) -->
+		<meta property="og:title" content={title} />
+		<meta property="og:description" content={description} />
 		<meta property="og:type" content="website" />
-		<meta property="og:url" content="https://nozallc.us" />
+		<meta property="og:url" content={canonicalUrl} />
 		<meta property="og:image" content="https://nozallc.us/nozallc.svg" />
-		<meta property="og:image:alt" content="NOZA LLC - Digital Marketing Agency" />
+		<meta property="og:image:alt" content="NOZA LLC - Performance-First Web Design & AI Agency" />
 		
-		<!-- Twitter Card Tags -->
+		<!-- Twitter Card Tags (Dynamic) -->
 		<meta name="twitter:card" content="summary_large_image" />
-		<meta name="twitter:title" content="NOZA LLC - Digital Marketing & Web Design" />
-		<meta name="twitter:description" content="Digital marketing, branding, websites & business consulting for Lexington KY small businesses." />
+		<meta name="twitter:title" content={title} />
+		<meta name="twitter:description" content={description} />
 		<meta name="twitter:image" content="https://nozallc.us/nozallc.svg" />
 		
 		<!-- Additional SEO Tags -->

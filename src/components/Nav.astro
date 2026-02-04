@@ -25,7 +25,12 @@
 		<ul class="nav-links" id="navLinks">
 			<li><a href="/" class="nav-home-link">Home</a></li>
 			<li><a href="/services" class="nav-services-link">Services</a></li>
-			<li><a href="/websites" class="nav-websites-link">Websites</a></li>
+			<li class="nav-item-with-submenu">
+				<a href="/websites" class="nav-websites-link">Websites</a>
+				<ul class="nav-submenu">
+					<li><a href="/websites/own-your-website" class="nav-own-website-link">Own Your Website</a></li>
+				</ul>
+			</li>
 			<li><a href="/branding" class="nav-branding-link">Branding</a></li>
 			<li><a href="/digital-marketing" class="nav-digital-marketing-link">Digital Marketing</a></li>
 			<li><a href="/photo-video" class="nav-photo-video-link">Photo & Video</a></li>
@@ -65,6 +70,7 @@
 					'nav-home-link': currentLang === 'en' ? '/' : '/es/',
 					'nav-services-link': currentLang === 'en' ? '/services' : '/es/services',
 					'nav-websites-link': currentLang === 'en' ? '/websites' : '/es/websites',
+					'nav-own-website-link': currentLang === 'en' ? '/websites/own-your-website' : '/es/websites/own-your-website',
 					'nav-branding-link': currentLang === 'en' ? '/branding' : '/es/branding',
 					'nav-digital-marketing-link': currentLang === 'en' ? '/digital-marketing' : '/es/digital-marketing',
 					'nav-photo-video-link': currentLang === 'en' ? '/photo-video' : '/es/photo-video',
