@@ -1,0 +1,226 @@
+---
+import RootLayout from '../../../layouts/RootLayout.astro';
+---
+
+<RootLayout
+	title="Joe Espinoza - Director, NOZA LLC"
+	description="Joe Espinoza, Director of NOZA LLC. Lexington-based digital marketing and web design professional."
+	lang="en"
+>
+	<meta name="robots" content="noindex, nofollow" />
+
+	<section class="profile-container">
+		<div class="profile-card">
+			<!-- Profile Image -->
+			<div class="profile-image-wrapper">
+				<img 
+					src="/images/joe-espinoza.webp" 
+					alt="Joe Espinoza" 
+					class="profile-image"
+				/>
+			</div>
+
+			<!-- Profile Info -->
+			<div class="profile-info">
+				<h1 class="profile-name">Joe Espinoza</h1>
+				<p class="profile-title">Director</p>
+				<p class="profile-org">NOZA LLC</p>
+			</div>
+
+			<!-- Contact Row -->
+			<div class="contact-row">
+				<a href="tel:+18594520551" class="contact-link" title="Call Joe">
+					<span class="contact-icon">📱</span>
+					<span class="contact-text">+1 (859) 452-0551</span>
+				</a>
+				<a href="mailto:joe@nozallc.us" class="contact-link" title="Email Joe">
+					<span class="contact-icon">✉️</span>
+					<span class="contact-text">joe@nozallc.us</span>
+				</a>
+				<a href="https://nozallc.us" class="contact-link" title="Visit Website" target="_blank" rel="noopener noreferrer">
+					<span class="contact-icon">🌐</span>
+					<span class="contact-text">nozallc.us</span>
+				</a>
+			</div>
+
+			<!-- CTA Buttons -->
+			<div class="profile-ctas">
+				<a href="/vcards/joe-espinoza.vcf" download="joe-espinoza.vcf" class="cta-button cta-primary">
+					Download Contact (.vcf)
+				</a>
+				<a href="mailto:joe@nozallc.us" class="cta-button cta-secondary">
+					Email Joe
+				</a>
+			</div>
+
+			<!-- Hidden download trigger for auto-download -->
+			<a id="auto-download-link" href="/vcards/joe-espinoza.vcf" download="joe-espinoza.vcf" style="display: none;"></a>
+		</div>
+	</section>
+</RootLayout>
+
+<style>
+	.profile-container {
+		min-height: 100vh;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		padding: 2rem;
+		background: linear-gradient(135deg, #0a0e27 0%, #1a1f3a 100%);
+	}
+
+	.profile-card {
+		background: rgba(255, 255, 255, 0.95);
+		backdrop-filter: blur(10px);
+		border-radius: 16px;
+		padding: 3rem 2rem;
+		max-width: 500px;
+		width: 100%;
+		box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+		text-align: center;
+	}
+
+	.profile-image-wrapper {
+		margin-bottom: 2rem;
+		display: flex;
+		justify-content: center;
+	}
+
+	.profile-image {
+		width: 180px;
+		height: 180px;
+		border-radius: 12px;
+		object-fit: cover;
+		box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+	}
+
+	.profile-info {
+		margin-bottom: 1.5rem;
+	}
+
+	.profile-name {
+		font-size: 28px;
+		font-weight: 700;
+		color: #0a0e27;
+		margin: 0 0 0.5rem 0;
+	}
+
+	.profile-title {
+		font-size: 16px;
+		font-weight: 600;
+		color: #6366f1;
+		margin: 0 0 0.25rem 0;
+	}
+
+	.profile-org {
+		font-size: 14px;
+		color: #666;
+		margin: 0;
+	}
+
+	.contact-row {
+		display: flex;
+		flex-direction: column;
+		gap: 1rem;
+		margin: 2rem 0;
+		padding: 1.5rem 0;
+		border-top: 1px solid #e0e0e0;
+		border-bottom: 1px solid #e0e0e0;
+	}
+
+	.contact-link {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		gap: 0.75rem;
+		color: #333;
+		text-decoration: none;
+		transition: color 0.3s ease;
+		font-size: 14px;
+	}
+
+	.contact-link:hover {
+		color: #6366f1;
+	}
+
+	.contact-icon {
+		font-size: 18px;
+	}
+
+	.contact-text {
+		word-break: break-word;
+	}
+
+	.profile-ctas {
+		display: flex;
+		flex-direction: column;
+		gap: 1rem;
+		margin-top: 2rem;
+	}
+
+	.cta-button {
+		padding: 12px 24px;
+		border-radius: 8px;
+		font-size: 15px;
+		font-weight: 600;
+		text-decoration: none;
+		transition: all 0.3s ease;
+		cursor: pointer;
+		border: none;
+		display: inline-block;
+	}
+
+	.cta-primary {
+		background: #6366f1;
+		color: white;
+	}
+
+	.cta-primary:hover {
+		background: #4f46e5;
+		transform: translateY(-2px);
+		box-shadow: 0 8px 16px rgba(99, 102, 241, 0.3);
+	}
+
+	.cta-secondary {
+		background: transparent;
+		color: #6366f1;
+		border: 2px solid #6366f1;
+	}
+
+	.cta-secondary:hover {
+		background: #f0f4ff;
+		border-color: #4f46e5;
+		color: #4f46e5;
+	}
+
+	@media (max-width: 640px) {
+		.profile-card {
+			padding: 2rem 1.5rem;
+		}
+
+		.profile-name {
+			font-size: 24px;
+		}
+
+		.profile-image {
+			width: 140px;
+			height: 140px;
+		}
+	}
+</style>
+
+<script>
+	// Auto-download VCF after first paint
+	document.addEventListener('DOMContentLoaded', () => {
+		// Use requestAnimationFrame to trigger after paint
+		requestAnimationFrame(() => {
+			// Small delay to ensure page is fully rendered
+			setTimeout(() => {
+				const downloadLink = document.getElementById('auto-download-link');
+				if (downloadLink) {
+					downloadLink.click();
+				}
+			}, 250);
+		});
+	});
+</script>

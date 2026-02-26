@@ -1,0 +1,10 @@
+BEGIN:VCARD
+VERSION:3.0
+FN:Joe Espinoza
+N:Espinoza;Joe;;;
+TITLE:Director
+ORG:NOZA LLC
+TEL;TYPE=CELL:+1 (859) 452-0551
+EMAIL;TYPE=INTERNET:joe@nozallc.us
+URL:https://nozallc.us
+END:VCARD
