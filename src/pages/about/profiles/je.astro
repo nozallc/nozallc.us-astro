@@ -11,15 +11,21 @@ import RootLayout from '../../../layouts/RootLayout.astro';
 
 	<section class="profile-container">
 		<div class="profile-card">
-			<!-- CTA Button -->
-			<div class="profile-ctas">
-				<a href="/vcards/joe-espinoza.vcf" download="joe-espinoza.vcf" class="cta-button cta-primary">
-					Download Contact (.vcf)
-				</a>
+			<!-- Profile Image -->
+			<div class="profile-image-wrapper">
+				<img 
+					src="/images/joe-espinoza.webp" 
+					alt="Profile" 
+					class="profile-image"
+				/>
 			</div>
 
-			<!-- Hidden download trigger for auto-download -->
-			<a id="auto-download-link" href="/vcards/joe-espinoza.vcf" download="joe-espinoza.vcf" style="display: none;"></a>
+			<!-- CTA Button -->
+			<div class="profile-ctas">
+				<a href="/about/profiles/je-vcf/" class="cta-button cta-primary">
+					Download Contact
+				</a>
+			</div>
 		</div>
 	</section>
 </RootLayout>
@@ -43,6 +49,20 @@ import RootLayout from '../../../layouts/RootLayout.astro';
 		width: 100%;
 		box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
 		text-align: center;
+	}
+
+	.profile-image-wrapper {
+		margin-bottom: 2rem;
+		display: flex;
+		justify-content: center;
+	}
+
+	.profile-image {
+		width: 200px;
+		height: 200px;
+		border-radius: 12px;
+		object-fit: cover;
+		box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
 	}
 
 	.profile-ctas {
@@ -91,21 +111,10 @@ import RootLayout from '../../../layouts/RootLayout.astro';
 		.profile-card {
 			padding: 2rem 1.5rem;
 		}
+
+		.profile-image {
+			width: 160px;
+			height: 160px;
+		}
 	}
 </style>
-
-<script>
-	// Auto-download VCF after first paint
-	document.addEventListener('DOMContentLoaded', () => {
-		// Use requestAnimationFrame to trigger after paint
-		requestAnimationFrame(() => {
-			// Small delay to ensure page is fully rendered
-			setTimeout(() => {
-				const downloadLink = document.getElementById('auto-download-link');
-				if (downloadLink) {
-					downloadLink.click();
-				}
-			}, 250);
-		});
-	});
-</script>

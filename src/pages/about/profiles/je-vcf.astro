@@ -1,0 +1,132 @@
+---
+import RootLayout from '../../../layouts/RootLayout.astro';
+---
+
+<RootLayout
+	title="Downloading Contact - NOZA LLC"
+	description="Downloading Joe Espinoza contact information."
+	lang="en"
+>
+	<meta name="robots" content="noindex, nofollow" />
+
+	<section class="download-container">
+		<div class="download-card">
+			<!-- Profile Image -->
+			<div class="profile-image-wrapper">
+				<img 
+					src="/images/joe-espinoza.webp" 
+					alt="Profile" 
+					class="profile-image"
+				/>
+			</div>
+
+			<!-- Status Message -->
+			<p class="download-status">Downloading contact…</p>
+
+			<!-- Fallback Button -->
+			<div class="fallback-wrapper">
+				<a href="/vcards/joe-espinoza.vcf" download="joe-espinoza.vcf" class="fallback-button">
+					Click here if download didn't start
+				</a>
+			</div>
+
+			<!-- Hidden download trigger for auto-download -->
+			<a id="auto-download-link" href="/vcards/joe-espinoza.vcf" download="joe-espinoza.vcf" style="display: none;"></a>
+		</div>
+	</section>
+</RootLayout>
+
+<style>
+	.download-container {
+		min-height: 100vh;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		padding: 2rem;
+		background: linear-gradient(135deg, #0a0e27 0%, #1a1f3a 100%);
+	}
+
+	.download-card {
+		background: rgba(255, 255, 255, 0.95);
+		backdrop-filter: blur(10px);
+		border-radius: 16px;
+		padding: 3rem 2rem;
+		max-width: 400px;
+		width: 100%;
+		box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+		text-align: center;
+	}
+
+	.profile-image-wrapper {
+		margin-bottom: 2rem;
+		display: flex;
+		justify-content: center;
+	}
+
+	.profile-image {
+		width: 200px;
+		height: 200px;
+		border-radius: 12px;
+		object-fit: cover;
+		box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+	}
+
+	.download-status {
+		font-size: 16px;
+		color: #666;
+		margin: 1.5rem 0;
+		font-weight: 500;
+	}
+
+	.fallback-wrapper {
+		margin-top: 2rem;
+	}
+
+	.fallback-button {
+		display: inline-block;
+		padding: 10px 20px;
+		background: #6366f1;
+		color: white;
+		text-decoration: none;
+		border-radius: 8px;
+		font-weight: 600;
+		font-size: 14px;
+		transition: all 0.3s ease;
+	}
+
+	.fallback-button:hover {
+		background: #4f46e5;
+		transform: translateY(-2px);
+		box-shadow: 0 8px 16px rgba(99, 102, 241, 0.3);
+	}
+
+	@media (max-width: 640px) {
+		.download-card {
+			padding: 2rem 1.5rem;
+		}
+
+		.profile-image {
+			width: 160px;
+			height: 160px;
+		}
+
+		.download-status {
+			font-size: 15px;
+		}
+	}
+</style>
+
+<script>
+	// Auto-download VCF after first paint
+	document.addEventListener('DOMContentLoaded', () => {
+		// Double requestAnimationFrame to ensure paint has completed
+		requestAnimationFrame(() => {
+			requestAnimationFrame(() => {
+				const downloadLink = document.getElementById('auto-download-link');
+				if (downloadLink) {
+					downloadLink.click();
+				}
+			});
+		});
+	});
+</script>
