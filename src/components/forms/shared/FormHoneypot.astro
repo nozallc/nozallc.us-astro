@@ -1,0 +1,13 @@
+---
+// Minimal hidden honeypot field for spam prevention
+// Zero UX impact - field is completely hidden and inaccessible
+---
+
+<input 
+  type="text" 
+  name="website_address" 
+  style="display: none; visibility: hidden; position: absolute; left: -9999px; opacity: 0;"
+  tabindex="-1"
+  autocomplete="off"
+  aria-hidden="true"
+/>

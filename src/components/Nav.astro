@@ -26,9 +26,17 @@
 			<li><a href="/" class="nav-home-link">Home</a></li>
 			<li><a href="/services" class="nav-services-link">Services</a></li>
 			<li class="nav-item-with-submenu">
-				<a href="/websites" class="nav-websites-link">Websites</a>
+				<div class="nav-websites-container">
+					<a href="/websites" class="nav-websites-link">Websites</a>
+					<button class="nav-dropdown-toggle" id="websites-dropdown-toggle" aria-label="Toggle websites submenu" aria-expanded="false" type="button">
+						<svg class="dropdown-icon" width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+							<path d="M4 6L8 10L12 6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+						</svg>
+					</button>
+				</div>
 				<ul class="nav-submenu">
 					<li><a href="/websites/own-your-website" class="nav-own-website-link">Own Your Website</a></li>
+					<li><a href="/tools/performance-review" class="nav-performance-review-link">Performance Review Tool</a></li>
 				</ul>
 			</li>
 			<li><a href="/branding" class="nav-branding-link">Branding</a></li>
@@ -71,11 +79,7 @@
 					'nav-services-link': currentLang === 'en' ? '/services' : '/es/services',
 					'nav-websites-link': currentLang === 'en' ? '/websites' : '/es/websites',
 					'nav-own-website-link': currentLang === 'en' ? '/websites/own-your-website' : '/es/websites/own-your-website',
-					'nav-branding-link': currentLang === 'en' ? '/branding' : '/es/branding',
-					'nav-digital-marketing-link': currentLang === 'en' ? '/digital-marketing' : '/es/digital-marketing',
-					'nav-photo-video-link': currentLang === 'en' ? '/photo-video' : '/es/photo-video',
-					'nav-consulting-link': currentLang === 'en' ? '/consulting' : '/es/consulting',
-					'nav-vendor-network-link': currentLang === 'en' ? '/vendor-network' : '/es/vendor-network',
+				'nav-performance-review-link': currentLang === 'en' ? '/tools/performance-review' : '/es/tools/performance-review',
 					'nav-contact-link': currentLang === 'en' ? '/contact' : '/es/contact',
 				};
 
@@ -99,12 +103,30 @@
 				hamburger.setAttribute('aria-expanded', (!isExpanded).toString());
 			});
 
+			// Mobile dropdown toggle for Websites submenu
+			const websitesToggle = document.getElementById('websites-dropdown-toggle');
+			const websitesSubmenu = document.querySelector('.nav-item-with-submenu .nav-submenu');
+
+			if (websitesToggle && websitesSubmenu) {
+				websitesToggle.addEventListener('click', (e) => {
+					e.preventDefault();
+					websitesSubmenu.classList.toggle('active');
+					const isExpanded = websitesSubmenu.classList.contains('active');
+					websitesToggle.setAttribute('aria-expanded', isExpanded.toString());
+				});
+			}
+
 			// Close menu when a link is clicked
 			document.querySelectorAll('.nav-links a').forEach(link => {
 				link.addEventListener('click', () => {
 					hamburger.classList.remove('active');
 					navLinks.classList.remove('active');
 					hamburger.setAttribute('aria-expanded', 'false');
+					// Also close submenu on link click
+					if (websitesSubmenu) {
+						websitesSubmenu.classList.remove('active');
+						if (websitesToggle) websitesToggle.setAttribute('aria-expanded', 'false');
+					}
 				});
 			});
 

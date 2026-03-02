@@ -1,0 +1,300 @@
+---
+import RootLayout from '../../../../layouts/RootLayout.astro';
+import PerformanceReviewForm from '../../../../components/forms/PerformanceReviewForm.astro';
+---
+
+<RootLayout
+	title="Herramienta Gratuita de Análisis de Rendimiento Web | NOZA LLC"
+	description="Analiza la velocidad de tu sitio, SEO y conversiones al instante. Obtén información práctica en minutos. Sin tarjeta de crédito requerida."
+	lang="es"
+	alternateUrl="/tools/performance-review"
+>
+	<!-- SECTION 1: HERO -->
+	<section id="hero" class="hero-section tool-hero">
+		<div class="cosmic-background" aria-label="Diseño de fondo animado" role="presentation">
+			<div class="stars" aria-hidden="true"></div>
+			<div class="nebula nebula-1" aria-hidden="true"></div>
+			<div class="nebula nebula-2" aria-hidden="true"></div>
+			<div class="nebula nebula-3" aria-hidden="true"></div>
+		</div>
+		<div class="particles" aria-hidden="true"></div>
+		
+		<div class="hero-content">
+			<h1 class="hero-headline">Analiza el Rendimiento de Tu Sitio Web</h1>
+			<p class="hero-subheadline">Obtén información instantánea sobre velocidad, SEO y conversiones. Sin tarjeta de crédito requerida.</p>
+			
+			<div class="tool-highlights">
+				<p>Nuestra revisión de rendimiento revela:</p>
+				<ul class="highlights-list">
+					<li>Qué tan rápido carga tu sitio</li>
+					<li>Por qué los visitantes se van</li>
+					<li>Qué puedes arreglar hoy</li>
+					<li>Tus próximas oportunidades de crecimiento</li>
+				</ul>
+			</div>
+		</div>
+	</section>
+
+	<!-- FORM SECTION -->
+	<PerformanceReviewForm lang="es" endpoint="https://formspree.io/f/myzojzzw" />
+
+	<!-- BACK LINK -->
+	<section id="back-link-section" class="back-link-section">
+		<div class="back-link-container">
+			<a href="/es/websites/own-your-website/" class="back-link">← Volver a Servicios Web</a>
+		</div>
+	</section>
+
+	<style>
+		/* ===== HERO SECTION (Tool Page Variant) ===== */
+		.hero-section {
+			position: relative;
+			min-height: 60vh;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			overflow: hidden;
+			padding: 4rem 2rem;
+		}
+
+		.hero-section.tool-hero {
+			min-height: 50vh; /* Slightly shorter for tool page */
+		}
+
+		.cosmic-background {
+			position: absolute;
+			top: 0;
+			left: 0;
+			width: 100%;
+			height: 100%;
+			background: var(--dark-bg);
+			z-index: 0;
+			overflow: hidden;
+		}
+
+		.stars {
+			position: absolute;
+			width: 2px;
+			height: 2px;
+			background: white;
+			border-radius: 50%;
+			box-shadow: 100px 100px white, 200px 150px white, 300px 50px white, 450px 200px white,
+						550px 100px white, 150px 300px white, 400px 400px white, 600px 300px white,
+						700px 150px white, 800px 400px white, 900px 250px white, 200px 500px white,
+						700px 500px white, 500px 600px white, 100px 700px white, 800px 700px white,
+						300px 800px white;
+			animation: twinkle 3s infinite;
+		}
+
+		.nebula {
+			position: absolute;
+			border-radius: 50%;
+			filter: blur(80px);
+			opacity: 0.6;
+		}
+
+		.nebula-1 {
+			width: 400px;
+			height: 400px;
+			background: radial-gradient(circle, rgba(0, 212, 255, 0.3) 0%, transparent 70%);
+			top: 10%;
+			left: 10%;
+			animation: drift 8s ease-in-out infinite;
+		}
+
+		.nebula-2 {
+			width: 500px;
+			height: 500px;
+			background: radial-gradient(circle, rgba(163, 0, 255, 0.2) 0%, transparent 70%);
+			top: 50%;
+			right: 5%;
+			animation: drift 10s ease-in-out infinite reverse;
+		}
+
+		.nebula-3 {
+			width: 350px;
+			height: 350px;
+			background: radial-gradient(circle, rgba(255, 0, 110, 0.2) 0%, transparent 70%);
+			bottom: 10%;
+			left: 50%;
+			animation: drift 12s ease-in-out infinite;
+		}
+
+		.particles {
+			position: absolute;
+			width: 100%;
+			height: 100%;
+			overflow: hidden;
+		}
+
+		.particles::before {
+			content: '';
+			position: absolute;
+			width: 2px;
+			height: 2px;
+			background: var(--primary-neon);
+			border-radius: 50%;
+			box-shadow: 100px 200px var(--primary-neon), 250px 100px var(--primary-neon),
+						150px 400px var(--secondary-neon), 450px 150px var(--tertiary-neon),
+						600px 250px var(--primary-neon), 350px 300px var(--secondary-neon),
+						800px 100px var(--tertiary-neon), 200px 600px var(--primary-neon);
+			animation: float 6s ease-in-out infinite;
+		}
+
+		.hero-content {
+			position: relative;
+			z-index: 1;
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+			text-align: center;
+			max-width: 900px;
+			gap: 1.5rem;
+		}
+
+		.hero-headline {
+			font-size: clamp(2rem, 6vw, 3.5rem);
+			font-weight: 800;
+			background: linear-gradient(135deg, var(--primary-neon), var(--secondary-neon), var(--tertiary-neon));
+			-webkit-background-clip: text;
+			-webkit-text-fill-color: transparent;
+			background-clip: text;
+			line-height: 1.2;
+			margin: 0;
+		}
+
+		.hero-subheadline {
+			font-size: clamp(1rem, 2vw, 1.2rem);
+			color: var(--text-secondary);
+			max-width: 700px;
+			line-height: 1.8;
+			margin: 0;
+		}
+
+		.tool-highlights {
+			margin-top: 1.5rem;
+			padding: 1.5rem;
+			border-radius: 8px;
+			background: rgba(0, 212, 255, 0.05);
+			border: 1px solid rgba(0, 212, 255, 0.1);
+		}
+
+		.tool-highlights p {
+			margin: 0 0 1rem 0;
+			color: var(--text-primary);
+			font-weight: 600;
+			font-size: 0.95rem;
+		}
+
+		.highlights-list {
+			list-style: none;
+			display: flex;
+			flex-direction: column;
+			gap: 0.75rem;
+			margin: 0;
+			padding: 0;
+		}
+
+		.highlights-list li {
+			color: var(--text-secondary);
+			font-size: 0.9rem;
+			padding-left: 1.5rem;
+			position: relative;
+		}
+
+		.highlights-list li::before {
+			content: '✓';
+			position: absolute;
+			left: 0;
+			color: var(--primary-neon);
+			font-weight: bold;
+			font-size: 1rem;
+		}
+
+		/* ===== BACK LINK SECTION ===== */
+		.back-link-section {
+			padding: 3rem 2rem;
+			text-align: center;
+			background: rgba(0, 212, 255, 0.02);
+			border-top: 1px solid rgba(0, 212, 255, 0.1);
+		}
+
+		.back-link-container {
+			max-width: 900px;
+			margin: 0 auto;
+		}
+
+		.back-link {
+			display: inline-block;
+			color: var(--primary-neon);
+			text-decoration: none;
+			font-weight: 600;
+			padding: 0.75rem 1.5rem;
+			border: 1px solid rgba(0, 212, 255, 0.3);
+			border-radius: 6px;
+			transition: all 0.3s ease;
+			font-size: 0.95rem;
+		}
+
+		.back-link:hover {
+			border-color: var(--primary-neon);
+			background: rgba(0, 212, 255, 0.1);
+			box-shadow: 0 0 12px rgba(0, 212, 255, 0.2);
+		}
+
+		/* ===== ANIMATIONS ===== */
+		@keyframes twinkle {
+			0%, 100% {
+				opacity: 0.3;
+			}
+			50% {
+				opacity: 1;
+			}
+		}
+
+		@keyframes drift {
+			0%, 100% {
+				transform: translate(0, 0);
+			}
+			50% {
+				transform: translate(20px, 20px);
+			}
+		}
+
+		@keyframes float {
+			0%, 100% {
+				transform: translateY(0);
+			}
+			50% {
+				transform: translateY(20px);
+			}
+		}
+
+		/* ===== RESPONSIVE ===== */
+		@media (max-width: 768px) {
+			.hero-section {
+				min-height: 50vh;
+				padding: 2.5rem 1.5rem;
+			}
+
+			.hero-section.tool-hero {
+				min-height: 45vh;
+			}
+
+			.tool-highlights {
+				margin-top: 1rem;
+				padding: 1rem;
+			}
+
+			.highlights-list li {
+				font-size: 0.85rem;
+				padding-left: 1.25rem;
+			}
+
+			.back-link {
+				font-size: 0.9rem;
+				padding: 0.65rem 1rem;
+			}
+		}
+	</style>
+</RootLayout>

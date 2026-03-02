@@ -1017,6 +1017,92 @@ button {
   text-shadow: 0 0 8px rgba(0, 212, 255, 0.4);
 }
 
+/* Mobile Websites Dropdown Container */
+.nav-websites-container {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+/* Dropdown Toggle Button (Mobile) */
+.nav-dropdown-toggle {
+  display: none;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0.25rem;
+  color: var(--text-primary);
+  transition: transform 0.3s ease;
+}
+
+.nav-dropdown-toggle:hover {
+  opacity: 0.7;
+}
+
+.nav-dropdown-toggle[aria-expanded="true"] {
+  transform: rotate(180deg);
+}
+
+.dropdown-icon {
+  width: 16px;
+  height: 16px;
+  stroke: currentColor;
+}
+
+/* Mobile: Show dropdown toggle and handle submenu display */
+@media (max-width: 768px) {
+  .nav-dropdown-toggle {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .nav-submenu {
+    display: none;
+    position: static;
+    background: transparent;
+    border: none;
+    box-shadow: none;
+    backdrop-filter: none;
+    padding: 0.5rem 0 0 0;
+    margin-top: 0.5rem;
+    min-width: auto;
+    flex-direction: column;
+  }
+
+  .nav-submenu.active {
+    display: flex;
+  }
+
+  .nav-item-with-submenu:hover .nav-submenu {
+    display: none;
+  }
+
+  .nav-submenu li {
+    margin-left: 1rem;
+  }
+
+  .nav-submenu a {
+    padding: 0.5rem 0.75rem;
+    font-size: 0.85rem;
+  }
+
+  .nav-submenu a:hover {
+    padding-left: 1rem;
+  }
+}
+
+/* Desktop: Hide toggle, show on hover */
+@media (min-width: 769px) {
+  .nav-dropdown-toggle {
+    display: none;
+  }
+
+  .nav-item-with-submenu:hover .nav-submenu {
+    display: block;
+  }
+}
+
 .hamburger-menu {
   display: none;
   flex-direction: column;

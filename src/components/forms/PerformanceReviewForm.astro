@@ -1,0 +1,528 @@
+---
+// PerformanceReviewForm Component
+// Renders the performance review form + PageSpeed diagnostic tool
+// Supports EN/ES via i18n
+// Handles:
+//   - Prefill from ?url= query param
+//   - Form submission to Formspree with redirect to PageSpeed
+//   - Non-blocking analytics tracking
+//   - Honeypot spam prevention
+
+import FormField from './shared/FormField.astro';
+import FormHoneypot from './shared/FormHoneypot.astro';
+import { getTranslation } from '../../i18n/utils';
+
+export interface Props {
+  lang?: 'en' | 'es';
+  endpoint?: string;
+}
+
+const { lang = 'en', endpoint = 'https://formspree.io/f/myzojzzw' } = Astro.props;
+
+// Get all translations for performance review form
+const t = (key: string) => {
+  const fullKey = `forms.performance_review.${key}` as any;
+  return getTranslation(fullKey, lang);
+};
+
+// Prefill logic for Website URL from query param
+// Parses ?url= param and normalizes it with safety checks
+const urlParam = Astro.url.searchParams.get('url') || '';
+const DEFAULT_URL = 'https://www.nozallc.us';
+
+// List of allowed protocols for URLs
+const ALLOWED_PROTOCOLS = ['http:', 'https:'];
+
+// Helper function to validate and normalize URLs server-side
+function validateAndNormalizeUrl(inputUrl: string): string {
+  if (!inputUrl) return '';
+
+  const trimmed = inputUrl.trim();
+  if (!trimmed) return '';
+
+  // Add protocol if missing
+  const withProtocol = trimmed.startsWith('http') ? trimmed : `https://${trimmed}`;
+
+  try {
+    // Parse and validate URL
+    const parsed = new URL(withProtocol);
+
+    // Reject unsafe protocols
+    if (!ALLOWED_PROTOCOLS.includes(parsed.protocol)) {
+      return '';
+    }
+
+    return parsed.href;
+  } catch {
+    // Invalid URL; return empty
+    return '';
+  }
+}
+
+let prefillUrl = validateAndNormalizeUrl(urlParam);
+const formId = `performanceReviewForm-${lang}`;
+---
+
+<section id="review" class="review-section">
+  <div class="review-container">
+    <h2 class="section-title">{t('title')}</h2>
+    
+    <p style="text-align: center; color: var(--text-secondary); font-size: 1rem; max-width: 700px; margin: 0 auto 2.5rem; line-height: 1.7;">
+      {t('description')}
+    </p>
+    
+    <div class="form-wrapper">
+      <!-- Main Form -->
+      <form 
+        class="review-form" 
+        method="POST" 
+        action={endpoint}
+        id={formId}
+      >
+        <FormField 
+          type="text"
+          name="name"
+          id={`name-${lang}`}
+          label={t('name.label')}
+          placeholder={t('name.placeholder')}
+          required={true}
+        />
+        
+        <FormField 
+          type="text"
+          name="business"
+          id={`business-${lang}`}
+          label={t('business.label')}
+          placeholder={t('business.placeholder')}
+          required={true}
+        />
+        
+        <FormField 
+          type="text"
+          name="website-url"
+          id={`website-url-${lang}`}
+          label={t('website_url.label')}
+          placeholder={t('website_url.placeholder')}
+          value={prefillUrl}
+        />
+        
+        <FormField 
+          type="email"
+          name="email"
+          id={`email-${lang}`}
+          label={t('email.label')}
+          placeholder={t('email.placeholder')}
+          required={true}
+          helpText={t('email.help_text')}
+          ariaDescribedBy={`email-${lang}-help`}
+        />
+        
+        <FormField 
+          type="tel"
+          name="phone"
+          id={`phone-${lang}`}
+          label={t('phone.label')}
+          placeholder={t('phone.placeholder')}
+        />
+        
+        <FormHoneypot />
+        
+        <button 
+          type="submit" 
+          class="cta-primary" 
+          aria-label={lang === 'en' ? 'Submit form to request your complimentary performance review' : 'Enviar formulario para solicitar tu revisión de rendimiento gratuita'}
+        >
+          {t('submit')}
+        </button>
+        
+        <div 
+          id={`form-status-${lang}`} 
+          role="status" 
+          aria-live="polite" 
+          aria-atomic="true" 
+          style="margin-top: 1rem; color: var(--primary-neon); font-weight: 600; min-height: 1.5em; visibility: hidden;"
+        >
+          Form status message will appear here
+        </div>
+        
+        <p class="form-trust-note">{t('trust_note')}</p>
+      </form>
+      
+      <p style="text-align: center; font-size: 0.9rem; color: var(--text-secondary); margin-top: 2rem;">
+        {t('serving_text')}
+      </p>
+    </div>
+    
+    <!-- Divider -->
+    <div style="text-align: center; position: relative; padding: 0 2rem; margin: 2.5rem 0;">
+      <div style="border-top: 1px solid var(--border-glow);"></div>
+      <span style="position: absolute; left: 50%; top: -12px; transform: translateX(-50%); background: var(--dark-bg); padding: 0 1rem; color: var(--text-secondary); font-size: 0.85rem;">
+        {lang === 'en' ? 'OR' : 'O'}
+      </span>
+    </div>
+    
+    <!-- PageSpeed Tool Section -->
+    <div id="quick-test" style="text-align: center;">
+      <p style="font-size: 0.95rem; color: var(--text-secondary); margin-bottom: 1.5rem;">
+        {t('pagespeed_label')}
+      </p>
+      
+      <div style="display: flex; gap: 0.75rem; max-width: 500px; margin: 0 auto 1.5rem; flex-wrap: wrap; justify-content: center;">
+        <input 
+          type="url" 
+          id={`domain-input-${lang}`}
+          placeholder={t('pagespeed_input')}
+          style="padding: 0.75rem 1rem; border: 1px solid var(--border-glow); border-radius: 0.5rem; background: rgba(0,212,255,0.05); color: var(--text-primary); font-size: 0.95rem; flex: 1; min-width: 200px;"
+        />
+        <button 
+          id={`pagespeed-btn-${lang}`}
+          class="cta-secondary"
+          style="padding: 0.75rem 1.5rem; white-space: nowrap;"
+          type="button"
+        >
+          {t('pagespeed_button')}
+        </button>
+      </div>
+      
+      <p style="font-size: 0.85rem; color: var(--text-secondary);">
+        {t('pagespeed_description')}
+      </p>
+    </div>
+  </div>
+</section>
+
+<script define:vars={{ formId, endpoint, lang, prefillUrl, isPrefilled: !!urlParam, DEFAULT_URL: 'https://www.nozallc.us' }}>
+  // Allowed protocols for safety
+  const ALLOWED_PROTOCOLS = ['http:', 'https:'];
+  const DEFAULT_URL = 'https://www.nozallc.us';
+
+  // Lightweight click tracking (fires before navigation, never blocks)
+  function safeTrack(eventName, label) {
+    try {
+      if (typeof window !== 'undefined' && window.gtag) {
+        window.gtag('event', eventName, {
+          event_category: 'engagement',
+          event_label: label,
+        });
+      }
+    } catch {}
+  }
+
+  // Non-blocking analytics helper
+  function trackEvent(eventName, params) {
+    if (typeof window !== 'undefined' && typeof window.gtag !== 'undefined') {
+      window.gtag('event', eventName, {
+        form_name: 'performance_review',
+        language: lang,
+        ...params,
+      });
+    }
+  }
+
+  // Validate and normalize URL with protocol safety checks
+  function normalizeUrl(inputUrl) {
+    if (!inputUrl) return DEFAULT_URL;
+    
+    const trimmed = inputUrl.trim();
+    if (!trimmed) return DEFAULT_URL;
+
+    // Add protocol if missing
+    const withProtocol = trimmed.startsWith('http') ? trimmed : `https://${trimmed}`;
+
+    try {
+      // Parse and validate
+      const parsed = new URL(withProtocol);
+
+      // Reject unsafe protocols (javascript:, data:, file:, ftp:, etc.)
+      if (!ALLOWED_PROTOCOLS.includes(parsed.protocol)) {
+        console.warn('Unsafe protocol detected:', parsed.protocol);
+        return DEFAULT_URL;
+      }
+
+      return parsed.href;
+    } catch (e) {
+      console.warn('Invalid URL:', e);
+      return DEFAULT_URL;
+    }
+  }
+
+  // Build PageSpeed Insights URL with proper encoding
+  function buildPageSpeedUrl(url) {
+    const encoded = encodeURIComponent(url);
+    return `https://pagespeed.web.dev/analysis?url=${encoded}&form_factor=mobile`;
+  }
+
+  // Auto-scroll to form if prefilled
+  if (isPrefilled) {
+    console.log('Auto-scroll triggered for prefilled URL');
+    
+    const performScroll = () => {
+      const reviewSection = document.getElementById('review');
+      console.log('Looking for #review element:', !!reviewSection);
+      
+      if (reviewSection) {
+        // Use requestAnimationFrame to ensure paint cycle
+        requestAnimationFrame(() => {
+          reviewSection.scrollIntoView({ behavior: 'smooth', block: 'center' });
+          console.log('Scrolled to review section');
+        });
+        return true;
+      }
+      return false;
+    };
+    
+    // Try immediately
+    if (!performScroll()) {
+      // Try again on load event
+      window.addEventListener('load', () => {
+        console.log('Window load event - retrying scroll');
+        setTimeout(performScroll, 200);
+      });
+      
+      // Also try after short delays as fallback
+      setTimeout(() => {
+        console.log('Retry 1: checking for element');
+        performScroll();
+      }, 300);
+      
+      setTimeout(() => {
+        console.log('Retry 2: checking for element');
+        performScroll();
+      }, 800);
+      
+      setTimeout(() => {
+        console.log('Retry 3: checking for element');
+        performScroll();
+      }, 1500);
+    }
+  }
+
+  // Main form handler
+  const form = document.getElementById(formId);
+  if (form) {
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+
+      // Validate honeypot (anti-spam)
+      const honeypot = form.querySelector('input[name="website_address"]');
+      if (honeypot && honeypot.value) {
+        // Silently reject spam
+        form.reset();
+        return;
+      }
+
+      const formData = new FormData(form);
+      const websiteUrl = normalizeUrl(formData.get('website-url'));
+      
+      // Update form data with normalized URL (use default if blank)
+      formData.set('website-url', websiteUrl);
+
+      // Track click before submission
+      safeTrack('request_review_click', websiteUrl);
+
+      // Show loading state
+      const button = form.querySelector('button[type="submit"]');
+      const statusDiv = document.getElementById(`form-status-${lang}`);
+      if (button) button.disabled = true;
+
+      try {
+        const response = await fetch(endpoint, {
+          method: 'POST',
+          body: formData,
+          headers: {
+            Accept: 'application/json',
+          },
+        });
+
+        if (response.ok) {
+          // Success: show interstitial message
+          if (statusDiv) {
+            statusDiv.textContent = 'Received — sending you to Google PageSpeed…';
+            statusDiv.style.visibility = 'visible';
+          }
+
+          // Redirect to PageSpeed after 250ms (within 200-350ms requirement)
+          setTimeout(() => {
+            const pageSpeedUrl = buildPageSpeedUrl(websiteUrl);
+            window.open(pageSpeedUrl, '_blank');
+          }, 250);
+
+          // Reset form after brief delay
+          setTimeout(() => {
+            form.reset();
+            if (statusDiv) statusDiv.style.visibility = 'hidden';
+            if (button) button.disabled = false;
+          }, 3000);
+        } else {
+          // Error response from Formspree
+          if (statusDiv) {
+            statusDiv.textContent = lang === 'en' 
+              ? 'Failed to send message. Please try again.' 
+              : 'Error al enviar el mensaje. Por favor, inténtalo de nuevo.';
+            statusDiv.style.visibility = 'visible';
+          }
+          if (button) button.disabled = false;
+        }
+      } catch (error) {
+        // Network error
+        console.error('Form submission error:', error);
+        if (statusDiv) {
+          statusDiv.textContent = lang === 'en'
+            ? 'An error occurred. Please check your connection and try again.'
+            : 'Ocurrió un error. Por favor, verifica tu conexión e inténtalo de nuevo.';
+          statusDiv.style.visibility = 'visible';
+        }
+        if (button) button.disabled = false;
+      }
+    });
+  }
+
+  // PageSpeed button handler - allows testing URL before submitting form
+  const pageSpeedBtn = document.getElementById(`pagespeed-btn-${lang}`);
+  const domainInput = document.getElementById(`domain-input-${lang}`);
+
+  if (pageSpeedBtn && domainInput) {
+    const handlePageSpeed = () => {
+      const domain = normalizeUrl(domainInput.value);
+      const pageSpeedUrl = buildPageSpeedUrl(domain);
+
+      // Track click before opening
+      safeTrack('test_speed_click', domain);
+
+      // Open PageSpeed in new tab
+      window.open(pageSpeedUrl, '_blank');
+    };
+
+    pageSpeedBtn.addEventListener('click', handlePageSpeed);
+
+    // Allow Enter key to trigger PageSpeed test
+    domainInput.addEventListener('keypress', (e) => {
+      if (e.key === 'Enter') {
+        e.preventDefault();
+        handlePageSpeed();
+      }
+    });
+  }
+</script>
+
+<style>
+  #review {
+    padding: 4rem 2rem;
+  }
+
+  .review-container {
+    max-width: 700px;
+    margin: 0 auto;
+  }
+
+  .form-wrapper {
+    background: var(--card-bg);
+    border: 1px solid var(--border-glow);
+    border-radius: 8px;
+    padding: 2rem;
+    margin-top: 2rem;
+  }
+
+  .review-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+
+  .form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .form-group label {
+    font-weight: 600;
+    color: var(--text-primary);
+    font-size: 0.95rem;
+  }
+
+  .form-group input {
+    padding: 0.75rem 1rem;
+    background: rgba(0, 0, 0, 0.3);
+    border: 1px solid var(--border-glow);
+    border-radius: 6px;
+    color: var(--text-primary);
+    font-size: 0.95rem;
+    line-height: 1.5;
+    transition: border-color 0.3s ease;
+  }
+
+  .form-group input:focus {
+    outline: none;
+    border-color: var(--primary-neon);
+    box-shadow: 0 0 12px rgba(0, 212, 255, 0.3);
+  }
+
+  .form-group input::placeholder {
+    color: var(--text-tertiary);
+    opacity: 0.7;
+  }
+
+  .required-asterisk {
+    color: var(--primary-neon);
+    margin-left: 0.25rem;
+  }
+
+  .cta-primary {
+    padding: 0.875rem 2rem;
+    background: linear-gradient(135deg, var(--primary-neon) 0%, #00d4ff 100%);
+    border: none;
+    border-radius: 6px;
+    color: #000;
+    font-weight: 700;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin-top: 0.5rem;
+  }
+
+  .cta-primary:hover {
+    box-shadow: 0 0 20px rgba(0, 212, 255, 0.5);
+    transform: translateY(-2px);
+  }
+
+  .cta-primary:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+  }
+
+  .form-trust-note {
+    text-align: center;
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+    margin-top: 1rem;
+  }
+
+  #quick-test {
+    text-align: center;
+  }
+
+  .cta-secondary {
+    padding: 0.75rem 1.5rem;
+    background: rgba(0, 212, 255, 0.1);
+    border: 1px solid var(--border-glow);
+    border-radius: 6px;
+    color: var(--primary-neon);
+    font-weight: 600;
+    font-size: 0.95rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    white-space: nowrap;
+  }
+
+  .cta-secondary:hover {
+    background: rgba(0, 212, 255, 0.2);
+    border-color: var(--primary-neon);
+    box-shadow: 0 0 12px rgba(0, 212, 255, 0.2);
+  }
+
+  .cta-secondary:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+</style>

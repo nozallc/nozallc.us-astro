@@ -1,0 +1,102 @@
+---
+// Reusable form field component
+// Renders label + input with accessibility attributes
+
+export interface Props {
+  type?: string;
+  name: string;
+  id?: string;
+  label?: string;
+  placeholder?: string;
+  value?: string;
+  required?: boolean;
+  helpText?: string;
+  ariaLabel?: string;
+  ariaDescribedBy?: string;
+}
+
+const {
+  type = 'text',
+  name,
+  id = name,
+  label,
+  placeholder = '',
+  value = '',
+  required = false,
+  helpText,
+  ariaLabel,
+  ariaDescribedBy,
+} = Astro.props;
+
+const helpId = helpText ? `${id}-help` : undefined;
+const describedBy = ariaDescribedBy || helpId;
+---
+
+<div class="form-group">
+  {label && (
+    <label for={id}>
+      {label}
+      {required && <span class="required-asterisk">*</span>}
+    </label>
+  )}
+  <input 
+    type={type}
+    id={id}
+    name={name}
+    placeholder={placeholder}
+    value={value}
+    required={required}
+    aria-label={ariaLabel}
+    aria-required={required ? 'true' : undefined}
+    aria-describedby={describedBy}
+    autocomplete={type === 'email' ? 'email' : type === 'tel' ? 'tel' : undefined}
+  />
+  {helpText && (
+    <small 
+      id={helpId}
+      style="color: var(--text-secondary); font-size: 0.75rem; margin-top: 0.25rem; display: block;"
+    >
+      {helpText}
+    </small>
+  )}
+</div>
+
+<style>
+  .form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .form-group label {
+    font-weight: 600;
+    color: var(--text-primary);
+    font-size: 0.95rem;
+  }
+
+  .required-asterisk {
+    color: var(--primary-neon);
+  }
+
+  .form-group input {
+    padding: 0.75rem 1rem;
+    background: rgba(0, 0, 0, 0.3);
+    border: 1px solid var(--border-glow);
+    border-radius: 6px;
+    color: var(--text-primary);
+    font-size: 0.95rem;
+    line-height: 1.5;
+    transition: border-color 0.3s ease;
+  }
+
+  .form-group input::placeholder {
+    color: var(--text-secondary);
+    opacity: 0.7;
+  }
+
+  .form-group input:focus {
+    outline: none;
+    border-color: var(--primary-neon);
+    box-shadow: 0 0 8px rgba(0, 212, 255, 0.2);
+  }
+</style>
