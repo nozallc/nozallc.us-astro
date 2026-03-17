@@ -5,6 +5,17 @@ import es from '../i18n/locales/es.json';
 const lang = Astro.props.lang || 'en';
 const translations = lang === 'es' ? es : en;
 const t = (key) => translations[key] || key;
+
+const prefix = lang === 'es' ? '/es' : '';
+
+const services = [
+	{ id: 'digital-marketing', href: `${prefix}/digital-marketing` },
+	{ id: 'websites', href: `${prefix}/websites` },
+	{ id: 'photo-video', href: `${prefix}/photo-video` },
+	{ id: 'branding', href: `${prefix}/branding` },
+	{ id: 'automation', href: 'https://get.noza.app', external: true },
+	{ id: 'consulting', href: `${prefix}/consulting` },
+];
 ---
 
 <section class="services">
@@ -14,41 +25,41 @@ const t = (key) => translations[key] || key;
 	</div>
 
 	<div class="services-grid">
-		<div class="service-card">
+		<a href={services[0].href} class="service-card">
 			<div class="card-icon digital-marketing"></div>
 			<h3>{t('services.digitalMarketing.title')}</h3>
 			<p>{t('services.digitalMarketing.desc')}</p>
-		</div>
+		</a>
 
-		<div class="service-card">
-			<div class="card-icon branding"></div>
-			<h3>{t('services.branding.title')}</h3>
-			<p>{t('services.branding.desc')}</p>
-		</div>
-
-		<div class="service-card">
+		<a href={services[1].href} class="service-card">
 			<div class="card-icon web-design"></div>
 			<h3>{t('services.websites.title')}</h3>
 			<p>{t('services.websites.desc')}</p>
-		</div>
+		</a>
 
-		<div class="service-card">
-			<div class="card-icon social-media"></div>
-			<h3>{t('services.socialMedia.title')}</h3>
-			<p>{t('services.socialMedia.desc')}</p>
-		</div>
-
-		<div class="service-card">
+		<a href={services[2].href} class="service-card">
 			<div class="card-icon media"></div>
 			<h3>{t('services.photoVideo.title')}</h3>
 			<p>{t('services.photoVideo.desc')}</p>
-		</div>
+		</a>
 
-		<div class="service-card">
+		<a href={services[3].href} class="service-card">
+			<div class="card-icon branding"></div>
+			<h3>{t('services.branding.title')}</h3>
+			<p>{t('services.branding.desc')}</p>
+		</a>
+
+		<a href={services[4].href} target={services[4].external ? "_blank" : "_self"} rel={services[4].external ? "noopener noreferrer" : ""} class="service-card">
+			<div class="card-icon consulting"></div>
+			<h3>{t('services.automation.title')}</h3>
+			<p>{t('services.automation.desc')}</p>
+		</a>
+
+		<a href={services[5].href} class="service-card">
 			<div class="card-icon consulting"></div>
 			<h3>{t('services.consulting.title')}</h3>
 			<p>{t('services.consulting.desc')}</p>
-		</div>
+		</a>
 	</div>
 </section>
 

@@ -5,6 +5,87 @@ import es from '../i18n/locales/es.json';
 const lang = Astro.props.lang || 'en';
 const translations = lang === 'es' ? es : en;
 const t = (key) => translations[key] || key;
+
+// Portfolio card configuration
+const portfolioCards = [
+	{
+		id: 'branding',
+		image: '/portfolio-assets/branding/vb-roofing-1.webp',
+		imageAlt: 'Brand Identity Redesign - VB Roofing',
+		secondaryImage: '/portfolio-assets/branding/vb-roofing-2.webp',
+		secondaryAlt: 'VB Roofing Mascot & Brand Elements',
+		placeholder: false,
+		multiImage: true,
+		cta: {
+			text: t('portfolio.brandCta'),
+			href: '#',
+			external: false,
+		}
+	},
+	{
+		id: 'ecommerce',
+		image: '/portfolio-assets/ecommerce/veros-main.webp',
+		imagePrimary: '/portfolio-assets/ecommerce/veros-main.webp',
+		imageSecondary: '/portfolio-assets/ecommerce/veros-alt.webp',
+		imageAlt: 'Veros Boutique E-Commerce Site',
+		imageAltSecondary: 'Veros Boutique Product Inventory',
+		placeholder: false,
+		transitionImage: true,
+		cta: {
+			text: t('portfolio.ecommerceCta'),
+			href: 'https://verosboutiqueky.com',
+			external: true,
+		}
+	},
+	{
+		id: 'automation',
+		image: null,
+		imageAlt: 'Automation Systems',
+		placeholder: 'automation',
+		cta: {
+			text: t('portfolio.growthCta'),
+			href: 'https://get.noza.app/',
+			external: true,
+		}
+	},
+	{
+		id: 'marketing',
+		image: null,
+		imageAlt: 'Digital Marketing Campaign',
+		placeholder: 'campaign',
+		cta: {
+			text: t('portfolio.marketingCta'),
+			href: '#',
+			external: false,
+			disabled: true,
+		}
+	},
+	{
+		id: 'drone',
+		image: 'https://img.youtube.com/vi/rt2fQ3RC430/maxresdefault.jpg',
+		imageAlt: 'Drone Video Production',
+		placeholder: false,
+		videoId: 'rt2fQ3RC430',
+		cta: {
+			text: t('portfolio.droneCta'),
+			href: '#',
+			external: false,
+			disabled: false,
+		}
+	},
+	{
+		id: 'relaunch',
+		image: null,
+		imageAlt: 'Full Brand Relaunch',
+		placeholder: 'relaunch',
+		cta: {
+			text: t('portfolio.relaunchCta'),
+			href: '#',
+			external: false,
+			disabled: true,
+		}
+	},
+];
 ---
 
 <section class="portfolio">
@@ -14,54 +95,489 @@ const t = (key) => translations[key] || key;
 	</div>
 
 	<div class="portfolio-grid">
-		<div class="portfolio-item">
-			<div class="portfolio-image branding-case"></div>
-			<div class="portfolio-overlay">
-				<h3>{t('portfolio.brand')}</h3>
-				<p>{t('portfolio.brandDesc')}</p>
-			</div>
-		</div>
+		{portfolioCards.map((card, index) => {
+			const titleKey = 
+				card.id === 'branding' ? 'portfolio.brand' :
+				card.id === 'ecommerce' ? 'portfolio.ecommerce' :
+				card.id === 'automation' ? 'portfolio.growth' :
+				card.id === 'marketing' ? 'portfolio.marketing' :
+				card.id === 'drone' ? 'portfolio.drone' :
+				'portfolio.relaunch';
+			
+			const descKey = 
+				card.id === 'branding' ? 'portfolio.brandDesc' :
+				card.id === 'ecommerce' ? 'portfolio.ecommerceDesc' :
+				card.id === 'automation' ? 'portfolio.growthDesc' :
+				card.id === 'marketing' ? 'portfolio.marketingDesc' :
+				card.id === 'drone' ? 'portfolio.droneDesc' :
+				'portfolio.relaunghDesc';
 
-		<div class="portfolio-item">
-			<div class="portfolio-image website-case"></div>
-			<div class="portfolio-overlay">
-				<h3>{t('portfolio.ecommerce')}</h3>
-				<p>{t('portfolio.ecommerceDesc')}</p>
-			</div>
-		</div>
-
-		<div class="portfolio-item">
-			<div class="portfolio-image campaign-case"></div>
-			<div class="portfolio-overlay">
-				<h3>{t('portfolio.marketing')}</h3>
-				<p>{t('portfolio.marketingDesc')}</p>
-			</div>
-		</div>
-
-		<div class="portfolio-item">
-			<div class="portfolio-image video-case"></div>
-			<div class="portfolio-overlay">
-				<h3>{t('portfolio.drone')}</h3>
-				<p>{t('portfolio.droneDesc')}</p>
-			</div>
-		</div>
-
-		<div class="portfolio-item">
-			<div class="portfolio-image rebranding-case"></div>
-			<div class="portfolio-overlay">
-				<h3>{t('portfolio.relaunch')}</h3>
-				<p>{t('portfolio.relaunghDesc')}</p>
-			</div>
-		</div>
-
-		<div class="portfolio-item">
-			<div class="portfolio-image consulting-case"></div>
-			<div class="portfolio-overlay">
-				<h3>{t('portfolio.growth')}</h3>
-				<p>{t('portfolio.growthDesc')}</p>
-			</div>
-		</div>
+			return (
+				<div class={`portfolio-card portfolio-${card.id}`}>
+					<div class="portfolio-image-container">
+						{card.image ? (
+							<>
+								{card.multiImage ? (
+									<div class="portfolio-multi-image">
+										<div class="portfolio-image-panel primary">
+											<img 
+												src={card.image} 
+												alt={card.imageAlt}
+												loading="lazy"
+												class="portfolio-image"
+												width="800"
+												height="1000"
+											/>
+										</div>
+										<div class="portfolio-image-panel secondary">
+											<img 
+												src={card.secondaryImage} 
+												alt={card.secondaryAlt}
+												loading="lazy"
+												class="portfolio-image"
+												width="800"
+												height="1000"
+											/>
+										</div>
+									</div>
+								) : card.transitionImage ? (
+									<div class="image-wrapper image-transition-wrapper" data-transition-card={card.id}>
+										<img 
+											src={card.imagePrimary} 
+											alt={card.imageAlt}
+											loading="lazy"
+											class="portfolio-image transition-primary"
+											width="1600"
+											height="1000"
+										/>
+										<img 
+											src={card.imageSecondary} 
+											alt={card.imageAltSecondary}
+											loading="lazy"
+											class="portfolio-image transition-secondary"
+											width="1600"
+											height="1000"
+										/>
+									</div>
+								) : (
+									<div class={`image-wrapper ${card.id === 'drone' ? 'play-button-overlay' : ''}`} data-video-container={card.id === 'drone' ? card.videoId : null}>
+										<img 
+											src={card.image} 
+											alt={card.imageAlt}
+											loading="lazy"
+											class="portfolio-image"
+											width="1600"
+											height="1000"
+										/>
+										{card.id === 'drone' && (
+											<button class="play-button-link" data-play-video={card.videoId} aria-label="Play video">
+												<div class="play-button">
+													<svg width="60" height="60" viewBox="0 0 60 60" fill="white" opacity="0.9">
+														<path d="M12 6c-3.3 0-6 2.7-6 6v36c0 3.3 2.7 6 6 6h36c3.3 0 6-2.7 6-6V12c0-3.3-2.7-6-6-6H12zm0 2h36c2.2 0 4 1.8 4 4v36c0 2.2-1.8 4-4 4H12c-2.2 0-4-1.8-4-4V12c0-2.2 1.8-4 4-4zm12 9l16 10-16 10V17z" />
+													</svg>
+												</div>
+											</button>
+										)}
+									</div>
+								)}
+							</>
+						) : (
+							<div class={`portfolio-placeholder placeholder-${card.placeholder}`}>
+								{card.placeholder === 'automation' && (
+									<div class="placeholder-content">
+										<div class="placeholder-icon">⚙️</div>
+										<p>Automation Systems</p>
+									</div>
+								)}
+								{card.placeholder === 'campaign' && (
+									<div class="placeholder-content">
+										<div class="placeholder-icon">📊</div>
+										<p>Campaign Preview<br/>Coming Soon</p>
+									</div>
+								)}
+								{card.placeholder === 'video' && (
+									<div class="placeholder-content">
+										<div class="placeholder-icon">🎬</div>
+										<p>Video Preview<br/>Coming Soon</p>
+									</div>
+								)}
+								{card.placeholder === 'relaunch' && (
+									<div class="placeholder-content">
+										<div class="placeholder-icon">✨</div>
+										<p>Transformation<br/>Preview Coming Soon</p>
+									</div>
+								)}
+							</div>
+						)}
+					</div>
+					<div class="portfolio-content">
+						<h3>{t(titleKey)}</h3>
+						<p>{t(descKey)}</p>
+						<a 
+							href={card.cta.href}
+							target={card.cta.external ? "_blank" : "_self"}
+							rel={card.cta.external ? "noopener noreferrer" : ""}
+							class={`portfolio-cta ${card.cta.disabled ? 'disabled' : ''}`}
+							{...(card.cta.disabled ? { onclick: 'return false;' } : {})}
+						>
+							{card.cta.text}
+						</a>
+					</div>
+				</div>
+			);
+		})}
 	</div>
 </section>
+
+<script>
+	// Click-to-load YouTube iframe for drone video card
+	if (typeof window !== 'undefined') {
+		document.addEventListener('click', (e) => {
+			const playButton = e.target.closest('[data-play-video]');
+			if (playButton) {
+				const videoId = playButton.dataset.playVideo;
+				const container = playButton.closest('[data-video-container]');
+				if (container) {
+					// Create iframe HTML
+					const iframeHTML = `
+						<iframe 
+							width="100%" 
+							height="100%" 
+							src="https://www.youtube.com/embed/${videoId}?autoplay=1" 
+							title="Drone Video Production" 
+							allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+							allowfullscreen
+							style="border: none; position: absolute; top: 0; left: 0;"
+						></iframe>
+					`;
+					// Replace container content with iframe
+					container.innerHTML = iframeHTML;
+				}
+			}
+		});
+	}
+
+	// IntersectionObserver for E-commerce image transition
+	if (typeof window !== 'undefined') {
+		const transitionCards = document.querySelectorAll('[data-transition-card="ecommerce"]');
+		
+		const observer = new IntersectionObserver((entries) => {
+			entries.forEach(entry => {
+				if (entry.isIntersecting) {
+					const wrapper = entry.target;
+					// Start transition after 1.3 seconds in view
+					setTimeout(() => {
+						const secondary = wrapper.querySelector('.transition-secondary');
+						const primary = wrapper.querySelector('.transition-primary');
+						if (secondary && !secondary.classList.contains('active')) {
+							secondary.classList.add('active');
+							if (primary) {
+								primary.classList.add('fade-out');
+							}
+						}
+					}, 1300);
+					
+					// Stop observing this card after it's been triggered
+					observer.unobserve(entry.target);
+				}
+			});
+		}, { threshold: 0.15 });
+		
+		transitionCards.forEach(card => {
+			observer.observe(card);
+		});
+	}
+</script>
+
+<style>
+	.portfolio {
+		padding: 4rem 2rem;
+		background: linear-gradient(180deg, rgba(0, 0, 0, 0.1) 0%, rgba(0, 0, 0, 0.05) 100%);
+	}
+
+	.section-header {
+		text-align: center;
+		margin-bottom: 3rem;
+	}
+
+	.section-header h2 {
+		font-size: 2.5rem;
+		margin-bottom: 0.5rem;
+		color: var(--text-primary);
+	}
+
+	.section-subtitle {
+		font-size: 1.1rem;
+		color: var(--text-secondary);
+		margin: 0;
+		max-width: 600px;
+		margin-left: auto;
+		margin-right: auto;
+	}
+
+	.portfolio-grid {
+		display: grid;
+		grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+		gap: 2rem;
+		max-width: 1200px;
+		margin-left: auto;
+		margin-right: auto;
+	}
+
+	.portfolio-card {
+		background: var(--surface-secondary, rgba(255, 255, 255, 0.03));
+		border: 1px solid rgba(255, 255, 255, 0.1);
+		border-radius: 12px;
+		overflow: hidden;
+		transition: all 0.3s ease;
+		display: flex;
+		flex-direction: column;
+	}
+
+	.portfolio-card:hover {
+		background: var(--surface-secondary, rgba(255, 255, 255, 0.05));
+		border-color: rgba(255, 255, 255, 0.2);
+		transform: translateY(-4px);
+		box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2);
+	}
+
+	.portfolio-image-container {
+		width: 100%;
+		aspect-ratio: 16 / 10;
+		overflow: hidden;
+		background: linear-gradient(135deg, rgba(139, 92, 246, 0.1), rgba(0, 212, 255, 0.1));
+		display: flex;
+		align-items: center;
+		justify-content: center;
+	}
+
+	.portfolio-multi-image {
+		display: grid;
+		grid-template-columns: 1fr 1fr;
+		width: 100%;
+		height: 100%;
+		gap: 1px;
+		background: rgba(255, 255, 255, 0.05);
+	}
+
+	.portfolio-image-panel {
+		width: 100%;
+		height: 100%;
+		overflow: hidden;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		background: rgba(0, 0, 0, 0.1);
+	}
+
+	.portfolio-image-panel.primary {
+		background: linear-gradient(135deg, rgba(139, 92, 246, 0.12), rgba(0, 212, 255, 0.08));
+	}
+
+	.portfolio-image-panel.secondary {
+		background: linear-gradient(135deg, rgba(0, 212, 255, 0.12), rgba(139, 92, 246, 0.08));
+	}
+
+	.portfolio-image {
+		width: 100%;
+		height: 100%;
+		object-fit: cover;
+		transition: transform 0.3s ease;
+	}
+
+	.portfolio-card:hover .portfolio-image {
+		transform: scale(1.05);
+	}
+
+	.image-wrapper {
+		width: 100%;
+		height: 100%;
+		position: relative;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+	}
+
+	.image-wrapper.play-button-overlay {
+		background: linear-gradient(135deg, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.1));
+	}
+
+	.image-transition-wrapper {
+		position: relative;
+	}
+
+	.portfolio-image.transition-primary,
+	.portfolio-image.transition-secondary {
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+		object-fit: cover;
+		transition: opacity 0.6s ease-in-out;
+	}
+
+	.portfolio-image.transition-primary {
+		opacity: 1;
+		z-index: 2;
+	}
+
+	.portfolio-image.transition-secondary {
+		opacity: 0;
+		z-index: 1;
+	}
+
+	.portfolio-image.transition-secondary.active {
+		opacity: 1;
+	}
+
+	.portfolio-image.transition-primary.fade-out {
+		opacity: 0;
+	}
+
+	.play-button {
+		position: absolute;
+		width: 80px;
+		height: 80px;
+		background: rgba(0, 0, 0, 0.5);
+		border-radius: 50%;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		transition: all 0.3s ease;
+		backdrop-filter: blur(4px);
+		z-index: 20;
+		cursor: pointer;
+	}
+
+	.play-button-link {
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		transform: translate(-50%, -50%);
+		z-index: 20;
+		border: none;
+		background: none;
+		padding: 0;
+		cursor: pointer;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		transition: all 0.3s ease;
+	}
+
+	.play-button-link:hover .play-button,
+	.play-button-link:focus .play-button {
+		background: rgba(0, 212, 255, 0.85);
+		transform: scale(1.15);
+		box-shadow: 0 0 24px rgba(0, 212, 255, 0.7);
+	}
+
+	.play-button-link:active .play-button {
+		transform: scale(0.95);
+	}
+
+	.portfolio-card:hover .play-button-link .play-button {
+		background: rgba(0, 212, 255, 0.7);
+		transform: scale(1.1);
+		box-shadow: 0 0 20px rgba(0, 212, 255, 0.5);
+	}
+
+	.portfolio-placeholder {
+		width: 100%;
+		height: 100%;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		background: linear-gradient(135deg, rgba(139, 92, 246, 0.15), rgba(0, 212, 255, 0.15));
+		font-weight: 600;
+		text-align: center;
+		color: var(--text-secondary);
+		padding: 2rem;
+	}
+
+	.placeholder-content {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		gap: 1rem;
+	}
+
+	.placeholder-icon {
+		font-size: 3rem;
+		opacity: 0.8;
+	}
+
+	.placeholder-content p {
+		margin: 0;
+		font-size: 1rem;
+		line-height: 1.4;
+	}
+
+	.portfolio-content {
+		padding: 2rem;
+		flex-grow: 1;
+		display: flex;
+		flex-direction: column;
+	}
+
+	.portfolio-content h3 {
+		font-size: 1.3rem;
+		margin: 0 0 0.75rem 0;
+		color: var(--text-primary);
+	}
+
+	.portfolio-content p {
+		font-size: 0.95rem;
+		line-height: 1.6;
+		color: var(--text-secondary);
+		margin: 0 0 1.5rem 0;
+		flex-grow: 1;
+	}
+
+	.portfolio-cta {
+		display: inline-block;
+		padding: 0.75rem 1.5rem;
+		background: linear-gradient(135deg, #00d4ff, #8b5cf6);
+		color: white;
+		text-decoration: none;
+		border-radius: 6px;
+		font-weight: 600;
+		font-size: 0.9rem;
+		transition: all 0.3s ease;
+		border: none;
+		cursor: pointer;
+		align-self: flex-start;
+	}
+
+	.portfolio-cta:hover:not(.disabled) {
+		transform: translateX(4px);
+		box-shadow: 0 8px 16px rgba(0, 212, 255, 0.3);
+	}
+
+	.portfolio-cta.disabled {
+		opacity: 0.6;
+		cursor: not-allowed;
+	}
+
+	@media (max-width: 768px) {
+		.portfolio {
+			padding: 3rem 1rem;
+		}
+
+		.section-header h2 {
+			font-size: 1.8rem;
+		}
+
+		.portfolio-grid {
+			grid-template-columns: 1fr;
+			gap: 1.5rem;
+		}
+
+		.portfolio-content {
+			padding: 1.5rem;
+		}
+	}
+</style>
 
 

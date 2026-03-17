@@ -145,6 +145,12 @@ const formId = `performanceReviewForm-${lang}`;
           Form status message will appear here
         </div>
         
+        <p style="font-size: 0.85rem; color: var(--text-secondary); margin: 1.25rem 0 0;">
+          {lang === 'en' 
+            ? 'By submitting, you agree to be contacted via email regarding your performance review. Message response times may vary.'
+            : 'Al enviar, acepta ser contactado por correo electrónico sobre su revisión de rendimiento. Los tiempos de respuesta pueden variar.'}
+        </p>
+        
         <p class="form-trust-note">{t('trust_note')}</p>
       </form>
       

@@ -90,6 +90,7 @@ const alternateFullUrl = alternateUrl ? `${productionDomain}${alternateUrl}` : u
 			"name": "NOZA LLC",
 			"image": "https://nozallc.us/nozallc.svg",
 			"description": "Digital marketing, branding, websites & business consulting for Lexington KY small businesses",
+			"telephone": "+18889916692",
 			"address": {
 				"@type": "PostalAddress",
 				"addressLocality": "Lexington",
@@ -117,7 +118,7 @@ const alternateFullUrl = alternateUrl ? `${productionDomain}${alternateUrl}` : u
 			"logo": "https://nozallc.us/nozallc.svg",
 			"contact": {
 				"@type": "ContactPoint",
-				"telephone": "+1-859-452-8415",
+				"telephone": "+18889916692",
 				"contactType": "Business Inquiries"
 			}
 		}
@@ -186,5 +187,47 @@ const alternateFullUrl = alternateUrl ? `${productionDomain}${alternateUrl}` : u
 		<slot />
 		<Footer lang={lang} />
 		<LanguageToggle />
+
+		<!-- HighLevel Chat Widget - Deferred Loading (Performance Safe) -->
+		<!-- Loads after page interactive via requestIdleCallback, first interaction, or 5s timeout -->
+		<script>
+			function initHighLevelWidget() {
+				// Only load once
+				if (window.__highlevel_loaded) return;
+				window.__highlevel_loaded = true;
+				
+				// Create and inject HighLevel widget script
+				const script = document.createElement('script');
+				script.src = 'https://widgets.leadconnectorhq.com/loader.js';
+				script.async = true;
+				script.setAttribute('data-resources-url', 'https://widgets.leadconnectorhq.com/chat-widget/loader.js');
+				script.setAttribute('data-widget-id', '69b9b03388f7837d3276b01e');
+				document.body.appendChild(script);
+			}
+
+			// Priority 1: Load on browser idle (requestIdleCallback)
+			// This waits until the browser is idle and page is fully interactive
+			if ('requestIdleCallback' in window) {
+				requestIdleCallback(initHighLevelWidget, { timeout: 5000 });
+			} else {
+				// Priority 2: Fallback - Load on first user interaction (click, scroll, touch)
+				// This ensures widget only loads when user engages with page
+				const loadOnInteraction = () => {
+					initHighLevelWidget();
+					// Remove all listeners once called
+					['click', 'scroll', 'touchstart', 'keydown'].forEach(event => {
+						document.removeEventListener(event, loadOnInteraction);
+					});
+				};
+				
+				['click', 'scroll', 'touchstart', 'keydown'].forEach(event => {
+					document.addEventListener(event, loadOnInteraction, { once: true, passive: true });
+				});
+				
+				// Priority 3: Fallback timeout (5 seconds)
+				// Ensures widget loads even if no interaction
+				setTimeout(initHighLevelWidget, 5000);
+			}
+		</script>
 	</body>
 </html>

@@ -13,66 +13,153 @@ const t = (key) => translations[key] || key;
 		<p class="section-subtitle">{t('stack.subtitle')}</p>
 	</div>
 
-	<div class="pipeline-container">
-		<div class="pipeline-node">
-			<div class="node-glow"></div>
-			<div class="node-icon builder-icon">B</div>
-			<p class="node-label">{t('stack.builder')}</p>
-			<p class="node-desc">{t('stack.builderDesc')}</p>
+	<!-- ROW 1: SYSTEM FLOW -->
+	<div class="system-flow-grid">
+		<div class="system-block">
+			<div class="system-number">1</div>
+			<h3>{t('stack.system1')}</h3>
+			<p>{t('stack.system1Desc')}</p>
 		</div>
 
-		<div class="pipeline-connector">
-			<div class="connector-line"></div>
+		<div class="system-block">
+			<div class="system-number">2</div>
+			<h3>{t('stack.system2')}</h3>
+			<p>{t('stack.system2Desc')}</p>
 		</div>
 
-		<div class="pipeline-node">
-			<div class="node-glow"></div>
-			<div class="node-icon github-icon">G</div>
-			<p class="node-label">{t('stack.github')}</p>
-			<p class="node-desc">{t('stack.githubDesc')}</p>
+		<div class="system-block">
+			<div class="system-number">3</div>
+			<h3>{t('stack.system3')}</h3>
+			<p>{t('stack.system3Desc')}</p>
 		</div>
 
-		<div class="pipeline-connector">
-			<div class="connector-line"></div>
-		</div>
-
-		<div class="pipeline-node">
-			<div class="node-glow"></div>
-			<div class="node-icon astro-icon">A</div>
-			<p class="node-label">{t('stack.astro')}</p>
-			<p class="node-desc">{t('stack.astroDesc')}</p>
-		</div>
-
-		<div class="pipeline-connector">
-			<div class="connector-line"></div>
-		</div>
-
-		<div class="pipeline-node">
-			<div class="node-glow"></div>
-			<div class="node-icon cloudflare-icon">C</div>
-			<p class="node-label">{t('stack.cloudflare')}</p>
-			<p class="node-desc">{t('stack.cloudflareDesc')}</p>
+		<div class="system-block">
+			<div class="system-number">4</div>
+			<h3>{t('stack.system4')}</h3>
+			<p>{t('stack.system4Desc')}</p>
 		</div>
 	</div>
 
-	<div class="stack-benefits">
-		<div class="benefit-item">
-			<span class="benefit-icon">✨</span>
-			<p>{t('stack.customization')}</p>
+	<!-- ROW 2: PROOF / OUTCOMES -->
+	<div class="proof-grid">
+		<div class="proof-block">
+			<p>{t('stack.proof1')}</p>
 		</div>
-		<div class="benefit-item">
-			<span class="benefit-icon">⚡</span>
-			<p>{t('stack.speed')}</p>
+		<div class="proof-block">
+			<p>{t('stack.proof2')}</p>
 		</div>
-		<div class="benefit-item">
-			<span class="benefit-icon">🔍</span>
-			<p>{t('stack.seo')}</p>
+		<div class="proof-block">
+			<p>{t('stack.proof3')}</p>
 		</div>
-		<div class="benefit-item">
-			<span class="benefit-icon">📝</span>
-			<p>{t('stack.updates')}</p>
+		<div class="proof-block">
+			<p>{t('stack.proof4')}</p>
 		</div>
+	</div>
+
+	<!-- ROW 3: TRUST STATEMENT -->
+	<div class="trust-statement">
+		<p>{t('stack.trustStatement')}</p>
 	</div>
 </section>
+
+<style>
+	.system-flow-grid {
+		display: grid;
+		grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+		gap: 2rem;
+		margin: 3rem 0;
+		max-width: 1000px;
+		margin-left: auto;
+		margin-right: auto;
+	}
+
+	.system-block {
+		padding: 2rem;
+		background: rgba(255, 255, 255, 0.02);
+		border: 1px solid rgba(255, 255, 255, 0.1);
+		border-radius: 12px;
+		text-align: center;
+		transition: all 0.3s ease;
+	}
+
+	.system-block:hover {
+		background: rgba(255, 255, 255, 0.04);
+		border-color: rgba(255, 255, 255, 0.2);
+		transform: translateY(-2px);
+	}
+
+	.system-number {
+		font-size: 2rem;
+		font-weight: 700;
+		color: var(--accent, #00d4ff);
+		margin-bottom: 1rem;
+	}
+
+	.system-block h3 {
+		font-size: 1.2rem;
+		margin-bottom: 0.75rem;
+		color: var(--text-primary);
+	}
+
+	.system-block p {
+		font-size: 0.95rem;
+		line-height: 1.5;
+		color: var(--text-secondary);
+	}
+
+	.proof-grid {
+		display: grid;
+		grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+		gap: 1.5rem;
+		margin: 3rem 0;
+		max-width: 900px;
+		margin-left: auto;
+		margin-right: auto;
+	}
+
+	.proof-block {
+		padding: 1.5rem;
+		background: linear-gradient(135deg, rgba(0, 212, 255, 0.08), rgba(139, 92, 246, 0.08));
+		border: 1px solid rgba(0, 212, 255, 0.2);
+		border-radius: 8px;
+		text-align: center;
+	}
+
+	.proof-block p {
+		font-size: 1rem;
+		font-weight: 600;
+		color: var(--text-primary);
+		margin: 0;
+	}
+
+	.trust-statement {
+		text-align: center;
+		margin: 3rem 0 2rem;
+		padding: 2rem;
+	}
+
+	.trust-statement p {
+		font-size: 1.25rem;
+		font-weight: 600;
+		color: var(--text-primary);
+		margin: 0;
+	}
+
+	@media (max-width: 768px) {
+		.system-flow-grid {
+			grid-template-columns: repeat(2, 1fr);
+			gap: 1.5rem;
+		}
+
+		.proof-grid {
+			grid-template-columns: 1fr;
+			gap: 1rem;
+		}
+
+		.trust-statement p {
+			font-size: 1.1rem;
+		}
+	}
+</style>
 
 
