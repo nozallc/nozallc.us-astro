@@ -1,0 +1,96 @@
+---
+// FormMetadata Component
+// Injects hidden metadata fields for form tracking
+// Includes: source_page, form_type, language, submitted_at
+
+export interface Props {
+  formType: 'contact' | 'performance_review';
+  lang: 'en' | 'es';
+  sourcePageUrl?: string;
+}
+
+const {
+  formType,
+  lang,
+  sourcePageUrl,
+} = Astro.props;
+---
+
+<div class="form-metadata" style="display: none;">
+  <!-- Hidden metadata fields for form tracking -->
+  
+  <!-- Source page URL: auto-detected from window.location.href on submit -->
+  <input
+    type="hidden"
+    name="source_page"
+    id="source_page"
+    value={sourcePageUrl || ''}
+  />
+
+  <!-- Form type for webhook routing and analytics -->
+  <input
+    type="hidden"
+    name="form_type"
+    value={formType}
+  />
+
+  <!-- Language code for bilingual tracking -->
+  <input
+    type="hidden"
+    name="language"
+    value={lang}
+  />
+
+  <!-- Submitted timestamp: set by JavaScript on form submit (ISO 8601) -->
+  <input
+    type="hidden"
+    name="submitted_at"
+    id="submitted_at"
+    value=""
+  />
+</div>
+
+<script>
+  // Set form metadata on submit
+  document.addEventListener('DOMContentLoaded', () => {
+    // Get the parent form
+    const form = document.closest('form') || document.querySelector('form');
+    
+    if (!form) {
+      console.warn('FormMetadata: Could not find parent form element');
+      return;
+    }
+
+    form.addEventListener('submit', (event) => {
+      // Auto-detect source page if not manually set
+      const sourcePageInput = form.querySelector('input[name="source_page"]');
+      if (sourcePageInput && !sourcePageInput.value) {
+        sourcePageInput.value = window.location.href;
+      }
+
+      // Set submitted_at timestamp (ISO 8601 format)
+      const submittedAtInput = form.querySelector('input[name="submitted_at"]');
+      if (submittedAtInput) {
+        const timestamp = new Date().toISOString();
+        submittedAtInput.value = timestamp;
+      }
+    });
+  });
+</script>
+
+<style>
+  /* Hidden metadata fields should not be visible or take up space */
+  .form-metadata {
+    display: none !important;
+    visibility: hidden;
+    position: absolute;
+    left: -9999px;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+  }
+
+  .form-metadata input {
+    display: none;
+  }
+</style>

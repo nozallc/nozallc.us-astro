@@ -1,0 +1,215 @@
+---
+// FormConsentGroup Component
+// Reusable consent checkboxes for forms
+// Includes: SMS consent, Marketing consent, Terms/Privacy acceptance
+
+export interface Props {
+  smsLabel?: string;
+  marketingLabel?: string;
+  termsLabel?: string;
+  lang?: 'en' | 'es';
+  smsRequired?: boolean;
+  marketingRequired?: boolean;
+  termsRequired?: boolean;
+  privacyUrl?: string;
+  termsUrl?: string;
+}
+
+const {
+  smsLabel,
+  marketingLabel,
+  termsLabel,
+  lang = 'en',
+  smsRequired = true,
+  marketingRequired = false,
+  termsRequired = true,
+  privacyUrl = lang === 'es' ? '/es/privacy-policy' : '/privacy-policy',
+  termsUrl = lang === 'es' ? '/es/terms' : '/terms',
+} = Astro.props;
+
+// Default labels in English
+const defaultSmsLabel = 'I consent to SMS messages from NOZA LLC regarding my inquiry, consultation, project updates, and requested services. Carrier message and data rates may apply. Reply STOP to opt out, HELP for help.';
+const defaultMarketingLabel = 'I agree to receive occasional marketing emails and SMS about NOZA LLC services, special offers, and educational content.';
+const defaultTermsLabel = 'I agree to the Privacy Policy and Terms of Service';
+
+// Default labels in Spanish
+const defaultSmsLabelEs = 'Consiento recibir mensajes SMS de NOZA LLC respecto a mi consulta, consulta, actualizaciones de proyecto y servicios solicitados. Pueden aplicarse tarifas estándar de mensajes y datos. Responde STOP para darte de baja, HELP para ayuda.';
+const defaultMarketingLabelEs = 'Acepto recibir correos electrónicos y SMS ocasionales de marketing sobre servicios de NOZA LLC, ofertas especiales y contenido educativo.';
+const defaultTermsLabelEs = 'Estoy de acuerdo con la Política de Privacidad y los Términos de Servicio';
+
+const finalSmsLabel = smsLabel || (lang === 'es' ? defaultSmsLabelEs : defaultSmsLabel);
+const finalMarketingLabel = marketingLabel || (lang === 'es' ? defaultMarketingLabelEs : defaultMarketingLabel);
+const finalTermsLabel = termsLabel || (lang === 'es' ? defaultTermsLabelEs : defaultTermsLabel);
+---
+
+<div class="form-consent-group">
+  <!-- SMS Consent Checkbox (Required) -->
+  <div class="form-consent-item">
+    <input
+      type="checkbox"
+      id="consentSms"
+      name="consentSms"
+      value="true"
+      required={smsRequired}
+      aria-label={finalSmsLabel}
+      aria-required={smsRequired ? 'true' : undefined}
+    />
+    <label for="consentSms">
+      {finalSmsLabel}
+      {smsRequired && <span class="required-asterisk">*</span>}
+    </label>
+  </div>
+
+  <!-- Marketing Consent Checkbox (Optional) -->
+  <div class="form-consent-item">
+    <input
+      type="checkbox"
+      id="consentMarketing"
+      name="consentMarketing"
+      value="true"
+      required={marketingRequired}
+      aria-label={finalMarketingLabel}
+      aria-required={marketingRequired ? 'true' : undefined}
+    />
+    <label for="consentMarketing">
+      {finalMarketingLabel}
+      {marketingRequired && <span class="required-asterisk">*</span>}
+    </label>
+  </div>
+
+  <!-- Terms/Privacy Acceptance Checkbox (Required) -->
+  <div class="form-consent-item">
+    <input
+      type="checkbox"
+      id="consentTerms"
+      name="consentTerms"
+      value="true"
+      required={termsRequired}
+      aria-label={finalTermsLabel}
+      aria-required={termsRequired ? 'true' : undefined}
+    />
+    <label for="consentTerms">
+      <span>
+        {lang === 'es' 
+          ? 'Estoy de acuerdo con la ' 
+          : 'I agree to the '}
+        <a href={privacyUrl} target="_blank" rel="noopener noreferrer">
+          {lang === 'es' ? 'Política de Privacidad' : 'Privacy Policy'}
+        </a>
+        {lang === 'es' ? ' y los ' : ' and '}
+        <a href={termsUrl} target="_blank" rel="noopener noreferrer">
+          {lang === 'es' ? 'Términos de Servicio' : 'Terms of Service'}
+        </a>
+      </span>
+      {termsRequired && <span class="required-asterisk">*</span>}
+    </label>
+  </div>
+</div>
+
+<style>
+  .form-consent-group {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+    margin: 2rem 0;
+    padding: 1.5rem;
+    background: rgba(0, 212, 255, 0.03);
+    border: 1px solid rgba(0, 212, 255, 0.15);
+    border-radius: 8px;
+  }
+
+  .form-consent-item {
+    display: flex;
+    gap: 0.75rem;
+    align-items: flex-start;
+  }
+
+  .form-consent-item input[type="checkbox"] {
+    width: 20px;
+    height: 20px;
+    min-width: 20px;
+    margin-top: 0.25rem;
+    cursor: pointer;
+    accent-color: var(--primary-neon);
+    border: 2px solid var(--border-glow);
+    border-radius: 4px;
+    background: rgba(0, 0, 0, 0.3);
+    transition: all 0.3s ease;
+  }
+
+  .form-consent-item input[type="checkbox"]:hover {
+    border-color: var(--primary-neon);
+    box-shadow: 0 0 8px rgba(0, 212, 255, 0.2);
+  }
+
+  .form-consent-item input[type="checkbox"]:focus {
+    outline: none;
+    border-color: var(--primary-neon);
+    box-shadow: 0 0 12px rgba(0, 212, 255, 0.3);
+  }
+
+  .form-consent-item input[type="checkbox"]:checked {
+    background: var(--primary-neon);
+    border-color: var(--primary-neon);
+    color: var(--dark-bg);
+  }
+
+  .form-consent-item label {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.9rem;
+    color: var(--text-primary);
+    line-height: 1.6;
+    cursor: pointer;
+    user-select: none;
+  }
+
+  .form-consent-item label span {
+    display: inline;
+  }
+
+  .form-consent-item label a {
+    color: var(--primary-neon);
+    text-decoration: underline;
+    transition: opacity 0.3s ease;
+  }
+
+  .form-consent-item label a:hover {
+    opacity: 0.8;
+  }
+
+  .required-asterisk {
+    color: var(--secondary-neon);
+    font-weight: 600;
+    margin-left: 0.25rem;
+  }
+
+  /* Accessibility: Ensure checkboxes are large enough for touch (min 44px) */
+  @media (max-width: 768px) {
+    .form-consent-item input[type="checkbox"] {
+      width: 24px;
+      height: 24px;
+      min-width: 24px;
+    }
+
+    .form-consent-item label {
+      font-size: 0.85rem;
+    }
+  }
+
+  /* Error state (applied by form validation) */
+  .form-consent-item input[type="checkbox"]:invalid {
+    border-color: var(--secondary-neon);
+    box-shadow: 0 0 8px rgba(255, 0, 110, 0.2);
+  }
+
+  /* Print styles */
+  @media print {
+    .form-consent-group {
+      background: transparent;
+      border: 1px solid #ccc;
+    }
+  }
+</style>

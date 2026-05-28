@@ -28,13 +28,13 @@
 			<li class="nav-item-with-submenu">
 				<div class="nav-websites-container">
 					<a href="/websites" class="nav-websites-link">High-Performance Websites</a>
-					<button class="nav-dropdown-toggle" id="websites-dropdown-toggle" aria-label="Toggle websites submenu" aria-expanded="false" type="button">
+					<button class="nav-dropdown-toggle" id="websites-dropdown-toggle" aria-label="Toggle websites submenu" aria-expanded="false" aria-controls="websites-submenu" type="button">
 						<svg class="dropdown-icon" width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
 							<path d="M4 6L8 10L12 6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
 						</svg>
 					</button>
 				</div>
-				<ul class="nav-submenu">
+				<ul class="nav-submenu" id="websites-submenu">
 					<li><a href="/websites/own-your-website" class="nav-own-website-link">Own Your Website</a></li>
 					<li><a href="/tools/performance-review" class="nav-performance-review-link">Performance Review Tool</a></li>
 				</ul>
@@ -100,9 +100,13 @@
 			hamburger.addEventListener('click', () => {
 				hamburger.classList.toggle('active');
 				navLinks.classList.toggle('active');
-				// Update aria-expanded for accessibility
 				const isExpanded = hamburger.getAttribute('aria-expanded') === 'true';
 				hamburger.setAttribute('aria-expanded', (!isExpanded).toString());
+				// Reset submenu when hamburger closes so aria-expanded stays in sync
+				if (isExpanded && websitesSubmenu && websitesToggle) {
+					websitesSubmenu.classList.remove('active');
+					websitesToggle.setAttribute('aria-expanded', 'false');
+				}
 			});
 
 			// Mobile dropdown toggle for Websites submenu
@@ -124,12 +128,32 @@
 					hamburger.classList.remove('active');
 					navLinks.classList.remove('active');
 					hamburger.setAttribute('aria-expanded', 'false');
-					// Also close submenu on link click
 					if (websitesSubmenu) {
 						websitesSubmenu.classList.remove('active');
 						if (websitesToggle) websitesToggle.setAttribute('aria-expanded', 'false');
 					}
 				});
+			});
+
+			// Close mobile submenu when tapping outside the nav item
+			document.addEventListener('click', (e) => {
+				if (!websitesToggle || !websitesSubmenu) return;
+				const parentItem = websitesToggle.closest('.nav-item-with-submenu');
+				if (parentItem && e.target instanceof Node && !parentItem.contains(e.target)) {
+					websitesSubmenu.classList.remove('active');
+					websitesToggle.setAttribute('aria-expanded', 'false');
+				}
+			});
+
+			// Close submenu on Escape key — return focus to toggle button
+			document.addEventListener('keydown', (e) => {
+				if (e.key === 'Escape' && websitesSubmenu && websitesToggle) {
+					if (websitesSubmenu.classList.contains('active')) {
+						websitesSubmenu.classList.remove('active');
+						websitesToggle.setAttribute('aria-expanded', 'false');
+						websitesToggle.focus();
+					}
+				}
 			});
 
 			// Scroll handler for navbar opacity

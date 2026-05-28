@@ -47,6 +47,23 @@ const prefix = lang === 'es' ? '/es' : '';
 				<li><a href="mailto:hello@nozallc.us">{t('footer.email')}</a></li>
 			</ul>
 		</div>
+
+		<div class="footer-col">
+			<h4>{lang === 'es' ? 'Legal' : 'Legal'}</h4>
+			<ul>
+				{lang === 'es' ? (
+					<>
+						<li><a href="/es/privacy-policy" class="footer-privacy">Política de Privacidad</a></li>
+						<li><a href="/es/terms" class="footer-terms">Términos de Servicio</a></li>
+					</>
+				) : (
+					<>
+						<li><a href="/privacy-policy" class="footer-privacy">Privacy Policy</a></li>
+						<li><a href="/terms" class="footer-terms">Terms of Service</a></li>
+					</>
+				)}
+			</ul>
+		</div>
 	</div>
 
 	<div class="footer-bottom">
@@ -71,6 +88,8 @@ const prefix = lang === 'es' ? '/es' : '';
 			'footer-services': isSpanish ? '/es/services' : '/services',
 			'footer-vendor-network': isSpanish ? '/es/vendor-network' : '/vendor-network',
 			'footer-contact': isSpanish ? '/es/contact' : '/contact',
+			'footer-privacy': isSpanish ? '/es/privacy-policy' : '/privacy-policy',
+			'footer-terms': isSpanish ? '/es/terms' : '/terms',
 		};
 
 		for (const [className, href] of Object.entries(footerLinks)) {
